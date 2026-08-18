@@ -1,0 +1,9 @@
+services:
+  bambardarda-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agro_tourism_frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
