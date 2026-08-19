@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSeedling, FaLandmark, FaCrown, FaBinoculars, FaSwimmingPool, FaLeaf, FaArrowRight, FaBullseye, FaEye } from 'react-icons/fa';
 
 const Hero = () => {
@@ -38,10 +38,31 @@ const Hero = () => {
     }
   ];
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('[data-scroll-reveal]');
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <section
-        className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center text-white"
+        data-scroll-reveal
+        className="scroll-reveal relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center text-white"
         style={{
           backgroundImage: "url('/images/hero.jpg')",
           height: '120vh',
@@ -65,7 +86,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className="py-8 px-4 bg-white">
+      <section data-scroll-reveal className="scroll-reveal py-8 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-center gap-6">
             {highlights.map((item) => (
@@ -80,7 +101,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 bg-white">
+      <section data-scroll-reveal className="scroll-reveal py-12 px-4 bg-white">
          <div className="max-w-6xl mx-auto">
           <h3 className="text-xl font-normal text-luxury-gold font-heading mb-2 text-left">
             The Sanctuary
@@ -119,7 +140,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 bg-white">
+      <section data-scroll-reveal className="scroll-reveal py-12 px-4 bg-white">
          <div className="max-w-7xl mx-auto text-center">
            <h2 className="text-3xl md:text-4xl font-normal mb-6 font-heading text-forest-green">
              Discover Our Estate Experiences
@@ -175,7 +196,7 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-white">
+        <section data-scroll-reveal className="scroll-reveal py-16 px-4 bg-white">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
             <div className="md:w-1/2">
               <img
@@ -204,7 +225,7 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-ivory-white">
+        <section data-scroll-reveal className="scroll-reveal py-16 px-4 bg-ivory-white">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-normal mb-6 font-heading text-forest-green">
               A promise of purity and peace.
@@ -249,7 +270,7 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-white">
+        <section data-scroll-reveal className="scroll-reveal py-16 px-4 bg-white">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-normal mb-10 font-heading text-forest-green">
               Board of Directors

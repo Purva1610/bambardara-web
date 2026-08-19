@@ -17,3 +17,71 @@ h2,
 h3 {
   color: #0B5D3A;
 }
+
+/* Entrance gates opening overlay */
+.entrance-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  overflow: hidden;
+}
+
+.entrance-overlay.fading {
+  animation: entranceFadeOut 0.35s ease forwards;
+}
+
+@keyframes entranceFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.entrance-split {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.entrance-half {
+  flex: 0 0 50%;
+  height: 100%;
+  background-image: url('/images/entrance.png');
+  background-size: cover;
+  transition: transform 2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 2s ease;
+  will-change: transform;
+}
+
+.entrance-overlay.opening .entrance-half {
+  filter: brightness(1.05) saturate(1.05);
+}
+
+.entrance-half.left {
+  background-position: left center;
+  transform: translateX(0);
+}
+
+.entrance-half.right {
+  background-position: right center;
+  transform: translateX(0);
+}
+
+.entrance-overlay.opening .entrance-half.left {
+  transform: translateX(-105%) rotateY(25deg);
+}
+
+.entrance-overlay.opening .entrance-half.right {
+  transform: translateX(105%) rotateY(-25deg);
+}
+
+/* Scroll reveal for page sections */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
