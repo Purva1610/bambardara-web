@@ -1,0 +1,958 @@
+{
+  "5 star hospitality (2).jpg": {
+    "slug": "5-star-hospitality-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5007,
+    "height": 3338
+  },
+  "5 star hospitality.jpg": {
+    "slug": "5-star-hospitality",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6048,
+    "height": 8064
+  },
+  "about.jpg": {
+    "slug": "about",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4480,
+    "height": 6720
+  },
+  "adve.jpg": {
+    "slug": "adve",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6016,
+    "height": 4016
+  },
+  "animal farm and dairy farm (2).jpg": {
+    "slug": "animal-farm-and-dairy-farm-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3500,
+    "height": 2333
+  },
+  "animal farm and dairy farm (3).jpg": {
+    "slug": "animal-farm-and-dairy-farm-3",
+    "widths": [
+      640,
+      1280
+    ],
+    "width": 1680,
+    "height": 2519
+  },
+  "animal farm and dairy farm.jpg": {
+    "slug": "animal-farm-and-dairy-farm",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3796,
+    "height": 5061
+  },
+  "banquet and conference (2).jpg": {
+    "slug": "banquet-and-conference-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 8368,
+    "height": 5584
+  },
+  "banquet and conference (3).jpg": {
+    "slug": "banquet-and-conference-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 6000
+  },
+  "banquet and conference (4).jpg": {
+    "slug": "banquet-and-conference-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3000,
+    "height": 4000
+  },
+  "banquet and conference.jpg": {
+    "slug": "banquet-and-conference",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 10954,
+    "height": 7303
+  },
+  "Boating (2).jpg": {
+    "slug": "boating-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2917,
+    "height": 5184
+  },
+  "Boating 3.jpg": {
+    "slug": "boating-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3456,
+    "height": 5184
+  },
+  "Boating.jpg": {
+    "slug": "boating",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 7728,
+    "height": 4344
+  },
+  "camping (2).jpg": {
+    "slug": "camping-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3456,
+    "height": 5184
+  },
+  "camping.jpg": {
+    "slug": "camping",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 399
+  },
+  "cycling (2).jpg": {
+    "slug": "cycling-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3504,
+    "height": 2336
+  },
+  "cycling (3).jpg": {
+    "slug": "cycling-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6240,
+    "height": 4160
+  },
+  "cycling.jpg": {
+    "slug": "cycling",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 5328
+  },
+  "event and cultural experience (2).jpg": {
+    "slug": "event-and-cultural-experience-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5999,
+    "height": 4000
+  },
+  "event and cultural experience (3).jpg": {
+    "slug": "event-and-cultural-experience-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3673,
+    "height": 2624
+  },
+  "event and cultural experience.jpg": {
+    "slug": "event-and-cultural-experience",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3240,
+    "height": 5760
+  },
+  "event.jpg": {
+    "slug": "event",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6500,
+    "height": 4333
+  },
+  "family fun  and adventure (2).jpg": {
+    "slug": "family-fun-and-adventure-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4567,
+    "height": 2938
+  },
+  "family fun  and adventure (3).jpg": {
+    "slug": "family-fun-and-adventure-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6240,
+    "height": 4160
+  },
+  "family fun  and adventure.jpg": {
+    "slug": "family-fun-and-adventure",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2784,
+    "height": 4176
+  },
+  "fine dining restaurant (2).jpg": {
+    "slug": "fine-dining-restaurant-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4608,
+    "height": 2592
+  },
+  "fine dining restaurant.jpg": {
+    "slug": "fine-dining-restaurant",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4608,
+    "height": 3072
+  },
+  "footer.jpg": {
+    "slug": "footer",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 406
+  },
+  "golf court (2).jpg": {
+    "slug": "golf-court-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4672,
+    "height": 7008
+  },
+  "golf court.jpg": {
+    "slug": "golf-court",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3403,
+    "height": 5104
+  },
+  "helicopter landing (2).jpg": {
+    "slug": "helicopter-landing-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "helicopter landing.jpg": {
+    "slug": "helicopter-landing",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5365,
+    "height": 3259
+  },
+  "hero image (2).jpg": {
+    "slug": "hero-image-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2892,
+    "height": 4338
+  },
+  "hero image (4).jpg": {
+    "slug": "hero-image-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3918,
+    "height": 5873
+  },
+  "hero image.jpg": {
+    "slug": "hero-image",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2848,
+    "height": 4272
+  },
+  "hero.jpg": {
+    "slug": "hero",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "infinity pool (2).jpg": {
+    "slug": "infinity-pool-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2773,
+    "height": 4160
+  },
+  "infinity pool (3).jpg": {
+    "slug": "infinity-pool-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4160,
+    "height": 6240
+  },
+  "infinity pool.jpg": {
+    "slug": "infinity-pool",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3024,
+    "height": 4032
+  },
+  "integrated.jpg": {
+    "slug": "integrated",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5375,
+    "height": 3580
+  },
+  "international meditation center (2).jpg": {
+    "slug": "international-meditation-center-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5841,
+    "height": 3894
+  },
+  "international meditation center (3).jpg": {
+    "slug": "international-meditation-center-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3004,
+    "height": 3797
+  },
+  "international meditation center.jpg": {
+    "slug": "international-meditation-center",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3072,
+    "height": 4096
+  },
+  "jungle safari and wild life.jpg": {
+    "slug": "jungle-safari-and-wild-life",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6016,
+    "height": 4016
+  },
+  "jungle safari and wildlife (2).jpg": {
+    "slug": "jungle-safari-and-wildlife-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4898,
+    "height": 3265
+  },
+  "jungle safari and wildlife (3).jpg": {
+    "slug": "jungle-safari-and-wildlife-3",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 408
+  },
+  "jungle safari and wildlife.jpg": {
+    "slug": "jungle-safari-and-wildlife",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 408
+  },
+  "kayaking (2).jpg": {
+    "slug": "kayaking-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4160,
+    "height": 6240
+  },
+  "kayaking (3).jpg": {
+    "slug": "kayaking-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5897,
+    "height": 3924
+  },
+  "kayaking (4).jpg": {
+    "slug": "kayaking-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6041,
+    "height": 4019
+  },
+  "kayaking 2.jpg": {
+    "slug": "kayaking-2",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 408
+  },
+  "kayaking.jpg": {
+    "slug": "kayaking",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 408
+  },
+  "legacy.jpg": {
+    "slug": "legacy",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3396,
+    "height": 4245
+  },
+  "luxury hotel rooms and suites (2).jpg": {
+    "slug": "luxury-hotel-rooms-and-suites-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3872,
+    "height": 2334
+  },
+  "luxury hotel rooms and suites (3).jpg": {
+    "slug": "luxury-hotel-rooms-and-suites-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6720,
+    "height": 4480
+  },
+  "luxury hotel rooms and suites (4).jpg": {
+    "slug": "luxury-hotel-rooms-and-suites-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4032,
+    "height": 3024
+  },
+  "luxury hotel rooms and suites.jpg": {
+    "slug": "luxury-hotel-rooms-and-suites",
+    "widths": [
+      640,
+      1280
+    ],
+    "width": 1696,
+    "height": 2560
+  },
+  "organic farming and farm stay (2).jpg": {
+    "slug": "organic-farming-and-farm-stay-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3840,
+    "height": 5760
+  },
+  "organic farming and farm stay (3).jpg": {
+    "slug": "organic-farming-and-farm-stay-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5760,
+    "height": 3840
+  },
+  "organic farming and farm stay (4).jpg": {
+    "slug": "organic-farming-and-farm-stay-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3072,
+    "height": 4096
+  },
+  "organic farming and farm stay.jpg": {
+    "slug": "organic-farming-and-farm-stay",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4080,
+    "height": 3072
+  },
+  "patil.jpeg": {
+    "slug": "patil",
+    "widths": [
+      477
+    ],
+    "width": 477,
+    "height": 643
+  },
+  "pawar.jpeg": {
+    "slug": "pawar",
+    "widths": [
+      466
+    ],
+    "width": 466,
+    "height": 610
+  },
+  "resort and villas (2).jpg": {
+    "slug": "resort-and-villas-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 7708,
+    "height": 5781
+  },
+  "resort and villas (3).jpg": {
+    "slug": "resort-and-villas-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5350,
+    "height": 3564
+  },
+  "resort and villas (4).jpg": {
+    "slug": "resort-and-villas-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3024,
+    "height": 4032
+  },
+  "resort and villas (5).jpg": {
+    "slug": "resort-and-villas-5",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5165,
+    "height": 3030
+  },
+  "resort and villas.jpg": {
+    "slug": "resort-and-villas",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2266,
+    "height": 3021
+  },
+  "rock climbing (2).jpg": {
+    "slug": "rock-climbing-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 6000
+  },
+  "rock climbing (3).jpg": {
+    "slug": "rock-climbing-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 6000
+  },
+  "rock climbing (4).jpg": {
+    "slug": "rock-climbing-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3648,
+    "height": 5472
+  },
+  "rock climbing.jpg": {
+    "slug": "rock-climbing",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5469,
+    "height": 3906
+  },
+  "ropeway (2).jpg": {
+    "slug": "ropeway-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 6000
+  },
+  "ropeway (3).jpg": {
+    "slug": "ropeway-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3822,
+    "height": 5733
+  },
+  "ropeway.jpg": {
+    "slug": "ropeway",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3834,
+    "height": 5751
+  },
+  "spa and wellness (2).jpg": {
+    "slug": "spa-and-wellness-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2667,
+    "height": 4000
+  },
+  "spa and wellness.jpg": {
+    "slug": "spa-and-wellness",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 344
+  },
+  "stay.jpg": {
+    "slug": "stay",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5464,
+    "height": 3070
+  },
+  "sustainable and eco friendly (2).jpg": {
+    "slug": "sustainable-and-eco-friendly-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4416,
+    "height": 2944
+  },
+  "sustainable and eco friendly.jpg": {
+    "slug": "sustainable-and-eco-friendly",
+    "widths": [
+      612
+    ],
+    "width": 612,
+    "height": 408
+  },
+  "temple and spiritual experience (2).jpg": {
+    "slug": "temple-and-spiritual-experience-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4897,
+    "height": 3264
+  },
+  "temple and spiritual experience.jpg": {
+    "slug": "temple-and-spiritual-experience",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6652,
+    "height": 4432
+  },
+  "temple.jpg": {
+    "slug": "temple",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 8064,
+    "height": 4536
+  },
+  "trekking (2).jpg": {
+    "slug": "trekking-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 5176
+  },
+  "trekking (3).jpg": {
+    "slug": "trekking-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 7952,
+    "height": 5304
+  },
+  "trekking.jpg": {
+    "slug": "trekking",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2832,
+    "height": 4240
+  },
+  "wakeup.jpg": {
+    "slug": "wakeup",
+    "widths": [
+      459
+    ],
+    "width": 459,
+    "height": 612
+  },
+  "water park (2).jpg": {
+    "slug": "water-park-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5428,
+    "height": 3578
+  },
+  "water park (3).jpg": {
+    "slug": "water-park-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3448,
+    "height": 4592
+  },
+  "water park (4).jpg": {
+    "slug": "water-park-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3344,
+    "height": 5016
+  },
+  "water park.jpg": {
+    "slug": "water-park",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2830,
+    "height": 3774
+  },
+  "waterfall.jpg": {
+    "slug": "waterfall",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "waterfalls and nature trails (2).jpg": {
+    "slug": "waterfalls-and-nature-trails-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "waterfalls and nature trails (3).jpg": {
+    "slug": "waterfalls-and-nature-trails-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4336,
+    "height": 5776
+  },
+  "well planted roads and street lights (2).jpg": {
+    "slug": "well-planted-roads-and-street-lights-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4160,
+    "height": 3120
+  },
+  "well planted roads and street lights (3).jpg": {
+    "slug": "well-planted-roads-and-street-lights-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2965,
+    "height": 3971
+  },
+  "well planted roads and street lights.jpg": {
+    "slug": "well-planted-roads-and-street-lights",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5157,
+    "height": 3438
+  }
+}

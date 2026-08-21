@@ -1,5 +1,5 @@
+/* Typography and ground colours are set on <body> in index.css; the shell only
+   needs to guarantee the ivory background behind fixed and full-bleed sections. */
 .App {
-  font-family: 'Poppins', sans-serif;
-  background-color: #F8F4E9;
-  color: #333333;
+  background-color: #faf8f3;
 }

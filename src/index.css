@@ -2,86 +2,200 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Fixed nav is ~5rem; keep anchored sections from hiding under it. */
+    scroll-padding-top: 5rem;
+  }
 
-h1,
-h2,
-h3 {
-  color: #0B5D3A;
-}
+  body {
+    margin: 0;
+    background-color: #faf8f3;
+    color: #21201e;
+    font-family: 'Jost', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-/* Entrance gates opening overlay */
-.entrance-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #000;
-  overflow: hidden;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: #21201e;
+  }
 
-.entrance-overlay.fading {
-  animation: entranceFadeOut 0.35s ease forwards;
-}
-
-@keyframes entranceFadeOut {
-  to {
-    opacity: 0;
+  ::selection {
+    background: #b08d3f;
+    color: #faf8f3;
   }
 }
 
-.entrance-split {
-  display: flex;
-  width: 100%;
-  height: 100%;
+@layer components {
+  /* Wide-tracked micro-label that sits above every section heading. */
+  .lux-label {
+    @apply font-body text-label uppercase text-luxury-gold;
+    font-weight: 400;
+  }
+
+  /* Hairline gold rule used as a section divider. */
+  .lux-rule {
+    @apply block h-px w-14 bg-luxury-gold origin-left;
+  }
+
+  /* Primary action: filled, square, wide-tracked. Fill sweeps in on hover. */
+  .lux-btn {
+    @apply relative inline-flex items-center justify-center overflow-hidden
+      border border-current px-9 py-4 font-body text-label uppercase
+      transition-colors duration-700 ease-luxe;
+  }
+  .lux-btn > span {
+    @apply relative z-10;
+  }
+  .lux-btn::after {
+    content: '';
+    @apply absolute inset-0 z-0 origin-bottom scale-y-0
+      transition-transform duration-700 ease-luxe;
+  }
+  .lux-btn:hover::after {
+    @apply scale-y-100;
+  }
+
+  /* The sweep fill is set explicitly, never currentColor — the text colour
+     inverts on hover, so a currentColor fill would erase the label. */
+  .lux-btn-light {
+    @apply lux-btn text-ivory-white;
+  }
+  .lux-btn-light::after {
+    @apply bg-ivory-white;
+  }
+  .lux-btn-light:hover {
+    @apply text-dark-charcoal;
+  }
+
+  .lux-btn-dark {
+    @apply lux-btn text-forest-green;
+  }
+  .lux-btn-dark::after {
+    @apply bg-forest-green;
+  }
+  .lux-btn-dark:hover {
+    @apply text-ivory-white;
+  }
+
+  /* Text link with a rule that draws in from the left. */
+  .lux-link {
+    @apply relative inline-block font-body text-label uppercase
+      pb-1 transition-opacity duration-500;
+  }
+  .lux-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-full origin-right scale-x-0
+      bg-current transition-transform duration-700 ease-luxe;
+  }
+  .lux-link:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  /* Image frame: slow zoom on hover, never a snap. */
+  .lux-frame {
+    @apply relative overflow-hidden;
+  }
+  .lux-frame img {
+    @apply h-full w-full object-cover transition-transform duration-1200 ease-luxe;
+  }
+  .lux-frame:hover img {
+    transform: scale(1.06);
+  }
 }
 
-.entrance-half {
-  flex: 0 0 50%;
-  height: 100%;
-  background-image: url('/images/entrance.png');
-  background-size: cover;
-  transition: transform 2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 2s ease;
-  will-change: transform;
+@layer utilities {
+  /* Scrim that keeps display type legible over photography. */
+  .lux-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(7, 42, 30, 0.88) 0%,
+      rgba(7, 42, 30, 0.42) 45%,
+      rgba(7, 42, 30, 0.12) 100%
+    );
+  }
+
+  .lux-scrim-soft {
+    background: linear-gradient(
+      to top,
+      rgba(7, 42, 30, 0.7) 0%,
+      rgba(7, 42, 30, 0.1) 60%,
+      transparent 100%
+    );
+  }
+
+  /* Full-height hero without the mobile address-bar jump, with a vh fallback
+     for browsers that predate svh. Ordering here is explicit, unlike stacking
+     two Tailwind min-h utilities. */
+  .min-h-viewport {
+    min-height: 100vh;
+  }
+  @supports (height: 100svh) {
+    .min-h-viewport {
+      min-height: 100svh;
+    }
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-.entrance-overlay.opening .entrance-half {
-  filter: brightness(1.05) saturate(1.05);
-}
-
-.entrance-half.left {
-  background-position: left center;
-  transform: translateX(0);
-}
-
-.entrance-half.right {
-  background-position: right center;
-  transform: translateX(0);
-}
-
-.entrance-overlay.opening .entrance-half.left {
-  transform: translateX(-105%) rotateY(25deg);
-}
-
-.entrance-overlay.opening .entrance-half.right {
-  transform: translateX(105%) rotateY(-25deg);
-}
-
-/* Scroll reveal for page sections */
+/* Scroll reveal — the observer in Reveal toggles .is-visible. */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s cubic-bezier(0.22, 0.68, 0, 1);
 }
 
 .scroll-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+}
+
+/* Sunburst background for investment cards section */
+.sunburst-bg {
+  background:
+    repeating-conic-gradient(
+      from 0deg at 50% 100%,
+      rgba(255, 255, 255, 0.45) 0deg 0.5deg,
+      transparent 0.5deg 14deg
+    ),
+    linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      #ffffff 30%,
+      #d9f99d 48%,
+      #fdba74 68%,
+      #fde047 100%
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
