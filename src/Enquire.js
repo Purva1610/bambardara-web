@@ -387,7 +387,7 @@ export default function Enquire() {
                     </div>
                   </div>
 
-                  {form.purpose && form.purpose !== 'other' && (
+                  {form.purpose && (
                     <div className="mt-8 space-y-8">
                       {(form.purpose === 'booking' || form.purpose === 'stay') && (
                         <>
