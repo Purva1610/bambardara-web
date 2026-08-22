@@ -7,13 +7,16 @@
     scroll-behavior: smooth;
     /* Fixed nav is ~5rem; keep anchored sections from hiding under it. */
     scroll-padding-top: 5rem;
+    /* Clip anything that accidentally overflows horizontally. */
+    overflow-x: hidden;
   }
 
   body {
     margin: 0;
+    overflow-x: hidden;
     background-color: #faf8f3;
     color: #21201e;
-    font-family: 'Jost', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
@@ -24,14 +27,14 @@
   h2,
   h3,
   h4 {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 300;
     letter-spacing: -0.015em;
     color: #21201e;
   }
 
   ::selection {
-    background: #b08d3f;
+    background: #D4AF37;
     color: #faf8f3;
   }
 }
@@ -107,10 +110,92 @@
     @apply relative overflow-hidden;
   }
   .lux-frame img {
-    @apply h-full w-full object-cover transition-transform duration-1200 ease-luxe;
+    @apply h-full w-full object-cover;
+    /* GPU layer prevents subpixel jitter on hover transforms */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 1200ms cubic-bezier(0.22, 0.68, 0, 1);
   }
   .lux-frame:hover img {
-    transform: scale(1.06);
+    transform: translateZ(0) scale(1.06);
+  }
+
+  .lux-frame .img-zoom {
+    opacity: 0;
+    filter: blur(8px);
+    /* Start at scale(1) — no initial zoom-in, just fade+blur in */
+    transform: translateZ(0) scale(1);
+    transition:
+      opacity   0.7s ease-out,
+      filter    0.7s ease-out;
+  }
+
+  .lux-frame .img-zoom.img-loaded {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateZ(0) scale(1);
+  }
+
+  .lux-frame:hover .img-zoom.img-loaded {
+    transform: translateZ(0) scale(1.06);
+  }
+
+  .img-placeholder {
+    display: block;
+    height: 100%;
+    background-color: #e7e5e4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* <picture> is inline by default; make it fill its container so the <img>
+     inside can resolve h-full / object-cover correctly. */
+  .img-placeholder picture {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Ensure every EstateImage <img> fills its container with cover sizing.
+     .lux-frame img handles frames; this rule covers standalone usage
+     (hero, dining bg, auth panels, etc.) where there is no .lux-frame. */
+  .img-placeholder picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* content-visibility: auto removed — it caused layout recalculations
+     and visual jumps as sections entered / left the viewport. */
+  .content-section {
+    /* intentionally empty — keep the class for backward compat */
+  }
+
+  /* Enhanced hover zoom for immersive card sections. */
+  .zoom-hover:hover img {
+    transform: translateZ(0) scale(1.08);
+  }
+
+  /* Gallery tile hover overlay. */
+  .gallery-tile {
+    @apply relative overflow-hidden;
+  }
+  .gallery-tile::after {
+    content: '';
+    @apply absolute inset-0 bg-forest-green/0 transition-colors duration-700 ease-luxe;
+  }
+  .gallery-tile:hover::after {
+    @apply bg-forest-green/40;
+  }
+  .gallery-tile .tile-caption {
+    @apply absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-700 ease-luxe;
+  }
+  .gallery-tile:hover .tile-caption {
+    @apply opacity-100;
   }
 }
 
@@ -166,22 +251,6 @@
 }
 
 /* Sunburst background for investment cards section */
-.sunburst-bg {
-  background:
-    repeating-conic-gradient(
-      from 0deg at 50% 100%,
-      rgba(255, 255, 255, 0.45) 0deg 0.5deg,
-      transparent 0.5deg 14deg
-    ),
-    linear-gradient(
-      to bottom,
-      #ffffff 0%,
-      #ffffff 30%,
-      #d9f99d 48%,
-      #fdba74 68%,
-      #fde047 100%
-    );
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {

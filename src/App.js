@@ -6,19 +6,19 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
-import Enquire from './Enquire';
-import EntranceGateAnimation from './EntranceGateAnimation';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Investment from './Investment';
-import Membership from './Membership';
-import { useAuth } from './AuthContext';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Enquire from './pages/Enquire';
+import EntranceGateAnimation from './components/EntranceGateAnimation';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Investment from './pages/Investment';
+import Membership from './pages/Membership';
+import { useAuth } from './context/AuthContext';
 import './App.css';
 
-const GATE_SEEN_KEY = 'bambardara:gate-seen';
+const GATE_SEEN_KEY = 'bambarddara:gate-seen';
 
 /* Router does not scroll to #hash targets on its own. */
 function ScrollToHash() {

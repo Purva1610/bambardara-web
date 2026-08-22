@@ -4,3 +4,7 @@ build
 Dockerfile
 npm-debug.log
 README.md
+
+# Camera originals — only the optimised derivatives in opt/ are served
+public/images/*.jpg
+public/images/*.jpeg

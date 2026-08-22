@@ -4,8 +4,8 @@ module.exports = {
     extend: {
       colors: {
         /* Existing token names, retuned to a deeper, warmer luxury palette. */
-        'forest-green': '#0B3D2C',
-        'luxury-gold': '#B08D3F',
+        'forest-green': '#0B5D3A',
+        'luxury-gold': '#D4AF37',
         'dark-charcoal': '#21201E',
         'ivory-white': '#FAF8F3',
         'natural-brown': '#6B4A2B',
@@ -18,8 +18,8 @@ module.exports = {
         'stone': '#E3DCCD',
       },
       fontFamily: {
-        heading: ['"Cormorant Garamond"', 'Playfair Display', 'serif'],
-        body: ['Jost', 'Poppins', 'sans-serif'],
+        heading: ['"Playfair Display"', 'serif'],
+        body: ['Poppins', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
       },
       letterSpacing: {

@@ -1,11 +1,14 @@
 /**
  * Generates web-sized derivatives of the estate photography.
  *
- * The source files in public/images are camera originals (2-12MB each, ~300MB
- * total) which are unusable on a real page load. This writes slugged, resized
- * WebP + JPEG fallbacks into public/images/opt/ and a manifest.json mapping
- * each original filename to its slug so components can reference them.
+ * Source files (camera originals, 2-12 MB each) live in public/images/.
+ * This script writes resized WebP + JPEG fallbacks into public/images/opt/
+ * and keeps two manifests in sync:
  *
+ *   public/images/opt/manifest.json  — filename-keyed, for reference
+ *   src/images-manifest.json         — slug-keyed, imported by EstateImage
+ *
+ * Run after adding or replacing estate photos:
  *   node scripts/optimize-images.js
  */
 const sharp = require('sharp');
@@ -85,10 +88,23 @@ async function main() {
     console.log(`${file} -> ${slug} [${widths.join(', ')}]`);
   }
 
+  /* public/images/opt/manifest.json — filename-keyed */
   fs.writeFileSync(
     path.join(OUT_DIR, 'manifest.json'),
     JSON.stringify(manifest, null, 2)
   );
+
+  /* src/images-manifest.json — slug-keyed, imported by EstateImage at build time */
+  const slugManifest = {};
+  for (const v of Object.values(manifest)) {
+    slugManifest[v.slug] = {
+      widths: v.widths,
+      fallbackWidth: Math.min(JPEG_FALLBACK_WIDTH, v.width),
+    };
+  }
+  const SRC_MANIFEST = path.join(__dirname, '..', 'src', 'images-manifest.json');
+  fs.writeFileSync(SRC_MANIFEST, JSON.stringify(slugManifest, null, 2));
+  console.log(`Manifest written -> src/images-manifest.json (${Object.keys(slugManifest).length} slugs)`);
 
   const mb = (b) => `${(b / 1024 / 1024).toFixed(1)}MB`;
   console.log(
