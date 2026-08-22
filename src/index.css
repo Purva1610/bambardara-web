@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Fixed nav is ~5rem; keep anchored sections from hiding under it. */
+    scroll-padding-top: 5rem;
+    /* Clip anything that accidentally overflows horizontally. */
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #faf8f3;
+    color: #21201e;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: #21201e;
+  }
+
+  ::selection {
+    background: #D4AF37;
+    color: #faf8f3;
+  }
+}
+
+@layer components {
+  /* Wide-tracked micro-label that sits above every section heading. */
+  .lux-label {
+    @apply font-body text-label uppercase text-luxury-gold;
+    font-weight: 400;
+  }
+
+  /* Hairline gold rule used as a section divider. */
+  .lux-rule {
+    @apply block h-px w-14 bg-luxury-gold origin-left;
+  }
+
+  /* Primary action: filled, square, wide-tracked. Fill sweeps in on hover. */
+  .lux-btn {
+    @apply relative inline-flex items-center justify-center overflow-hidden
+      border border-current px-9 py-4 font-body text-label uppercase
+      transition-colors duration-700 ease-luxe;
+  }
+  .lux-btn > span {
+    @apply relative z-10;
+  }
+  .lux-btn::after {
+    content: '';
+    @apply absolute inset-0 z-0 origin-bottom scale-y-0
+      transition-transform duration-700 ease-luxe;
+  }
+  .lux-btn:hover::after {
+    @apply scale-y-100;
+  }
+
+  /* The sweep fill is set explicitly, never currentColor — the text colour
+     inverts on hover, so a currentColor fill would erase the label. */
+  .lux-btn-light {
+    @apply lux-btn text-ivory-white;
+  }
+  .lux-btn-light::after {
+    @apply bg-ivory-white;
+  }
+  .lux-btn-light:hover {
+    @apply text-dark-charcoal;
+  }
+
+  .lux-btn-dark {
+    @apply lux-btn text-forest-green;
+  }
+  .lux-btn-dark::after {
+    @apply bg-forest-green;
+  }
+  .lux-btn-dark:hover {
+    @apply text-ivory-white;
+  }
+
+  /* Text link with a rule that draws in from the left. */
+  .lux-link {
+    @apply relative inline-block font-body text-label uppercase
+      pb-1 transition-opacity duration-500;
+  }
+  .lux-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-full origin-right scale-x-0
+      bg-current transition-transform duration-700 ease-luxe;
+  }
+  .lux-link:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  /* Image frame: slow zoom on hover, never a snap. */
+  .lux-frame {
+    @apply relative overflow-hidden;
+  }
+  .lux-frame img {
+    @apply h-full w-full object-cover;
+    /* GPU layer prevents subpixel jitter on hover transforms */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 1200ms cubic-bezier(0.22, 0.68, 0, 1);
+  }
+  .lux-frame:hover img {
+    transform: translateZ(0) scale(1.06);
+  }
+
+  .lux-frame .img-zoom {
+    opacity: 0;
+    filter: blur(8px);
+    /* Start at scale(1) — no initial zoom-in, just fade+blur in */
+    transform: translateZ(0) scale(1);
+    transition:
+      opacity   0.7s ease-out,
+      filter    0.7s ease-out;
+  }
+
+  .lux-frame .img-zoom.img-loaded {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateZ(0) scale(1);
+  }
+
+  .lux-frame:hover .img-zoom.img-loaded {
+    transform: translateZ(0) scale(1.06);
+  }
+
+  .img-placeholder {
+    display: block;
+    height: 100%;
+    background-color: #e7e5e4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* <picture> is inline by default; make it fill its container so the <img>
+     inside can resolve h-full / object-cover correctly. */
+  .img-placeholder picture {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Ensure every EstateImage <img> fills its container with cover sizing.
+     .lux-frame img handles frames; this rule covers standalone usage
+     (hero, dining bg, auth panels, etc.) where there is no .lux-frame. */
+  .img-placeholder picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* content-visibility: auto removed — it caused layout recalculations
+     and visual jumps as sections entered / left the viewport. */
+  .content-section {
+    /* intentionally empty — keep the class for backward compat */
+  }
+
+  /* Enhanced hover zoom for immersive card sections. */
+  .zoom-hover:hover img {
+    transform: translateZ(0) scale(1.08);
+  }
+
+  /* Gallery tile hover overlay. */
+  .gallery-tile {
+    @apply relative overflow-hidden;
+  }
+  .gallery-tile::after {
+    content: '';
+    @apply absolute inset-0 bg-forest-green/0 transition-colors duration-700 ease-luxe;
+  }
+  .gallery-tile:hover::after {
+    @apply bg-forest-green/40;
+  }
+  .gallery-tile .tile-caption {
+    @apply absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-700 ease-luxe;
+  }
+  .gallery-tile:hover .tile-caption {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  /* Scrim that keeps display type legible over photography. */
+  .lux-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(7, 42, 30, 0.88) 0%,
+      rgba(7, 42, 30, 0.42) 45%,
+      rgba(7, 42, 30, 0.12) 100%
+    );
+  }
+
+  .lux-scrim-soft {
+    background: linear-gradient(
+      to top,
+      rgba(7, 42, 30, 0.7) 0%,
+      rgba(7, 42, 30, 0.1) 60%,
+      transparent 100%
+    );
+  }
+
+  /* Full-height hero without the mobile address-bar jump, with a vh fallback
+     for browsers that predate svh. Ordering here is explicit, unlike stacking
+     two Tailwind min-h utilities. */
+  .min-h-viewport {
+    min-height: 100vh;
+  }
+  @supports (height: 100svh) {
+    .min-h-viewport {
+      min-height: 100svh;
+    }
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Scroll reveal — the observer in Reveal toggles .is-visible. */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.68, 0, 1),
+              transform 0.8s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image fade-in transitions */
+img {
+  transition: opacity 0.6s ease-out;
+}
+
+/* Enhanced hover effects for interactive elements */
+a,
+button {
+  transition: all 0.3s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
