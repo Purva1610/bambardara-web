@@ -55,6 +55,11 @@ const Footer = () => {
         {/* Wordmark */}
         <div className="flex flex-col items-center border-b border-ivory-white/12 pb-16 text-center">
           <Link to="/" className="flex flex-col items-center">
+            <img
+              src="/images/opt/logo.png"
+              alt="BAMBARDDARA"
+              className="h-16 w-auto mb-4"
+            />
             <span className="font-heading text-3xl font-light tracking-[0.08em] text-ivory-white md:text-4xl">
               BAMBARDDARA
             </span>
@@ -82,7 +87,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="font-body text-[0.875rem] font-light text-ivory-white/60 transition-colors duration-500 hover:text-luxury-gold"
+                      className="font-body text-[0.875rem] font-light text-ivory-white/60 transition-all duration-500 ease-out hover:text-luxury-gold hover:translate-x-1"
                     >
                       {link.name}
                     </a>

@@ -243,14 +243,26 @@
 /* Scroll reveal — the observer in Reveal toggles .is-visible. */
 .scroll-reveal {
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.22, 0.68, 0, 1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.68, 0, 1),
+              transform 0.8s cubic-bezier(0.22, 0.68, 0, 1);
 }
 
 .scroll-reveal.is-visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Sunburst background for investment cards section */
+/* Image fade-in transitions */
+img {
+  transition: opacity 0.6s ease-out;
+}
+
+/* Enhanced hover effects for interactive elements */
+a,
+button {
+  transition: all 0.3s cubic-bezier(0.22, 0.68, 0, 1);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {

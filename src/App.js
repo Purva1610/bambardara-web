@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import Enquire from './pages/Enquire';
 import EntranceGateAnimation from './components/EntranceGateAnimation';
@@ -83,14 +84,16 @@ function AppContent() {
       <Header user={user} onLogout={handleLogout} />
 
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/enquire" element={<Enquire />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/investment" element={<Investment />} />
-          <Route path="/membership" element={<Membership />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/enquire" element={<Enquire />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/investment" element={<Investment />} />
+            <Route path="/membership" element={<Membership />} />
+          </Routes>
+        </PageTransition>
       </main>
 
       <Footer />

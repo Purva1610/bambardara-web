@@ -766,46 +766,46 @@
   "farm": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/farm.jpeg"
+    "src": "/images/opt/farm.jpeg"
   },
   "weeding": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/weeding.jpg"
+    "src": "/images/opt/weeding.jpg"
   },
   "conference": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/conference.jpg"
+    "src": "/images/opt/conference.jpg"
   },
   "seasonal": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/seasonal.jpg"
+    "src": "/images/opt/seasonal.jpg"
   },
   "familiy": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/familiy.jpeg"
+    "src": "/images/opt/familiy.jpeg"
   },
   "pick": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/pick.jpeg"
+    "src": "/images/opt/pick.jpeg"
   },
   "meidtation": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/meidtation.jpg"
+    "src": "/images/opt/meidtation.jpg"
   },
   "temple-prayer": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/temple.jpg"
+    "src": "/images/opt/temple.jpg"
   },
   "about-view": {
     "widths": [],
     "fallbackWidth": null,
-    "src": "images/opt/about.jpg"
+    "src": "/images/opt/about.jpg"
   }
 }

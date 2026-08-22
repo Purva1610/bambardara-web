@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import EstateImage from '../components/EstateImage';
 import Reveal from '../components/Reveal';
 import SectionHeading from '../components/SectionHeading';
+import BoardOfDirectors from '../components/BoardOfDirectors';
 
 const RESIDENCES = [
   {
@@ -41,6 +42,7 @@ const RESIDENCES = [
       'Six canvas pavilions on timber platforms at the water line, with proper beds, hot water drawn from the estate boiler, and a fire lit for you at dusk.',
     facts: ['480 sq ft', 'Sleeps 2', 'River-facing'],
     price: '₹11,500',
+    customImage: '/images/opt/camp.jpg',
   },
 ];
 
@@ -139,10 +141,11 @@ const PLATES = [
   { slug: 'pick', alt: 'Family walk through the estate', span: 'md:col-span-2' },
 
   { slug: 'meidtation', alt: 'Meditation and wellness at the estate', span: 'md:col-span-2' },
-  { slug: 'temple-prayer', alt: 'Devotion at the estate temple', span: 'md:col-span-2' },
   { slug: 'about-view', alt: 'Mountain valley view from the estate', span: 'md:col-span-2' },
-  { slug: 'temple', alt: 'The two-hundred-year-old estate temple', span: 'md:col-span-4 md:row-span-2' },
   { slug: 'water-park-3', alt: 'The estate water park', span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'boating', alt: 'Boating activities on the estate waters', span: 'md:col-span-2' },
+  { slug: 'cycling', alt: 'Cycling through the estate grounds', span: 'md:col-span-2' },
+  { slug: 'nature', alt: 'Well-planted roads and natural landscapes', span: 'md:col-span-2' },
 ];
 
 const MEASURES = [
@@ -204,7 +207,7 @@ const PILLARS = [
 
 const RITUALS = [
   {
-    slug: 'international-meditation-center-2',
+    slug: 'meidtation',
     title: 'The Meditation Centre',
     body: 'A domed hall on the quietest corner of the estate. Guided sittings at dawn and dusk, silent access all day.',
   },
@@ -214,7 +217,7 @@ const RITUALS = [
     body: 'Heated to twenty-nine degrees year round, set flush with the ridge so the water meets the valley.',
   },
   {
-    slug: 'temple-and-spiritual-experience-2',
+    slug: 'temple',
     title: 'The Estate Temple',
     body: 'Two hundred years older than anything else here. Morning aarti is open to guests who wish to attend.',
   },
@@ -255,8 +258,8 @@ function Legacy() {
           <Reveal>
             <div className="lux-frame aspect-[4/5] w-full sm:aspect-[16/11]">
               <EstateImage
-                slug="legacy"
-                alt="Terraced fields and orchards across the BAMBARDDARA estate"
+                slug="about-view"
+                alt="Mountain valley view from the estate"
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
             </div>
@@ -332,11 +335,19 @@ function Accommodation() {
                     }`}
                   >
                      <div className="lux-frame zoom-hover aspect-[4/3] w-full">
-                      <EstateImage
-                        slug={r.slug}
-                        alt={r.name}
-                        sizes="(min-width: 1024px) 58vw, 100vw"
-                      />
+                      {r.customImage ? (
+                        <img
+                          src={r.customImage}
+                          alt={r.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <EstateImage
+                          slug={r.slug}
+                          alt={r.name}
+                          sizes="(min-width: 1024px) 58vw, 100vw"
+                        />
+                      )}
                     </div>
                   </div>
                   <div
@@ -819,6 +830,7 @@ export default function Home() {
       <Occasions />
       <Sustainability />
       <GalleryMosaic />
+      <BoardOfDirectors />
       <Enquiry />
     </>
   );

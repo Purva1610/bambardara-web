@@ -60,7 +60,9 @@ export default function EstateImage({
     ? widths.map((w) => `${OPT}/${slug}-${w}.webp ${w}w`).join(', ')
     : '';
   const fallbackSrc = customSrc
-    ? `${process.env.PUBLIC_URL}/${customSrc}`
+    ? customSrc.startsWith('/')
+      ? customSrc
+      : `${process.env.PUBLIC_URL}/${customSrc}`
     : fallbackWidth != null
       ? `${OPT}/${slug}-${fallbackWidth}.jpg`
       : `${OPT}/${slug}.jpg`;

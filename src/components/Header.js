@@ -34,7 +34,7 @@ export default function Header({ user, onLogout }) {
   /* Shared classes for every nav link */
   const linkCls = [
     'font-body text-[0.7rem] uppercase tracking-wide whitespace-nowrap',
-    'transition-colors duration-500',
+    'transition-all duration-500 ease-out relative',
     solid
       ? 'text-forest-green hover:text-luxury-gold'
       : 'text-ivory-white/90 hover:text-luxury-gold',
@@ -56,12 +56,19 @@ export default function Header({ user, onLogout }) {
         {/* Logo */}
         <Link
           to="/"
-          className={[
-            'shrink-0 font-heading text-lg tracking-[0.06em] transition-colors duration-500',
-            solid ? 'text-forest-green' : 'text-ivory-white',
-          ].join(' ')}
+          className="shrink-0 flex items-center gap-3 transition-all duration-500"
         >
-          BAMBARDDARA
+          <img
+            src="/images/opt/logo.png"
+            alt="BAMBARDDARA"
+            className="h-8 w-auto"
+          />
+          <span className={[
+            'font-heading text-lg tracking-[0.06em] transition-colors duration-500',
+            solid ? 'text-forest-green' : 'text-ivory-white',
+          ].join(' ')}>
+            BAMBARDDARA
+          </span>
         </Link>
 
         {/* ── Desktop nav ── visible at xl (1280 px+) */}
@@ -99,10 +106,10 @@ export default function Header({ user, onLogout }) {
             className={[
               'inline-flex items-center border px-5 py-2.5',
               'font-body text-[0.7rem] uppercase tracking-wide whitespace-nowrap',
-              'transition-all duration-500 ease-luxe',
+              'transition-all duration-700 ease-out',
               solid
-                ? 'border-forest-green text-forest-green hover:bg-forest-green hover:text-ivory-white'
-                : 'border-ivory-white/50 text-ivory-white hover:bg-ivory-white hover:text-dark-charcoal',
+                ? 'border-forest-green text-forest-green hover:bg-forest-green hover:text-ivory-white hover:shadow-lg'
+                : 'border-ivory-white/50 text-ivory-white hover:bg-ivory-white hover:text-dark-charcoal hover:shadow-lg',
             ].join(' ')}
           >
             Enquire
