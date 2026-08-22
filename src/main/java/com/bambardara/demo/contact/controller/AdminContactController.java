@@ -20,9 +20,11 @@ import com.bambardara.demo.contact.service.ConcernQueryService;
  * Injects only {@link ConcernQueryService}: nothing here submits, so nothing
  * here should be able to.
  *
- * TODO: this is permitAll in SecurityConfig until User gains a role. Add the
- * role check before this reaches production - right now anyone who knows the
- * URL can read every concern, including the users' contact details.
+ * Authorization: Requires ADMIN role (set via Firebase custom claims)
+ * - Secured at SecurityConfig level with .hasRole("ADMIN")
+ * - Only users with Firebase custom claim {admin: true} can access
+ * - Returns 403 Forbidden for non-admin users
+ * - Returns 401 Unauthorized for unauthenticated requests
  */
 @RestController
 @RequestMapping("/api/admin/contact-requests")

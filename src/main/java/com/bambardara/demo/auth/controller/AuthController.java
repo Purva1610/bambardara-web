@@ -1,68 +1,72 @@
 package com.bambardara.demo.auth.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bambardara.demo.auth.dto.ForgotPasswordRequest;
-import com.bambardara.demo.auth.dto.LoginRequest;
-import com.bambardara.demo.auth.dto.LoginResponse;
-import com.bambardara.demo.auth.dto.RegisterRequest;
-import com.bambardara.demo.auth.dto.RegisterResponse;
-import com.bambardara.demo.auth.service.AuthService;
-import com.bambardara.demo.auth.service.OtpService;
+import com.bambardara.demo.auth.entity.User;
 
-import jakarta.validation.Valid;
-
+/**
+ * Authentication endpoints for Firebase-authenticated users.
+ * 
+ * After Firebase migration:
+ * - Login/signup/password reset are handled by Firebase on the frontend
+ * - No backend authentication endpoints are needed for these operations
+ * - This controller provides utility endpoints for authenticated users
+ * 
+ * REMOVED endpoints (now handled by Firebase client SDK):
+ * - POST /api/auth/register → Use Firebase createUserWithEmailAndPassword()
+ * - POST /api/auth/login → Use Firebase signInWithEmailAndPassword()
+ * - POST /api/auth/forgot-password → Use Firebase sendPasswordResetEmail()
+ * - POST /api/auth/oauth/exchange → Use Firebase signInWithPopup()
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final AuthService authService;
-    private final OtpService otpService;
+    /**
+     * Get the currently authenticated user's information.
+     * 
+     * This endpoint can be used by the frontend to:
+     * - Verify the Firebase token is valid
+     * - Retrieve the user's PostgreSQL profile
+     * - Get application-specific user data
+     * 
+     * @param user the authenticated user (from Firebase token)
+     * @return user information
+     */
+    @GetMapping("/me")
+    public ResponseEntity<UserProfileResponse> getCurrentUser(
+            @AuthenticationPrincipal User user) {
 
-    public AuthController(
-            AuthService authService,
-            OtpService otpService) {
-
-        this.authService = authService;
-        this.otpService = otpService;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<RegisterResponse> register(
-            @Valid @RequestBody RegisterRequest request) {
-
-        RegisterResponse response = authService.register(request);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(
-            @Valid @RequestBody LoginRequest request) {
-
-        LoginResponse response = authService.login(request);
+        UserProfileResponse response = new UserProfileResponse(
+                user.getId(),
+                user.getFirebaseUid(),
+                user.getName(),
+                user.getEmail(),
+                user.getMobileNumber(),
+                user.getAddress(),
+                user.getGender().name(),
+                user.getRole().name()
+        );
 
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(
-            @Valid @RequestBody ForgotPasswordRequest request) {
-
-        // An unregistered email surfaces as EmailNotFoundException, which
-        // GlobalExceptionHandler turns into a 404.
-        otpService.sendOtp(request.getEmail());
-
-        return ResponseEntity.ok(
-                "OTP sent successfully to your email"
-        );
+    /**
+     * User profile response DTO
+     */
+    public record UserProfileResponse(
+            Integer id,
+            String firebaseUid,
+            String name,
+            String email,
+            String mobileNumber,
+            String address,
+            String gender,
+            String role
+    ) {
     }
-
 }

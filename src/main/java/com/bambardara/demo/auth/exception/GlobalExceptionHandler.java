@@ -33,6 +33,18 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, e.getMessage());
     }
 
+    @ExceptionHandler(InvalidAuthorizationCodeException.class)
+    public ResponseEntity<ApiError> handleInvalidAuthorizationCode(InvalidAuthorizationCodeException e) {
+
+        return build(HttpStatus.UNAUTHORIZED, e.getMessage());
+    }
+
+    @ExceptionHandler(AccountLinkingRequiredException.class)
+    public ResponseEntity<ApiError> handleAccountLinkingRequired(AccountLinkingRequiredException e) {
+
+        return build(HttpStatus.CONFLICT, e.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidation(MethodArgumentNotValidException e) {
 

@@ -22,21 +22,34 @@ public class ConcernEmailComposer {
 
     public String bodyFor(ContactRequest concern) {
 
-        return "A logged-in user submitted a concern through the contact page.\n\n"
-                + "Concern ID   : " + concern.getId() + "\n"
-                + "Type         : " + concern.getConcernType().name() + "\n"
-                + "Submitted at : " + concern.getCreatedAt() + "\n\n"
-                + "--- Contact details given on the form ---\n"
-                + "Name         : " + concern.getName() + "\n"
-                + "Email        : " + concern.getEmail() + "\n"
-                + "Mobile       : "
-                + (concern.getMobileNumber() == null ? "not provided" : concern.getMobileNumber())
-                + "\n\n"
-                + "--- Account it was submitted from ---\n"
-                + "User ID      : " + concern.getUser().getId() + "\n"
-                + "Account name : " + concern.getUser().getName() + "\n"
-                + "Account email: " + concern.getUser().getEmail() + "\n\n"
-                + "--- Message ---\n"
-                + concern.getMessage() + "\n";
+        StringBuilder body = new StringBuilder();
+        
+        body.append("A concern was submitted through the contact page.\n\n");
+        body.append("Concern ID   : ").append(concern.getId()).append("\n");
+        body.append("Type         : ").append(concern.getConcernType().name()).append("\n");
+        body.append("Submitted at : ").append(concern.getCreatedAt()).append("\n\n");
+        
+        body.append("--- Contact details given on the form ---\n");
+        body.append("Name         : ").append(concern.getName()).append("\n");
+        body.append("Email        : ").append(concern.getEmail()).append("\n");
+        body.append("Mobile       : ");
+        body.append(concern.getMobileNumber() == null ? "not provided" : concern.getMobileNumber());
+        body.append("\n\n");
+        
+        // Handle anonymous submissions (user may be null)
+        if (concern.getUser() != null) {
+            body.append("--- Account it was submitted from ---\n");
+            body.append("User ID      : ").append(concern.getUser().getId()).append("\n");
+            body.append("Account name : ").append(concern.getUser().getName()).append("\n");
+            body.append("Account email: ").append(concern.getUser().getEmail()).append("\n\n");
+        } else {
+            body.append("--- Submission type ---\n");
+            body.append("Anonymous submission (no account)\n\n");
+        }
+        
+        body.append("--- Message ---\n");
+        body.append(concern.getMessage()).append("\n");
+        
+        return body.toString();
     }
 }

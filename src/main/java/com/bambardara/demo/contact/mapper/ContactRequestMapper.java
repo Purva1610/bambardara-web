@@ -19,10 +19,15 @@ import com.bambardara.demo.contact.entity.ContactRequest;
 @Component
 public class ContactRequestMapper {
 
+    /**
+     * Convert DTO to entity.
+     * 
+     * User may be null for anonymous enquiries.
+     */
     public ContactRequest toEntity(User user, ContactFormRequest request) {
 
         return new ContactRequest(
-                user,
+                user, // May be null for anonymous enquiries
                 request.getName().trim(),
                 request.getEmail().trim(),
                 normaliseMobile(request.getMobileNumber()),
@@ -34,7 +39,14 @@ public class ContactRequestMapper {
         );
     }
 
+    /**
+     * Convert entity to view DTO.
+     * 
+     * User may be null for anonymous enquiries.
+     */
     public ContactRequestView toView(ContactRequest concern) {
+
+        User user = concern.getUser();
 
         return new ContactRequestView(
                 concern.getId(),
@@ -47,8 +59,8 @@ public class ContactRequestMapper {
                 concern.getStatus().name(),
                 concern.isMarketingEmailSent(),
                 concern.getCreatedAt(),
-                concern.getUser().getId(),
-                concern.getUser().getEmail()
+                user != null ? user.getId() : null,
+                user != null ? user.getEmail() : null
         );
     }
 

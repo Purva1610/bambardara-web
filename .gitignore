@@ -33,3 +33,6 @@ build/
 .vscode/
 mvn_output*.txt
 src/main/resources/application.properties
+
+firebase-service-account.json
+*.json

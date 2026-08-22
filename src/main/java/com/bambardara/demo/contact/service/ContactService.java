@@ -39,11 +39,13 @@ public class ContactService {
      * async email runs, so the background thread is guaranteed to find the row.
      * Wrapping this in a transaction would let the email fire against a row
      * that is not committed yet.
+     * 
+     * User may be null for anonymous enquiries.
      */
     public ContactResponse submit(User user, ContactFormRequest request) {
 
         ContactRequest concern = new ContactRequest(
-                user,
+                user, // May be null for anonymous enquiries
                 request.getName().trim(),
                 request.getEmail().trim(),
                 normaliseMobile(request.getMobileNumber()),

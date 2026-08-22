@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,11 +27,10 @@ public class SecurityConfig {
     @Value("${app.cors.allowed-origins}")
     private List<String> allowedOrigins;
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final FirebaseAuthenticationFilter firebaseAuthenticationFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
-
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    public SecurityConfig(FirebaseAuthenticationFilter firebaseAuthenticationFilter) {
+        this.firebaseAuthenticationFilter = firebaseAuthenticationFilter;
     }
 
     @Bean
@@ -40,8 +40,7 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
 
-            // Nothing is kept server-side between requests; the bearer token is
-            // the whole of the client's identity.
+            // Stateless JWT-based authentication with Firebase
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
@@ -52,17 +51,19 @@ public class SecurityConfig {
                 // a genuine 500 comes back to the client as a 401.
                 .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
 
-                .requestMatchers(
-                    "/api/auth/login",
-                    "/api/auth/register",
-                    "/api/auth/forgot-password",
-                    "/api/auth/verify-otp",
-                    "/api/auth/reset-password"
-                ).permitAll()
+                // Allow CORS preflight requests (OPTIONS) globally
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                // TODO: lock this down once User has a role. Until then the
-                // admin concern list is readable by anyone who knows the URL.
-                .requestMatchers("/api/admin/**").permitAll()
+                // Allow anonymous contact/enquiry submissions (POST only, GET /my requires auth)
+                .requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
+
+                // Allow GET /api/auth/me for authenticated users to fetch their profile
+                .requestMatchers(HttpMethod.GET, "/api/auth/me").authenticated()
+
+                // Admin endpoints require ADMIN role
+                // Role is extracted from Firebase custom claims: {admin: true}
+                // Use Firebase Admin SDK to set: setCustomUserClaims(uid, {admin: true})
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated()
             )
@@ -73,30 +74,46 @@ public class SecurityConfig {
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
             )
 
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            // Add Firebase authentication filter
+            .addFilterBefore(firebaseAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
+    // Password encoder no longer needed for authentication (Firebase handles passwords)
+    // Kept for backward compatibility in case used elsewhere
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+  @Bean
+public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration config = new CorsConfiguration();
+    CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(allowedOrigins);
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+    config.setAllowedOrigins(List.of(
+        "http://localhost:3000",
+        "http://localhost:3001"
+    ));
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", config);
+    config.setAllowedMethods(List.of(
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+    ));
 
-        return source;
-    }
+    config.setAllowedHeaders(List.of("*"));
+    config.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source =
+        new UrlBasedCorsConfigurationSource();
+
+    source.registerCorsConfiguration("/api/**", config);
+
+    return source;
+}
 }

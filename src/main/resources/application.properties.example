@@ -35,3 +35,16 @@ app.jwt.expiry-minutes=1440
 app.mail.from=abhayepay@gmail.com
 # Comma-separated; every address here is notified about a new concern.
 app.mail.marketing-team=abhayepay@gmail.com
+
+# Google OAuth2 Configuration
+# Get these from Google Cloud Console: https://console.cloud.google.com/
+# Create OAuth 2.0 Client ID and add authorized redirect URI: {your-backend-url}/login/oauth2/code/google
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID:your-client-id-from-google-console}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET:your-client-secret-from-google-console}
+spring.security.oauth2.client.registration.google.scope=openid,profile,email
+spring.security.oauth2.client.registration.google.redirect-uri={baseUrl}/login/oauth2/code/google
+
+# OAuth Success Redirect (frontend callback URL where authorization code will be sent)
+# Local: http://localhost:3000/auth/callback
+# Production: https://yourdomain.com/auth/callback
+app.oauth.frontend-callback-url=${FRONTEND_CALLBACK_URL:http://localhost:3000/auth/callback}

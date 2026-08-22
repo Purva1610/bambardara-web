@@ -21,11 +21,10 @@ import com.bambardara.demo.contact.service.ConcernSubmissionService;
 import jakarta.validation.Valid;
 
 /**
- * Contact-us endpoints for signed-in users.
+ * Contact-us endpoints.
  *
- * Both routes fall under {@code anyRequest().authenticated()}, so an absent or
- * expired token is turned into a 401 by the security chain before any of this
- * runs; {@code user} is therefore never null here.
+ * POST /api/contact is public to allow anonymous enquiries.
+ * GET /api/contact/my requires authentication to show a user's own submissions.
  */
 @RestController
 @RequestMapping("/api/contact")
@@ -42,9 +41,15 @@ public class ContactController {
         this.queryService = queryService;
     }
 
+    /**
+     * Submit an enquiry/concern.
+     * 
+     * Works for both authenticated and anonymous users. When authenticated,
+     * the user parameter is populated; when anonymous, it is null.
+     */
     @PostMapping
     public ResponseEntity<ContactResponse> submit(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal(errorOnInvalidType = false) User user,
             @Valid @RequestBody ContactFormRequest request) {
 
         ContactResponse response = submissionService.submit(user, request);
@@ -54,6 +59,11 @@ public class ContactController {
                 .body(response);
     }
 
+    /**
+     * List the authenticated user's own submissions.
+     * 
+     * Requires authentication - user parameter is never null here.
+     */
     @GetMapping("/my")
     public ResponseEntity<List<ContactRequestView>> myConcerns(
             @AuthenticationPrincipal User user) {
