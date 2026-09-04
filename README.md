@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hollowmere Executive Dashboard
 
 A premium CEO / executive control-center UI for a luxury estate & resort company — React, Tailwind, React Router, Lucide, Framer Motion, and Recharts.
@@ -52,3 +53,6 @@ src/lib/                      → src/lib/
 ## 4. Design tokens
 
 Colors live as CSS variables in `src/index.css` (`--color-primary`, `--color-accent`, etc.) and are surfaced through Tailwind in `tailwind.config.js`. The palette matches the brief exactly: forest green (#123F3A), dark forest (#0B2E2A), secondary green (#2F6258), ivory background (#F4F3EE), white cards, and a muted gold accent (#B8A77A). Corners are kept tighter and shadows softer than a typical SaaS admin panel, in line with an executive rather than CRUD-heavy feel.
+=======
+﻿# Bambardara-web
+>>>>>>> 10970a82d09de78b1c67f420c129bcca18ea10b2
