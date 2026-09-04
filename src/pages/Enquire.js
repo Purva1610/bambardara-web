@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
+import { submitEnquiry } from '../api';
 
 /**
  * The enquiry page is deliberately not an auth page: no password, no account,
@@ -24,15 +25,15 @@ const FIELD =
 
 const PURPOSES = [
   { value: '', label: 'Select a topic' },
-  { value: 'booking', label: 'Booking enquiry' },
-  { value: 'stay', label: 'Stay and hospitality' },
-  { value: 'activities', label: 'Activities and adventure' },
-  { value: 'farm-trails', label: 'Farm and nature trails' },
-  { value: 'payment', label: 'Payment or refund' },
-  { value: 'feedback', label: 'Feedback or complaint' },
-  { value: 'investment', label: 'Investment plans' },
-  { value: 'membership', label: 'Membership plans' },
-  { value: 'other', label: 'Other' },
+  { value: 'BOOKING', label: 'Booking enquiry' },
+  { value: 'STAY_HOSPITALITY', label: 'Stay and hospitality' },
+  { value: 'ACTIVITIES_ADVENTURE', label: 'Activities and adventure' },
+  { value: 'FARM_NATURE_TRAILS', label: 'Farm and nature trails' },
+  { value: 'PAYMENT_REFUND', label: 'Payment or refund' },
+  { value: 'FEEDBACK_COMPLAINT', label: 'Feedback or complaint' },
+  { value: 'INVESTMENT_PLANS', label: 'Investment plans' },
+  { value: 'MEMBERSHIP_PLANS', label: 'Membership plans' },
+  { value: 'OTHER', label: 'Other' },
 ];
 
 const DETAILS = [
@@ -96,7 +97,7 @@ function composeMail(form) {
     `Enquiry: ${purpose}`,
   ];
 
-  if (form.purpose === 'booking' || form.purpose === 'stay') {
+  if (form.purpose === 'BOOKING' || form.purpose === 'STAY_HOSPITALITY') {
     details.push(
       `Arrival: ${form.arrival || '—'}`,
       `Departure: ${form.departure || '—'}`,
@@ -104,48 +105,48 @@ function composeMail(form) {
       `Room preference: ${form.roomPreference || '—'}`,
       `Special requests: ${form.specialRequests || '—'}`
     );
-  } else if (form.purpose === 'activities') {
+  } else if (form.purpose === 'ACTIVITIES_ADVENTURE') {
     details.push(
       `Activity: ${form.activityType || '—'}`,
       `Preferred date: ${form.activityDate || '—'}`,
       `Experience level: ${form.experienceLevel || '—'}`,
       `Guests: ${form.guests}`
     );
-  } else if (form.purpose === 'farm-trails') {
+  } else if (form.purpose === 'FARM_NATURE_TRAILS') {
     details.push(
       `Trail or activity: ${form.trailType || '—'}`,
       `Preferred date: ${form.activityDate || '—'}`,
       `Group size: ${form.groupSize || '—'}`,
       `Guide preference: ${form.guidePreference || '—'}`
     );
-  } else if (form.purpose === 'payment') {
+  } else if (form.purpose === 'PAYMENT_REFUND') {
     details.push(
       `Booking reference: ${form.bookingReference || '—'}`,
       `Transaction ID: ${form.transactionId || '—'}`,
       `Issue type: ${form.issueType || '—'}`,
       `Amount: ${form.amount || '—'}`
     );
-  } else if (form.purpose === 'feedback') {
+  } else if (form.purpose === 'FEEDBACK_COMPLAINT') {
     details.push(
       `Stay date: ${form.stayDate || '—'}`,
       `Room or villa: ${form.roomVilla || '—'}`,
       `Feedback type: ${form.feedbackType || '—'}`
     );
-  } else if (form.purpose === 'investment') {
+  } else if (form.purpose === 'INVESTMENT_PLANS') {
     details.push(
       `Capital range: ${form.capitalRange || '—'}`,
       `Investment type: ${form.investmentType || '—'}`,
       `Contact preference: ${form.contactPreference || '—'}`,
       `Timeline: ${form.timeline || '—'}`
     );
-  } else if (form.purpose === 'membership') {
+  } else if (form.purpose === 'MEMBERSHIP_PLANS') {
     details.push(
       `Membership tier: ${form.membershipTier || '—'}`,
       `Preferred start date: ${form.startDate || '—'}`,
       `Contact preference: ${form.contactPreference || '—'}`,
       `Timeline: ${form.timeline || '—'}`
     );
-  } else if (form.purpose === 'other') {
+  } else if (form.purpose === 'OTHER') {
     details.push(`Subject: ${form.subject || '—'}`);
   }
 
@@ -231,14 +232,14 @@ export default function Enquire() {
     setStatus('sending');
 
     try {
-      if (ENDPOINT) {
-        const res = await fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        });
-        /* Safe error - never expose raw server response details to the UI. */
-        if (!res.ok) throw new Error('The estate could not be reached. Please try again or call us directly.');
+        if (ENDPOINT) {
+          const res = await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form),
+          });
+          /* Safe error - never expose raw server response details to the UI. */
+          if (!res.ok) throw new Error('The estate could not be reached. Please try again or call us directly.');
       } else {
         /* Hands the enquiry to the guest's mail client, addressed and filled. */
         window.location.href = composeMail(form);
@@ -486,7 +487,7 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {form.purpose === 'activities' && (
+                      {form.purpose === 'ACTIVITIES_ADVENTURE' && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                             <div>
@@ -551,7 +552,7 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {form.purpose === 'farm-trails' && (
+                      {form.purpose === 'FARM_NATURE_TRAILS' && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                             <div>
@@ -616,7 +617,7 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {form.purpose === 'payment' && (
+                      {form.purpose === 'PAYMENT_REFUND' && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                             <div>
@@ -681,7 +682,7 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {form.purpose === 'feedback' && (
+                      {form.purpose === 'FEEDBACK_COMPLAINT' && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                             <div>
@@ -743,10 +744,10 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {(form.purpose === 'investment' || form.purpose === 'membership') && (
+                      {(form.purpose === 'INVESTMENT_PLANS' || form.purpose === 'MEMBERSHIP_PLANS') && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-                            {form.purpose === 'investment' ? (
+                            {form.purpose === 'INVESTMENT_PLANS' ? (
                               <>
                                 <div>
                                   <label htmlFor="enq-capital-range" className={LABEL}>
@@ -856,7 +857,7 @@ export default function Enquire() {
                         </>
                       )}
 
-                      {form.purpose === 'other' && (
+                      {form.purpose === 'OTHER' && (
                         <div className="space-y-8">
                           <div>
                             <label htmlFor="enq-subject" className={LABEL}>
@@ -890,7 +891,7 @@ export default function Enquire() {
                       {form.purpose !== 'feedback' && form.purpose !== 'other' && (
                         <div>
                           <label htmlFor="enq-message" className={LABEL}>
-                            {form.purpose === 'other' ? 'Message' : 'Anything we should know'}
+                            {form.purpose === 'OTHER' ? 'Message' : 'Anything we should know'}
                           </label>
                           <textarea
                             id="enq-message"
@@ -899,9 +900,9 @@ export default function Enquire() {
                             onChange={update('message')}
                             className={`${FIELD} resize-none`}
                             placeholder={
-                              form.purpose === 'booking'
+                              form.purpose === 'BOOKING'
                                 ? 'Room configuration, early check-in, special occasions...'
-                                : form.purpose === 'payment'
+                                : form.purpose === 'PAYMENT_REFUND'
                                 ? 'Additional details about the transaction...'
                                 : ''
                             }
