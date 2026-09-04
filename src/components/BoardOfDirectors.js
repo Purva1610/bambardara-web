@@ -1,7 +1,6 @@
 import React from 'react';
-import Reveal from './Reveal';
-import SectionHeading from './SectionHeading';
-import EstateImage from './EstateImage';
+import Reveal from './shared/Reveal';
+import SectionHeading from './shared/SectionHeading';
 
 const directors = [
   {

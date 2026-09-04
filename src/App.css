@@ -1,5 +1,0 @@
-/* Typography and ground colours are set on <body> in index.css; the shell only
-   needs to guarantee the ivory background behind fixed and full-bleed sections. */
-.App {
-  background-color: #faf8f3;
-}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAdditionalUserInfo } from 'firebase/auth';
 import { useAuth } from '../context/AuthContext';
@@ -9,27 +9,82 @@ import AuthLayout, {
   GOOGLE_BUTTON,
   GoogleMark,
   SUBMIT_BUTTON,
-} from '../components/AuthLayout';
+} from '../components/shared/AuthLayout';
+
+/** Map Firebase Auth error codes to user-friendly messages. */
+const FIREBASE_ERRORS = {
+  'auth/user-not-found':        'No account found with that email address.',
+  'auth/wrong-password':        'Incorrect password. Please try again.',
+  'auth/invalid-credential':    'Email or password is incorrect.',
+  'auth/invalid-email':         'Please enter a valid email address.',
+  'auth/too-many-requests':     'Too many attempts. Please wait a moment and try again.',
+  'auth/network-request-failed':'Network error. Please check your connection.',
+  'auth/user-disabled':         'This account has been disabled. Please contact us.',
+  'auth/popup-closed-by-user':  null, // user dismissed — show nothing
+  'auth/cancelled-popup-request': null,
+};
+
+const MAX_ATTEMPTS = 3;
+const COOLDOWN_MS  = 30_000; // 30 seconds
+
+function friendlyError(err) {
+  const code = err?.code ?? '';
+  if (code in FIREBASE_ERRORS) return FIREBASE_ERRORS[code];
+  // Fallback: strip "Firebase: " prefix but never show raw technical details
+  return 'Something went wrong. Please try again.';
+}
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [error, setError]       = useState('');
+  const [loading, setLoading]   = useState(false);
+  const [cooldown, setCooldown] = useState(0); // seconds remaining
+
+  const attemptsRef  = useRef(0);
+  const cooldownRef  = useRef(null);
+
   const { login, googleLogin } = useAuth();
   const navigate = useNavigate();
-  const toast = useToast();
+  const toast    = useToast();
+
+  /** Start a countdown timer and block further submissions. */
+  const startCooldown = useCallback(() => {
+    let remaining = COOLDOWN_MS / 1000;
+    setCooldown(remaining);
+    cooldownRef.current = setInterval(() => {
+      remaining -= 1;
+      setCooldown(remaining);
+      if (remaining <= 0) {
+        clearInterval(cooldownRef.current);
+        attemptsRef.current = 0;
+        setCooldown(0);
+      }
+    }, 1000);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (cooldown > 0) return;
+
     setError('');
     setLoading(true);
     try {
       await login(email, password);
+      attemptsRef.current = 0;
       toast('Welcome back to BAMBARDDARA');
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      attemptsRef.current += 1;
+      const msg = friendlyError(err);
+      if (msg) setError(msg);
+
+      if (attemptsRef.current >= MAX_ATTEMPTS) {
+        startCooldown();
+        setError(
+          `Too many failed attempts. Please wait ${COOLDOWN_MS / 1000} seconds before trying again.`
+        );
+      }
     } finally {
       setLoading(false);
     }
@@ -48,11 +103,14 @@ const Login = () => {
       );
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      const msg = friendlyError(err);
+      if (msg) setError(msg);
     } finally {
       setLoading(false);
     }
   };
+
+  const isBlocked = cooldown > 0;
 
   return (
     <AuthLayout
@@ -84,6 +142,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            disabled={isBlocked}
             className={FIELD_INPUT}
             placeholder="you@example.com"
           />
@@ -100,13 +159,22 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={isBlocked}
             className={FIELD_INPUT}
             placeholder="••••••••"
           />
         </div>
 
-        <button type="submit" disabled={loading} className={SUBMIT_BUTTON}>
-          {loading ? 'Signing in…' : 'Sign In'}
+        <button
+          type="submit"
+          disabled={loading || isBlocked}
+          className={SUBMIT_BUTTON}
+        >
+          {isBlocked
+            ? `Please wait ${cooldown}s…`
+            : loading
+            ? 'Signing in…'
+            : 'Sign In'}
         </button>
       </form>
 
@@ -121,7 +189,7 @@ const Login = () => {
       <button
         type="button"
         onClick={handleGoogle}
-        disabled={loading}
+        disabled={loading || isBlocked}
         className={GOOGLE_BUTTON}
       >
         <GoogleMark />

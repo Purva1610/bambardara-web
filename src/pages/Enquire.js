@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import EstateImage from '../components/EstateImage';
-import Reveal from '../components/Reveal';
+import EstateImage from '../components/shared/EstateImage';
+import Reveal from '../components/shared/Reveal';
 
 /**
  * The enquiry page is deliberately not an auth page: no password, no account,
@@ -41,6 +41,12 @@ const DETAILS = [
   { label: 'Correspondence', lines: [ESTATE_EMAIL] },
   { label: 'Arrivals', lines: ['Kolhapur airport, 38 km', 'Helipad on the north field'] },
 ];
+
+/**
+ * Phone number pattern: optional leading +, then 7-15 digits/spaces/dashes.
+ * Covers most international formats without being overly restrictive.
+ */
+const PHONE_PATTERN = '[+]?[0-9][0-9 \\-]{6,14}[0-9]';
 
 const EMPTY = {
   name: '',
@@ -155,6 +161,12 @@ export default function Enquire() {
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
   const [error, setError] = useState('');
 
+  /**
+   * Honeypot ref - bots fill every visible field, including hidden ones.
+   * If this field has a value at submit time, discard the submission silently.
+   */
+  const honeypotRef = useRef(null);
+
   const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
 
   const update = (field) => (e) =>
@@ -198,6 +210,13 @@ export default function Enquire() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    /* Honeypot check - bots fill hidden fields; humans leave them blank. */
+    if (honeypotRef.current?.value) {
+      /* Silently pretend success so bots do not know they were caught. */
+      setStatus('sent');
+      return;
+    }
+
     if (
       (form.purpose === 'booking' || form.purpose === 'stay') &&
       form.departure &&
@@ -218,14 +237,15 @@ export default function Enquire() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(form),
         });
-        if (!res.ok) throw new Error(`The estate could not be reached (${res.status}).`);
+        /* Safe error - never expose raw server response details to the UI. */
+        if (!res.ok) throw new Error('The estate could not be reached. Please try again or call us directly.');
       } else {
         /* Hands the enquiry to the guest's mail client, addressed and filled. */
         window.location.href = composeMail(form);
       }
       setStatus('sent');
     } catch (err) {
-      setError(err.message);
+      setError(err.message ?? 'Something went wrong. Please try again.');
       setStatus('error');
     }
   };
@@ -363,6 +383,8 @@ export default function Enquire() {
                         autoComplete="tel"
                         value={form.phone}
                         onChange={update('phone')}
+                        pattern={PHONE_PATTERN}
+                        title="Please enter a valid phone number (7-15 digits, optional leading +)"
                         className={FIELD}
                         placeholder="+91"
                       />
@@ -888,6 +910,17 @@ export default function Enquire() {
                       )}
                     </div>
                   )}
+
+                  {/* Honeypot - visually hidden from real users, traps bots that fill all fields. */}
+                  <input
+                    ref={honeypotRef}
+                    type="text"
+                    name="_hp_estate"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
+                  />
 
                   <button
                     type="submit"

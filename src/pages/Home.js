@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
-import EstateImage from '../components/EstateImage';
-import Reveal from '../components/Reveal';
-import SectionHeading from '../components/SectionHeading';
+import EstateImage from '../components/shared/EstateImage';
+import Reveal from '../components/shared/Reveal';
+import SectionHeading from '../components/shared/SectionHeading';
 import BoardOfDirectors from '../components/BoardOfDirectors';
 
 const RESIDENCES = [
@@ -132,27 +132,27 @@ const EXPERIENCES = [
 ];
 
 const PLATES = [
-  { slug: 'infinity-pool', alt: 'The infinity pool above the valley', span: 'md:col-span-2 md:row-span-2' },
-  { slug: 'family-fun-and-adventure-3', alt: 'Family fun and adventure at the estate', span: 'md:col-span-4 md:row-span-2' },
-  { slug: 'trekking', alt: 'A guided trek along the escarpment', span: 'md:col-span-2 md:row-span-2' },
-  { slug: 'luxury-hotel-rooms-and-suites-4', alt: 'Interior of an orchard suite', span: 'md:col-span-2' },
+  { slug: 'infinity-pool',               alt: 'The infinity pool above the valley',        span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'family-fun-and-adventure-3',  alt: 'Family fun and adventure at the estate',    span: 'md:col-span-4 md:row-span-2' },
+  { slug: 'trekking',                    alt: 'A guided trek along the escarpment',        span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'luxury-hotel-rooms-and-suites-4', alt: 'Interior of an orchard suite',          span: 'md:col-span-2' },
 
-  { slug: 'familiy', alt: 'Family fun and hospitality at the estate', span: 'md:col-span-2' },
-  { slug: 'pick', alt: 'Family walk through the estate', span: 'md:col-span-2' },
+  { slug: 'familiy',                     alt: 'Family fun and hospitality at the estate',  span: 'md:col-span-2' },
+  { slug: 'pick',                        alt: 'Family walk through the estate',            span: 'md:col-span-2' },
 
-  { slug: 'meidtation', alt: 'Meditation and wellness at the estate', span: 'md:col-span-2' },
-  { slug: 'about-view', alt: 'Mountain valley view from the estate', span: 'md:col-span-2' },
-  { slug: 'water-park-3', alt: 'The estate water park', span: 'md:col-span-2 md:row-span-2' },
-  { slug: 'boating', alt: 'Boating activities on the estate waters', span: 'md:col-span-2' },
-  { slug: 'cycling', alt: 'Cycling through the estate grounds', span: 'md:col-span-2' },
-  { slug: 'nature', alt: 'Well-planted roads and natural landscapes', span: 'md:col-span-2' },
+  { slug: 'meidtation',                  alt: 'Meditation and wellness at the estate',     span: 'md:col-span-2' },
+  { slug: 'about',                       alt: 'Mountain valley view from the estate',      span: 'md:col-span-2' },
+  { slug: 'water-park-3',                alt: 'The estate water park',                     span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'boating',                     alt: 'Boating activities on the estate waters',   span: 'md:col-span-2' },
+  { slug: 'cycling',                     alt: 'Cycling through the estate grounds',        span: 'md:col-span-2' },
+  { slug: 'nature',                      alt: 'Well-planted roads and natural landscapes', span: 'md:col-span-2' },
 ];
 
 const MEASURES = [
   { figure: '150', unit: 'Acres', note: 'Luxury, pasture and forest' },
   { figure: '100+', unit: 'Luxury Rooms', note: 'None overlooking another' },
   { figure: '5', unit: 'Star Facilities', note: 'Guided daily from the estate' },
-  { figure: '10', unit: 'Countries Facilities', note: 'Guided daily from the estate' },
+  { figure: '10', unit: 'Activity Zones', note: 'Adventures, farm, spa and wellness' },
 ];
 
 const OCCASIONS = [
@@ -207,10 +207,11 @@ const PILLARS = [
 
 const RITUALS = [
   {
-    slug: 'meidtation',
+    slug: 'international-meditation-center',
     title: 'The Meditation Centre',
     body: 'A domed hall on the quietest corner of the estate. Guided sittings at dawn and dusk, silent access all day.',
   },
+
   {
     slug: 'infinity-pool-3',
     title: 'The Infinity Pool',
@@ -258,7 +259,7 @@ function Legacy() {
           <Reveal>
             <div className="lux-frame aspect-[4/5] w-full sm:aspect-[16/11]">
               <EstateImage
-                slug="about-view"
+                slug="about"
                 alt="Mountain valley view from the estate"
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
@@ -334,7 +335,7 @@ function Accommodation() {
                       flipped ? 'lg:order-2' : 'lg:order-1'
                     }`}
                   >
-                     <div className="lux-frame zoom-hover aspect-[4/3] w-full">
+                    <div className="lux-frame zoom-hover aspect-[4/3] w-full">
                       {r.customImage ? (
                         <img
                           src={r.customImage}
@@ -427,7 +428,6 @@ function Experiences() {
                     alt={e.title}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
-                  <div className="lux-scrim-soft pointer-events-none absolute inset-0" />
                   <span className="absolute left-6 top-6 font-mono text-[0.7rem] tracking-wider text-muted-gold">
                     {e.n}
                   </span>
@@ -790,7 +790,7 @@ function Enquiry() {
               <Link to="/enquire" className="lux-btn-light">
                 <span>Begin an Enquiry</span>
               </Link>
-              <a href="tel:+911234567890" className="lux-btn-light">
+              <a href="tel:+917588775757" className="lux-btn-light">
                 <span>Call the Estate</span>
               </a>
             </div>

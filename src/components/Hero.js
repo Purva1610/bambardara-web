@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 // parallaxRef removed — JS-driven translateY on every scroll caused page shake
 import { Link } from 'react-router-dom';
-import EstateImage from './EstateImage';
+import EstateImage from './shared/EstateImage';
 
 /* Landscape plates from the estate library, slowly cross-faded. */
 const PLATES = [

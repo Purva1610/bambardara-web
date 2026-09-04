@@ -5,6 +5,12 @@ Dockerfile
 npm-debug.log
 README.md
 
+# Never include local env secrets in the image build context.
+# Pass Firebase credentials via --build-arg or docker-compose args instead.
+.env
+.env.local
+.env.*.local
+
 # Camera originals — only the optimised derivatives in opt/ are served
 public/images/*.jpg
 public/images/*.jpeg

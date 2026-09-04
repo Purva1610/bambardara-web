@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EstateImage from '../components/EstateImage';
-import Reveal from '../components/Reveal';
-import SectionHeading from '../components/SectionHeading';
+import EstateImage from '../components/shared/EstateImage';
+import Reveal from '../components/shared/Reveal';
+import SectionHeading from '../components/shared/SectionHeading';
 
 const PLANS = [
   {

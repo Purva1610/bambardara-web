@@ -9,21 +9,48 @@ import AuthLayout, {
   GOOGLE_BUTTON,
   GoogleMark,
   SUBMIT_BUTTON,
-} from '../components/AuthLayout';
+} from '../components/shared/AuthLayout';
+
+/** Map Firebase Auth error codes to user-friendly messages. */
+const FIREBASE_ERRORS = {
+  'auth/email-already-in-use':    'An account with this email already exists. Try signing in instead.',
+  'auth/invalid-email':           'Please enter a valid email address.',
+  'auth/weak-password':           'Password is too weak. Use at least 8 characters.',
+  'auth/too-many-requests':       'Too many attempts. Please wait a moment and try again.',
+  'auth/network-request-failed':  'Network error. Please check your connection.',
+  'auth/popup-closed-by-user':    null, // user dismissed — show nothing
+  'auth/cancelled-popup-request': null,
+};
+
+function friendlyError(err) {
+  const code = err?.code ?? '';
+  if (code in FIREBASE_ERRORS) return FIREBASE_ERRORS[code];
+  return 'Something went wrong. Please try again.';
+}
+
+/**
+ * Phone number pattern: optional leading +, then 7–15 digits/spaces/dashes.
+ * Covers most international formats without being overly restrictive.
+ */
+const PHONE_PATTERN = '[+]?[0-9][0-9 \\-]{6,14}[0-9]';
+
+/** Minimum password length — stricter than Firebase's default of 6. */
+const MIN_PASSWORD_LEN = 8;
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [gender, setGender] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName]                     = useState('');
+  const [email, setEmail]                   = useState('');
+  const [mobile, setMobile]                 = useState('');
+  const [address, setAddress]               = useState('');
+  const [gender, setGender]                 = useState('');
+  const [password, setPassword]             = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [error, setError]                   = useState('');
+  const [loading, setLoading]               = useState(false);
+
   const { signup, googleLogin } = useAuth();
   const navigate = useNavigate();
-  const toast = useToast();
+  const toast    = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,8 +66,8 @@ const Signup = () => {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password should be at least 6 characters.');
+    if (password.length < MIN_PASSWORD_LEN) {
+      setError(`Password must be at least ${MIN_PASSWORD_LEN} characters.`);
       return;
     }
 
@@ -55,7 +82,8 @@ const Signup = () => {
       toast('Account created — Welcome to BAMBARDDARA');
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      const msg = friendlyError(err);
+      if (msg) setError(msg);
     } finally {
       setLoading(false);
     }
@@ -74,7 +102,8 @@ const Signup = () => {
       );
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      const msg = friendlyError(err);
+      if (msg) setError(msg);
     } finally {
       setLoading(false);
     }
@@ -143,8 +172,10 @@ const Signup = () => {
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
               required
+              pattern={PHONE_PATTERN}
+              title="Please enter a valid phone number (7–15 digits, optional leading +)"
               className={FIELD_INPUT}
-               placeholder="+91 7588775757"
+              placeholder="+91 7588775757"
             />
           </div>
 
@@ -194,9 +225,9 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              minLength={6}
+              minLength={MIN_PASSWORD_LEN}
               className={FIELD_INPUT}
-              placeholder="At least 6 characters"
+              placeholder={`At least ${MIN_PASSWORD_LEN} characters`}
             />
           </div>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EstateImage from '../components/EstateImage';
-import Reveal from '../components/Reveal';
-import SectionHeading from '../components/SectionHeading';
+import EstateImage from '../components/shared/EstateImage';
+import Reveal from '../components/shared/Reveal';
+import SectionHeading from '../components/shared/SectionHeading';
 
 const TIERS = [
   {
@@ -157,7 +157,7 @@ export default function Membership() {
             <h1 className="mt-6 max-w-3xl font-heading text-[clamp(2.25rem,5vw,4rem)] font-light leading-[1.06] text-ivory-white">
               BAMBARDDARA AGROTOURISM PVT. LTD.
               <span className="block italic text-muted-gold">
-                AGROTURISM CLUB MEMBERSHIP
+                AGROTOURISM CLUB MEMBERSHIP
               </span>
             </h1>
             <p className="mt-8 max-w-2xl font-body text-[0.95rem] font-light leading-[1.85] text-ivory-white/70 md:text-[1.05rem]">
@@ -179,7 +179,7 @@ export default function Membership() {
             label="Membership Plans"
             title={
               <>
-                Agroturism Club
+                Agrotourism Club
                 <span className="block italic text-luxury-gold">
                   Membership Plans
                 </span>

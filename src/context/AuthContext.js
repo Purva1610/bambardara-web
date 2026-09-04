@@ -11,7 +11,7 @@ import {
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
-const AuthContext = createContext();
+const AuthContext = createContext(undefined);
 
 /**
  * Persist profile data to Firestore.
@@ -29,8 +29,10 @@ const persistProfile = (user, extra = {}) => {
     },
     { merge: true }
   ).catch((err) => {
-    // Log but don't surface to the user — auth already succeeded.
-    console.warn('[AuthContext] Firestore profile save failed:', err.message);
+    // Only surface internal details in development — never in production.
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('[AuthContext] Firestore profile save failed:', err.message);
+    }
   });
 };
 
@@ -80,4 +82,19 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+/**
+ * useAuth — must be called inside <AuthProvider>.
+ * Throws a descriptive error in development if used incorrectly,
+ * so misconfigured trees are caught immediately rather than producing
+ * cryptic "Cannot read property of undefined" messages.
+ */
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (ctx === undefined) {
+    throw new Error(
+      '[useAuth] must be used inside <AuthProvider>. ' +
+      'Ensure your component tree is wrapped with <AuthProvider>.'
+    );
+  }
+  return ctx;
+};

@@ -6,18 +6,24 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import PageTransition from './components/PageTransition';
+import Header from './components/shared/Header';
+import Footer from './components/shared/Footer';
+import PageTransition from './components/shared/PageTransition';
 import Home from './pages/Home';
+import Stays from './pages/Stays';
+import Spa from './pages/Spa';
+import Adventures from './pages/Adventures';
+import RoomTypePage from './pages/RoomTypePage';
+import RoomDetail from './pages/RoomDetail';
 import Enquire from './pages/Enquire';
-import EntranceGateAnimation from './components/EntranceGateAnimation';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Investment from './pages/Investment';
 import Membership from './pages/Membership';
+import NotFound from './pages/NotFound';
+import EntranceGateAnimation from './components/shared/EntranceGateAnimation';
 import { useAuth } from './context/AuthContext';
-import './App.css';
+
 
 const GATE_SEEN_KEY = 'bambarddara:gate-seen';
 
@@ -75,7 +81,7 @@ function AppContent() {
   }, [logout, navigate]);
 
   return (
-    <div className="App min-h-screen bg-ivory-white">
+    <div className="min-h-screen relative bg-gradient-to-b from-ivory-white via-cream to-soft-beige before:fixed before:inset-0 before:pointer-events-none before:bg-[radial-gradient(circle_at_20%_30%,rgba(201,169,97,0.03)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(10,77,46,0.02)_0%,transparent_50%)]">
       {showEntrance && (
         <EntranceGateAnimation onComplete={handleEntranceComplete} />
       )}
@@ -87,11 +93,17 @@ function AppContent() {
         <PageTransition>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/stays" element={<Stays />} />
+            <Route path="/spa" element={<Spa />} />
+            <Route path="/experiences" element={<Adventures />} />
+            <Route path="/stays/:type" element={<RoomTypePage />} />
+            <Route path="/room/:id" element={<RoomDetail />} />
             <Route path="/enquire" element={<Enquire />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/investment" element={<Investment />} />
             <Route path="/membership" element={<Membership />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </PageTransition>
       </main>
