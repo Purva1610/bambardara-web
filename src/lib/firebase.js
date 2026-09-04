@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics, isSupported } from 'firebase/analytics';
+
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,10 +18,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-/* Analytics is not supported in all environments (e.g. SSR, Firefox private
-   mode). Guard with isSupported() so it never throws. */
-export const analytics = isSupported().then((yes) =>
-  yes ? getAnalytics(app) : null
-);
 
 export default app;

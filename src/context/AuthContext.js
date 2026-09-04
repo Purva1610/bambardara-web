@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
-import { getCurrentUser } from '../api';
+
 
 const AuthContext = createContext(undefined);
 
@@ -40,26 +40,10 @@ const persistProfile = (user, extra = {}) => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser]       = useState(null);
   const [loading, setLoading] = useState(true);
-  const [backendUser, setBackendUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      
-      // Sync with backend when user logs in
-      if (currentUser) {
-        try {
-          const backendProfile = await getCurrentUser();
-          setBackendUser(backendProfile);
-          console.log('[AuthContext] Backend user synced:', backendProfile);
-        } catch (error) {
-          console.warn('[AuthContext] Backend sync failed:', error.message);
-          // Don't block auth if backend fails
-        }
-      } else {
-        setBackendUser(null);
-      }
-      
       setLoading(false);
     });
     return () => unsubscribe();
@@ -93,7 +77,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => signOut(auth);
 
   return (
-    <AuthContext.Provider value={{ user, backendUser, loading, signup, login, googleLogin, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, googleLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );

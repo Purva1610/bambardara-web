@@ -2,7 +2,6 @@ import React, { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
-import { submitEnquiry } from '../api';
 
 /**
  * The enquiry page is deliberately not an auth page: no password, no account,
@@ -83,8 +82,6 @@ const EMPTY = {
   message: '',
 };
 
-/* No enquiry backend is deployed yet; set this to post instead of mailing. */
-const ENDPOINT = process.env.REACT_APP_ENQUIRY_ENDPOINT;
 
 function composeMail(form) {
   const purpose =
@@ -219,7 +216,7 @@ export default function Enquire() {
     }
 
     if (
-      (form.purpose === 'booking' || form.purpose === 'stay') &&
+      (form.purpose === 'BOOKING' || form.purpose === 'STAY_HOSPITALITY') &&
       form.departure &&
       form.arrival &&
       form.departure < form.arrival
@@ -232,18 +229,8 @@ export default function Enquire() {
     setStatus('sending');
 
     try {
-        if (ENDPOINT) {
-          const res = await fetch(ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-          });
-          /* Safe error - never expose raw server response details to the UI. */
-          if (!res.ok) throw new Error('The estate could not be reached. Please try again or call us directly.');
-      } else {
-        /* Hands the enquiry to the guest's mail client, addressed and filled. */
-        window.location.href = composeMail(form);
-      }
+      /* Hands the enquiry to the guest's mail client, addressed and filled. */
+      window.location.href = composeMail(form);
       setStatus('sent');
     } catch (err) {
       setError(err.message ?? 'Something went wrong. Please try again.');
@@ -289,10 +276,9 @@ export default function Enquire() {
                   </h2>
                   <span className="lux-rule mt-6" />
                   <p className="mt-6 max-w-prose font-body text-[0.9rem] font-light leading-[1.9] text-light-charcoal">
-                    {ENDPOINT
-                      ? 'Your enquiry is with the reservations desk. One of the family will reply within a day, usually sooner.'
-                      : 'Your mail client has the enquiry, addressed and filled. Send it and one of the family will reply within a day.'}{' '}
-                    For anything urgent, call{' '}
+                    Your mail client has the enquiry, addressed and filled. Send
+                    it and one of the family will reply within a day. For
+                    anything urgent, call{' '}
                     <a
                       href={`tel:${ESTATE_PHONE.replace(/\s/g, '')}`}
                       className="text-forest-green underline-offset-4 hover:underline"
@@ -412,7 +398,7 @@ export default function Enquire() {
 
                   {form.purpose && (
                     <div className="mt-8 space-y-8">
-                      {(form.purpose === 'booking' || form.purpose === 'stay') && (
+                      {(form.purpose === 'BOOKING' || form.purpose === 'STAY_HOSPITALITY') && (
                         <>
                           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                             <div>
@@ -888,7 +874,7 @@ export default function Enquire() {
                         </div>
                       )}
 
-                      {form.purpose !== 'feedback' && form.purpose !== 'other' && (
+                      {form.purpose !== 'FEEDBACK_COMPLAINT' && form.purpose !== 'OTHER' && (
                         <div>
                           <label htmlFor="enq-message" className={LABEL}>
                             {form.purpose === 'OTHER' ? 'Message' : 'Anything we should know'}

@@ -23,7 +23,7 @@ const WIDTHS = [640, 1280, 1920];
 const JPEG_FALLBACK_WIDTH = 1280;
 
 /* Already-derived or non-photographic assets stay untouched. */
-const SKIP = new Set(['gate-left.png', 'gate-right.png', 'entrance.png']);
+const SKIP = new Set(['entrance-open.jpg']);
 
 const slugify = (filename) =>
   path
