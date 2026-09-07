@@ -285,11 +285,11 @@ export default function Overview() {
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
         <div>
           <h1 className="font-serif text-2xl text-text sm:text-[1.75rem]">
-            Bhandarada Overview
+            Bhambarddara Overview
           </h1>
 
           <p className="mt-1 text-sm text-muted">
-            Bhandarada, near Kolhapur · Under construction · Phase 1
+            Bhambarddara, near Kolhapur · Under construction · Phase 1
           </p>
         </div>
 

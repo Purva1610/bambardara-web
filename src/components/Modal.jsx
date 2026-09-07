@@ -1,43 +1,50 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X } from "lucide-react";
 
 export default function Modal({ open, onClose, title, children }) {
+  if (!open) return null;
+
   return (
-    <AnimatePresence>
-      {open && (
-        <>
-          <motion.div
-            className="fixed inset-0 z-40 bg-black/40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      {/* Background Overlay */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl">
+        
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-line px-6 py-4">
+          <div>
+            <h2 className="font-serif text-xl font-semibold text-text">
+              {title}
+            </h2>
+
+            <p className="mt-1 text-xs text-muted">
+              Add a new investor to your investment register
+            </p>
+          </div>
+
+          <button
+            type="button"
             onClick={onClose}
-          />
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label={title}
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.16, ease: 'easeOut' }}
-            className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl2 border border-line bg-card shadow-lift"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-muted transition hover:bg-primary/10 hover:text-text"
           >
-            <div className="flex items-center justify-between border-b border-line px-5 py-4">
-              <p className="font-serif text-lg text-text">{title}</p>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition-colors hover:bg-primary/5 hover:text-text"
-              >
-                <X size={16} />
-              </button>
-            </div>
-            <div className="p-5">{children}</div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="max-h-[80vh] overflow-y-auto px-6 py-5">
+          {children}
+        </div>
+
+      </div>
+    </div>
   );
 }
