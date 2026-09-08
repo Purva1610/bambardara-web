@@ -21,7 +21,7 @@ const ENQUIRY_STATUS_STYLES = {
 };
 
 const WEBSITE_STATUS_STYLES = {
-  Live: 'bg-secondary/10 text-secondary',
+  Live: 'bg-green-100 text-secondary',
   Draft: 'bg-amber-500/10 text-amber-600',
   Offline: 'bg-red-500/10 text-red-600',
 };
