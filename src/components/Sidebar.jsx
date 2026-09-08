@@ -9,6 +9,8 @@ import {
   Settings,
   Leaf,
   X,
+  ClipboardCheck,
+  BookOpen,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -17,6 +19,8 @@ const NAV_ITEMS = [
   { to: '/construction', label: 'Construction & Zones', icon: Building2 },
   { to: '/team', label: 'Team & Roles', icon: Users },
   { to: '/website', label: 'Website & Marketing', icon: Globe },
+  { to: '/approvals', label: 'Approvals', icon: ClipboardCheck },
+  { to: '/documentation', label: 'Documentation', icon: BookOpen },
   { to: '/settings', label: 'Settings', icon: Settings },
 ];
 
@@ -28,7 +32,7 @@ function SidebarContent({ onNavigate }) {
           <Leaf size={16} strokeWidth={1.5} className="text-accent" />
         </span>
         <div className="leading-tight">
-          <p className="font-serif text-[1rem] tracking-wide">Bhandarada</p>
+          <p className="font-serif text-[1rem] tracking-wide">Bambarddara</p>
           <p className="text-[0.65rem] uppercase tracking-[0.14em] text-sidebar-text-muted">CEO Command Center</p>
         </div>
       </div>
@@ -64,7 +68,7 @@ function SidebarContent({ onNavigate }) {
       </nav>
 
       <div className="mx-3 mb-6 border-t border-white/10 pt-4">
-        <p className="px-1 text-[0.65rem] uppercase tracking-[0.14em] text-sidebar-text-muted">Bhandarada, near Kolhapur</p>
+        <p className="px-1 text-[0.65rem] uppercase tracking-[0.14em] text-sidebar-text-muted">Bambarddara, near Kolhapur</p>
         <p className="px-1 pt-1 font-serif text-sm text-sidebar-text">Under construction &middot; Phase 1</p>
       </div>
     </div>

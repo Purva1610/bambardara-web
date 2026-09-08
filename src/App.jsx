@@ -6,6 +6,8 @@ import Construction from './pages/Construction';
 import Team from './pages/Team';
 import Website from './pages/Website';
 import Settings from './pages/Settings';
+import Approvals from './pages/Approvals';
+import Documentation from './pages/Documentation';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/construction" element={<Construction />} />
         <Route path="/team" element={<Team />} />
         <Route path="/website" element={<Website />} />
+        <Route path="/approvals" element={<Approvals />} />
+        <Route path="/documentation" element={<Documentation />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
 

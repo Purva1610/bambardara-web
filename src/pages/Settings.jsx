@@ -30,7 +30,7 @@ export default function Settings() {
                 'rounded-lg border px-4 py-4 text-left transition-colors',
                 mode === id ? 'border-accent bg-accent/10' : 'border-line hover:bg-primary/[0.03]',
               ].join(' ')}
-            >
+            >fa
               <Icon size={18} strokeWidth={1.75} className="text-primary" />
               <p className="mt-2 text-sm font-medium text-text">{label}</p>
               <p className="text-xs text-muted">{desc}</p>
