@@ -1,31 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdditionalUserInfo } from 'firebase/auth';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import AuthLayout, {
   FIELD_INPUT,
   FIELD_LABEL,
-  GOOGLE_BUTTON,
-  GoogleMark,
   SUBMIT_BUTTON,
 } from '../components/shared/AuthLayout';
 
-/** Map Firebase Auth error codes to user-friendly messages. */
-const FIREBASE_ERRORS = {
-  'auth/email-already-in-use':    'An account with this email already exists. Try signing in instead.',
-  'auth/invalid-email':           'Please enter a valid email address.',
-  'auth/weak-password':           'Password is too weak. Use at least 8 characters.',
-  'auth/too-many-requests':       'Too many attempts. Please wait a moment and try again.',
-  'auth/network-request-failed':  'Network error. Please check your connection.',
-  'auth/popup-closed-by-user':    null, // user dismissed — show nothing
-  'auth/cancelled-popup-request': null,
-};
-
+/** Backend registration errors surface as a plain message (see api.js). */
 function friendlyError(err) {
-  const code = err?.code ?? '';
-  if (code in FIREBASE_ERRORS) return FIREBASE_ERRORS[code];
-  return 'Something went wrong. Please try again.';
+  const message = err?.message ?? '';
+  if (/already exists/i.test(message)) {
+    return 'An account with this email already exists. Try signing in instead.';
+  }
+  return message || 'Something went wrong. Please try again.';
 }
 
 /**
@@ -34,7 +23,7 @@ function friendlyError(err) {
  */
 const PHONE_PATTERN = '[+]?[0-9][0-9 \\-]{6,14}[0-9]';
 
-/** Minimum password length — stricter than Firebase's default of 6. */
+/** Minimum password length. */
 const MIN_PASSWORD_LEN = 8;
 
 const Signup = () => {
@@ -48,7 +37,7 @@ const Signup = () => {
   const [error, setError]                   = useState('');
   const [loading, setLoading]               = useState(false);
 
-  const { signup, googleLogin } = useAuth();
+  const { signup } = useAuth();
   const navigate = useNavigate();
   const toast    = useToast();
 
@@ -80,26 +69,6 @@ const Signup = () => {
         gender,
       });
       toast('Account created — Welcome to BAMBARDDARA');
-      navigate('/');
-    } catch (err) {
-      const msg = friendlyError(err);
-      if (msg) setError(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogle = async () => {
-    setError('');
-    setLoading(true);
-    try {
-      const cred = await googleLogin();
-      const { isNewUser } = getAdditionalUserInfo(cred) ?? {};
-      toast(
-        isNewUser
-          ? 'Account created — Welcome to BAMBARDDARA'
-          : 'Welcome back to BAMBARDDARA'
-      );
       navigate('/');
     } catch (err) {
       const msg = friendlyError(err);
@@ -252,24 +221,6 @@ const Signup = () => {
           {loading ? 'Creating account…' : 'Create Account'}
         </button>
       </form>
-
-      <div className="my-10 flex items-center gap-5">
-        <span className="h-px flex-1 bg-stone" />
-        <span className="font-body text-[0.625rem] uppercase tracking-label text-light-charcoal">
-          or
-        </span>
-        <span className="h-px flex-1 bg-stone" />
-      </div>
-
-      <button
-        type="button"
-        onClick={handleGoogle}
-        disabled={loading}
-        className={GOOGLE_BUTTON}
-      >
-        <GoogleMark />
-        Continue with Google
-      </button>
 
       <p className="mt-12 font-body text-[0.825rem] font-light text-light-charcoal">
         Already registered?{' '}

@@ -1,37 +1,23 @@
 /**
  * Backend API configuration and utilities
- * 
- * UPDATED: Now uses Firebase Authentication instead of custom JWT
+ *
+ * Uses Keycloak access tokens (see src/lib/session.js) for authenticated
+ * requests. Requests made before any sign-in (e.g. registration itself)
+ * simply carry no Authorization header — getValidAccessToken() returns
+ * null when there is no session yet.
  */
 
-import { auth } from './lib/firebase.js';
+import { getValidAccessToken } from './lib/session';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 /**
- * Get the current Firebase ID token
- * @returns {Promise<string|null>} Firebase ID token or null if not authenticated
- */
-const getFirebaseToken = async () => {
-  const user = auth.currentUser;
-  if (user) {
-    try {
-      // Get fresh token (force refresh if older than 5 minutes)
-      return await user.getIdToken();
-    } catch (error) {
-      console.error('Error getting Firebase token:', error);
-      return null;
-    }
-  }
-  return null;
-};
-
-/**
- * Make an authenticated API request with Firebase token
+ * Make an authenticated API request, attaching a Keycloak access token
+ * when a session exists.
  */
 export const apiRequest = async (endpoint, options = {}) => {
-  const token = await getFirebaseToken();
-  
+  const token = await getValidAccessToken();
+
   const headers = {
     'Content-Type': 'application/json',
     ...options.headers,

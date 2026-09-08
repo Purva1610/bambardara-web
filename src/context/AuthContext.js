@@ -1,83 +1,55 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-} from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../lib/firebase';
-
+import { apiRequest } from '../api';
+import * as session from '../lib/session';
 
 const AuthContext = createContext(undefined);
-
-/**
- * Persist profile data to Firestore.
- * This is fire-and-forget — a Firestore failure (e.g. rules not set up yet,
- * no internet, uninitialized DB) must NEVER block sign-in / sign-up.
- */
-const persistProfile = (user, extra = {}) => {
-  setDoc(
-    doc(db, 'users', user.uid),
-    {
-      uid: user.uid,
-      email: user.email,
-      ...extra,
-      updatedAt: new Date().toISOString(),
-    },
-    { merge: true }
-  ).catch((err) => {
-    // Only surface internal details in development — never in production.
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('[AuthContext] Firestore profile save failed:', err.message);
-    }
-  });
-};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser]       = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    // A stored session may have expired while the tab was closed — confirm
+    // it's still valid (refreshing if needed) before trusting it.
+    (async () => {
+      const token = await session.getValidAccessToken();
+      setUser(token ? session.getUser() : null);
       setLoading(false);
-    });
-    return () => unsubscribe();
+    })();
   }, []);
 
-  /** Email + password sign-up */
+  /** Email + password sign-up: create the account, then sign in. */
   const signup = async (email, password, profile = {}) => {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    if (profile.name) {
-      await updateProfile(cred.user, { displayName: profile.name });
-    }
-    persistProfile(cred.user, profile);   // non-blocking
-    return cred;
-  };
-
-  /** Email + password sign-in */
-  const login = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
-
-  /** Google OAuth — works for both new and returning users */
-  const googleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    const cred = await signInWithPopup(auth, provider);
-    persistProfile(cred.user, {           // non-blocking
-      name:  cred.user.displayName || '',
-      email: cred.user.email       || '',
+    await apiRequest('/api/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: profile.name,
+        email,
+        mobileNumber: profile.mobile,
+        address: profile.address,
+        gender: (profile.gender || '').toUpperCase(),
+        password,
+      }),
     });
-    return cred;
+    const signedInUser = await session.startSession(email, password);
+    setUser(signedInUser);
+    return signedInUser;
   };
 
-  const logout = () => signOut(auth);
+  /** Email + password sign-in. */
+  const login = async (email, password) => {
+    const signedInUser = await session.startSession(email, password);
+    setUser(signedInUser);
+    return signedInUser;
+  };
+
+  const logout = async () => {
+    await session.endSession();
+    setUser(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signup, login, googleLogin, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

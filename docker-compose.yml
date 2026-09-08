@@ -4,16 +4,14 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        # Firebase credentials are baked into the JS bundle at build time.
-        # Create a .env file (see .env.example) and these will be picked up
-        # automatically by docker-compose.
-        REACT_APP_FIREBASE_API_KEY: ${REACT_APP_FIREBASE_API_KEY}
-        REACT_APP_FIREBASE_AUTH_DOMAIN: ${REACT_APP_FIREBASE_AUTH_DOMAIN}
-        REACT_APP_FIREBASE_PROJECT_ID: ${REACT_APP_FIREBASE_PROJECT_ID}
-        REACT_APP_FIREBASE_STORAGE_BUCKET: ${REACT_APP_FIREBASE_STORAGE_BUCKET}
-        REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}
-        REACT_APP_FIREBASE_APP_ID: ${REACT_APP_FIREBASE_APP_ID}
-        REACT_APP_FIREBASE_MEASUREMENT_ID: ${REACT_APP_FIREBASE_MEASUREMENT_ID}
+        # Keycloak config is baked into the JS bundle at build time (Direct
+        # Grant flow - see src/lib/keycloak.js). Create a .env file (see
+        # .env.example) and these will be picked up automatically by
+        # docker-compose.
+        REACT_APP_KEYCLOAK_URL: ${REACT_APP_KEYCLOAK_URL:-http://localhost:8081}
+        REACT_APP_KEYCLOAK_REALM: ${REACT_APP_KEYCLOAK_REALM:-bambardara}
+        REACT_APP_KEYCLOAK_CLIENT_ID: ${REACT_APP_KEYCLOAK_CLIENT_ID:-bambardara-web}
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-http://localhost:8080}
         # Optional: POST endpoint for the enquiry form. When unset the form
         # falls back to a pre-filled mailto: link.
         REACT_APP_ENQUIRY_ENDPOINT: ${REACT_APP_ENQUIRY_ENDPOINT:-}

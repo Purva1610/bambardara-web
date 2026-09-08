@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Never include local env secrets in the image build context.
-# Pass Firebase credentials via --build-arg or docker-compose args instead.
+# Pass Keycloak config via --build-arg or docker-compose args instead.
 .env
 .env.local
 .env.*.local

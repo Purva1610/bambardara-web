@@ -1,27 +1,17 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdditionalUserInfo } from 'firebase/auth';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import AuthLayout, {
   FIELD_INPUT,
   FIELD_LABEL,
-  GOOGLE_BUTTON,
-  GoogleMark,
   SUBMIT_BUTTON,
 } from '../components/shared/AuthLayout';
 
-/** Map Firebase Auth error codes to user-friendly messages. */
-const FIREBASE_ERRORS = {
-  'auth/user-not-found':        'No account found with that email address.',
-  'auth/wrong-password':        'Incorrect password. Please try again.',
-  'auth/invalid-credential':    'Email or password is incorrect.',
-  'auth/invalid-email':         'Please enter a valid email address.',
-  'auth/too-many-requests':     'Too many attempts. Please wait a moment and try again.',
-  'auth/network-request-failed':'Network error. Please check your connection.',
-  'auth/user-disabled':         'This account has been disabled. Please contact us.',
-  'auth/popup-closed-by-user':  null, // user dismissed — show nothing
-  'auth/cancelled-popup-request': null,
+/** Map Keycloak's token-endpoint error codes to user-friendly messages. */
+const KEYCLOAK_ERRORS = {
+  invalid_grant:  'Email or password is incorrect.',
+  invalid_request: 'Please enter your email and password.',
 };
 
 const MAX_ATTEMPTS = 3;
@@ -29,8 +19,8 @@ const COOLDOWN_MS  = 30_000; // 30 seconds
 
 function friendlyError(err) {
   const code = err?.code ?? '';
-  if (code in FIREBASE_ERRORS) return FIREBASE_ERRORS[code];
-  // Fallback: strip "Firebase: " prefix but never show raw technical details
+  if (code in KEYCLOAK_ERRORS) return KEYCLOAK_ERRORS[code];
+  // Fallback: never show raw technical details
   return 'Something went wrong. Please try again.';
 }
 
@@ -44,7 +34,7 @@ const Login = () => {
   const attemptsRef  = useRef(0);
   const cooldownRef  = useRef(null);
 
-  const { login, googleLogin } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const toast    = useToast();
 
@@ -85,26 +75,6 @@ const Login = () => {
           `Too many failed attempts. Please wait ${COOLDOWN_MS / 1000} seconds before trying again.`
         );
       }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogle = async () => {
-    setError('');
-    setLoading(true);
-    try {
-      const cred = await googleLogin();
-      const { isNewUser } = getAdditionalUserInfo(cred) ?? {};
-      toast(
-        isNewUser
-          ? 'Account created — Welcome to BAMBARDDARA'
-          : 'Welcome back to BAMBARDDARA'
-      );
-      navigate('/');
-    } catch (err) {
-      const msg = friendlyError(err);
-      if (msg) setError(msg);
     } finally {
       setLoading(false);
     }
@@ -177,24 +147,6 @@ const Login = () => {
             : 'Sign In'}
         </button>
       </form>
-
-      <div className="my-10 flex items-center gap-5">
-        <span className="h-px flex-1 bg-stone" />
-        <span className="font-body text-[0.625rem] uppercase tracking-label text-light-charcoal">
-          or
-        </span>
-        <span className="h-px flex-1 bg-stone" />
-      </div>
-
-      <button
-        type="button"
-        onClick={handleGoogle}
-        disabled={loading || isBlocked}
-        className={GOOGLE_BUTTON}
-      >
-        <GoogleMark />
-        Continue with Google
-      </button>
 
       <p className="mt-12 font-body text-[0.825rem] font-light text-light-charcoal">
         No account yet?{' '}
