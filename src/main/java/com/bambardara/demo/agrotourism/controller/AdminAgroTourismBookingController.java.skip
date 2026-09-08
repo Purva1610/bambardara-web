@@ -1,0 +1,102 @@
+package com.bambardara.demo.agrotourism.controller;
+
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bambardara.demo.agrotourism.dto.AgroTourismBookingResponse;
+import com.bambardara.demo.agrotourism.dto.UpdateBookingStatusRequest;
+import com.bambardara.demo.agrotourism.service.AdminAgroTourismBookingService;
+import com.bambardara.demo.common.entity.BookingStatus;
+
+import jakarta.validation.Valid;
+
+/**
+ * Admin API for managing agro tourism bookings.
+ * 
+ * All endpoints require ADMIN role.
+ * Admins can:
+ * - View all bookings
+ * - Filter bookings by status
+ * - View specific booking details
+ * - Update booking status
+ */
+@RestController
+@RequestMapping("/api/admin/agro-tourism/bookings")
+@PreAuthorize("hasRole('ADMIN')")
+public class AdminAgroTourismBookingController {
+
+    private final AdminAgroTourismBookingService bookingService;
+
+    public AdminAgroTourismBookingController(AdminAgroTourismBookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
+    /**
+     * Get all bookings with pagination.
+     * 
+     * GET /api/admin/agro-tourism/bookings?page=0&size=20
+     * 
+     * @param page page number (default: 0)
+     * @param size page size (default: 20)
+     * @return page of bookings
+     */
+    @GetMapping
+    public ResponseEntity<Page<AgroTourismBookingResponse>> getAllBookings(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(required = false) BookingStatus status) {
+        
+        Page<AgroTourismBookingResponse> bookings = status == null
+                ? bookingService.getAllBookings(page, size)
+                : bookingService.getBookingsByStatus(status, page, size);
+        
+        return ResponseEntity.ok(bookings);
+    }
+
+    /**
+     * Get a specific booking by ID.
+     * 
+     * GET /api/admin/agro-tourism/bookings/{id}
+     * 
+     * @param id booking ID
+     * @return booking details
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<AgroTourismBookingResponse> getBookingById(@PathVariable Integer id) {
+        AgroTourismBookingResponse response = bookingService.getBookingById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Update booking status.
+     * 
+     * PATCH /api/admin/agro-tourism/bookings/{id}/status
+     * 
+     * Valid status transitions:
+     * - PENDING → CONFIRMED
+     * - PENDING → REJECTED
+     * - CONFIRMED → COMPLETED
+     * - CONFIRMED → CANCELLED
+     * - PENDING → CANCELLED
+     * 
+     * @param id booking ID
+     * @param request status update request
+     * @return updated booking
+     */
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<AgroTourismBookingResponse> updateBookingStatus(
+            @PathVariable Integer id,
+            @Valid @RequestBody UpdateBookingStatusRequest request) {
+        
+        AgroTourismBookingResponse response = bookingService.updateBookingStatus(id, request);
+        return ResponseEntity.ok(response);
+    }
+}

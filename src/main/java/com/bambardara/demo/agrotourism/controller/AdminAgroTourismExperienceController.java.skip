@@ -1,0 +1,147 @@
+package com.bambardara.demo.agrotourism.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bambardara.demo.agrotourism.dto.AgroTourismExperienceRequest;
+import com.bambardara.demo.agrotourism.dto.AgroTourismExperienceResponse;
+import com.bambardara.demo.agrotourism.service.AdminAgroTourismExperienceService;
+
+import jakarta.validation.Valid;
+
+/**
+ * Admin API for managing agro tourism experiences.
+ * 
+ * All endpoints require ADMIN role.
+ * Admins can:
+ * - Create new experiences
+ * - Update experiences (including price changes)
+ * - View all experiences
+ * - Activate/deactivate experiences
+ * - Delete experiences
+ * 
+ * IMPORTANT: Price changes do NOT affect existing bookings.
+ * Historical bookings preserve their original totalAmount.
+ */
+@RestController
+@RequestMapping("/api/admin/agro-tourism/experiences")
+@PreAuthorize("hasRole('ADMIN')")
+public class AdminAgroTourismExperienceController {
+
+    private final AdminAgroTourismExperienceService experienceService;
+
+    public AdminAgroTourismExperienceController(AdminAgroTourismExperienceService experienceService) {
+        this.experienceService = experienceService;
+    }
+
+    /**
+     * Create a new agro tourism experience.
+     * 
+     * POST /api/admin/agro-tourism/experiences
+     * 
+     * @param request experience details
+     * @return created experience
+     */
+    @PostMapping
+    public ResponseEntity<AgroTourismExperienceResponse> createExperience(
+            @Valid @RequestBody AgroTourismExperienceRequest request) {
+        
+        AgroTourismExperienceResponse response = experienceService.createExperience(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    /**
+     * Update an existing experience.
+     * 
+     * PUT /api/admin/agro-tourism/experiences/{id}
+     * 
+     * @param id experience ID
+     * @param request updated experience details
+     * @return updated experience
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<AgroTourismExperienceResponse> updateExperience(
+            @PathVariable Integer id,
+            @Valid @RequestBody AgroTourismExperienceRequest request) {
+        
+        AgroTourismExperienceResponse response = experienceService.updateExperience(id, request);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Get all experiences (active and inactive).
+     * 
+     * GET /api/admin/agro-tourism/experiences
+     * 
+     * @return list of all experiences
+     */
+    @GetMapping
+    public ResponseEntity<List<AgroTourismExperienceResponse>> getAllExperiences() {
+        List<AgroTourismExperienceResponse> experiences = experienceService.getAllExperiences();
+        return ResponseEntity.ok(experiences);
+    }
+
+    /**
+     * Get a specific experience by ID.
+     * 
+     * GET /api/admin/agro-tourism/experiences/{id}
+     * 
+     * @param id experience ID
+     * @return experience details
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<AgroTourismExperienceResponse> getExperienceById(@PathVariable Integer id) {
+        AgroTourismExperienceResponse response = experienceService.getExperienceById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Delete an experience.
+     * 
+     * DELETE /api/admin/agro-tourism/experiences/{id}
+     * 
+     * NOTE: Consider using PATCH /{id}/active instead for soft delete
+     * if there are existing bookings.
+     * 
+     * @param id experience ID
+     * @return no content
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExperience(@PathVariable Integer id) {
+        experienceService.deleteExperience(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Activate or deactivate an experience.
+     * 
+     * PATCH /api/admin/agro-tourism/experiences/{id}/active?active=true
+     * 
+     * This is the preferred way to "remove" an experience that has existing bookings.
+     * 
+     * @param id experience ID
+     * @param active true to activate, false to deactivate
+     * @return updated experience
+     */
+    @PatchMapping("/{id}/active")
+    public ResponseEntity<AgroTourismExperienceResponse> setExperienceActive(
+            @PathVariable Integer id,
+            @RequestParam boolean active) {
+        
+        AgroTourismExperienceResponse response = experienceService.setExperienceActive(id, active);
+        return ResponseEntity.ok(response);
+    }
+}
