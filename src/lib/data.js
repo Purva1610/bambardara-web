@@ -1,8 +1,6 @@
+
 import { Home,Wallet,Building2,Users,Globe,Fish,TreePine,Waves,Landmark,Sprout,HeartPulse} from 'lucide-react';
-// ================= INR VALUE PARSER =================
-
-
-// ---------- Bambarddara mock data (source: Bambarddara CEO Dashboard content) ----------
+// ---------- Bhandarada mock data (source: Bhandarada CEO Dashboard content) ----------
 
 export const fundingSummary = {
   target: 120000000, // Rs 12 Cr target
@@ -90,7 +88,7 @@ export const zoneSeed = [
     ],
   },
     {
-    name: 'Wellness Center',
+    name: 'Spa & Wellness',
     icon: HeartPulse,
     status: 'Planning',
     pct: 15,
@@ -409,7 +407,7 @@ export const deptCount = [
 
 export const sitePages = [
   { page: 'Home', status: 'Live', leads: '-' },
-  { page: 'About Bambarddara', status: 'Live', leads: '-' },
+  { page: 'About Bhandarada', status: 'Live', leads: '-' },
   { page: 'Experiences', status: 'Draft', leads: '-' },
   { page: 'Stay (Villas & Pool)', status: 'Live', leads: 62 },
   { page: 'Farm Life', status: 'Draft', leads: '-' },
@@ -427,7 +425,7 @@ export const websiteKpis = [
   { label: 'Conversion rate', value: '3.1%', sub: 'visitors to enquiries' },
 ];
 
-export const BambarddaraNav = [
+export const Bamabarddara = [
   { key: 'overview', label: 'Overview', icon: Home },
   { key: 'investments', label: 'Investments', icon: Wallet },
   { key: 'construction', label: 'Construction & Zones', icon: Building2 },

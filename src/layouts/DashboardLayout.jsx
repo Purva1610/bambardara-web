@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const TITLES = {
-  '/': ['Overview', 'Bambarddara CEO Command Center'],
+  '/': ['Overview', 'Bhandarada CEO Command Center'],
   '/investments': ['Investments', 'Funding rounds and investor register'],
   '/construction': ['Construction & Zones', 'Build progress across every activity area'],
   '/team': ['Team & Roles', 'Staff, departments and access levels'],
