@@ -1,0 +1,84 @@
+.teams-page {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #17231d;
+  background: #f4f7f2;
+}
+
+.teams-page,
+.teams-page * {
+  box-sizing: border-box;
+}
+
+.teams-page button,
+.teams-page input,
+.teams-page select {
+  font: inherit;
+}
+
+.teams-page button {
+  cursor: pointer;
+}
+
+.teams-page { min-height: 100%; padding: 8px 0 24px; background: linear-gradient(135deg, #f7faf5, #edf4ee); }
+.teams-header { max-width: 1320px; margin: 0 auto 32px; }
+.teams-header h1, .teams-page h2, .teams-page h3, .teams-page p { margin: 0; }
+.teams-header h1 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -0.04em; }
+.teams-header p, .section-title p, .roles-header p { color: #68766e; margin-top: 8px; }
+.department-section, .roles-section { max-width: 1320px; margin: 0 auto 36px; }
+.section-title, .roles-header, .department-top, .progress-footer, .modal-header, .modal-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.live-indicator { color: #16804f; font-size: .75rem; font-weight: 800; letter-spacing: .12em; }
+.live-indicator span, .status-badge span { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 6px; }
+.department-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+.department-card, .roles-section { background: rgba(255,255,255,.82); border: 1px solid #dce7dd; border-radius: 12px; box-shadow: 0 12px 32px rgba(34, 61, 44, .06); }
+.department-card { padding: 20px; }
+.department-top strong { font-size: 1.5rem; color: #16804f; }
+.department-top p, .progress-footer { color: #78867e; font-size: .8rem; margin-top: 6px; }
+.progress-container { height: 9px; overflow: hidden; background: #e3ece5; border-radius: 99px; margin: 22px 0 10px; }
+.progress-bar { position: relative; height: 100%; background: #2a9d68; border-radius: inherit; }
+.active-dot { position: absolute; right: 2px; top: 1px; width: 7px; height: 7px; border-radius: 50%; background: #eafff1; }
+.roles-section { padding: 28px; }
+.roles-actions { display: flex; gap: 10px; }
+.search-box input, .add-member-modal input, .add-member-modal select { width: 100%; border: 1px solid #cbd8ce; border-radius: 7px; padding: 10px 12px; background: white; }
+.search-box input { min-width: 220px; }
+.teams-page button { border: 1px solid #cfddd2; border-radius: 7px; padding: 9px 13px; background: white; color: #31513e; }
+.add-member-btn, .save-member-btn { border: 0; background: #176d47; color: white; font-weight: 700; }
+.department-filter, .role-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+.filter-active { background: #d9f1df; color: #176d47; border-color: #9cc9a7; }
+.add-role-btn { margin-left: auto; }
+.members-table { margin-top: 24px; overflow-x: auto; border: 1px solid #e0e9e1; border-radius: 8px; }
+.table-header, .member-row { min-width: 780px; display: grid; grid-template-columns: 1.5fr 1fr 1.2fr .9fr .9fr .7fr; gap: 14px; align-items: center; padding: 14px 16px; }
+.table-header { background: #f3f7f3; color: #68766e; font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.member-row { border-top: 1px solid #e7eee8; font-size: .9rem; }
+.member-name { display: flex; align-items: center; gap: 10px; }
+.avatar { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #cfe8d5; color: #176d47; font-weight: 800; }
+.member-name small { display: block; color: #829087; margin-top: 3px; }
+.access-badge, .status-badge { display: inline-block; border-radius: 99px; padding: 5px 9px; font-size: .75rem; font-weight: 700; }
+.access-badge { background: #e7eef8; color: #3b5d88; }
+.status-badge { color: #16804f; background: #e1f5e8; }
+.manage-btn { padding: 7px 10px; }
+.no-members { padding: 30px; text-align: center; color: #68766e; }
+.modal-backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(18, 34, 25, .48); z-index: 10; }
+.add-member-modal { width: min(100%, 460px); display: grid; gap: 16px; padding: 26px; border-radius: 12px; background: white; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+.modal-header { align-items: flex-start; }
+.modal-header p { color: #68766e; font-size: .9rem; margin-top: 5px; }
+.modal-close-btn { border: 0; font-size: 1.2rem; padding: 2px 8px; }
+.add-member-modal label { display: grid; gap: 7px; color: #31513e; font-size: .85rem; font-weight: 700; }
+.modal-actions { justify-content: flex-end; margin-top: 4px; }
+.cancel-btn { background: #f2f5f2; }
+
+@media (max-width: 900px) {
+  .department-grid { grid-template-columns: repeat(2, 1fr); }
+  .roles-header { align-items: flex-start; flex-direction: column; }
+  .roles-actions { width: 100%; }
+  .search-box { flex: 1; }
+}
+
+@media (max-width: 560px) {
+  .teams-page { padding: 8px 0 24px; }
+  .department-grid { grid-template-columns: 1fr; }
+  .roles-section { padding: 18px; }
+  .roles-actions { flex-direction: column; }
+  .search-box input { min-width: 0; }
+  .add-member-btn { width: 100%; }
+  .add-role-btn { margin-left: 0; }
+}

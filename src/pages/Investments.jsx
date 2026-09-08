@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Upload, FileText, X } from "lucide-react";
 import KpiCard from "../components/KpiCard";
 import TableSearch from "../components/TableSearch";
 import Modal from "../components/Modal";
@@ -22,12 +22,31 @@ function AddInvestorForm({ onAdd, onClose }) {
     status: "Active",
     idProofType: "",
     idProofNumber: "",
+    document: null,
   });
 
   const update = (key) => (e) => {
     setForm((f) => ({
       ...f,
       [key]: e.target.value,
+    }));
+  };
+
+  const handleDocumentUpload = (e) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setForm((f) => ({
+        ...f,
+        document: file,
+      }));
+    }
+  };
+
+  const removeDocument = () => {
+    setForm((f) => ({
+      ...f,
+      document: null,
     }));
   };
 
@@ -56,6 +75,7 @@ function AddInvestorForm({ onAdd, onClose }) {
       status: form.status,
       idProofType: form.idProofType,
       idProofNumber: form.idProofNumber,
+      document: form.document,
     });
 
     onClose();
@@ -66,7 +86,7 @@ function AddInvestorForm({ onAdd, onClose }) {
 
   return (
     <form onSubmit={submit} className="space-y-5">
-      
+
       {/* Investor Name */}
       <div>
         <label className="text-xs font-semibold text-text">
@@ -78,6 +98,7 @@ function AddInvestorForm({ onAdd, onClose }) {
           onChange={update("name")}
           required
           className={inputStyle}
+          placeholder="Enter investor name"
         />
       </div>
 
@@ -92,6 +113,7 @@ function AddInvestorForm({ onAdd, onClose }) {
             value={form.amount}
             onChange={update("amount")}
             className={inputStyle}
+            placeholder="e.g. ₹50,00,000"
           />
         </div>
 
@@ -104,6 +126,7 @@ function AddInvestorForm({ onAdd, onClose }) {
             value={form.stake}
             onChange={update("stake")}
             className={inputStyle}
+            placeholder="e.g. 10%"
           />
         </div>
       </div>
@@ -244,13 +267,14 @@ export default function Investments() {
   return (
     <div className="space-y-6">
 
+      {/* Page Header */}
       <div>
         <h1 className="font-serif text-2xl text-text sm:text-[1.75rem]">
           Investments
         </h1>
 
         <p className="mt-1 text-sm text-muted">
-          Funding rounds and investor register for Bhandarada
+          Funding rounds and investor register for Bambarddara
         </p>
       </div>
 

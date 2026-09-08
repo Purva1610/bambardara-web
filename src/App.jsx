@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/Overview';
 import Investments from './pages/Investments';
@@ -6,9 +6,15 @@ import Construction from './pages/Construction';
 import Team from './pages/Team';
 import Website from './pages/Website';
 import Settings from './pages/Settings';
+import Approvals from './pages/Approvals';
+import Documentation from './pages/Documentation';
 import PageStub from './pages/PageStub';
+import Login from './pages/login';
+import ForgotPassword from './pages/forgotpassword';
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
     <Routes>
       <Route element={<DashboardLayout />}>
@@ -17,12 +23,29 @@ export default function App() {
         <Route path="/construction" element={<Construction />} />
         <Route path="/team" element={<Team />} />
         <Route path="/website" element={<Website />} />
+        <Route path="/approvals" element={<Approvals />} />
+        <Route path="/documentation" element={<Documentation />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
 
       <Route
         path="/login"
-        element={<PageStub title="Signed out" description="You've been logged out. Sign back in to return to the dashboard." />}
+        element={(
+          <Login
+            onForgotPassword={() => navigate('/forgot-password')}
+            onLogin={() => navigate('/')}
+          />
+        )}
+      />
+
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword onBackToLogin={() => navigate('/login')} />}
+      />
+
+      <Route
+        path="/forgotpassword"
+        element={<ForgotPassword onBackToLogin={() => navigate('/login')} />}
       />
 
       <Route
