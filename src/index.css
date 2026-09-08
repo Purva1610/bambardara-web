@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
 
-=======
->>>>>>> 10970a82d09de78b1c67f420c129bcca18ea10b2
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
 :root {
   --color-bg: #F4F3EE;
   --color-card: #FFFFFF;
@@ -102,20 +98,3 @@ body {
     @apply rounded-xl2 border border-line bg-card shadow-soft;
   }
 }
-=======
-body {
-  margin: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-  color: #0B5D3A;
-}
->>>>>>> 10970a82d09de78b1c67f420c129bcca18ea10b2

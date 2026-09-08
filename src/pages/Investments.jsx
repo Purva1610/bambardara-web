@@ -118,7 +118,7 @@ export default function Investments() {
     <div className="space-y-6">
       <div>
         <h1 className="font-serif text-2xl text-text sm:text-[1.75rem]">Investments</h1>
-        <p className="mt-1 text-sm text-muted">Funding rounds and investor register for Bhandarada</p>
+        <p className="mt-1 text-sm text-muted">Funding rounds and investor register for Bambarddara</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
