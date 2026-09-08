@@ -314,47 +314,49 @@ export default function Construction() {
               width="100%"
               height="100%"
             >
-              <BarChart
-                data={completionData}
-                margin={{
-                  top: 10,
-                  right: 20,
-                  left: 0,
-                  bottom: 5,
-                }}
-              >
+   <BarChart
+  data={completionData}
+  margin={{
+    top: 10,
+    right: 20,
+    left: 0,
+    bottom: 10,
+  }}
+>
+  <CartesianGrid strokeDasharray="3 3" />
 
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                />
+  <XAxis
+    dataKey="zone"
+    tick={{
+      fontSize: 12,
+      textAnchor: 'end',
+    }}
+    angle={-45}
+    height={80}
+    interval={0}
+  />
 
-                <XAxis
-                  dataKey="zone"
-                  tick={{ fontSize: 12 }}
-                />
+  <YAxis
+    domain={[0, 100]}
+    tickFormatter={(value) => `${value}%`}
+    tick={{ fontSize: 12 }}
+  />
 
-                <YAxis
-                  domain={[0, 100]}
-                  tickFormatter={(value) => `${value}%`}
-                  tick={{ fontSize: 12 }}
-                />
+  <Tooltip
+    formatter={(value) => [
+      `${value}%`,
+      'Completion',
+    ]}
+  />
 
-                <Tooltip
-                  formatter={(value) => [
-                    `${value}%`,
-                    'Completion',
-                  ]}
-                />
-
-                <Bar
-                  dataKey="completion"
-                  name="Completion"
-                  fill="#0B5D3A"
-                  radius={[4, 4, 0, 0]}
-                  barSize={25}
-                />
-
-              </BarChart>
+  <Bar
+    dataKey="completion"
+    name="Completion"
+    fill="#0B5D3A"
+    radius={[4, 4, 0, 0]}
+    barSize={25}
+  />
+</BarChart>
             </ResponsiveContainer>
 
           </div>

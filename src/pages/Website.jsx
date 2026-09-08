@@ -163,7 +163,7 @@ export default function Website() {
 
 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
   
-  {/* Website Traffic */}
+  {/* Website Traffic */} 
   <div className="eq-card p-4">
     <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
       <div>
