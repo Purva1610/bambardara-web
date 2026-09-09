@@ -448,7 +448,7 @@ export const websiteKpis = [
   { label: 'Conversion rate', value: '3.1%', sub: 'visitors to enquiries' },
 ];
 
-export const Bamabarddara = [
+export const Bambarddara = [
   { key: 'overview', label: 'Overview', icon: Home },
   { key: 'investments', label: 'Investments', icon: Wallet },
   { key: 'construction', label: 'Construction & Zones', icon: Building2 },
