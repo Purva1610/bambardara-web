@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../style/login.css";
+import backgroundImage from "../assets/login.jpg";
+import backgroundVideo from "../assets/waterfall.mp4";
 
 function Login({ onForgotPassword, onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,11 +25,35 @@ function Login({ onForgotPassword, onLogin }) {
 
   return (
     <div className="login-container">
+
+      {/* ================= VIDEO BACKGROUND ================= */}
+
+      <video
+        className="login-background-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={backgroundImage}
+      >
+        <source
+          src={backgroundVideo}
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* ================= VIDEO OVERLAY ================= */}
+
+      <div className="video-overlay"></div>
+
+
       {/* ================= LEFT SIDE ================= */}
 
       <div className="welcome-section">
+
         <div className="welcome-content">
-          
+
           <p className="welcome-label">
             CUSTOMER RELATIONSHIP MANAGEMENT
           </p>
@@ -40,10 +66,13 @@ function Login({ onForgotPassword, onLogin }) {
 
           <p className="welcome-description">
             Manage your business, customers, bookings
-            and reports .
+            and reports.
           </p>
+
         </div>
+
       </div>
+
 
       {/* ================= RIGHT SIDE ================= */}
 
@@ -79,9 +108,7 @@ function Login({ onForgotPassword, onLogin }) {
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 required
               />
@@ -101,16 +128,10 @@ function Login({ onForgotPassword, onLogin }) {
 
                 <input
                   id="password"
-                  type={
-                    showPassword
-                      ? "text"
-                      : "password"
-                  }
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={password}
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
                   required
                 />
@@ -118,7 +139,11 @@ function Login({ onForgotPassword, onLogin }) {
                 <button
                   type="button"
                   className="show-password"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={
+                    showPassword
+                      ? "Hide password"
+                      : "Show password"
+                  }
                   aria-pressed={showPassword}
                   onClick={() =>
                     setShowPassword(!showPassword)
@@ -164,7 +189,7 @@ function Login({ onForgotPassword, onLogin }) {
             </div>
 
 
-            {/* LOGIN */}
+            {/* LOGIN BUTTON */}
 
             <button
               type="submit"
@@ -175,9 +200,6 @@ function Login({ onForgotPassword, onLogin }) {
             </button>
 
           </form>
-
-
-          {/* REGISTER */}
 
         </div>
 
