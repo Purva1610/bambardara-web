@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../style/login.css";
-import backgroundImage from "../assets/login.jpg";
-import backgroundVideo from "../assets/waterfall.mp4";
+import backgroundVideo from "../assets/mountains2-optimized.mp4";
 
 function Login({ onForgotPassword, onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +33,6 @@ function Login({ onForgotPassword, onLogin }) {
         loop
         muted
         playsInline
-        poster={backgroundImage}
       >
         <source
           src={backgroundVideo}

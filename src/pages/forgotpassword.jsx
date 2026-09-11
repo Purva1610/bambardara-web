@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../style/forgotpassword.css";
+import backgroundVideo from "../assets/mountains1-optimized.mp4";
 
 function ForgotPassword({ onBackToLogin }) {
 
@@ -28,6 +29,19 @@ function ForgotPassword({ onBackToLogin }) {
   return (
 
     <div className="forgot-container">
+      <video
+        className="forgot-background-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={backgroundVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div className="forgot-video-overlay"></div>
+
       {/* LEFT */}
 
       <div className="forgot-welcome">

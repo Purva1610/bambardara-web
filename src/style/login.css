@@ -6,7 +6,7 @@
   min-height: 100vh;
   overflow: hidden;
   padding: 48px clamp(24px, 6vw, 96px);
-  color: #e8dfdf;
+  color: #f1eeee;
   background: #163b35;
 }
 
@@ -104,7 +104,7 @@
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.22), transparent 35%),
+    linear-gradient(115deg, rgba(45, 44, 44, 0.22), transparent 35%),
     linear-gradient(325deg, rgba(255, 255, 255, 0.1), transparent 42%);
 }
 
@@ -116,7 +116,7 @@
   width: 80%;
   height: 1px;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(13, 13, 13, 0.8);
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
 }
 
@@ -131,7 +131,7 @@
   box-shadow:
     0 34px 78px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.65),
+    inset 0 1px 1px rgba(7, 7, 7, 0.65),
     inset 0 -18px 35px rgba(8, 28, 25, 0.14);
 }
 
