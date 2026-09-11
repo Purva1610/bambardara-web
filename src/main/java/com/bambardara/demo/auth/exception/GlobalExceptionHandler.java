@@ -15,6 +15,8 @@ import com.bambardara.demo.adventure.exception.InsufficientCapacityException;
 import com.bambardara.demo.adventure.exception.SlotNotAvailableException;
 import com.bambardara.demo.auth.dto.ApiError;
 import com.bambardara.demo.common.exception.ResourceNotFoundException;
+import com.bambardara.demo.investment.exception.FundingRoundNotFoundException;
+import com.bambardara.demo.investment.exception.InvestorNotFoundException;
 import com.bambardara.demo.membership.exception.InvalidMembershipStatusTransitionException;
 import com.bambardara.demo.membership.exception.MembershipNotFoundException;
 import com.bambardara.demo.membership.exception.MembershipPlanNotFoundException;
@@ -118,6 +120,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SlotNotAvailableException.class)
     public ResponseEntity<ApiError> handleSlotNotAvailable(SlotNotAvailableException e) {
         return build(HttpStatus.CONFLICT, e.getMessage());
+    }
+
+    // =============================================================================
+    // Investment Exception Handlers
+    // =============================================================================
+
+    @ExceptionHandler(InvestorNotFoundException.class)
+    public ResponseEntity<ApiError> handleInvestorNotFound(InvestorNotFoundException e) {
+        return build(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
+    @ExceptionHandler(FundingRoundNotFoundException.class)
+    public ResponseEntity<ApiError> handleFundingRoundNotFound(FundingRoundNotFoundException e) {
+        return build(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
     // =============================================================================

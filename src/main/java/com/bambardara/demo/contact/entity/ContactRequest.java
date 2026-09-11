@@ -38,8 +38,9 @@ public class ContactRequest {
     private Integer id;
 
     // LAZY so listing concerns does not drag a full User row along for each one.
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    // Optional: public enquiries from the landing page have no associated user.
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @Column(nullable = false, length = 100)

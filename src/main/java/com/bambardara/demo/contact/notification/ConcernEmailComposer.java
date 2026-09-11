@@ -22,7 +22,11 @@ public class ConcernEmailComposer {
 
     public String bodyFor(ContactRequest concern) {
 
-        return "A logged-in user submitted a concern through the contact page.\n\n"
+        String origin = concern.getUser() == null
+                ? "A visitor submitted an enquiry through the public enquiry page (no account).\n\n"
+                : "A logged-in user submitted a concern through the contact page.\n\n";
+
+        return origin
                 + "Concern ID   : " + concern.getId() + "\n"
                 + "Type         : " + concern.getConcernType().name() + "\n"
                 + "Submitted at : " + concern.getCreatedAt() + "\n\n"
@@ -32,11 +36,39 @@ public class ConcernEmailComposer {
                 + "Mobile       : "
                 + (concern.getMobileNumber() == null ? "not provided" : concern.getMobileNumber())
                 + "\n\n"
-                + "--- Account it was submitted from ---\n"
+                + accountSection(concern)
+                + "--- Details ---\n"
+                + detailsSection(concern)
+                + "\n--- Message ---\n"
+                + concern.getMessage() + "\n";
+    }
+
+    private String accountSection(ContactRequest concern) {
+
+        if (concern.getUser() == null) {
+            return "";
+        }
+
+        return "--- Account it was submitted from ---\n"
                 + "User ID      : " + concern.getUser().getId() + "\n"
                 + "Account name : " + concern.getUser().getName() + "\n"
-                + "Account email: " + concern.getUser().getEmail() + "\n\n"
-                + "--- Message ---\n"
-                + concern.getMessage() + "\n";
+                + "Account email: " + concern.getUser().getEmail() + "\n\n";
+    }
+
+    private String detailsSection(ContactRequest concern) {
+
+        if (concern.getDetails() == null || concern.getDetails().isEmpty()) {
+            return "(none)\n";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        concern.getDetails().forEach((key, value) -> {
+            if (value != null && !value.toString().isBlank()) {
+                sb.append(key).append(": ").append(value).append("\n");
+            }
+        });
+
+        return sb.length() == 0 ? "(none)\n" : sb.toString();
     }
 }

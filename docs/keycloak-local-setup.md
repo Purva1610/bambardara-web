@@ -54,6 +54,11 @@ migration plan is a separate, later effort):
 
 - `USER`
 - `ADMIN`
+- `CEO` — executive dashboard access. Admin-provisioned only: there is no
+  path in the application (public registration included) that assigns this
+  role. It only ever reaches a user's token because someone with Keycloak
+  admin access put it there directly (via the admin console, or, in this
+  dev realm, via `realm-export/bambardara-realm.json`'s `users` array).
 
 ## 7. Test users
 
@@ -63,6 +68,7 @@ migration plan is a separate, later effort):
 |---|---|---|
 | `testuser` | `testuser123` | USER |
 | `testadmin` | `testadmin123` | ADMIN |
+| `testceo` | `testceo123` | CEO |
 
 To change them: edit `keycloak/realm-export/bambardara-realm.json` (the
 `users` array) and restart the container — `start-dev`'s database is
@@ -150,6 +156,9 @@ Keycloak isn't reachable yet.
 | Valid `testuser` token on `GET /api/auth/me` | 200, identifies the local Bambardara user |
 | Valid `testuser` token on an ADMIN-only endpoint (e.g. `GET /api/admin/dashboard/stats`) | 403 |
 | Valid `testadmin` token on the same ADMIN-only endpoint | 200 |
+| Valid `testuser` token on `GET /api/ceo/auth-test` | 403 |
+| Valid `testadmin` token on `GET /api/ceo/auth-test` | 403 (ADMIN does not imply CEO — separate roles) |
+| Valid `testceo` token on `GET /api/ceo/auth-test` | 200, `{"authenticated": true, "role": "CEO"}` |
 | Valid legacy JWT (from `POST /api/auth/login`) on `GET /api/auth/me` | 200 (unchanged, still works) |
 
 ## 12. Environment variables

@@ -115,9 +115,9 @@ public class AdminContactService {
     private AdminContactDetailResponse mapToDetailResponse(ContactRequest request) {
         return new AdminContactDetailResponse(
                 request.getId(),
-                request.getUser().getId(),
-                request.getUser().getName(),
-                request.getUser().getEmail(),
+                request.getUser() == null ? null : request.getUser().getId(),
+                request.getUser() == null ? null : request.getUser().getName(),
+                request.getUser() == null ? null : request.getUser().getEmail(),
                 request.getName(),
                 request.getEmail(),
                 request.getMobileNumber(),

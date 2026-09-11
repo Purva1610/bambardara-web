@@ -72,7 +72,8 @@ public class SecurityConfig {
                     "/api/auth/register",
                     "/api/auth/forgot-password",
                     "/api/auth/verify-otp",
-                    "/api/auth/reset-password"
+                    "/api/auth/reset-password",
+                    "/api/enquire"
                 ).permitAll()
 
                 // Swagger/OpenAPI UI and docs are read-only tooling, not application data
@@ -88,6 +89,13 @@ public class SecurityConfig {
                 // (see KeycloakAuthorityMapper). Never derived from anything
                 // the client sends directly.
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                // CEO endpoints require the CEO realm role. CEO is a Keycloak
+                // realm role only (see keycloak/realm-export/bambardara-realm.json)
+                // - it is never assigned by POST /api/auth/register and has no
+                // corresponding UserRole enum value, so a token can only carry
+                // ROLE_CEO if an admin provisioned it directly in Keycloak.
+                .requestMatchers("/api/ceo/**").hasRole("CEO")
 
                 .anyRequest().authenticated()
             )
