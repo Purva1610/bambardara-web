@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route element={<DashboardLayout />}>
+        <Route element={<DashboardLayout />}>
         <Route path="/" element={<Overview />} />
         <Route path="/investments" element={<Investments />} />
         <Route path="/construction" element={<Construction />} />
@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/approvals" element={<Approvals />} />
         <Route path="/documentation" element={<Documentation />} />
         <Route path="/settings" element={<Settings />} />
-      </Route>
+    </Route>
 
       <Route
         path="/login"

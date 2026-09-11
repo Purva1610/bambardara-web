@@ -86,6 +86,7 @@ function AddInvestorForm({ onAdd, onClose }) {
 
   return (
     <form onSubmit={submit} className="space-y-5">
+
       {/* Investor Name */}
       <div>
         <label className="text-xs font-semibold text-text">
@@ -171,6 +172,7 @@ function AddInvestorForm({ onAdd, onClose }) {
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          
           {/* ID Proof Type */}
           <div>
             <label className="text-xs font-semibold text-text">
@@ -204,70 +206,27 @@ function AddInvestorForm({ onAdd, onClose }) {
               value={form.idProofNumber}
               onChange={update("idProofNumber")}
               className={inputStyle}
-              placeholder="Enter ID proof number"
             />
           </div>
+
         </div>
       </div>
+      {/* Upload ID Proof */}
+<div>
+  <label className="text-xs font-semibold text-text">
+    Upload ID Proof
+  </label>
 
-      {/* Supporting Document */}
-      <div className="border-t border-line pt-4">
-        <p className="mb-3 text-sm font-semibold text-text">
-          Supporting Document
-        </p>
-
-        {!form.document ? (
-          <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-line bg-bg px-4 py-5 text-sm text-muted transition hover:border-secondary hover:bg-secondary/5">
-            <Upload size={18} className="text-secondary" />
-
-            <span>Upload Investment Document</span>
-
-            <input
-              type="file"
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-              className="hidden"
-              onChange={handleDocumentUpload}
-            />
-          </label>
-        ) : (
-          <div className="flex items-center justify-between rounded-lg border border-line bg-bg px-3 py-3">
-            <div className="flex min-w-0 items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary/10">
-                <FileText
-                  size={18}
-                  className="text-secondary"
-                />
-              </div>
-
-              <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-text">
-                  {form.document.name}
-                </p>
-
-                <p className="mt-0.5 text-xs text-muted">
-                  {(form.document.size / 1024).toFixed(1)} KB
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={removeDocument}
-              className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted transition hover:bg-red-50 hover:text-[#B4463C]"
-              title="Remove document"
-            >
-              <X size={16} />
-            </button>
-          </div>
-        )}
-
-        <p className="mt-2 text-[11px] text-muted">
-          Supported formats: PDF, DOC, DOCX, JPG, JPEG, PNG
-        </p>
-      </div>
+  <input
+    type="file"
+    accept=".pdf,.jpg,.jpeg,.png"
+    className="mt-1.5 w-full cursor-pointer rounded-lg border border-line bg-bg px-3 py-2 text-sm text-text file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-primary-dark"
+  />
+</div>
 
       {/* Buttons */}
       <div className="flex flex-col-reverse gap-3 border-t border-line pt-5 sm:flex-row sm:justify-end">
+        
         <button
           type="button"
           onClick={onClose}
@@ -307,6 +266,7 @@ export default function Investments() {
 
   return (
     <div className="space-y-6">
+
       {/* Page Header */}
       <div>
         <h1 className="font-serif text-2xl text-text sm:text-[1.75rem]">
@@ -335,6 +295,7 @@ export default function Investments() {
       <div className="eq-card">
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-6">
+
           <div>
             <p className="font-serif text-lg text-text">
               Investors
@@ -346,6 +307,7 @@ export default function Investments() {
           </div>
 
           <div className="flex items-center gap-2">
+
             <TableSearch
               value={query}
               onChange={setQuery}
@@ -370,25 +332,11 @@ export default function Investments() {
 
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-muted">
-                <th className="px-4 py-3 font-medium">
-                  Investor
-                </th>
-
-                <th className="px-4 py-3 font-medium">
-                  Amount
-                </th>
-
-                <th className="px-4 py-3 font-medium">
-                  Date
-                </th>
-
-                <th className="px-4 py-3 font-medium">
-                  Stake
-                </th>
-
-                <th className="px-4 py-3 font-medium">
-                  Status
-                </th>
+                <th className="px-4 py-3 font-medium">Investor</th>
+                <th className="px-4 py-3 font-medium">Amount</th>
+                <th className="px-4 py-3 font-medium">Date</th>
+                <th className="px-4 py-3 font-medium">Stake</th>
+                <th className="px-4 py-3 font-medium">Status</th>
               </tr>
             </thead>
 
