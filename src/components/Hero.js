@@ -6,13 +6,13 @@ import EstateImage from './shared/EstateImage';
 /* Landscape plates from the estate library, slowly cross-faded. */
 const PLATES = [
   {
-    slug: 'farm',
+    slug: 'farmhouse',
     alt: 'The BAMBARDDARA farm estate',
     caption: 'The Farm',
   },
   {
-    slug: 'hero',
-    alt: 'The BAMBARDDARA estate',
+    slug: 'valley-villas',
+    alt: 'The BAMBARDDARA estate valley villas',
     caption: 'The Estate',
   },
   {

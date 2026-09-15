@@ -42,7 +42,6 @@ const RESIDENCES = [
       'Six canvas pavilions on timber platforms at the water line, with proper beds, hot water drawn from the estate boiler, and a fire lit for you at dusk.',
     facts: ['480 sq ft', 'Sleeps 2', 'River-facing'],
     price: '₹11,500',
-    customImage: '/images/opt/camp.jpg',
   },
 ];
 
@@ -77,7 +76,7 @@ const DETAILS = [
 const EXPERIENCES = [
   {
     n: '01',
-    slug: 'jungle-safari-and-wild-life',
+    slug: 'boating',
     title: 'Jungle Safari',
     body: 'Open-top drives into the reserve at first light, with an estate naturalist reading the ground for you.',
   },
@@ -119,30 +118,30 @@ const EXPERIENCES = [
   },
   {
     n: '08',
-    slug: 'animal-farm-and-dairy-farm-2',
+    slug: 'organic-farming-and-farm-stay-2',
     title: 'Dairy & Animal Farm',
     body: 'The four a.m. milking, the cheese room at nine, and the calves in between. Children rarely leave.',
   },
   {
     n: '09',
-    slug: 'helicopter-landing-2',
+    slug: 'camp',
     title: 'Helicopter Arrivals',
     body: 'A licensed pad on the north field — Mumbai and Pune in well under the hour.',
   },
 ];
 
 const PLATES = [
-  { slug: 'infinity-pool',               alt: 'The infinity pool above the valley',        span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'luxury-suits',                alt: 'The infinity pool above the valley',        span: 'md:col-span-2 md:row-span-2' },
   { slug: 'family-fun-and-adventure-3',  alt: 'Family fun and adventure at the estate',    span: 'md:col-span-4 md:row-span-2' },
   { slug: 'trekking',                    alt: 'A guided trek along the escarpment',        span: 'md:col-span-2 md:row-span-2' },
-  { slug: 'luxury-hotel-rooms-and-suites-4', alt: 'Interior of an orchard suite',          span: 'md:col-span-2' },
+  { slug: 'luxury-hotel-rooms-and-suites-3', alt: 'Interior of an orchard suite',          span: 'md:col-span-2' },
 
   { slug: 'familiy',                     alt: 'Family fun and hospitality at the estate',  span: 'md:col-span-2' },
   { slug: 'pick',                        alt: 'Family walk through the estate',            span: 'md:col-span-2' },
 
-  { slug: 'meidtation',                  alt: 'Meditation and wellness at the estate',     span: 'md:col-span-2' },
+  { slug: 'international-meditation-center', alt: 'Meditation and wellness at the estate', span: 'md:col-span-2' },
   { slug: 'about',                       alt: 'Mountain valley view from the estate',      span: 'md:col-span-2' },
-  { slug: 'water-park-3',                alt: 'The estate water park',                     span: 'md:col-span-2 md:row-span-2' },
+  { slug: 'waterpark',                   alt: 'The estate water park',                     span: 'md:col-span-2 md:row-span-2' },
   { slug: 'boating',                     alt: 'Boating activities on the estate waters',   span: 'md:col-span-2' },
   { slug: 'cycling',                     alt: 'Cycling through the estate grounds',        span: 'md:col-span-2' },
   { slug: 'nature',                      alt: 'Well-planted roads and natural landscapes', span: 'md:col-span-2' },
@@ -157,7 +156,7 @@ const MEASURES = [
 
 const OCCASIONS = [
   {
-    slug: 'weeding',
+    slug: 'banquet-and-conference',
     label: 'Weddings',
     title: 'Terrace Weddings',
     body:
@@ -165,7 +164,7 @@ const OCCASIONS = [
     capacity: 'Up to 300 guests',
   },
   {
-    slug: 'conference',
+    slug: 'banquet-and-conference-2',
     label: 'Corporate',
     title: 'Offsites & Conferences',
     body:
@@ -173,7 +172,7 @@ const OCCASIONS = [
     capacity: '20 – 180 delegates',
   },
   {
-    slug: 'seasonal',
+    slug: 'organic-farming-and-farm-stay-4',
     label: 'Seasonal',
     title: 'Harvest Nights',
     body:
@@ -213,12 +212,12 @@ const RITUALS = [
   },
 
   {
-    slug: 'infinity-pool-3',
+    slug: 'resort-and-villas-2',
     title: 'The Infinity Pool',
     body: 'Heated to twenty-nine degrees year round, set flush with the ridge so the water meets the valley.',
   },
   {
-    slug: 'temple',
+    slug: 'farmhouse',
     title: 'The Estate Temple',
     body: 'Two hundred years older than anything else here. Morning aarti is open to guests who wish to attend.',
   },
@@ -336,19 +335,11 @@ function Accommodation() {
                     }`}
                   >
                     <div className="lux-frame zoom-hover aspect-[4/3] w-full">
-                      {r.customImage ? (
-                        <img
-                          src={r.customImage}
-                          alt={r.name}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <EstateImage
-                          slug={r.slug}
-                          alt={r.name}
-                          sizes="(min-width: 1024px) 58vw, 100vw"
-                        />
-                      )}
+                      <EstateImage
+                        slug={r.slug}
+                        alt={r.name}
+                        sizes="(min-width: 1024px) 58vw, 100vw"
+                      />
                     </div>
                   </div>
                   <div

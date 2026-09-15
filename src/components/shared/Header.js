@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import EstateImage from './EstateImage';
+
+/* Routes that open on a full-bleed dark hero, like the homepage, and so want
+   the header to start transparent and turn solid only once the visitor
+   scrolls past it. Everything else (auth screens, 404) opens on a plain
+   light background and needs the solid header from the first frame. */
+const HERO_ROUTES = ['/experiences', '/spa', '/membership', '/investment', '/enquire', '/stays'];
+const hasHeroAtTop = (pathname) =>
+  pathname === '/' ||
+  HERO_ROUTES.includes(pathname) ||
+  pathname.startsWith('/stays/') ||
+  pathname.startsWith('/room/') ||
+  pathname.startsWith('/experiences/') ||
+  pathname.startsWith('/experience/');
 
 const NAV_LINKS = [
   { name: 'Estate',      hash: '#estate' },
@@ -27,7 +41,7 @@ export default function Header({ user, onLogout }) {
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
-  const solid = scrolled || !isHome;
+  const solid = scrolled || !hasHeroAtTop(pathname);
 
   const getHref = (link) =>
     link.href ? link.href : isHome ? link.hash : `/${link.hash}`;
@@ -60,10 +74,12 @@ export default function Header({ user, onLogout }) {
           className="shrink-0 flex items-center gap-3 transition-all duration-500 group"
         >
           <div className="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center bg-ivory-white/90 border border-luxury-gold/50 shadow-sm p-1 transition-all duration-500 group-hover:border-luxury-gold group-hover:scale-105">
-            <img
-              src="/images/opt/logo.png"
+            <EstateImage
+              slug="logo"
               alt="BAMBARDDARA"
-              className="h-full w-full object-contain"
+              fit="contain"
+              priority
+              className="h-full w-full"
             />
           </div>
           <span className={[

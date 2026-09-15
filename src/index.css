@@ -251,6 +251,17 @@
     filter: blur(0) brightness(1.05) contrast(1.02);
   }
 
+  /* ─── Image placeholder + blur-up LQIP system ────────────────────────────
+   * Structure:
+   *   <span.img-placeholder>
+   *     <img.img-lqip>        ← 640w WebP, blurred, instant
+   *     <picture.img-full>
+   *       <source webp srcset>
+   *       <img.img-zoom>      ← full-res, fades in on load
+   *     </picture>
+   *   </span>
+   * ─────────────────────────────────────────────────────────────────────── */
+
   .img-placeholder {
     display: block;
     height: 100%;
@@ -259,17 +270,43 @@
     overflow: hidden;
   }
 
+  /* Gold shimmer — hidden once the LQIP image itself is visible */
   .img-placeholder::before {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 0;
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(201, 169, 97, 0.05) 50%,
+      rgba(201, 169, 97, 0.06) 50%,
       transparent 100%
     );
     animation: shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* LQIP: tiny WebP shown blurred as the background layer */
+  .img-lqip {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(18px);
+    transform: scale(1.08); /* avoid blur edge fringe */
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Full-res picture wrapper */
+  .img-full {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
   }
 
   .img-placeholder picture {
@@ -278,7 +315,8 @@
     width: 100%;
   }
 
-  .img-placeholder picture img {
+  .img-placeholder picture img,
+  .img-full img {
     display: block;
     width: 100%;
     height: 100%;
@@ -297,12 +335,12 @@
     backface-visibility: hidden;
   }
 
-  /* Standalone img-zoom: fade in on load when NOT inside .lux-frame */
+  /* Full-res fade-in: starts invisible, cross-fades in smoothly */
   .img-zoom {
     opacity: 0;
     transition:
-      opacity   0.8s cubic-bezier(0.19, 1, 0.22, 1),
-      filter    0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      opacity   0.9s cubic-bezier(0.19, 1, 0.22, 1),
+      filter    0.9s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   .img-zoom.img-loaded {

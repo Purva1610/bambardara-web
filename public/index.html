@@ -32,9 +32,13 @@
       rel="stylesheet"
     />
 
-    <!-- Priority image hints -->
-    <link rel="preload" as="image" href="%PUBLIC_URL%/images/nature.jpg" />
-    <link rel="preload" as="image" href="%PUBLIC_URL%/images/legacy.jpg" />
+    <!-- Priority image hints — first hero frame (farm) so LCP is instant -->
+    <link rel="preload" as="image" type="image/webp"
+      href="%PUBLIC_URL%/images/opt/farmhouse-640.webp"
+      media="(max-width: 639px)" />
+    <link rel="preload" as="image" type="image/webp"
+      href="%PUBLIC_URL%/images/opt/farmhouse-1280.webp"
+      media="(min-width: 640px)" />
 
     <title>Bambardara Agro Tourism — Luxury Estate in the Western Ghats</title>
   </head>

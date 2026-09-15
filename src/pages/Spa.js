@@ -64,13 +64,13 @@ export default function Spa() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <EstateImage
-            slug="spa-and-wellness-2"
+            slug="massages"
             alt="Luxurious Back Massage"
             sizes="100vw"
+            priority={true}
             className="w-full h-full object-cover"
-            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -110,7 +110,7 @@ export default function Spa() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <div className="relative h-96 md:h-[500px] overflow-hidden">
                 <EstateImage
-                  slug="organic-farming-and-farm-stay-2"
+                  slug="ayurvedic"
                   alt="Facial Massage"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
@@ -118,7 +118,7 @@ export default function Spa() {
               </div>
               <div className="relative h-96 md:h-[500px] overflow-hidden">
                 <EstateImage
-                  slug="spa-and-wellness-2"
+                  slug="spa"
                   alt="Fire Cupping Ritual"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
@@ -161,7 +161,7 @@ export default function Spa() {
             <Reveal delay={200}>
               <div className="relative h-80 md:h-96 overflow-hidden">
                 <EstateImage
-                  slug="luxury-hotel-rooms-and-suites-3"
+                  slug="ayurveda"
                   alt="Cosmetic Acupuncture"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
@@ -180,8 +180,8 @@ export default function Spa() {
             <Reveal>
               <div className="relative h-[500px] md:h-[600px] overflow-hidden md:order-1">
                 <EstateImage
-                  slug="organic-farming-and-farm-stay-3"
-                  alt="Holistic Microneedling"
+                  slug="ayur"
+                  alt="Authentic Ayurvedic Rituals"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                 />
@@ -222,23 +222,35 @@ export default function Spa() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  image: 'spa-and-wellness-2',
+                  slug: 'cupping',
                   title: 'Cupping Therapy',
                 },
                 {
-                  image: 'organic-farming-and-farm-stay-2',
+                  slug: 'body',
                   title: 'Body Massage',
                 },
                 {
-                  image: 'luxury-hotel-rooms-and-suites-3',
+                  slug: 'facial',
                   title: 'Facial Treatment',
+                },
+                {
+                  slug: 'hydrotherapy',
+                  title: 'Hydrotherapy & Body Wraps',
+                },
+                {
+                  slug: 'energy',
+                  title: 'Holistic & Energy Healing',
+                },
+                {
+                  slug: 'sauna',
+                  title: 'Infrared Sauna',
                 },
               ].map((service, idx) => (
                 <Reveal key={idx} delay={idx * 100}>
                   <div className="group cursor-pointer">
                     <div className="relative h-80 overflow-hidden mb-4">
                       <EstateImage
-                        slug={service.image}
+                        slug={service.slug}
                         alt={service.title}
                         sizes="(min-width: 768px) 33vw, 100vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -284,7 +296,7 @@ export default function Spa() {
             <Reveal delay={150}>
               <div className="relative h-[500px] md:h-[600px] overflow-hidden">
                 <EstateImage
-                  slug="organic-farming-and-farm-stay-2"
+                  slug="female"
                   alt="Two women relaxing in white robes"
                   sizes="(min-width: 768px) 33vw, 100vw"
                   className="w-full h-full object-cover"
@@ -296,8 +308,8 @@ export default function Spa() {
             <Reveal delay={300}>
               <div className="relative h-[400px] md:h-[500px] overflow-hidden">
                 <EstateImage
-                  slug="luxury-hotel-rooms-and-suites-3"
-                  alt="Female practitioner portrait"
+                  slug="male"
+                  alt="Male practitioner portrait"
                   sizes="(min-width: 768px) 33vw, 100vw"
                   className="w-full h-full object-cover"
                 />
@@ -311,8 +323,8 @@ export default function Spa() {
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <EstateImage
-            slug="spa-and-wellness-2"
-            alt="Jade Gua Sha facial massage"
+            slug="process"
+            alt="The Process - Wellness Journey"
             sizes="100vw"
             className="w-full h-full object-cover"
           />
@@ -364,8 +376,8 @@ export default function Spa() {
             <Reveal>
               <div className="relative h-[500px] md:h-[600px] overflow-hidden">
                 <EstateImage
-                  slug="organic-farming-and-farm-stay-3"
-                  alt="Woman receiving facial massage"
+                  slug="ritual"
+                  alt="Begin Your Journey from Beauty into Ritual"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                 />
@@ -411,8 +423,8 @@ export default function Spa() {
             <Reveal delay={200}>
               <div className="relative h-[400px] md:h-[500px] overflow-hidden mt-12 md:mt-0">
                 <EstateImage
-                  slug="luxury-hotel-rooms-and-suites-3"
-                  alt="Practitioner setting up treatment table"
+                  slug="book-spa"
+                  alt="Luxury spa accommodation"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                 />
@@ -434,16 +446,16 @@ export default function Spa() {
           <Reveal delay={200}>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {[
-                'spa-and-wellness-2',
-                'organic-farming-and-farm-stay-2',
-                'luxury-hotel-rooms-and-suites-3',
-                'organic-farming-and-farm-stay-3',
-                'spa-and-wellness-2',
-              ].map((image, idx) => (
+                'massages',
+                'ayurvedic',
+                'spa',
+                'ritual',
+                'massage',
+              ].map((slug, idx) => (
                 <Reveal key={idx} delay={idx * 50}>
                   <div className="relative aspect-square overflow-hidden">
                     <EstateImage
-                      slug={image}
+                      slug={slug}
                       alt={`Spa treatment ${idx + 1}`}
                       sizes="(min-width: 768px) 20vw, 50vw"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -465,7 +477,7 @@ export default function Spa() {
             </p>
           </Reveal>
           <Reveal delay={150}>
-            <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight text-ivory-white">
               Schedule Your Perfect Treatment
             </h2>
           </Reveal>

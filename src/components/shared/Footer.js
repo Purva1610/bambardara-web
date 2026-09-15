@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EstateImage from './EstateImage';
 
 const COLUMNS = [
   {
@@ -55,11 +56,9 @@ const Footer = () => {
         {/* Wordmark */}
         <div className="flex flex-col items-center border-b border-ivory-white/12 pb-16 text-center">
           <Link to="/" className="flex flex-col items-center">
-            <img
-              src="/images/opt/logo.png"
-              alt="BAMBARDDARA"
-              className="h-16 w-auto mb-4"
-            />
+            <div className="h-16 w-16 mb-4">
+              <EstateImage slug="logo" alt="BAMBARDDARA" fit="contain" className="h-full w-full" />
+            </div>
             <span className="font-heading text-3xl font-light tracking-[0.08em] text-ivory-white md:text-4xl">
               BAMBARDDARA
             </span>

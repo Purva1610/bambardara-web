@@ -13,6 +13,8 @@ import Home from './pages/Home';
 import Stays from './pages/Stays';
 import Spa from './pages/Spa';
 import Adventures from './pages/Adventures';
+import ExperienceTypePage from './pages/ExperienceTypePage';
+import ExperienceDetail from './pages/ExperienceDetail';
 import RoomTypePage from './pages/RoomTypePage';
 import RoomDetail from './pages/RoomDetail';
 import Enquire from './pages/Enquire';
@@ -96,6 +98,8 @@ function AppContent() {
             <Route path="/stays" element={<Stays />} />
             <Route path="/spa" element={<Spa />} />
             <Route path="/experiences" element={<Adventures />} />
+            <Route path="/experiences/:type" element={<ExperienceTypePage />} />
+            <Route path="/experience/:id" element={<ExperienceDetail />} />
             <Route path="/stays/:type" element={<RoomTypePage />} />
             <Route path="/room/:id" element={<RoomDetail />} />
             <Route path="/enquire" element={<Enquire />} />

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaArrowRight, FaConciergeBell, FaSwimmingPool, FaWineGlass, FaHelicopter } from "react-icons/fa";
+import { FaArrowRight, FaConciergeBell, FaSwimmingPool, FaWineGlass, FaHelicopter, FaSearch } from "react-icons/fa";
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 
@@ -20,19 +20,24 @@ const IMAGE_SLUGS = {
   amenities3: "animal-farm-and-dairy-farm",
 };
 
-function SectionButton({ children }) {
-  return (
-    <button
-      className="mt-6 px-8 py-3 text-xs tracking-widest rounded-sm transition-all hover:opacity-80 bg-forest-green text-ivory-white"
-    >
-      {children}
-    </button>
-  );
-}
+
+const HERO_STAY_TYPES = [
+  { label: "Valley Villas", slug: "villas" },
+  { label: "Luxury Suites", slug: "suites" },
+  { label: "Farmhouse Rooms", slug: "farm-stay" },
+  { label: "Riverside Tents", slug: "tent" },
+];
+
+const HERO_STATS = [
+  { figure: "150+", label: "Acres of Private Estate" },
+  { figure: "96%", label: "Guest Satisfaction Score" },
+  { figure: "9", label: "Distinct Ways to Stay" },
+];
 
 
 export default function Stay() {
   const navigate = useNavigate();
+  const [heroType, setHeroType] = useState(HERO_STAY_TYPES[0].slug);
 
   const handleRoomTypeClick = (categoryName) => {
     // Map category names to URL slugs
@@ -42,7 +47,7 @@ export default function Stay() {
       'Heritage Farmhouse': 'farm-stay', // Farmhouse Rooms
       'Riverside Canvas': 'tent'         // Riverside Tents
     };
-    
+
     const slug = categoryMap[categoryName] || 'suites';
     navigate(`/stays/${slug}`);
   };
@@ -50,7 +55,7 @@ export default function Stay() {
   return (
     <div className="w-full bg-ivory-white text-forest-green font-sans">
       {/* Hero */}
-      <div className="relative h-[500px] md:h-[700px] w-full overflow-hidden">
+      <div className="relative flex min-h-viewport w-full flex-col overflow-hidden">
         <video
           autoPlay
           loop
@@ -60,24 +65,110 @@ export default function Stay() {
         >
           <source src="/videos/villa.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-ivory-white max-w-4xl font-heading"
-          >
-            Unplug. Unwind.
-            <br />
-            <span className="text-luxury-gold">Reconnect with Nature.</span>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/70" />
+
+        {/* Eyebrow heading */}
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-28 text-center">
+          <h1 className="font-heading text-4xl font-semibold uppercase tracking-[0.15em] text-ivory-white/90 sm:text-5xl md:text-6xl">
+            Escape The Ordinary
           </h1>
-          <p className="mt-8 text-base md:text-lg text-ivory-white/85 max-w-3xl leading-relaxed font-light">
-            Nestled in the heart of Maharashtra, Bambarddara offers an unparalleled escape from the ordinary. Our luxury retreats blend modern comfort with the timeless beauty of nature, creating experiences that rejuvenate both body and soul.
-          </p>
-          <SectionButton>EXPLORE NOW</SectionButton>
+
+          {/* Search bar */}
+          <div className="mt-10 flex w-full max-w-4xl flex-col gap-3 rounded-2xl border border-ivory-white/20 bg-dark-charcoal/50 p-3 backdrop-blur-md sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2">
+            <div className="flex-1 border-b border-ivory-white/15 px-5 py-2 text-left sm:border-b-0 sm:border-r">
+              <label className="block font-body text-[0.6rem] uppercase tracking-wider text-ivory-white/50">
+                Stay Type
+              </label>
+              <select
+                value={heroType}
+                onChange={(e) => setHeroType(e.target.value)}
+                className="mt-1 w-full bg-transparent font-body text-sm text-ivory-white focus:outline-none [&>option]:text-dark-charcoal"
+              >
+                {HERO_STAY_TYPES.map((t) => (
+                  <option key={t.slug} value={t.slug}>{t.label}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1 border-b border-ivory-white/15 px-5 py-2 text-left sm:border-b-0 sm:border-r">
+              <label className="block font-body text-[0.6rem] uppercase tracking-wider text-ivory-white/50">
+                Check In
+              </label>
+              <input
+                type="date"
+                className="mt-1 w-full bg-transparent font-body text-sm text-ivory-white focus:outline-none"
+              />
+            </div>
+            <div className="flex-1 px-5 py-2 text-left">
+              <label className="block font-body text-[0.6rem] uppercase tracking-wider text-ivory-white/50">
+                Guests
+              </label>
+              <input
+                type="number"
+                min="1"
+                defaultValue={2}
+                className="mt-1 w-full bg-transparent font-body text-sm text-ivory-white focus:outline-none"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate(`/stays/${heroType}`)}
+              className="flex items-center justify-center gap-2 rounded-full bg-ivory-white px-7 py-3 font-body text-xs font-medium uppercase tracking-widest text-forest-green transition-colors duration-300 hover:bg-luxury-gold"
+            >
+              Search
+              <FaSearch className="h-3 w-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom band — pitch + CTAs on the left, stats on the right */}
+        <div className="relative z-10 grid grid-cols-1 gap-10 px-6 pb-16 pt-10 md:grid-cols-12 md:px-12 md:pb-20 lg:px-16">
+          <div className="md:col-span-7 lg:col-span-8">
+            <h2 className="font-heading text-3xl font-light leading-tight text-ivory-white sm:text-4xl">
+              find stays worth disappearing into.
+            </h2>
+            <p className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-ivory-white/75 sm:text-base">
+              Discover handpicked villas, farmhouse rooms and riverside tents,
+              each designed to help you disconnect from the noise and
+              reconnect with what matters.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => navigate('/signup')}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-ivory-white px-7 py-3 font-body text-xs font-medium uppercase tracking-widest text-forest-green transition-colors duration-300 hover:bg-luxury-gold"
+              >
+                Find Your Escape
+                <FaArrowRight className="h-3 w-3" />
+              </button>
+              <a
+                href="#signature-collections"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-ivory-white/50 px-7 py-3 font-body text-xs font-medium uppercase tracking-widest text-ivory-white transition-colors duration-300 hover:bg-ivory-white hover:text-forest-green"
+              >
+                Explore Stays
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 md:col-span-5 lg:col-span-4">
+            {HERO_STATS.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border border-ivory-white/15 bg-dark-charcoal/40 px-6 py-4 backdrop-blur-sm"
+              >
+                <span className="block font-heading text-2xl font-light text-ivory-white">
+                  {s.figure}
+                </span>
+                <span className="mt-1 block font-body text-[0.7rem] uppercase tracking-wider text-ivory-white/60">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Signature Collections Section */}
-      <div className="bg-ivory-white px-6 md:px-12 lg:px-16 py-20 md:py-32">
+      <div id="signature-collections" className="bg-ivory-white px-6 md:px-12 lg:px-16 py-20 md:py-32">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <Reveal>
@@ -105,8 +196,9 @@ export default function Stay() {
             >
               <div className="relative h-[450px] md:h-[550px] lg:h-[600px]">
                 <EstateImage
-                  slug={IMAGE_SLUGS.gallery1}
-                  alt="Mountain Retreat" 
+                  slug="luxury-suits"
+                  alt="Mountain Retreat"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -158,17 +250,21 @@ export default function Stay() {
               </div>
             </div>
 
-            {/* Right Column - 2 Rows (5 columns) */}
-            <div className="lg:col-span-5 flex flex-col gap-4 lg:gap-6">
+            {/* Right Column - 2 Rows (5 columns). Height matches the left
+                column explicitly at every breakpoint, rather than relying
+                on grid stretch to make the flex-1 child below resolve
+                correctly. */}
+            <div className="flex h-[450px] flex-col gap-4 md:h-[550px] lg:col-span-5 lg:h-[600px] lg:gap-6">
               {/* Top Card - Forest Canopy */}
               <div 
                 className="relative group overflow-hidden bg-ivory-white shadow-lg flex-1 cursor-pointer hover-scale"
                 onClick={() => handleRoomTypeClick('Forest Canopy')}
               >
-                <div className="relative h-[220px] md:h-[240px] lg:h-[290px]">
+                <div className="relative h-full min-h-[220px]">
                   <EstateImage
-                    slug={IMAGE_SLUGS.evergreen}
-                    alt="Forest Canopy" 
+                    slug="valley-villas"
+                    alt="Forest Canopy"
+                    sizes="(min-width: 1024px) 25vw, 50vw"
                     className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -215,9 +311,10 @@ export default function Stay() {
                 >
                   <div className="relative h-[180px] md:h-[200px] lg:h-[280px]">
                     <EstateImage
-                      slug={IMAGE_SLUGS.woodland}
-                      alt="Heritage Farmhouse" 
-                      className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                      slug="farmhouse"
+                      alt="Heritage Farmhouse"
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="transition-transform duration-[800ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     
@@ -249,9 +346,10 @@ export default function Stay() {
                 >
                   <div className="relative h-[180px] md:h-[200px] lg:h-[280px]">
                     <EstateImage
-                      slug={IMAGE_SLUGS.footer}
-                      alt="Riverside Canvas" 
-                      className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                      slug="camping"
+                      alt="Riverside Canvas"
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="transition-transform duration-[800ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     
@@ -325,9 +423,10 @@ export default function Stay() {
               <div className="group cursor-pointer hover-scale">
                 <div className="relative h-[400px] md:h-[450px] overflow-hidden mb-6">
                 <EstateImage
-                  slug={IMAGE_SLUGS.gallery3}
-                  alt="Wellness Sanctuary - Ayurvedic spa treatments" 
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                  slug="massage"
+                  alt="Wellness Sanctuary - Ayurvedic spa treatments"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="transition-transform duration-1000 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
@@ -347,9 +446,10 @@ export default function Stay() {
               <div className="group cursor-pointer hover-scale">
                 <div className="relative h-[400px] md:h-[450px] overflow-hidden mb-6">
                 <EstateImage
-                  slug={IMAGE_SLUGS.woodland}
-                  alt="Royal Expeditions - Curated local heritage tours" 
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                  slug="royal"
+                  alt="Royal Expeditions - Curated local heritage tours"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="transition-transform duration-1000 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
@@ -368,15 +468,15 @@ export default function Stay() {
       </div>
 
       {/* Amenities of Distinction Section */}
-      <div className="bg-ivory-white px-6 md:px-12 lg:px-16 py-20 md:py-32 border-t border-forest-green/10">
+      <div className="bg-deep-forest px-6 md:px-12 lg:px-16 py-20 md:py-32 border-t border-ivory-white/10">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <Reveal>
             <div className="text-center mb-16 md:mb-20">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-forest-green mb-6 font-heading tracking-[-0.02em]">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-ivory-white mb-6 font-heading tracking-[-0.02em]">
                 Amenities of Distinction
               </h2>
-              <p className="text-base md:text-lg text-light-charcoal/80 leading-relaxed font-light">
+              <p className="text-base md:text-lg text-ivory-white/70 leading-relaxed font-light">
                 The pinnacle of luxury, curated for your comfort.
               </p>
             </div>
@@ -400,7 +500,7 @@ export default function Stay() {
                 </div>
               </div>
               <h3 
-                className="text-2xl md:text-3xl font-light text-forest-green mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
+                className="text-2xl md:text-3xl font-light text-ivory-white mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
               >
                 24/7 Butler Service
               </h3>
@@ -422,7 +522,7 @@ export default function Stay() {
                 </div>
               </div>
               <h3 
-                className="text-2xl md:text-3xl font-light text-forest-green mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
+                className="text-2xl md:text-3xl font-light text-ivory-white mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
               >
                 Infinity Pool
               </h3>
@@ -444,7 +544,7 @@ export default function Stay() {
                 </div>
               </div>
               <h3 
-                className="text-2xl md:text-3xl font-light text-forest-green mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
+                className="text-2xl md:text-3xl font-light text-ivory-white mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
               >
                 Private Wine Cellar
               </h3>
@@ -466,7 +566,7 @@ export default function Stay() {
                 </div>
               </div>
               <h3 
-                className="text-2xl md:text-3xl font-light text-forest-green mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
+                className="text-2xl md:text-3xl font-light text-ivory-white mb-3 group-hover:text-luxury-gold transition-colors duration-500 font-heading"
               >
                 Heli-pad Access
               </h3>
