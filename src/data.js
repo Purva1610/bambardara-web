@@ -103,3 +103,8 @@ export const modulePurpose = {
   calendar: 'Management meetings, project reviews, milestones, approval deadlines and site visits in month, week or day view.',
   settings: 'Profile, notifications, security and preferences. System-wide settings remain with the Super Admin.'
 }
+
+// ============================================================
+// FINANCE PAGE DATA
+// ============================================================
+
