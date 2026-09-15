@@ -97,6 +97,14 @@ public class SecurityConfig {
                 // ROLE_CEO if an admin provisioned it directly in Keycloak.
                 .requestMatchers("/api/ceo/**").hasRole("CEO")
 
+                // Dynamic RBAC: SUPER_ADMIN is a Bambardara business role
+                // (users.role_id -> roles.code, see V16__create_rbac_schema.sql
+                // and KeycloakJwtProvisioningFilter.buildAuthorities), never
+                // derived from anything a client sends directly. Every other
+                // module/permission check for this role system happens inside
+                // AuthorizationService, not here.
+                .requestMatchers("/api/super-admin/**").hasRole("SUPER_ADMIN")
+
                 .anyRequest().authenticated()
             )
 

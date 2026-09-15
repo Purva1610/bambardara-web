@@ -21,6 +21,7 @@ import com.bambardara.demo.membership.exception.InvalidMembershipStatusTransitio
 import com.bambardara.demo.membership.exception.MembershipNotFoundException;
 import com.bambardara.demo.membership.exception.MembershipPlanNotFoundException;
 import com.bambardara.demo.membership.exception.PlanNotActiveException;
+import com.bambardara.demo.rbac.exception.DuplicateResourceException;
 import com.bambardara.demo.stay.exception.AccommodationNotAvailableException;
 import com.bambardara.demo.wellness.exception.SpaSlotNotAvailableException;
 
@@ -158,6 +159,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidMembershipStatusTransitionException.class)
     public ResponseEntity<ApiError> handleInvalidMembershipStatusTransition(InvalidMembershipStatusTransitionException e) {
         return build(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    // =============================================================================
+    // RBAC / Super Admin Exception Handlers
+    // =============================================================================
+
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<ApiError> handleDuplicateResource(DuplicateResourceException e) {
+        return build(HttpStatus.CONFLICT, e.getMessage());
     }
 
     // =============================================================================

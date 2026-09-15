@@ -4,10 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import com.bambardara.demo.rbac.entity.Role;
 
 @Entity
 @Table(name = "users")
@@ -74,6 +79,24 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private UserRole role = UserRole.USER;
+
+    /**
+     * The Bambardara business role (SUPER_ADMIN, CEO, CFO, ...), independent
+     * of the legacy {@link #role} enum above and of any Keycloak realm role.
+     * Drives module/permission checks only - never {@code hasRole('ADMIN')}
+     * or {@code hasRole('CEO')}. Null until a SUPER_ADMIN assigns one.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role businessRole;
+
+    /**
+     * Account status. A DISABLED user is rejected at authentication time
+     * (see KeycloakJwtProvisioningFilter) regardless of role.
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private UserStatus status = UserStatus.ACTIVE;
 
     public User() {
 
@@ -256,6 +279,34 @@ public class User {
      */
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    /**
+     * @return Role return the Bambardara business role, or null if unassigned
+     */
+    public Role getBusinessRole() {
+        return businessRole;
+    }
+
+    /**
+     * @param businessRole the Bambardara business role to set
+     */
+    public void setBusinessRole(Role businessRole) {
+        this.businessRole = businessRole;
+    }
+
+    /**
+     * @return UserStatus return the account status
+     */
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the account status to set
+     */
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 
 }

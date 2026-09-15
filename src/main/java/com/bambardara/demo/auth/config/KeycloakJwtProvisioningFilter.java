@@ -20,6 +20,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bambardara.demo.auth.entity.User;
 import com.bambardara.demo.auth.entity.UserRole;
+import com.bambardara.demo.auth.entity.UserStatus;
 import com.bambardara.demo.auth.security.KeycloakAuthorityMapper;
 import com.bambardara.demo.auth.service.KeycloakUserProvisioningService;
 
@@ -124,6 +125,17 @@ public class KeycloakJwtProvisioningFilter extends OncePerRequestFilter {
 
             User user = provisioningService.findOrProvisionUser(subject, email, name);
 
+            // A DISABLED account (see SuperAdminUserController's PATCH
+            // .../status) is rejected regardless of role: leave the request
+            // unauthenticated rather than populating the SecurityContext, so
+            // anyRequest().authenticated() rejects it exactly as it would an
+            // invalid token.
+            if (user.getStatus() == UserStatus.DISABLED) {
+                logger.debug("Keycloak subject {} resolved to a DISABLED user - not authenticating", subject);
+                filterChain.doFilter(request, response);
+                return;
+            }
+
             List<GrantedAuthority> authorities = buildAuthorities(user, jwt);
 
             UsernamePasswordAuthenticationToken authentication =
@@ -152,13 +164,23 @@ public class KeycloakJwtProvisioningFilter extends OncePerRequestFilter {
     /**
      * Local DB role plus any realm roles present on the token, so an
      * existing local ADMIN keeps working and a Keycloak-side realm role can
-     * also grant authorities without waiting for a later phase.
+     * also grant authorities without waiting for a later phase. Also adds
+     * ROLE_&lt;code&gt; for the user's Bambardara business role (see
+     * {@code com.bambardara.demo.rbac.entity.Role}), if one is assigned -
+     * this is what lets {@code hasRole('SUPER_ADMIN')} on
+     * {@code /api/super-admin/**} work the same way {@code hasRole('CEO')}
+     * already does for the Keycloak realm role.
      */
     private List<GrantedAuthority> buildAuthorities(User user, Jwt jwt) {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
         authorities.addAll(KeycloakAuthorityMapper.mapRealmRoles(jwt));
+
+        if (user.getBusinessRole() != null) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getBusinessRole().getCode()));
+        }
+
         return authorities;
     }
 
