@@ -1,119 +1,20 @@
-import { NavLink } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import {
-  Home,
-  Wallet,
-  Building2,
-  Users,
-  Globe,
-  Settings,
-  Leaf,
-  X,
-  ClipboardCheck,
-  BookOpen,
-} from 'lucide-react';
+import { LogOut, LayoutDashboard, FolderKanban, HardHat, Wallet, ShoppingCart, Megaphone, TrendingUp, Users, ClipboardCheck, BarChart3, FileText, AlertTriangle, MessageSquare, CalendarDays, Settings } from 'lucide-react'
+import { navItems } from '../data.js'
 
-const NAV_ITEMS = [
-  { to: '/', label: 'Overview', icon: Home, end: true },
-  { to: '/investments', label: 'Investments', icon: Wallet },
-  { to: '/construction', label: 'Construction & Zones', icon: Building2 },
-  { to: '/team', label: 'Team & Roles', icon: Users },
-  { to: '/website', label: 'Website & Marketing', icon: Globe },
-  { to: '/approvals', label: 'Approvals', icon: ClipboardCheck },
-  { to: '/documentation', label: 'Documentation', icon: BookOpen },
-  { to: '/settings', label: 'Settings', icon: Settings },
-];
+const icons={dashboard:LayoutDashboard,projects:FolderKanban,construction:HardHat,finance:Wallet,procurement:ShoppingCart,'sales-marketing':Megaphone,investments:TrendingUp,hr:Users,approvals:ClipboardCheck,reports:BarChart3,documents:FileText,'risks-issues':AlertTriangle,communications:MessageSquare,calendar:CalendarDays,settings:Settings}
 
-function SidebarContent({ onNavigate }) {
-  return (
-    <div className="flex h-full flex-col bg-sidebar text-sidebar-text">
-      <div className="flex items-center gap-3 px-5 pb-6 pt-6">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15">
-          <Leaf size={16} strokeWidth={1.5} className="text-accent" />
-        </span>
-        <div className="leading-tight">
-          <p className="font-serif text-[1rem] tracking-wide">Bambarddara</p>
-          <p className="text-[0.65rem] uppercase tracking-[0.14em] text-sidebar-text-muted">CEO Command Center</p>
-        </div>
-      </div>
-
-      <nav className="scroll-thin flex-1 space-y-0.5 overflow-y-auto px-3 pb-6">
-        {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            onClick={onNavigate}
-            className={({ isActive }) =>
-              [
-                'group flex items-center gap-3 rounded-md px-3 py-2.5 text-[0.85rem] transition-colors duration-150',
-                isActive
-                  ? 'bg-sidebar-active text-white'
-                  : 'text-sidebar-text-muted hover:bg-sidebar-hover hover:text-sidebar-text',
-              ].join(' ')
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <Icon
-                  size={16}
-                  strokeWidth={1.6}
-                  className={isActive ? 'text-accent' : 'text-sidebar-text-muted group-hover:text-sidebar-text'}
-                />
-                <span>{label}</span>
-              </>
-            )}
-          </NavLink>
-        ))}
-      </nav>
-
-      <div className="mx-3 mb-6 border-t border-white/10 pt-4">
-        <p className="px-1 text-[0.65rem] uppercase tracking-[0.14em] text-sidebar-text-muted">Bambarddara, near Kolhapur</p>
-        <p className="px-1 pt-1 font-serif text-sm text-sidebar-text">Under construction &middot; Phase 1</p>
-      </div>
-    </div>
-  );
-}
-
-export default function Sidebar({ mobileOpen, onClose }) {
-  return (
-    <>
-      <aside className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:block lg:w-60">
-        <SidebarContent />
-      </aside>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-40 bg-black/40 lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={onClose}
-            />
-            <motion.aside
-              className="fixed inset-y-0 left-0 z-50 w-72 lg:hidden"
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-            >
-              <div className="relative h-full">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  aria-label="Close menu"
-                  className="absolute right-3 top-4 flex h-8 w-8 items-center justify-center rounded-full text-sidebar-text-muted hover:bg-white/10 hover:text-white"
-                >
-                  <X size={18} />
-                </button>
-                <SidebarContent onNavigate={onClose} />
-              </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
+export default function Sidebar({active,onNavigate}){
+ return <aside className="bg-navy text-white flex flex-col h-screen sticky top-0 font-sans shadow-[4px_0_24px_rgba(11,46,42,.08)]">
+   <div className="flex items-center gap-3 px-5 pb-6 pt-6 border-b border-white/10">
+     <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15"><span className="font-serif text-accent text-lg">B</span></span>
+     <div className="leading-tight"><div className="font-serif text-[1rem] tracking-wide">Bambardara</div><div className="text-[0.62rem] uppercase tracking-[0.14em] text-[#9FB3AE]">Nature. Luxury. Forever.</div></div>
+   </div>
+   <nav className="scroll-thin flex-1 overflow-y-auto px-3 py-4">
+    {navItems.map(item=>{const Icon=icons[item.key]||FileText; return <a key={item.key} href={`#${item.key}`} onClick={e=>{e.preventDefault();onNavigate(item.key)}} className={`group flex items-center gap-3 rounded-md px-3 py-2.5 text-[.85rem] mb-0.5 transition-colors ${active===item.key?'bg-[rgba(184,167,122,.16)] text-white':'text-[#9FB3AE] hover:bg-[rgba(244,243,238,.06)] hover:text-[#F4F3EE]'}`}><Icon size={16} strokeWidth={1.6} className={active===item.key?'text-accent':'text-[#9FB3AE] group-hover:text-[#F4F3EE]'}/><span>{item.label}</span></a>})}
+   </nav>
+   <div className="mx-3 mb-5 border-t border-white/10 pt-4 flex items-center gap-3">
+     <div className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-xs">MD</div>
+     <div className="min-w-0 flex-1"><div className="text-[13px] text-white truncate">Managing Director</div><button onClick={()=>onNavigate('dashboard')} className="mt-1 flex items-center gap-1 text-[11px] text-[#9FB3AE] hover:text-white"><LogOut size={11}/>Logout</button></div>
+   </div>
+ </aside>
 }

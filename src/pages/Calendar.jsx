@@ -1,12 +1,12 @@
 import { PlaceholderPage } from '../components/Ui.jsx'
 import { modulePurpose } from '../data.js'
 
-export default function Investments() {
+export default function Calendar() {
   return (
     <PlaceholderPage
-      title="Investments"
-      tag="/md/investments"
-      note={modulePurpose['investments']}
+      title="Calendar"
+      tag="/md/calendar"
+      note={modulePurpose['calendar']}
     />
   )
 }

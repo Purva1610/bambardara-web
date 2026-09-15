@@ -1,54 +1,96 @@
-# Hollowmere Executive Dashboard
+# Bambardara Agrotourism — MD Dashboard (React)
 
-A premium CEO / executive control-center UI for a luxury estate & resort company — React, Tailwind, React Router, Lucide, Framer Motion, and Recharts.
+A React + Vite + Tailwind + Recharts rebuild of the MD dashboard mockup.
+7 pages (Overview, Capital & Investment, Club Membership, Business
+Divisions, Facilities Status, Bookings & Events, Leadership), plus
+interactive functionality layered on top of the original static mockup.
 
-## 1. Install dependencies
-
-```bash
-npm install react-router-dom framer-motion lucide-react recharts
-```
-
-If Tailwind isn't already configured in your project:
+## Run it
 
 ```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+npm install
+npm run dev
 ```
 
-## 2. Copy files in
+Then open the local URL Vite prints (usually http://localhost:5173).
 
-```
-tailwind.config.js        → project root (merge with your existing config if you have one)
-src/index.css             → src/index.css (merge the :root/.dark variables + @layer if you already have global styles)
-src/main.jsx               → src/main.jsx (or copy the Router/ThemeProvider wiring into your existing entry file)
-src/App.jsx                → src/App.jsx (or merge these <Route> entries into your existing router)
-src/context/                → src/context/
-src/layouts/                → src/layouts/
-src/components/             → src/components/
-src/pages/                   → src/pages/
-src/lib/                      → src/lib/
+## Build for production
+
+```bash
+npm run build
+npm run preview
 ```
 
-## 3. What's included
+## What's new since the first version
 
-- **Sidebar** — compact, fixed on desktop, slide-in drawer with overlay on mobile. All 12 sections routed, subtle forest-green active state.
-- **Navbar** — breadcrumb title + date subtitle, a working date-range dropdown (Last 7 Days / Last 30 Days / This Quarter / Year to Date), search, notifications, and the CEO profile menu.
-- **ProfileDropdown** — My Profile, Account Settings, Notifications, an inline Appearance switcher (Light/Dark/System + accent color), and Logout. Theme persists to `localStorage`.
-- **Executive header** — "Good morning" greeting, today's date, and a Download Report button that produces a real file download (wire it to your reporting endpoint).
-- **6 KPI cards** — Revenue, Bookings, Occupancy, ADR, Guests, Net Profit, each with a change indicator.
-- **Revenue Performance** — an interactive area chart with Revenue / Bookings / Profit filters and a dashed previous-year comparison line.
-- **Business Performance** — three ring-gauge metrics (Occupancy, Revenue Growth, Profit Margin).
-- **Booking Overview** — a donut chart of Confirmed / Pending / Cancelled with a legend.
-- **Revenue by Business Area** — a horizontal bar chart across Residences, Dining, Experiences, Events, Other.
-- **Residence Performance** — a table (cards on mobile) with occupancy bars and performance badges.
-- **Guest Insights** — total/new/returning guests, satisfaction rate, and a small trend sparkline.
-- **Executive Alerts** — calm, non-alarming signal list with positive/caution/neutral tones.
-- **Recent High-Value Bookings** — the top-value reservations, table on desktop, cards on mobile.
-- **Quick Executive Actions** — four buttons routed to Finance, Bookings, Performance, and a report download.
-- **Recent Executive Activity** — a compact timeline.
-- **Footer** — small copyright line.
-- Every remaining sidebar destination (Business Performance, Residences, Guests, Experiences, Dining, Events, Finance, Reports, Team Performance) is wired to a real route with a placeholder page, so all navigation works while you build out the detail views.
+- **Drill-down modals** — click any row in the investment tier table,
+  membership tier table, or facilities grid, or click any upcoming event,
+  to see extra sample detail (investor list, member list, contractor
+  info, booking contact) in a popup.
+- **Resolvable attention items** — on Overview, check off an item in
+  "Needs MD attention" to mark it resolved (strikes through, greys out,
+  the open/resolved count updates). State resets on page reload since
+  there's no backend yet — see "Where the real data goes" below.
+- **CSV export** — "Export CSV" buttons on the Capital & Investment and
+  Club Membership pages download the current table as a `.csv` file,
+  ready to open in Excel or Google Sheets.
+- **Search & filter** — Facilities and Business Divisions pages have a
+  live search box that filters the grid as you type.
+- **Last updated timestamp** — shown in the top bar on every page, next
+  to the director's name.
 
-## 4. Design tokens
+## Project structure
 
-Colors live as CSS variables in `src/index.css` (`--color-primary`, `--color-accent`, etc.) and are surfaced through Tailwind in `tailwind.config.js`. The palette matches the brief exactly: forest green (#123F3A), dark forest (#0B2E2A), secondary green (#2F6258), ivory background (#F4F3EE), white cards, and a muted gold accent (#B8A77A). Corners are kept tighter and shadows softer than a typical SaaS admin panel, in line with an executive rather than CRUD-heavy feel.
+```
+src/
+├── App.jsx                entry component, holds the active-page state
+├── main.jsx                React root
+├── index.css                Tailwind directives
+├── data.js                  all placeholder data + drill-down detail
+├── utils/
+│   └── csv.js                 downloadCSV() helper used by export buttons
+├── components/
+│   ├── Sidebar.jsx             left nav, calls onNavigate(pageKey)
+│   ├── Topbar.jsx               page title + subtitle + last-updated
+│   ├── Modal.jsx                 generic drill-down popup
+│   └── Ui.jsx                     Card, SectionHead, Pill, Dot,
+│                                   SearchInput, ExportButton
+└── pages/
+    ├── Overview.jsx        KPI cards, trend chart, resolvable attention list
+    ├── Capital.jsx          investment tier chart + table + drill-down + CSV
+    ├── Membership.jsx        club membership table + drill-down + CSV
+    ├── Divisions.jsx           10 business divisions grid + search
+    ├── Facilities.jsx           17 facilities + search + drill-down
+    ├── Events.jsx                 bookings + revenue pie + drill-down
+    └── Leadership.jsx              director bios
+```
+
+## Where the real data goes
+
+Everything in `src/data.js` is placeholder, including the sample
+investor/member lists and facility/event detail used by the drill-down
+modals. Swap each export for a real fetch (from your CRM, accounts
+system, or a simple API) when you're ready to make this live — the
+page components render whatever `data.js` provides, so they don't need
+to change structurally.
+
+The "resolved" checkbox state and any future edits currently live only
+in React state (`useState` in `Overview.jsx`) and are lost on refresh.
+To persist them you'd need one of:
+- A backend (write the resolved flag back to your database)
+- `localStorage` (quick, but only persists on that one browser/device)
+- A lightweight sync layer (Firebase, Supabase, etc.)
+
+## Still frontend-only
+
+There's still no backend, authentication, or persistence — this is a
+richer static mockup, not a production app. Natural next steps:
+login/access control, a real data source, notifications, and PDF/report
+export were all discussed but aren't implemented yet.
+
+## Notes
+
+- Tailwind uses arbitrary hex values for the brand palette (forest green +
+  gold), configured in `tailwind.config.js` as named colors
+  (`forest`, `gold`, `cream`, etc.).
+- Charts are built with [Recharts](https://recharts.org).
