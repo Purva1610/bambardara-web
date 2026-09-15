@@ -26,7 +26,7 @@ const RESIDENCES = [
     price: '₹21,500',
   },
   {
-    slug: 'organic-farming-and-farm-stay-3',
+    slug: 'farmhouse',
     name: 'The Farmhouse Rooms',
     kicker: 'Working farm · 8 rooms',
     body:
@@ -35,7 +35,7 @@ const RESIDENCES = [
     price: '₹14,000',
   },
   {
-    slug: 'camping-2',
+    slug: 'camp',
     name: 'Riverside Tented Camp',
     kicker: 'Seasonal · October to March',
     body:
@@ -76,7 +76,7 @@ const DETAILS = [
 const EXPERIENCES = [
   {
     n: '01',
-    slug: 'boating',
+    slug: 'jungle-safari',
     title: 'Jungle Safari',
     body: 'Open-top drives into the reserve at first light, with an estate naturalist reading the ground for you.',
   },
@@ -88,7 +88,7 @@ const EXPERIENCES = [
   },
   {
     n: '03',
-    slug: 'kayaking-3',
+    slug: 'boat',
     title: 'Kayaking & Boating',
     body: 'Flat water on the reservoir at dawn, when the surface holds the ridge line perfectly still.',
   },
@@ -118,13 +118,13 @@ const EXPERIENCES = [
   },
   {
     n: '08',
-    slug: 'organic-farming-and-farm-stay-2',
+    slug: 'animal-farm',
     title: 'Dairy & Animal Farm',
     body: 'The four a.m. milking, the cheese room at nine, and the calves in between. Children rarely leave.',
   },
   {
     n: '09',
-    slug: 'camp',
+    slug: 'helicopter',
     title: 'Helicopter Arrivals',
     body: 'A licensed pad on the north field — Mumbai and Pune in well under the hour.',
   },
@@ -156,7 +156,7 @@ const MEASURES = [
 
 const OCCASIONS = [
   {
-    slug: 'banquet-and-conference',
+    slug: 'weeding',
     label: 'Weddings',
     title: 'Terrace Weddings',
     body:
@@ -164,7 +164,7 @@ const OCCASIONS = [
     capacity: 'Up to 300 guests',
   },
   {
-    slug: 'banquet-and-conference-2',
+    slug: 'coorporate',
     label: 'Corporate',
     title: 'Offsites & Conferences',
     body:
@@ -172,7 +172,7 @@ const OCCASIONS = [
     capacity: '20 – 180 delegates',
   },
   {
-    slug: 'organic-farming-and-farm-stay-4',
+    slug: 'harvest',
     label: 'Seasonal',
     title: 'Harvest Nights',
     body:
@@ -212,12 +212,12 @@ const RITUALS = [
   },
 
   {
-    slug: 'resort-and-villas-2',
+    slug: 'pool',
     title: 'The Infinity Pool',
     body: 'Heated to twenty-nine degrees year round, set flush with the ridge so the water meets the valley.',
   },
   {
-    slug: 'farmhouse',
+    slug: 'temp',
     title: 'The Estate Temple',
     body: 'Two hundred years older than anything else here. Morning aarti is open to guests who wish to attend.',
   },
@@ -258,8 +258,8 @@ function Legacy() {
           <Reveal>
             <div className="lux-frame aspect-[4/5] w-full sm:aspect-[16/11]">
               <EstateImage
-                slug="about"
-                alt="Mountain valley view from the estate"
+                slug="farming"
+                alt="Farming at the estate"
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
             </div>
@@ -534,10 +534,10 @@ function Dining() {
   return (
     <section id="dining" className="bg-dark-charcoal">
       <div className="relative h-[60vh] min-h-[380px] w-full overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 isolate">
           <EstateImage
-            slug="dining"
-            alt="The Long Table set for dinner at BAMBARDDARA"
+            slug="kolhapuri-food"
+            alt="Kolhapuri cuisine served at BAMBARDDARA"
             sizes="100vw"
             className="h-full w-full object-cover"
           />
@@ -616,6 +616,7 @@ function Occasions() {
                   slug={o.slug}
                   alt={o.title}
                   sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="isolate"
                 />
                 <div className="lux-scrim absolute inset-0" />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -688,9 +689,9 @@ function Sustainability() {
           slug="sustainable-and-eco-friendly-2"
           alt="Solar arrays and planted avenues across the estate"
           sizes="100vw"
-          className="h-full w-full object-cover"
+          className="isolate h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-deep-forest/55" />
+        <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <Reveal>
             <p className="max-w-3xl text-center font-heading text-[clamp(1.4rem,2.6vw,2.25rem)] font-light italic leading-snug text-ivory-white">

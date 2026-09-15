@@ -183,7 +183,7 @@ const RoomTypePage = () => {
     <main className="taj-bg-cream">
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 isolate">
           {normalizedType === 'Villa' ? (
             <video
               autoPlay
@@ -247,7 +247,7 @@ const RoomTypePage = () => {
                       <EstateImage
                         slug={room.image}
                         alt={room.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="isolate h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4">
                         <span className="inline-flex items-center px-4 py-1.5 bg-white/95 backdrop-blur-sm border border-[#D4AF37]/30">

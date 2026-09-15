@@ -247,7 +247,7 @@ export default function Enquire() {
           alt="The long table set on the estate lawn"
           sizes="100vw"
           priority
-          className="h-full w-full object-cover"
+          className="isolate h-full w-full object-cover"
         />
         <div className="lux-scrim absolute inset-0" />
         <div className="absolute inset-0 flex items-end">

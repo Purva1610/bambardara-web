@@ -258,7 +258,7 @@ const RoomDetail = () => {
     <main className="taj-bg-cream">
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 isolate">
           <EstateImage
             slug={room.image}
             alt={room.name}

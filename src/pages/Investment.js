@@ -95,7 +95,7 @@ export default function Investment() {
           alt="Sunrise over the BAMBARDDARA estate terraces"
           sizes="100vw"
           priority
-          className="h-full w-full object-cover"
+          className="isolate h-full w-full object-cover"
         />
         <div className="lux-scrim absolute inset-0" />
         <div className="absolute inset-0 flex items-end">
@@ -311,6 +311,7 @@ export default function Investment() {
                   slug={feature.slug}
                   alt={feature.caption}
                   sizes="(min-width: 1024px) 30vw, 100vw"
+                  className="isolate"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-6">
                   <span className="font-heading text-xl font-light text-ivory-white">

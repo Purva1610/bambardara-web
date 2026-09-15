@@ -62,7 +62,7 @@ export default function Spa() {
     <main className="bg-ivory-white overflow-hidden">
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full isolate">
           <EstateImage
             slug="massages"
             alt="Luxurious Back Massage"
@@ -70,7 +70,7 @@ export default function Spa() {
             priority={true}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 z-[5] bg-black/70" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -161,7 +161,7 @@ export default function Spa() {
             <Reveal delay={200}>
               <div className="relative h-80 md:h-96 overflow-hidden">
                 <EstateImage
-                  slug="ayurveda"
+                  slug="spaaa"
                   alt="Cosmetic Acupuncture"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
@@ -180,7 +180,7 @@ export default function Spa() {
             <Reveal>
               <div className="relative h-[500px] md:h-[600px] overflow-hidden md:order-1">
                 <EstateImage
-                  slug="ayur"
+                  slug="ayurveda"
                   alt="Authentic Ayurvedic Rituals"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
@@ -248,7 +248,7 @@ export default function Spa() {
               ].map((service, idx) => (
                 <Reveal key={idx} delay={idx * 100}>
                   <div className="group cursor-pointer">
-                    <div className="relative h-80 overflow-hidden mb-4">
+                    <div className="relative aspect-[3/4] overflow-hidden mb-4">
                       <EstateImage
                         slug={service.slug}
                         alt={service.title}

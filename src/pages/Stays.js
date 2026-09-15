@@ -199,7 +199,7 @@ export default function Stay() {
                   slug="luxury-suits"
                   alt="Mountain Retreat"
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                  className="isolate w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 
@@ -265,7 +265,7 @@ export default function Stay() {
                     slug="valley-villas"
                     alt="Forest Canopy"
                     sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                    className="isolate w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                   
@@ -314,7 +314,7 @@ export default function Stay() {
                       slug="farmhouse"
                       alt="Heritage Farmhouse"
                       sizes="(min-width: 1024px) 25vw, 50vw"
-                      className="transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                      className="isolate transition-transform duration-[800ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     
@@ -349,7 +349,7 @@ export default function Stay() {
                       slug="camping"
                       alt="Riverside Canvas"
                       sizes="(min-width: 1024px) 25vw, 50vw"
-                      className="transition-transform duration-[800ms] ease-out group-hover:scale-105"
+                      className="isolate transition-transform duration-[800ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     

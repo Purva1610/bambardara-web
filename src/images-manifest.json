@@ -680,5 +680,151 @@
       1920
     ],
     "fallbackWidth": 1280
+  },
+  "sauna": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farm": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 1064
+  },
+  "the-estate": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farming": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "jungle-safari": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 687
+  },
+  "animal-farm": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "helicopter": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "kolhapuri-food": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "boat": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "pool": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "weeding": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "coorporate": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "harvest": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "temp": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "spaaa": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 1170
+  },
+  "contact": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "zipline": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "jungle": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "rappeling": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "climbing": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 687
   }
 }

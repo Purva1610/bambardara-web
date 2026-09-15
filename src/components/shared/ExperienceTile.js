@@ -24,7 +24,7 @@ export default function ExperienceTile({ experience, index, variant = 'editorial
           slug={experience.gallery[0]}
           alt={experience.title}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="h-full w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-110"
+          className="isolate h-full w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-110"
         />
         <div
           className="absolute inset-0"

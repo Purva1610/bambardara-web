@@ -347,6 +347,7 @@ export default function Adventures() {
                       slug={lane.slug}
                       alt={lane.title}
                       sizes="(min-width: 768px) 50vw, 100vw"
+                      className="isolate"
                     />
                     <div className="lux-scrim-soft absolute inset-0" />
                     <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -503,7 +504,7 @@ export default function Adventures() {
           <Reveal className="lg:col-span-6">
             <div className="lux-frame aspect-[4/5] w-full">
               <EstateImage
-                slug="5-star-hospitality-2"
+                slug="contact"
                 alt="Planning an adventure at BAMBARDDARA"
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
