@@ -28,6 +28,17 @@ import {
 } from 'lucide-react'
 
 /* =========================================================
+   TEMPORARY PDF
+   ---------------------------------------------------------
+   Currently one PDF is available in the public folder.
+   This PDF is temporarily used for all documents.
+   Later, replace each fileUrl with the actual backend URL.
+========================================================= */
+
+const TEMP_PDF_URL =
+  '/documents/approvals/project-approval-record.pdf'
+
+/* =========================================================
    DOCUMENT CATEGORIES
 ========================================================= */
 
@@ -97,7 +108,7 @@ const documents = [
     type: 'PDF',
     size: '4.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-master-plan.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Master-Plan.pdf'
   },
   {
@@ -110,7 +121,7 @@ const documents = [
     type: 'PDF',
     size: '2.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-overview.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Overview.pdf'
   },
   {
@@ -123,9 +134,7 @@ const documents = [
     type: 'PDF',
     size: '3.2 MB',
     access: ['CEO', 'MD'],
-
-    /* ACTUAL PDF AVAILABLE IN PUBLIC FOLDER */
-    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Development-Agreement.pdf'
   },
   {
@@ -138,7 +147,7 @@ const documents = [
     type: 'PDF',
     size: '3.1 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/finance/annual-financial-report.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Annual-Financial-Report.pdf'
   },
   {
@@ -151,7 +160,7 @@ const documents = [
     type: 'PDF',
     size: '2.9 MB',
     access: ['CEO'],
-    fileUrl: '/documents/finance/investment-overview.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Investment-Overview.pdf'
   },
   {
@@ -164,7 +173,7 @@ const documents = [
     type: 'PDF',
     size: '1.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/procurement/procurement-summary.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Procurement-Summary.pdf'
   },
   {
@@ -177,7 +186,7 @@ const documents = [
     type: 'PDF',
     size: '2.7 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/reports/monthly-management-report.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Monthly-Management-Report.pdf'
   },
   {
@@ -190,7 +199,7 @@ const documents = [
     type: 'PDF',
     size: '3.6 MB',
     access: ['CEO'],
-    fileUrl: '/documents/reports/quarterly-project-report.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Quarterly-Project-Report.pdf'
   },
   {
@@ -203,7 +212,7 @@ const documents = [
     type: 'PDF',
     size: '1.2 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Approval-Record.pdf'
   },
   {
@@ -216,7 +225,7 @@ const documents = [
     type: 'PDF',
     size: '2.1 MB',
     access: ['CEO'],
-    fileUrl: '/documents/legal/legal-compliance-document.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Legal-Compliance-Document.pdf'
   },
   {
@@ -229,7 +238,7 @@ const documents = [
     type: 'PDF',
     size: '1.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/management/management-review-notes.pdf',
+    fileUrl: TEMP_PDF_URL,
     fileName: 'Management-Review-Notes.pdf'
   }
 ]
@@ -368,22 +377,31 @@ Role-based permissions determine which actions and documents are available to ea
 Frequently asked questions cover common dashboard activities.
 
 How do I find a document?
+
 Use the document search field or select a document category.
 
 Why is a document restricted?
+
 Some documents are available only to specific management roles.
 
 How do I view a document?
+
 Select the View button for an authorized document.
 
 How do I download a document?
+
 Select the Download button for an authorized document.
 
 How do I read a guide?
+
 Select Read Guide on the required documentation card to open the complete guide.
 `
   }
 ]
+
+/* =========================================================
+   DOCUMENTATION CATEGORIES
+========================================================= */
 
 const documentationCategories = [
   'All',
@@ -405,11 +423,15 @@ export default function Documents() {
   const [categoryFilter, setCategoryFilter] = useState('All')
   const [showFilter, setShowFilter] = useState(false)
 
-  const [selectedDocument, setSelectedDocument] = useState(null)
-  const [selectedArticle, setSelectedArticle] = useState(null)
+  const [selectedDocument, setSelectedDocument] =
+    useState(null)
+
+  const [selectedArticle, setSelectedArticle] =
+    useState(null)
 
   const [articleSearch, setArticleSearch] = useState('')
-  const [articleCategory, setArticleCategory] = useState('All')
+  const [articleCategory, setArticleCategory] =
+    useState('All')
 
   const [currentRole, setCurrentRole] = useState('MD')
   const [showRoleMenu, setShowRoleMenu] = useState(false)
@@ -428,52 +450,98 @@ export default function Documents() {
      FILTER DOCUMENTS
   ========================================================= */
 
-  const filteredDocuments = documents.filter((document) => {
-    const query = searchTerm.trim().toLowerCase()
+  const filteredDocuments = documents.filter(
+    (document) => {
+      const query = searchTerm.trim().toLowerCase()
 
-    const matchesSearch =
-      !query ||
-      document.name.toLowerCase().includes(query) ||
-      document.category.toLowerCase().includes(query) ||
-      document.description.toLowerCase().includes(query)
+      const matchesSearch =
+        !query ||
+        document.name.toLowerCase().includes(query) ||
+        document.category.toLowerCase().includes(query) ||
+        document.description.toLowerCase().includes(query)
 
-    const matchesCategory =
-      categoryFilter === 'All' ||
-      document.category === categoryFilter
+      const matchesCategory =
+        categoryFilter === 'All' ||
+        document.category === categoryFilter
 
-    return matchesSearch && matchesCategory
-  })
+      return matchesSearch && matchesCategory
+    }
+  )
 
   /* =========================================================
      DOWNLOAD PDF
   ========================================================= */
 
-  const handleDownload = (document) => {
-    if (!canAccessDocument(document)) return
+  const handleDownload = async (document) => {
+    if (!document) return
 
-    if (!document.fileUrl) {
-      alert('Document file is not available yet.')
+    if (!canAccessDocument(document)) {
+      alert(
+        'You do not have permission to download this document.'
+      )
       return
     }
 
-    const link = window.document.createElement('a')
+    if (!document.fileUrl) {
+      alert(
+        `"${document.name}" PDF file is not available.`
+      )
+      return
+    }
 
-    link.href = document.fileUrl
-    link.download =
-      document.fileName || `${document.name}.pdf`
+    try {
+      const response = await fetch(document.fileUrl, {
+        method: 'GET',
+        cache: 'no-cache'
+      })
 
-    link.target = '_blank'
-    link.rel = 'noopener noreferrer'
+      if (!response.ok) {
+        throw new Error(
+          `PDF not found. Status: ${response.status}`
+        )
+      }
 
-    window.document.body.appendChild(link)
+      const blob = await response.blob()
 
-    link.click()
+      if (!blob || blob.size === 0) {
+        throw new Error('PDF file is empty.')
+      }
 
-    window.document.body.removeChild(link)
+      const blobUrl =
+        window.URL.createObjectURL(blob)
+
+      const link =
+        window.document.createElement('a')
+
+      link.href = blobUrl
+
+      link.download =
+        document.fileName ||
+        `${document.name.replace(/\s+/g, '-')}.pdf`
+
+      link.style.display = 'none'
+
+      window.document.body.appendChild(link)
+
+      link.click()
+
+      window.document.body.removeChild(link)
+
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl)
+      }, 1500)
+    } catch (error) {
+      console.error('Download error:', error)
+
+      alert(
+        `"${document.name}" PDF could not be downloaded.\n\n` +
+        'Please check that the PDF exists inside the public/documents folder.'
+      )
+    }
   }
 
   /* =========================================================
-     VIEW
+     VIEW DOCUMENT
   ========================================================= */
 
   const handleView = (document) => {
@@ -504,21 +572,27 @@ export default function Documents() {
      FILTER DOCUMENTATION
   ========================================================= */
 
-  const filteredArticles = documentationArticles.filter((article) => {
-    const query = articleSearch.trim().toLowerCase()
+  const filteredArticles =
+    documentationArticles.filter((article) => {
+      const query =
+        articleSearch.trim().toLowerCase()
 
-    const matchesSearch =
-      !query ||
-      article.title.toLowerCase().includes(query) ||
-      article.description.toLowerCase().includes(query) ||
-      article.category.toLowerCase().includes(query)
+      const matchesSearch =
+        !query ||
+        article.title.toLowerCase().includes(query) ||
+        article.description
+          .toLowerCase()
+          .includes(query) ||
+        article.category
+          .toLowerCase()
+          .includes(query)
 
-    const matchesCategory =
-      articleCategory === 'All' ||
-      article.category === articleCategory
+      const matchesCategory =
+        articleCategory === 'All' ||
+        article.category === articleCategory
 
-    return matchesSearch && matchesCategory
-  })
+      return matchesSearch && matchesCategory
+    })
 
   return (
     <div className="min-h-full bg-bg text-text px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
@@ -591,21 +665,21 @@ export default function Documents() {
           </h1>
 
           <p className="text-sm text-muted mt-2 leading-6 max-w-2xl">
-            Access important management documents, reports, contracts,
-            approvals and system documentation from one place.
+            Access important management documents, reports,
+            contracts, approvals and system documentation from one place.
           </p>
 
         </div>
 
-        {/* ===================================================
-            ROLE BASED ACCESS
-        =================================================== */}
+        {/* ROLE BASED ACCESS */}
 
         <div className="relative">
 
           <button
             type="button"
-            onClick={() => setShowRoleMenu((value) => !value)}
+            onClick={() =>
+              setShowRoleMenu((value) => !value)
+            }
             className="h-12 px-4 rounded-2xl border border-slate-300 bg-white text-slate-800 flex items-center gap-3 shadow-lg shadow-black/[0.08] hover:border-primary hover:shadow-primary/10 transition-all"
           >
 
@@ -754,7 +828,9 @@ export default function Documents() {
                 type="text"
                 placeholder="Search documents..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) =>
+                  setSearchTerm(e.target.value)
+                }
                 className="w-full h-11 pl-10 pr-4 rounded-2xl border border-line bg-card text-sm text-text placeholder:text-muted outline-none focus:border-primary focus:shadow-md focus:shadow-primary/10 transition"
               />
 
@@ -762,7 +838,9 @@ export default function Documents() {
 
             <button
               type="button"
-              onClick={() => setShowFilter((value) => !value)}
+              onClick={() =>
+                setShowFilter((value) => !value)
+              }
               className={`group h-11 px-3.5 rounded-2xl border flex items-center justify-center gap-2.5 text-sm font-semibold transition-all duration-200 ${
                 showFilter
                   ? 'bg-primary text-white border-primary shadow-md shadow-primary/20'
@@ -811,7 +889,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setCategoryFilter('All')}
+                onClick={() =>
+                  setCategoryFilter('All')
+                }
                 className={`px-3.5 py-2 rounded-full text-xs font-semibold border transition ${
                   categoryFilter === 'All'
                     ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
@@ -821,32 +901,35 @@ export default function Documents() {
                 All
               </button>
 
-              {documentCategories.map((category) => {
+              {documentCategories.map(
+                (category) => {
 
-                const Icon = category.icon
+                  const Icon = category.icon
 
-                return (
+                  return (
 
-                  <button
-                    key={category.name}
-                    type="button"
-                    onClick={() => setCategoryFilter(category.name)}
-                    className={`px-3.5 py-2 rounded-full text-xs font-semibold border flex items-center gap-2 transition ${
-                      categoryFilter === category.name
-                        ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
-                        : 'bg-card border-line text-muted hover:text-text hover:border-primary/40'
-                    }`}
-                  >
+                    <button
+                      key={category.name}
+                      type="button"
+                      onClick={() =>
+                        setCategoryFilter(category.name)
+                      }
+                      className={`px-3.5 py-2 rounded-full text-xs font-semibold border flex items-center gap-2 transition ${
+                        categoryFilter === category.name
+                          ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
+                          : 'bg-card border-line text-muted hover:text-text hover:border-primary/40'
+                      }`}
+                    >
 
-                    <Icon size={14} />
+                      <Icon size={14} />
 
-                    {category.name}
+                      {category.name}
 
-                  </button>
+                    </button>
 
-                )
-
-              })}
+                  )
+                }
+              )}
 
             </div>
 
@@ -858,70 +941,77 @@ export default function Documents() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
-          {documentCategories.map((category, index) => {
+          {documentCategories.map(
+            (category, index) => {
 
-            const Icon = category.icon
+              const Icon = category.icon
 
-            const count = documents.filter(
-              (item) => item.category === category.name
-            ).length
+              const count = documents.filter(
+                (item) =>
+                  item.category === category.name
+              ).length
 
-            const isActive = categoryFilter === category.name
+              const isActive =
+                categoryFilter === category.name
 
-            return (
+              return (
 
-              <button
-                key={category.name}
-                type="button"
-                onClick={() => setCategoryFilter(category.name)}
-                style={{ animationDelay: `${index * 45}ms` }}
-                className={`doc-fade eq-card relative overflow-hidden p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] ${
-                  isActive
-                    ? 'ring-2 ring-primary shadow-md shadow-primary/10'
-                    : ''
-                }`}
-              >
+                <button
+                  key={category.name}
+                  type="button"
+                  onClick={() =>
+                    setCategoryFilter(category.name)
+                  }
+                  style={{
+                    animationDelay: `${index * 45}ms`
+                  }}
+                  className={`doc-fade eq-card relative overflow-hidden p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] ${
+                    isActive
+                      ? 'ring-2 ring-primary shadow-md shadow-primary/10'
+                      : ''
+                  }`}
+                >
 
-                {isActive && (
-                  <span className="absolute inset-x-0 top-0 h-[3px] bg-primary" />
-                )}
+                  {isActive && (
+                    <span className="absolute inset-x-0 top-0 h-[3px] bg-primary" />
+                  )}
 
-                <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between">
 
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center">
 
-                    <Icon
-                      size={18}
-                      className="text-primary"
-                    />
+                      <Icon
+                        size={18}
+                        className="text-primary"
+                      />
+
+                    </div>
+
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium border ${
+                        isActive
+                          ? 'bg-primary/10 border-primary/30 text-primary'
+                          : 'bg-bg border-line text-muted'
+                      }`}
+                    >
+                      {count}
+                    </span>
 
                   </div>
 
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium border ${
-                      isActive
-                        ? 'bg-primary/10 border-primary/30 text-primary'
-                        : 'bg-bg border-line text-muted'
-                    }`}
-                  >
-                    {count}
-                  </span>
+                  <h3 className="text-sm font-semibold mt-4">
+                    {category.name}
+                  </h3>
 
-                </div>
+                  <p className="text-xs text-muted leading-5 mt-1">
+                    {category.description}
+                  </p>
 
-                <h3 className="text-sm font-semibold mt-4">
-                  {category.name}
-                </h3>
+                </button>
 
-                <p className="text-xs text-muted leading-5 mt-1">
-                  {category.description}
-                </p>
-
-              </button>
-
-            )
-
-          })}
+              )
+            }
+          )}
 
         </div>
 
@@ -994,161 +1084,169 @@ export default function Documents() {
 
               <tbody>
 
-                {filteredDocuments.map((document, index) => {
+                {filteredDocuments.map(
+                  (document, index) => {
 
-                  const hasAccess = canAccessDocument(document)
+                    const hasAccess =
+                      canAccessDocument(document)
 
-                  return (
+                    return (
 
-                    <tr
-                      key={document.id}
-                      style={{ animationDelay: `${index * 35}ms` }}
-                      className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
-                    >
+                      <tr
+                        key={document.id}
+                        style={{
+                          animationDelay: `${index * 35}ms`
+                        }}
+                        className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
+                      >
 
-                      <td className="px-4 py-5 align-middle">
+                        <td className="px-4 py-5 align-middle">
 
-                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="flex items-center gap-2.5 min-w-0">
 
-                          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center shrink-0">
+                            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center shrink-0">
 
-                            <FileText
-                              size={17}
-                              className="text-primary"
-                            />
+                              <FileText
+                                size={17}
+                                className="text-primary"
+                              />
+
+                            </div>
+
+                            <div className="min-w-0">
+
+                              <p className="text-[13px] font-semibold text-text leading-5 break-words">
+                                {document.name}
+                              </p>
+
+                              <p className="text-[11px] text-muted mt-1">
+                                {document.type} • {document.size}
+                              </p>
+
+                            </div>
 
                           </div>
 
-                          <div className="min-w-0">
+                        </td>
 
-                            <p className="text-[13px] font-semibold text-text leading-5 break-words">
-                              {document.name}
-                            </p>
+                        <td className="px-4 py-5 align-middle">
 
-                            <p className="text-[11px] text-muted mt-1">
-                              {document.type} • {document.size}
-                            </p>
+                          <p className="text-[11px] text-muted leading-5 break-words">
+                            {document.description}
+                          </p>
 
-                          </div>
+                        </td>
 
-                        </div>
+                        <td className="px-4 py-5 align-middle">
 
-                      </td>
-
-                      <td className="px-4 py-5 align-middle">
-
-                        <p className="text-[11px] text-muted leading-5 break-words">
-                          {document.description}
-                        </p>
-
-                      </td>
-
-                      <td className="px-4 py-5 align-middle">
-
-                        <span className="inline-flex items-center max-w-full px-2.5 py-1.5 rounded-full bg-bg border border-line text-[10px] text-text font-medium leading-4 whitespace-normal break-words">
-                          {document.category}
-                        </span>
-
-                      </td>
-
-                      <td className="px-4 py-5 align-middle">
-
-                        <div className="flex items-center gap-1.5 text-[11px] text-muted leading-5 whitespace-nowrap">
-
-                          <CalendarDays
-                            size={14}
-                            className="shrink-0"
-                          />
-
-                          <span>
-                            {document.updated}
+                          <span className="inline-flex items-center max-w-full px-2.5 py-1.5 rounded-full bg-bg border border-line text-[10px] text-text font-medium leading-4 whitespace-normal break-words">
+                            {document.category}
                           </span>
 
-                        </div>
+                        </td>
 
-                      </td>
+                        <td className="px-4 py-5 align-middle">
 
-                      <td className="px-2 py-5 align-middle">
+                          <div className="flex items-center gap-1.5 text-[11px] text-muted leading-5 whitespace-nowrap">
 
-                        <div className="flex justify-center items-center">
+                            <CalendarDays
+                              size={14}
+                              className="shrink-0"
+                            />
 
-                          {hasAccess ? (
-
-                            <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold whitespace-nowrap">
-
-                              <ShieldCheck size={13} />
-
-                              Authorized
-
+                            <span>
+                              {document.updated}
                             </span>
 
-                          ) : (
+                          </div>
 
-                            <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-bg border border-line text-muted text-[10px] font-semibold whitespace-nowrap">
+                        </td>
 
-                              <LockKeyhole size={13} />
+                        <td className="px-2 py-5 align-middle">
 
-                              Restricted
+                          <div className="flex justify-center items-center">
 
-                            </span>
+                            {hasAccess ? (
 
-                          )}
+                              <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold whitespace-nowrap">
 
-                        </div>
+                                <ShieldCheck size={13} />
 
-                      </td>
+                                Authorized
 
-                      <td className="px-2 py-5 align-middle">
+                              </span>
 
-                        <div className="flex justify-center items-center gap-2">
+                            ) : (
 
-                          {/* VIEW BUTTON */}
+                              <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-bg border border-line text-muted text-[10px] font-semibold whitespace-nowrap">
 
-                          <button
-                            type="button"
-                            disabled={!hasAccess}
-                            onClick={() => handleView(document)}
-                            className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
-                              hasAccess
-                                ? 'bg-card border-line text-text hover:bg-primary hover:text-white hover:border-primary hover:shadow-sm'
-                                : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
-                            }`}
-                          >
+                                <LockKeyhole size={13} />
 
-                            <Eye size={14} />
+                                Restricted
 
-                            View
+                              </span>
 
-                          </button>
+                            )}
 
-                          {/* DOWNLOAD BUTTON */}
+                          </div>
 
-                          <button
-                            type="button"
-                            disabled={!hasAccess}
-                            onClick={() => handleDownload(document)}
-                            className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
-                              hasAccess
-                                ? 'bg-primary text-white border-primary hover:opacity-90 shadow-sm shadow-primary/20'
-                                : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
-                            }`}
-                          >
+                        </td>
 
-                            <Download size={14} />
+                        <td className="px-2 py-5 align-middle">
 
-                            Download
+                          <div className="flex justify-center items-center gap-2">
 
-                          </button>
+                            {/* VIEW */}
 
-                        </div>
+                            <button
+                              type="button"
+                              disabled={!hasAccess}
+                              onClick={() =>
+                                handleView(document)
+                              }
+                              className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
+                                hasAccess
+                                  ? 'bg-card border-line text-text hover:bg-primary hover:text-white hover:border-primary hover:shadow-sm'
+                                  : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
+                              }`}
+                            >
 
-                      </td>
+                              <Eye size={14} />
 
-                    </tr>
+                              View
 
-                  )
+                            </button>
 
-                })}
+                            {/* DOWNLOAD */}
+
+                            <button
+                              type="button"
+                              disabled={!hasAccess}
+                              onClick={() =>
+                                handleDownload(document)
+                              }
+                              className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
+                                hasAccess
+                                  ? 'bg-primary text-white border-primary hover:opacity-90 shadow-sm shadow-primary/20'
+                                  : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
+                              }`}
+                            >
+
+                              <Download size={14} />
+
+                              Download
+
+                            </button>
+
+                          </div>
+
+                        </td>
+
+                      </tr>
+
+                    )
+                  }
+                )}
 
               </tbody>
 
@@ -1212,7 +1310,9 @@ export default function Documents() {
               type="text"
               placeholder="Search documentation..."
               value={articleSearch}
-              onChange={(e) => setArticleSearch(e.target.value)}
+              onChange={(e) =>
+                setArticleSearch(e.target.value)
+              }
               className="w-full h-11 pl-10 pr-4 rounded-2xl border border-line bg-card text-sm text-text placeholder:text-muted outline-none focus:border-primary focus:shadow-md focus:shadow-primary/10 transition"
             />
 
@@ -1222,93 +1322,102 @@ export default function Documents() {
 
         <div className="flex flex-wrap gap-2 mb-6">
 
-          {documentationCategories.map((category) => (
+          {documentationCategories.map(
+            (category) => (
 
-            <button
-              key={category}
-              type="button"
-              onClick={() => setArticleCategory(category)}
-              className={`px-3.5 py-2 rounded-full border text-xs font-semibold transition ${
-                articleCategory === category
-                  ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
-                  : 'bg-card border-line text-muted hover:text-text hover:border-primary/40'
-              }`}
-            >
+              <button
+                key={category}
+                type="button"
+                onClick={() =>
+                  setArticleCategory(category)
+                }
+                className={`px-3.5 py-2 rounded-full border text-xs font-semibold transition ${
+                  articleCategory === category
+                    ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
+                    : 'bg-card border-line text-muted hover:text-text hover:border-primary/40'
+                }`}
+              >
 
-              {category}
+                {category}
 
-            </button>
+              </button>
 
-          ))}
+            )
+          )}
 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
-          {filteredArticles.map((article, index) => {
+          {filteredArticles.map(
+            (article, index) => {
 
-            const Icon = article.icon
+              const Icon = article.icon
 
-            return (
+              return (
 
-              <div
-                key={article.id}
-                style={{ animationDelay: `${index * 50}ms` }}
-                className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
-              >
+                <div
+                  key={article.id}
+                  style={{
+                    animationDelay: `${index * 50}ms`
+                  }}
+                  className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
+                >
 
-                <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary/60 to-primary/10" />
+                  <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary/60 to-primary/10" />
 
-                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start justify-between gap-3">
 
-                  <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center">
 
-                    <Icon
-                      size={19}
-                      className="text-primary"
-                    />
+                      <Icon
+                        size={19}
+                        className="text-primary"
+                      />
+
+                    </div>
+
+                    <span className="text-[11px] px-2.5 py-1 rounded-full border border-line text-muted bg-bg">
+                      {article.category}
+                    </span>
 
                   </div>
 
-                  <span className="text-[11px] px-2.5 py-1 rounded-full border border-line text-muted bg-bg">
-                    {article.category}
-                  </span>
+                  <h3 className="text-base font-semibold mt-5">
+                    {article.title}
+                  </h3>
+
+                  <p className="text-sm text-muted leading-6 mt-2 min-h-[90px]">
+                    {article.description}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-5 pt-4 border-t border-line">
+
+                    <span className="text-xs text-muted">
+                      {article.readTime}
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSelectedArticle(article)
+                      }
+                      className="h-9 px-4 rounded-full bg-primary text-white text-[11px] font-semibold flex items-center gap-2 hover:opacity-90 hover:gap-3 shadow-sm shadow-primary/20 transition-all"
+                    >
+
+                      Read Guide
+
+                      <ArrowRight size={13} />
+
+                    </button>
+
+                  </div>
 
                 </div>
 
-                <h3 className="text-base font-semibold mt-5">
-                  {article.title}
-                </h3>
-
-                <p className="text-sm text-muted leading-6 mt-2 min-h-[90px]">
-                  {article.description}
-                </p>
-
-                <div className="flex items-center justify-between mt-5 pt-4 border-t border-line">
-
-                  <span className="text-xs text-muted">
-                    {article.readTime}
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedArticle(article)}
-                    className="h-9 px-4 rounded-full bg-primary text-white text-[11px] font-semibold flex items-center gap-2 hover:opacity-90 hover:gap-3 shadow-sm shadow-primary/20 transition-all"
-                  >
-
-                    Read Guide
-
-                    <ArrowRight size={13} />
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            )
-
-          })}
+              )
+            }
+          )}
 
         </div>
 
@@ -1322,12 +1431,16 @@ export default function Documents() {
 
         <div
           className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-[2px] flex items-center justify-center p-4"
-          onClick={() => setSelectedDocument(null)}
+          onClick={() =>
+            setSelectedDocument(null)
+          }
         >
 
           <div
             className="doc-pop w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[24px] bg-white border border-slate-200 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
             {/* MODAL HEADER */}
@@ -1361,7 +1474,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedDocument(null)}
+                onClick={() =>
+                  setSelectedDocument(null)
+                }
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
@@ -1494,9 +1609,13 @@ export default function Documents() {
                   </p>
 
                   <p className="text-xs text-slate-500 mt-2 max-w-md leading-5">
-                    This document is available to your current role.
-                    Use the Download button below to download the PDF
-                    file.
+
+                    This document is currently connected to the available PDF file.
+
+                    <br />
+
+                    Use the Download button below to download it.
+
                   </p>
 
                 </div>
@@ -1511,17 +1630,19 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedDocument(null)}
+                onClick={() =>
+                  setSelectedDocument(null)
+                }
                 className="h-10 px-5 rounded-full border border-slate-200 bg-white text-slate-800 text-sm font-semibold hover:bg-slate-100 transition"
               >
                 Close
               </button>
 
-              {/* MODAL DOWNLOAD BUTTON */}
-
               <button
                 type="button"
-                onClick={() => handleDownload(selectedDocument)}
+                onClick={() =>
+                  handleDownload(selectedDocument)
+                }
                 className="h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold flex items-center gap-2 hover:opacity-90 shadow-sm shadow-primary/20 transition"
               >
 
@@ -1547,12 +1668,16 @@ export default function Documents() {
 
         <div
           className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-[2px] flex items-center justify-center p-4"
-          onClick={() => setSelectedArticle(null)}
+          onClick={() =>
+            setSelectedArticle(null)
+          }
         >
 
           <div
             className="doc-pop w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[24px] bg-white border border-slate-200 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
             {/* ARTICLE HEADER */}
@@ -1586,7 +1711,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedArticle(null)}
+                onClick={() =>
+                  setSelectedArticle(null)
+                }
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
@@ -1659,7 +1786,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedArticle(null)}
+                onClick={() =>
+                  setSelectedArticle(null)
+                }
                 className="h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold hover:opacity-90 shadow-sm shadow-primary/20 transition"
               >
                 Close
@@ -1690,7 +1819,9 @@ function SummaryCard({
 }) {
   return (
     <div
-      style={{ animationDelay: `${delay}ms` }}
+      style={{
+        animationDelay: `${delay}ms`
+      }}
       className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
     >
 
