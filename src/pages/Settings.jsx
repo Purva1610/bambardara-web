@@ -21,6 +21,7 @@ import {
   Trash2,
   MessageSquare,
   Check,
+  X,
 } from "lucide-react";
 
 import { Card, SectionHead } from "../components/Ui.jsx";
@@ -186,6 +187,10 @@ export default function Settings() {
 
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
+  // NEW: replaces every window.confirm() popup with a themed in-app modal.
+  // Shape: { title, message, confirmLabel, tone: "danger" | "default", onConfirm }
+  const [confirmDialog, setConfirmDialog] = useState(null);
+
   const hasUnsavedChanges = useMemo(() => {
     return (
       JSON.stringify(settings) !== JSON.stringify(savedSettings)
@@ -208,6 +213,26 @@ export default function Settings() {
   };
 
   /* =========================================================
+     CONFIRM DIALOG HELPERS
+  ========================================================= */
+
+  const askConfirm = (config) => {
+    setConfirmDialog(config);
+  };
+
+  const handleConfirmAccept = () => {
+    if (confirmDialog?.onConfirm) {
+      confirmDialog.onConfirm();
+    }
+
+    setConfirmDialog(null);
+  };
+
+  const handleConfirmCancel = () => {
+    setConfirmDialog(null);
+  };
+
+  /* =========================================================
      SAVE SETTINGS
   ========================================================= */
 
@@ -224,20 +249,23 @@ export default function Settings() {
   ========================================================= */
 
   const resetCurrentSection = () => {
-    const confirmed = window.confirm(
-      "Are you sure you want to discard changes in this section?"
-    );
+    askConfirm({
+      title: "Discard changes?",
+      message:
+        "Are you sure you want to discard the unsaved changes in this section? This cannot be undone.",
+      confirmLabel: "Discard Changes",
+      tone: "danger",
+      onConfirm: () => {
+        setSettings((prev) => ({
+          ...prev,
+          [activeTab]: deepClone(savedSettings[activeTab]),
+        }));
 
-    if (!confirmed) return;
+        setPasswordError("");
 
-    setSettings((prev) => ({
-      ...prev,
-      [activeTab]: deepClone(savedSettings[activeTab]),
-    }));
-
-    setPasswordError("");
-
-    showMessage("Changes discarded.", "info");
+        showMessage("Changes discarded.", "info");
+      },
+    });
   };
 
   /* =========================================================
@@ -288,6 +316,23 @@ export default function Settings() {
     };
 
     reader.readAsDataURL(file);
+  };
+
+  const removePhoto = () => {
+    askConfirm({
+      title: "Remove profile photo?",
+      message:
+        "This will remove your current profile photo. Click Save Changes afterwards to keep this change.",
+      confirmLabel: "Remove Photo",
+      tone: "danger",
+      onConfirm: () => {
+        updateProfile("photo", "");
+        showMessage(
+          "Profile photo removed. Click Save Changes to keep it.",
+          "info"
+        );
+      },
+    });
   };
 
   /* =========================================================
@@ -360,21 +405,24 @@ export default function Settings() {
 
   const start2FASetup = () => {
     if (settings.security.twoFactorEnabled) {
-      const confirmed = window.confirm(
-        "Disable two-factor authentication?"
-      );
+      askConfirm({
+        title: "Disable two-factor authentication?",
+        message:
+          "This removes the extra verification step when signing in to your account.",
+        confirmLabel: "Disable",
+        tone: "danger",
+        onConfirm: () => {
+          setSettings((prev) => ({
+            ...prev,
+            security: {
+              ...prev.security,
+              twoFactorEnabled: false,
+            },
+          }));
 
-      if (!confirmed) return;
-
-      setSettings((prev) => ({
-        ...prev,
-        security: {
-          ...prev.security,
-          twoFactorEnabled: false,
+          showMessage("Two-factor authentication disabled.", "info");
         },
-      }));
-
-      showMessage("Two-factor authentication disabled.", "info");
+      });
 
       return;
     }
@@ -412,37 +460,48 @@ export default function Settings() {
   ========================================================= */
 
   const logoutSession = (sessionId) => {
-    const confirmed = window.confirm(
-      "Sign out this device/session?"
+    const session = settings.sessions.find(
+      (item) => item.id === sessionId
     );
 
-    if (!confirmed) return;
+    askConfirm({
+      title: "Sign out this device?",
+      message: `This will immediately sign out "${
+        session?.device || "this session"
+      }". You'll need to log in again on that device.`,
+      confirmLabel: "Sign Out",
+      tone: "danger",
+      onConfirm: () => {
+        setSettings((prev) => ({
+          ...prev,
+          sessions: prev.sessions.filter(
+            (item) => item.id !== sessionId
+          ),
+        }));
 
-    setSettings((prev) => ({
-      ...prev,
-      sessions: prev.sessions.filter(
-        (session) => session.id !== sessionId
-      ),
-    }));
-
-    showMessage("Session removed successfully.", "info");
+        showMessage("Session removed successfully.", "info");
+      },
+    });
   };
 
   const logoutOtherSessions = () => {
-    const confirmed = window.confirm(
-      "This will sign out all other devices. Continue?"
-    );
+    askConfirm({
+      title: "Sign out all other devices?",
+      message:
+        "This will immediately sign out every other active session. Only your current device will stay signed in.",
+      confirmLabel: "Sign Out All",
+      tone: "danger",
+      onConfirm: () => {
+        setSettings((prev) => ({
+          ...prev,
+          sessions: prev.sessions.filter(
+            (session) => session.current
+          ),
+        }));
 
-    if (!confirmed) return;
-
-    setSettings((prev) => ({
-      ...prev,
-      sessions: prev.sessions.filter(
-        (session) => session.current
-      ),
-    }));
-
-    showMessage("All other sessions have been signed out.");
+        showMessage("All other sessions have been signed out.");
+      },
+    });
   };
 
   /* =========================================================
@@ -705,7 +764,7 @@ export default function Settings() {
 
               </div>
 
-              <p className="text-[12px] text-[#7A8981] mt-3 text-center">
+              <p className="text-[12px] text-[#7A8981] mt-3 text-center whitespace-pre-line">
                 {uploadingPhoto
                   ? "Uploading..."
                   : "JPG, PNG or WEBP\nMaximum size 2 MB"}
@@ -713,9 +772,7 @@ export default function Settings() {
 
               {settings.profile.photo && (
                 <button
-                  onClick={() =>
-                    updateProfile("photo", "")
-                  }
+                  onClick={removePhoto}
                   className="mt-2 text-[11px] text-[#A33A3A] hover:underline"
                 >
                   Remove photo
@@ -1330,6 +1387,99 @@ export default function Settings() {
             </div>
 
           </Card>
+
+        </div>
+      )}
+
+      {/* =====================================================
+          CONFIRM DIALOG (NEW — replaces every window.confirm())
+      ===================================================== */}
+
+      {confirmDialog && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-4"
+          onClick={handleConfirmCancel}
+        >
+
+          <div
+            className="bg-white rounded-2xl w-full max-w-sm shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <div className="px-6 pt-6 pb-2 flex items-start justify-between gap-3">
+
+              <div
+                className={`
+                  w-11 h-11 rounded-full flex items-center justify-center shrink-0
+                  ${
+                    confirmDialog.tone === "danger"
+                      ? "bg-[#FBEAEA] text-[#A33A3A]"
+                      : "bg-[#EEF3EF] text-[#173B2B]"
+                  }
+                `}
+              >
+                <AlertTriangle size={20} />
+              </div>
+
+              <button
+                onClick={handleConfirmCancel}
+                className="w-8 h-8 rounded-lg bg-[#F1F3F0] flex items-center justify-center text-[#52635A]"
+              >
+                <X size={15} />
+              </button>
+
+            </div>
+
+            <div className="px-6 pb-6">
+
+              <h3 className="text-[15px] font-semibold text-[#173B2B]">
+                {confirmDialog.title}
+              </h3>
+
+              <p className="text-[12.5px] text-[#7A8981] mt-2 leading-relaxed">
+                {confirmDialog.message}
+              </p>
+
+              <div className="flex justify-end gap-2 mt-6">
+
+                <button
+                  onClick={handleConfirmCancel}
+                  className="
+                    px-4 py-2.5
+                    rounded-lg
+                    border border-[#DDE5DF]
+                    text-[#52635A]
+                    text-[12px]
+                    font-medium
+                    hover:bg-[#F5F7F5]
+                  "
+                >
+                  Cancel
+                </button>
+
+                <button
+                  onClick={handleConfirmAccept}
+                  className={`
+                    px-4 py-2.5
+                    rounded-lg
+                    text-white
+                    text-[12px]
+                    font-medium
+                    ${
+                      confirmDialog.tone === "danger"
+                        ? "bg-[#A33A3A] hover:bg-[#8C2F2F]"
+                        : "bg-[#173B2B] hover:bg-[#28533F]"
+                    }
+                  `}
+                >
+                  {confirmDialog.confirmLabel || "Confirm"}
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
       )}

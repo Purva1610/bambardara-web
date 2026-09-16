@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 
 import {
   FileText,
-  Download,
   Eye,
   FileSpreadsheet,
   FileDown,
@@ -495,80 +494,84 @@ function CategoryBadge({ category }) {
 function ReportCard({
   report,
   onView,
-  onDownload,
   onExport,
 }) {
   const Icon = report.icon;
 
   return (
-    <Card className="p-5 h-full hover:border-[#C8D3CC] transition">
-      {/* Header */}
+    <Card className="p-5 h-full flex flex-col hover:border-[#C8D3CC] transition">
+      {/* Growing content area — everything above the buttons lives here,
+          so it absorbs any height difference between cards and the
+          action row below always lands on the same baseline. */}
+      <div className="flex-1">
+        {/* Header */}
 
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-start gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center shrink-0">
-            <Icon size={18} strokeWidth={1.8} />
-          </div>
-
-          <div className="min-w-0">
-            <h3 className="text-[14px] font-semibold text-ink m-0">
-              {report.title}
-            </h3>
-
-            <div className="flex items-center gap-2 mt-1.5">
-              <CategoryBadge
-                category={report.category}
-              />
-
-              <span className="text-[10px] text-muted">
-                {report.frequency}
-              </span>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center shrink-0">
+              <Icon size={18} strokeWidth={1.8} />
             </div>
-          </div>
-        </div>
 
-        <ReportStatus status={report.status} />
-      </div>
+            <div className="min-w-0">
+              <h3 className="text-[14px] font-semibold text-ink m-0">
+                {report.title}
+              </h3>
 
-      {/* Description */}
+              <div className="flex items-center gap-2 mt-1.5">
+                <CategoryBadge
+                  category={report.category}
+                />
 
-      <p className="text-[11px] text-muted leading-relaxed mt-4 mb-4 min-h-[48px]">
-        {report.description}
-      </p>
-
-      {/* Metrics */}
-
-      <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#E8ECE7] pt-4">
-        {report.metrics.map(
-          ([label, value]) => (
-            <div key={label}>
-              <div className="text-[9px] uppercase tracking-wide text-muted">
-                {label}
-              </div>
-
-              <div className="text-[12px] font-semibold text-ink mt-0.5">
-                {value}
+                <span className="text-[10px] text-muted">
+                  {report.frequency}
+                </span>
               </div>
             </div>
-          )
-        )}
-      </div>
+          </div>
 
-      {/* Meta */}
-
-      <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#E8ECE7]">
-        <div className="flex items-center gap-1.5 text-[10px] text-muted">
-          <CalendarDays size={12} />
-          {report.lastGenerated}
+          <ReportStatus status={report.status} />
         </div>
 
-        <span className="text-[10px] text-muted">
-          {report.records} records
-        </span>
+        {/* Description */}
+
+        <p className="text-[11px] text-muted leading-relaxed mt-4 mb-4 min-h-[48px]">
+          {report.description}
+        </p>
+
+        {/* Metrics */}
+
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#E8ECE7] pt-4">
+          {report.metrics.map(
+            ([label, value]) => (
+              <div key={label}>
+                <div className="text-[9px] uppercase tracking-wide text-muted">
+                  {label}
+                </div>
+
+                <div className="text-[12px] font-semibold text-ink mt-0.5">
+                  {value}
+                </div>
+              </div>
+            )
+          )}
+        </div>
+
+        {/* Meta */}
+
+        <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#E8ECE7]">
+          <div className="flex items-center gap-1.5 text-[10px] text-muted">
+            <CalendarDays size={12} />
+            {report.lastGenerated}
+          </div>
+
+          <span className="text-[10px] text-muted">
+            {report.records} records
+          </span>
+        </div>
       </div>
 
-      {/* Actions */}
-
+      {/* Actions — always sits at the same level since the block above
+          has already absorbed the extra space. */}
       <div className="flex items-center gap-2 mt-4">
         <button
           type="button"
@@ -577,16 +580,6 @@ function ReportCard({
         >
           <Eye size={13} />
           View
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onDownload(report)}
-          className="h-8 px-3 rounded-lg border border-[#DDE3DD] text-[#416454] text-[10px] font-medium flex items-center justify-center gap-1.5 hover:bg-[#F7F9F7] transition"
-          title="Download CSV"
-        >
-          <Download size={13} />
-          Download
         </button>
 
         <button
@@ -652,70 +645,6 @@ export default function Reports() {
       );
     });
   }, [searchTerm, categoryFilter]);
-
-  /* =======================================================
-     CSV DOWNLOAD
-  ====================================================== */
-
-  function downloadCSV(report) {
-    const detail = reportDetails[report.id];
-
-    if (!detail) {
-      setNotification(
-        "Report data is not available."
-      );
-
-      return;
-    }
-
-    const csvRows = [
-      detail.columns,
-      ...detail.rows,
-    ];
-
-    const csv = csvRows
-      .map((row) =>
-        row
-          .map((cell) => {
-            const value = String(cell ?? "");
-
-            return `"${value.replace(
-              /"/g,
-              '""'
-            )}"`;
-          })
-          .join(",")
-      )
-      .join("\n");
-
-    const blob = new Blob([csv], {
-      type: "text/csv;charset=utf-8;",
-    });
-
-    const url =
-      URL.createObjectURL(blob);
-
-    const link =
-      document.createElement("a");
-
-    link.href = url;
-
-    link.download = `${report.title
-      .replace(/[^a-z0-9]+/gi, "_")
-      .toLowerCase()}_report.csv`;
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(url);
-
-    setNotification(
-      `${report.title} downloaded as CSV.`
-    );
-  }
 
   /* =======================================================
      EXCEL EXPORT
@@ -957,6 +886,39 @@ export default function Reports() {
 
         y += 8;
       }
+    );
+
+    /* Signature area */
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const signatureBottomMargin = 18;
+    const signatureY = pageHeight - signatureBottomMargin;
+
+    // Keep the signature area clear of the table.
+    if (y + 18 > signatureY) {
+      doc.addPage();
+    }
+
+    const finalPageHeight = doc.internal.pageSize.getHeight();
+    const finalSignatureY = finalPageHeight - signatureBottomMargin;
+    const signatureX = pageWidth - margin - 45;
+
+    doc.setDrawColor(120, 128, 122);
+    doc.setLineWidth(0.35);
+    doc.line(
+      signatureX,
+      finalSignatureY - 7,
+      pageWidth - margin,
+      finalSignatureY - 7
+    );
+
+    doc.setTextColor(45, 55, 49);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.text(
+      "Signature",
+      pageWidth - margin - 22.5,
+      finalSignatureY - 2,
+      { align: "center" }
     );
 
     doc.save(
@@ -1216,7 +1178,6 @@ export default function Reports() {
                   key={report.id}
                   report={report}
                   onView={viewReport}
-                  onDownload={downloadCSV}
                   onExport={setExportReport}
                 />
               )
@@ -1397,19 +1358,6 @@ export default function Reports() {
                 <button
                   type="button"
                   onClick={() =>
-                    downloadCSV(
-                      selectedReport
-                    )
-                  }
-                  className="h-8 px-3 rounded-lg border border-[#DDE3DD] text-[#416454] text-[10px] font-medium flex items-center gap-1.5 hover:bg-[#F7F9F7]"
-                >
-                  <Download size={13} />
-                  CSV
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
                     setExportReport(
                       selectedReport
                     )
@@ -1514,31 +1462,6 @@ export default function Reports() {
                 </div>
               </button>
 
-              {/* CSV */}
-
-              <button
-                type="button"
-                onClick={() => {
-                  downloadCSV(
-                    exportReport
-                  );
-
-                  setExportReport(null);
-                }}
-                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#B48718] hover:bg-[#FFFCF3] transition text-left"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#F7EED2] text-[#8B6914] flex items-center justify-center mb-3">
-                  <FileDown size={18} />
-                </div>
-
-                <div className="text-[12px] font-semibold text-ink">
-                  CSV
-                </div>
-
-                <div className="text-[10px] text-muted mt-1">
-                  Data file
-                </div>
-              </button>
             </div>
           </div>
         </div>

@@ -249,6 +249,8 @@ const initialApprovals = [
     date: "12 Sep 2026",
     priority: "High",
     status: "Pending",
+    description:
+      "Revised material budget requested due to increased steel and cement costs. Requires MD sign-off before procurement can proceed.",
   },
   {
     id: 2,
@@ -259,6 +261,8 @@ const initialApprovals = [
     date: "11 Sep 2026",
     priority: "Medium",
     status: "Pending",
+    description:
+      "Purchase of zip-line and adventure equipment to unblock the delayed installation milestone.",
   },
   {
     id: 3,
@@ -269,6 +273,8 @@ const initialApprovals = [
     date: "09 Sep 2026",
     priority: "Medium",
     status: "Pending",
+    description:
+      "Proposed multi-year partnership with a corporate client for bulk memberships and event hosting.",
   },
 ];
 
@@ -366,6 +372,9 @@ export default function Overview() {
 
   const [investorModal, setInvestorModal] = useState(false);
   const [siteVisitModal, setSiteVisitModal] = useState(false);
+
+  // NEW: replaces the alert() popup for the Review action
+  const [reviewApproval, setReviewApproval] = useState(null);
 
   const [investorForm, setInvestorForm] = useState({
     name: "",
@@ -1295,9 +1304,7 @@ export default function Overview() {
 
                           <button
                             onClick={() =>
-                              alert(
-                                `Reviewing: ${approval.title}`
-                              )
+                              setReviewApproval(approval)
                             }
                             className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[#DDE4DE] text-[#173B2B] text-[9px]"
                           >
@@ -1412,51 +1419,6 @@ export default function Overview() {
         </div>
 
       </div>
-
-
-      {/* =====================================================
-          QUICK ACTIONS
-      ===================================================== */}
-{/* 
-      <Card>
-
-        <div className="flex items-center justify-between">
-
-          <div>
-
-            <h3 className="text-[14px] font-semibold m-0">
-              Quick Actions
-            </h3>
-
-            <p className="text-[11px] text-muted mt-1 m-0">
-              Frequently used management actions
-            </p>
-
-          </div>
-
-          <div className="flex gap-2">
-
-            <button
-              onClick={() => setInvestorModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#173B2B] text-white text-[10px] font-medium hover:opacity-90"
-            >
-              <Plus size={13} />
-              Add Investor
-            </button>
-
-            <button
-              onClick={() => setSiteVisitModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#DDE4DE] text-[#173B2B] text-[10px] font-medium hover:bg-[#F5F7F4]"
-            >
-              <MapPin size={13} />
-              Schedule Site Visit
-            </button>
-
-          </div>
-
-        </div>
-
-      </Card> */}
 
 
       {/* =====================================================
@@ -1728,6 +1690,136 @@ export default function Overview() {
             </div>
 
           </form>
+
+        </Modal>
+
+      )}
+
+
+      {/* =====================================================
+          REVIEW APPROVAL MODAL (NEW — replaces alert())
+      ===================================================== */}
+
+      {reviewApproval && (
+
+        <Modal
+          title="Review Request"
+          onClose={() => setReviewApproval(null)}
+        >
+
+          <div className="space-y-5">
+
+            <div className="flex items-start justify-between gap-3">
+
+              <div>
+
+                <p className="text-[9px] uppercase tracking-wide text-muted">
+                  {reviewApproval.type}
+                </p>
+
+                <h2 className="text-[17px] font-semibold mt-1">
+                  {reviewApproval.title}
+                </h2>
+
+              </div>
+
+              <StatusBadge tone={getStatusTone(reviewApproval.status)}>
+                {reviewApproval.status}
+              </StatusBadge>
+
+            </div>
+
+
+            <div className="grid grid-cols-3 gap-3">
+
+              <InfoBox
+                label="Amount"
+                value={reviewApproval.amount}
+              />
+
+              <InfoBox
+                label="Requested By"
+                value={reviewApproval.requestedBy}
+              />
+
+              <InfoBox
+                label="Date"
+                value={reviewApproval.date}
+              />
+
+            </div>
+
+
+            <div className="rounded-xl bg-[#F5F7F4] border border-[#E7EBE6] p-4">
+
+              <p className="text-[10px] font-semibold">
+                Details
+              </p>
+
+              <p className="text-[11px] text-muted mt-2 leading-relaxed">
+                {reviewApproval.description ||
+                  "No additional details were provided for this request."}
+              </p>
+
+            </div>
+
+
+            <div className="rounded-xl bg-[#EEF2ED] border border-[#DDE4DE] p-4 flex items-center justify-between">
+
+              <div>
+                <p className="text-[10px] font-semibold">
+                  Priority
+                </p>
+                <p
+                  className={`text-[11px] mt-1 font-semibold ${
+                    reviewApproval.priority === "Critical"
+                      ? "text-[#B95C50]"
+                      : "text-[#B48718]"
+                  }`}
+                >
+                  {reviewApproval.priority}
+                </p>
+              </div>
+
+              <Clock3 size={17} className="text-[#173B2B]" />
+
+            </div>
+
+
+            <div className="flex justify-end gap-2 pt-2">
+
+              <button
+                onClick={() => setReviewApproval(null)}
+                className="px-4 py-2 rounded-lg border border-[#DDE4DE] text-[10px]"
+              >
+                Close
+              </button>
+
+              <button
+                onClick={() => {
+                  updateApproval(reviewApproval.id, "Rejected");
+                  setReviewApproval(null);
+                }}
+                className="px-4 py-2 rounded-lg bg-[#F9EEEE] text-[#B95C50] text-[10px] inline-flex items-center gap-1.5"
+              >
+                <XCircle size={12} />
+                Reject
+              </button>
+
+              <button
+                onClick={() => {
+                  updateApproval(reviewApproval.id, "Approved");
+                  setReviewApproval(null);
+                }}
+                className="px-4 py-2 rounded-lg bg-[#173B2B] text-white text-[10px] inline-flex items-center gap-1.5"
+              >
+                <CheckCircle2 size={12} />
+                Approve
+              </button>
+
+            </div>
+
+          </div>
 
         </Modal>
 
