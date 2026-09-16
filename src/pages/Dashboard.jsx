@@ -1417,7 +1417,7 @@ export default function Overview() {
       {/* =====================================================
           QUICK ACTIONS
       ===================================================== */}
-
+{/* 
       <Card>
 
         <div className="flex items-center justify-between">
@@ -1456,7 +1456,7 @@ export default function Overview() {
 
         </div>
 
-      </Card>
+      </Card> */}
 
 
       {/* =====================================================
