@@ -1,9 +1,21 @@
 services:
-  bambardarda-app:
+  bambardara-web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: agro_tourism_frontend
+      args:
+        # Keycloak config is baked into the JS bundle at build time (Direct
+        # Grant flow - see src/features/auth/services/keycloak.js). Create a
+        # .env file (see .env.example) and these will be picked up
+        # automatically by docker-compose.
+        VITE_KEYCLOAK_URL: ${VITE_KEYCLOAK_URL:-http://localhost:8081}
+        VITE_KEYCLOAK_REALM: ${VITE_KEYCLOAK_REALM:-bambardara}
+        VITE_KEYCLOAK_CLIENT_ID: ${VITE_KEYCLOAK_CLIENT_ID:-bambardara-web}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
+        # Optional: POST endpoint for the enquiry form. When unset the form
+        # falls back to a pre-filled mailto: link.
+        VITE_ENQUIRY_ENDPOINT: ${VITE_ENQUIRY_ENDPOINT:-}
+    container_name: bambardara_web
     ports:
       - "3000:80"
     restart: unless-stopped
