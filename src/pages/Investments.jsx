@@ -263,469 +263,337 @@ export default function Investments() {
      PDF REPORT
   ======================================================= */
 
-  const generateReport = () => {
-    setIsDownloading(true);
+ const generateReport = () => {
+  setIsDownloading(true);
 
-    setTimeout(() => {
-      try {
-        const doc = new jsPDF();
+  setTimeout(() => {
+    try {
+      const doc = new jsPDF();
 
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
 
-        /* HEADER */
+      /* HEADER */
 
-        doc.setFillColor(23, 35, 27);
-        doc.rect(0, 0, pageWidth, 36, "F");
+      doc.setFillColor(23, 35, 27);
+      doc.rect(0, 0, pageWidth, 36, "F");
 
-        doc.setTextColor(255, 255, 255);
-        doc.setFontSize(20);
-        doc.setFont("helvetica", "bold");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(20);
+      doc.setFont("helvetica", "bold");
 
-        doc.text(
-          "Investment Portfolio Report",
-          15,
-          18
-        );
+      doc.text("Investment Portfolio Report", 15, 18);
 
-        doc.setFontSize(9);
-        doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
 
-        doc.text(
-          "Bambardara MD Dashboard",
-          15,
-          27
-        );
+      doc.text("Bambardara MD Dashboard", 15, 27);
 
-        const generatedDate = new Date().toLocaleString(
-          "en-IN",
-          {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-          }
-        );
+      const generatedDate = new Date().toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
-        doc.text(
-          `Generated: ${generatedDate}`,
-          pageWidth - 15,
-          18,
-          {
-            align: "right",
-          }
-        );
+      doc.text(`Generated: ${generatedDate}`, pageWidth - 15, 18, {
+        align: "right",
+      });
 
-        let y = 48;
+      let y = 48;
 
-        /* EXECUTIVE SUMMARY */
+      /* EXECUTIVE SUMMARY */
 
-        doc.setTextColor(23, 32, 27);
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
+      doc.setTextColor(23, 32, 27);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
 
-        doc.text(
-          "Executive Summary",
-          15,
-          y
-        );
+      doc.text("Executive Summary", 15, y);
 
-        y += 8;
+      y += 8;
 
-        doc.setFillColor(247, 249, 248);
+      doc.setFillColor(247, 249, 248);
 
-        doc.roundedRect(
-          15,
-          y,
-          pageWidth - 30,
-          43,
-          3,
-          3,
-          "F"
-        );
+      doc.roundedRect(15, y, pageWidth - 30, 43, 3, 3, "F");
+
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(100, 110, 104);
+
+      doc.text("TOTAL CAPITAL DEPLOYED", 20, y + 9);
+      doc.text("CURRENT PORTFOLIO VALUE", 105, y + 9);
+
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(23, 32, 27);
+
+      doc.text(formatCurrency(totalInvested), 20, y + 17);
+      doc.text(formatCurrency(totalCurrent), 105, y + 17);
+
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(100, 110, 104);
+
+      doc.text("TOTAL RETURNS", 20, y + 28);
+      doc.text("PORTFOLIO RETURN", 105, y + 28);
+
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+
+      if (totalGain >= 0) {
+        doc.setTextColor(67, 132, 87);
+      } else {
+        doc.setTextColor(177, 91, 91);
+      }
+
+      doc.text(formatCurrency(totalGain), 20, y + 36);
+      doc.text(
+        `${overallReturn >= 0 ? "+" : ""}${overallReturn.toFixed(2)}%`,
+        105,
+        y + 36
+      );
+
+      y += 55;
+
+      /* PERFORMANCE */
+
+      doc.setTextColor(23, 32, 27);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+
+      doc.text("Performance Metrics", 15, y);
+
+      y += 7;
+
+      autoTable(doc, {
+        startY: y,
+        theme: "plain",
+        body: [
+          ["Active Investments", `${activeInvestments} positions`],
+          [
+            "Best Performing Investment",
+            `${bestInvestment.name} (+${bestInvestment.return}%)`,
+          ],
+          ["Average Return", `${averageReturn.toFixed(2)}%`],
+          [
+            "Total Investment Categories",
+            `${categories.length - 1} sectors`,
+          ],
+        ],
+        styles: {
+          fontSize: 9,
+          cellPadding: 4,
+        },
+        columnStyles: {
+          0: {
+            textColor: [86, 97, 91],
+            cellWidth: 80,
+          },
+          1: {
+            fontStyle: "bold",
+            textColor: [38, 49, 41],
+          },
+        },
+      });
+
+      y = doc.lastAutoTable.finalY + 12;
+
+      /* CATEGORY BREAKDOWN */
+
+      if (y > pageHeight - 80) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setTextColor(23, 32, 27);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+
+      doc.text("Investment Breakdown by Category", 15, y);
+
+      y += 7;
+
+      autoTable(doc, {
+        startY: y,
+        head: [["Category", "Value", "Allocation"]],
+        body: allocation.map((item) => [
+          item.label,
+          formatCurrency(item.value),
+          `${item.percentage}%`,
+        ]),
+        theme: "striped",
+        headStyles: {
+          fillColor: [23, 35, 27],
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          fontSize: 9,
+        },
+        styles: {
+          fontSize: 9,
+          cellPadding: 4,
+        },
+      });
+
+      y = doc.lastAutoTable.finalY + 12;
+
+      /* TOP HOLDINGS */
+
+      if (y > pageHeight - 80) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(23, 32, 27);
+
+      doc.text("Top 5 Holdings", 15, y);
+
+      y += 7;
+
+      autoTable(doc, {
+        startY: y,
+        head: [["Rank", "Investment", "Category", "Current Value", "Return"]],
+        body: topHoldings.map((investment, index) => [
+          index + 1,
+          investment.name,
+          investment.category,
+          formatCurrency(investment.current),
+          `${investment.return >= 0 ? "+" : ""}${investment.return}%`,
+        ]),
+        theme: "striped",
+        headStyles: {
+          fillColor: [23, 35, 27],
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          fontSize: 8,
+        },
+        styles: {
+          fontSize: 8,
+          cellPadding: 3,
+        },
+      });
+
+      y = doc.lastAutoTable.finalY + 12;
+
+      /* COMPLETE PORTFOLIO */
+
+      if (y > pageHeight - 90) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(23, 32, 27);
+
+      doc.text("Complete Investment Portfolio", 15, y);
+
+      y += 7;
+
+      autoTable(doc, {
+        startY: y,
+        head: [
+          ["Investment", "Category", "Invested", "Current", "Return", "Status"],
+        ],
+        body: investmentsData.map((investment) => [
+          investment.name,
+          investment.category,
+          formatCurrency(investment.invested),
+          formatCurrency(investment.current),
+          `${investment.return >= 0 ? "+" : ""}${investment.return}%`,
+          investment.status,
+        ]),
+        theme: "striped",
+        headStyles: {
+          fillColor: [23, 35, 27],
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          fontSize: 7,
+        },
+        styles: {
+          fontSize: 7,
+          cellPadding: 3,
+        },
+      });
+
+      y = doc.lastAutoTable.finalY + 12;
+
+      /* RISK */
+
+      if (y > pageHeight - 60) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(23, 32, 27);
+
+      doc.text("Risk Assessment", 15, y);
+
+      y += 7;
+
+      autoTable(doc, {
+        startY: y,
+        theme: "plain",
+        body: [
+          ["Under Review", `${underReview} investment(s)`],
+          ["Negative Returns", `${negativeReturns} position(s)`],
+          ["Diversification Score", `${diversificationScore}/100`],
+        ],
+        styles: {
+          fontSize: 9,
+          cellPadding: 4,
+        },
+        columnStyles: {
+          0: {
+            textColor: [86, 97, 91],
+            cellWidth: 80,
+          },
+          1: {
+            fontStyle: "bold",
+            textColor: [38, 49, 41],
+          },
+        },
+      });
+
+      /* FOOTER */
+
+      const totalPages = doc.internal.getNumberOfPages();
+
+      for (let page = 1; page <= totalPages; page++) {
+        doc.setPage(page);
 
         doc.setFontSize(8);
         doc.setFont("helvetica", "normal");
-        doc.setTextColor(100, 110, 104);
+        doc.setTextColor(138, 147, 142);
 
         doc.text(
-          "TOTAL CAPITAL DEPLOYED",
-          20,
-          y + 9
-        );
-
-        doc.text(
-          "CURRENT PORTFOLIO VALUE",
-          105,
-          y + 9
-        );
-
-        doc.setFontSize(12);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
-
-        doc.text(
-          formatCurrency(totalInvested),
-          20,
-          y + 17
-        );
-
-        doc.text(
-          formatCurrency(totalCurrent),
-          105,
-          y + 17
-        );
-
-        doc.setFontSize(8);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(100, 110, 104);
-
-        doc.text(
-          "TOTAL RETURNS",
-          20,
-          y + 28
-        );
-
-        doc.text(
-          "PORTFOLIO RETURN",
-          105,
-          y + 28
-        );
-
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-
-        if (totalGain >= 0) {
-          doc.setTextColor(67, 132, 87);
-        } else {
-          doc.setTextColor(177, 91, 91);
-        }
-
-        doc.text(
-          formatCurrency(totalGain),
-          20,
-          y + 36
-        );
-
-        doc.text(
-          `${overallReturn >= 0 ? "+" : ""}${overallReturn.toFixed(
-            2
-          )}%`,
-          105,
-          y + 36
-        );
-
-        y += 55;
-
-        /* PERFORMANCE */
-
-        doc.setTextColor(23, 32, 27);
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-
-        doc.text(
-          "Performance Metrics",
-          15,
-          y
-        );
-
-        y += 7;
-
-        autoTable(doc, {
-          startY: y,
-          theme: "plain",
-          body: [
-            [
-              "Active Investments",
-              `${activeInvestments} positions`,
-            ],
-            [
-              "Best Performing Investment",
-              `${bestInvestment.name} (+${bestInvestment.return}%)`,
-            ],
-            [
-              "Average Return",
-              `${averageReturn.toFixed(2)}%`,
-            ],
-            [
-              "Total Investment Categories",
-              `${categories.length - 1} sectors`,
-            ],
-          ],
-          styles: {
-            fontSize: 9,
-            cellPadding: 4,
-          },
-          columnStyles: {
-            0: {
-              textColor: [86, 97, 91],
-              cellWidth: 80,
-            },
-            1: {
-              fontStyle: "bold",
-              textColor: [38, 49, 41],
-            },
-          },
-        });
-
-        y = doc.lastAutoTable.finalY + 12;
-
-        /* CATEGORY BREAKDOWN */
-
-        if (y > pageHeight - 80) {
-          doc.addPage();
-          y = 20;
-        }
-
-        doc.setTextColor(23, 32, 27);
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-
-        doc.text(
-          "Investment Breakdown by Category",
-          15,
-          y
-        );
-
-        y += 7;
-
-        autoTable(doc, {
-          startY: y,
-          head: [["Category", "Value", "Allocation"]],
-          body: allocation.map((item) => [
-            item.label,
-            formatCurrency(item.value),
-            `${item.percentage}%`,
-          ]),
-          theme: "striped",
-          headStyles: {
-            fillColor: [23, 35, 27],
-            textColor: [255, 255, 255],
-            fontStyle: "bold",
-            fontSize: 9,
-          },
-          styles: {
-            fontSize: 9,
-            cellPadding: 4,
-          },
-        });
-
-        y = doc.lastAutoTable.finalY + 12;
-
-        /* TOP HOLDINGS */
-
-        if (y > pageHeight - 80) {
-          doc.addPage();
-          y = 20;
-        }
-
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
-
-        doc.text(
-          "Top 5 Holdings",
-          15,
-          y
-        );
-
-        y += 7;
-
-        autoTable(doc, {
-          startY: y,
-          head: [
-            [
-              "Rank",
-              "Investment",
-              "Category",
-              "Current Value",
-              "Return",
-            ],
-          ],
-          body: topHoldings.map(
-            (investment, index) => [
-              index + 1,
-              investment.name,
-              investment.category,
-              formatCurrency(investment.current),
-              `${investment.return >= 0 ? "+" : ""}${investment.return}%`,
-            ]
-          ),
-          theme: "striped",
-          headStyles: {
-            fillColor: [23, 35, 27],
-            textColor: [255, 255, 255],
-            fontStyle: "bold",
-            fontSize: 8,
-          },
-          styles: {
-            fontSize: 8,
-            cellPadding: 3,
-          },
-        });
-
-        y = doc.lastAutoTable.finalY + 12;
-
-        /* COMPLETE PORTFOLIO */
-
-        if (y > pageHeight - 90) {
-          doc.addPage();
-          y = 20;
-        }
-
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
-
-        doc.text(
-          "Complete Investment Portfolio",
-          15,
-          y
-        );
-
-        y += 7;
-
-        autoTable(doc, {
-          startY: y,
-          head: [
-            [
-              "Investment",
-              "Category",
-              "Invested",
-              "Current",
-              "Return",
-              "Status",
-            ],
-          ],
-          body: investmentsData.map(
-            (investment) => [
-              investment.name,
-              investment.category,
-              formatCurrency(investment.invested),
-              formatCurrency(investment.current),
-              `${investment.return >= 0 ? "+" : ""}${investment.return}%`,
-              investment.status,
-            ]
-          ),
-          theme: "striped",
-          headStyles: {
-            fillColor: [23, 35, 27],
-            textColor: [255, 255, 255],
-            fontStyle: "bold",
-            fontSize: 7,
-          },
-          styles: {
-            fontSize: 7,
-            cellPadding: 3,
-          },
-        });
-
-        y = doc.lastAutoTable.finalY + 12;
-
-        /* RISK */
-
-        if (y > pageHeight - 60) {
-          doc.addPage();
-          y = 20;
-        }
-
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
-
-        doc.text(
-          "Risk Assessment",
-          15,
-          y
-        );
-
-        y += 7;
-
-        autoTable(doc, {
-          startY: y,
-          theme: "plain",
-          body: [
-            [
-              "Under Review",
-              `${underReview} investment(s)`,
-            ],
-            [
-              "Negative Returns",
-              `${negativeReturns} position(s)`,
-            ],
-            [
-              "Diversification Score",
-              `${diversificationScore}/100`,
-            ],
-          ],
-          styles: {
-            fontSize: 9,
-            cellPadding: 4,
-          },
-          columnStyles: {
-            0: {
-              textColor: [86, 97, 91],
-              cellWidth: 80,
-            },
-            1: {
-              fontStyle: "bold",
-              textColor: [38, 49, 41],
-            },
-          },
-        });
-
-        /* FOOTER */
-
-        const totalPages =
-          doc.internal.getNumberOfPages();
-
-        for (
-          let page = 1;
-          page <= totalPages;
-          page++
-        ) {
-          doc.setPage(page);
-
-          doc.setFontSize(8);
-          doc.setFont("helvetica", "normal");
-          doc.setTextColor(138, 147, 142);
-
-          doc.text(
-            `Bambardara Investment Report - Page ${page} of ${totalPages}`,
-            pageWidth / 2,
-            pageHeight - 8,
-            {
-              align: "center",
-            }
-          );
-        }
-
-        const fileName = `Investment_Report_${
-          new Date().toISOString().split("T")[0]
-        }.pdf`;
-
-        doc.save(fileName);
-
-        setIsDownloading(false);
-
-        alert(
-          "Investment Report downloaded successfully!"
-        );
-      } catch (error) {
-        console.error(
-          "Investment report error:",
-          error
-        );
-
-        setIsDownloading(false);
-
-        alert(
-          "Unable to generate the report. Please check the PDF packages."
+          `Bambardara Investment Report - Page ${page} of ${totalPages}`,
+          pageWidth / 2,
+          pageHeight - 8,
+          {
+            align: "center",
+          }
         );
       }
-    }, 300);
-  };
+
+      const fileName = `Investment_Report_${
+        new Date().toISOString().split("T")[0]
+      }.pdf`;
+
+      doc.save(fileName);
+
+      setIsDownloading(false);
+      setShowReportModal(false);
+    } catch (error) {
+      console.error("Investment report error:", error);
+      setIsDownloading(false);
+    }
+  }, 300);
+};
 
   /* =========================================================
      JSX
