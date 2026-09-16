@@ -149,7 +149,7 @@ export default function Spa() {
                   Rediscover your natural radiance through time-honored Ayurvedic rituals that harmonize the body, mind, and spirit. Unlike modern surface-level treatments, our specialized massages and spa therapies utilize ancient Indian wisdom and pure botanical oils to stimulate vital energy centers and improve skin vitality from within. Each session is a personalized journey of restoration, precisely tailored to your unique skin type and wellness goals to leave you with a luminous, smooth, and naturally rejuvenated complexion.
                 </p>
                 <Link
-                  to="/enquire"
+                  to="/spa/booking"
                   className="inline-block px-8 py-3 bg-deep-forest text-ivory-white text-sm tracking-[0.15em] uppercase font-light hover:bg-forest-green transition-all duration-300"
                 >
                   Learn More
@@ -198,7 +198,7 @@ export default function Spa() {
                   Ayurveda, the 5,000-year-old "Science of Life," teaches that true beauty is not a surface-level destination but a profound reflection of inner balance between the body, mind, and spirit. In this sanctuary, we view Ayurvedic massages as far more than a luxury; they are a quiet, grounding way to support your natural rhythm in an overstimulating world. Each ritual serves as a gentle reset—soothing the nervous system and restoring vital energy through timeless traditions like Abhyanga (warm oil therapy) and Shiro Abhyanga (herbal head massage). By harmonising the five basic elements within—Space, Air, Fire, Water, and Earth—these therapies encourage ageless beauty and spiritual growth, reminding you that your radiance is innate and eternally connected to nature.
                 </p>
                 <Link
-                  to="/enquire"
+                  to="/spa/booking"
                   className="inline-block px-8 py-3 bg-deep-forest text-ivory-white text-sm tracking-[0.15em] uppercase font-light hover:bg-forest-green transition-all duration-300"
                 >
                   Learn More

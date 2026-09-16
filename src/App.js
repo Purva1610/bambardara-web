@@ -12,6 +12,7 @@ import PageTransition from './components/shared/PageTransition';
 import Home from './pages/Home';
 import Stays from './pages/Stays';
 import Spa from './pages/Spa';
+import SpaBooking from './pages/SpaBooking';
 import Adventures from './pages/Adventures';
 import ExperienceTypePage from './pages/ExperienceTypePage';
 import ExperienceDetail from './pages/ExperienceDetail';
@@ -97,6 +98,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/stays" element={<Stays />} />
             <Route path="/spa" element={<Spa />} />
+            <Route path="/spa/booking" element={<SpaBooking />} />
             <Route path="/experiences" element={<Adventures />} />
             <Route path="/experiences/:type" element={<ExperienceTypePage />} />
             <Route path="/experience/:id" element={<ExperienceDetail />} />
