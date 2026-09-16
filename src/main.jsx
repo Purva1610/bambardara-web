@@ -5,17 +5,20 @@ import App from './App';
 import { ThemeProvider } from './app/providers/ThemeContext';
 import { ToastProvider } from './app/providers/ToastContext';
 import { AuthProvider } from './features/auth/context/AuthContext';
+import { AccessProvider } from './app/providers/AccessContext';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ToastProvider>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </ToastProvider>
+        <AccessProvider>
+          <ToastProvider>
+            <ThemeProvider>
+              <App />
+            </ThemeProvider>
+          </ToastProvider>
+        </AccessProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
