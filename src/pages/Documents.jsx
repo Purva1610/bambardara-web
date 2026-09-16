@@ -432,22 +432,51 @@ export default function Documents() {
   })
 
   /* =========================================================
-     DOWNLOAD
+     DOWNLOAD PDF
   ========================================================= */
 
-  const handleDownload = (document) => {
+  const handleDownload = async (document) => {
     if (!canAccessDocument(document)) return
 
-    const link = window.document.createElement('a')
+    if (!document.fileUrl) {
+      alert('Document file is not available yet.')
+      return
+    }
 
-    link.href = document.fileUrl
-    link.download = `${document.name}.pdf`
-    link.target = '_blank'
-    link.rel = 'noopener noreferrer'
+    try {
+      const response = await fetch(document.fileUrl)
 
-    window.document.body.appendChild(link)
-    link.click()
-    window.document.body.removeChild(link)
+      if (!response.ok) {
+        throw new Error('PDF file not found')
+      }
+
+      const blob = await response.blob()
+
+      const blobUrl = window.URL.createObjectURL(blob)
+
+      const link = window.document.createElement('a')
+
+      link.href = blobUrl
+      link.download = `${document.name}.pdf`
+
+      link.style.display = 'none'
+
+      window.document.body.appendChild(link)
+
+      link.click()
+
+      window.document.body.removeChild(link)
+
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl)
+      }, 1000)
+    } catch (error) {
+      console.error('Download error:', error)
+
+      alert(
+        `Unable to download "${document.name}". Please make sure the PDF file exists in the public/documents folder.`
+      )
+    }
   }
 
   /* =========================================================
@@ -738,8 +767,6 @@ export default function Documents() {
 
             </div>
 
-            {/* PREMIUM FILTER BUTTON */}
-
             <button
               type="button"
               onClick={() => setShowFilter((value) => !value)}
@@ -905,9 +932,7 @@ export default function Documents() {
 
         </div>
 
-        {/* ===================================================
-            DOCUMENT TABLE
-        =================================================== */}
+        {/* DOCUMENT TABLE */}
 
         <div className="eq-card overflow-hidden">
 
@@ -946,37 +971,25 @@ export default function Documents() {
 
                 <tr className="bg-bg border-b border-line">
 
-                  {/* DOCUMENT */}
-
                   <th className="w-[25%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Document
                   </th>
-
-                  {/* DESCRIPTION */}
 
                   <th className="w-[16%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Description
                   </th>
 
-                  {/* CATEGORY */}
-
                   <th className="w-[14%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Category
                   </th>
-
-                  {/* LAST UPDATED */}
 
                   <th className="w-[13%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Last Updated
                   </th>
 
-                  {/* ACCESS */}
-
                   <th className="w-[12%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Access
                   </th>
-
-                  {/* ACTION */}
 
                   <th className="w-[20%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Action
@@ -999,8 +1012,6 @@ export default function Documents() {
                       style={{ animationDelay: `${index * 35}ms` }}
                       className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
                     >
-
-                      {/* DOCUMENT */}
 
                       <td className="px-4 py-5 align-middle">
 
@@ -1031,8 +1042,6 @@ export default function Documents() {
 
                       </td>
 
-                      {/* DESCRIPTION */}
-
                       <td className="px-4 py-5 align-middle">
 
                         <p className="text-[11px] text-muted leading-5 break-words">
@@ -1041,8 +1050,6 @@ export default function Documents() {
 
                       </td>
 
-                      {/* CATEGORY */}
-
                       <td className="px-4 py-5 align-middle">
 
                         <span className="inline-flex items-center max-w-full px-2.5 py-1.5 rounded-full bg-bg border border-line text-[10px] text-text font-medium leading-4 whitespace-normal break-words">
@@ -1050,8 +1057,6 @@ export default function Documents() {
                         </span>
 
                       </td>
-
-                      {/* LAST UPDATED */}
 
                       <td className="px-4 py-5 align-middle">
 
@@ -1069,8 +1074,6 @@ export default function Documents() {
                         </div>
 
                       </td>
-
-                      {/* ACCESS */}
 
                       <td className="px-2 py-5 align-middle">
 
@@ -1102,13 +1105,9 @@ export default function Documents() {
 
                       </td>
 
-                      {/* ACTION */}
-
                       <td className="px-2 py-5 align-middle">
 
                         <div className="flex justify-center items-center gap-2">
-
-                          {/* VIEW */}
 
                           <button
                             type="button"
@@ -1126,8 +1125,6 @@ export default function Documents() {
                             View
 
                           </button>
-
-                          {/* DOWNLOAD */}
 
                           <button
                             type="button"
@@ -1226,8 +1223,6 @@ export default function Documents() {
 
         </div>
 
-        {/* ARTICLE FILTER */}
-
         <div className="flex flex-wrap gap-2 mb-6">
 
           {documentationCategories.map((category) => (
@@ -1250,8 +1245,6 @@ export default function Documents() {
           ))}
 
         </div>
-
-        {/* ARTICLE CARDS */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
@@ -1340,8 +1333,6 @@ export default function Documents() {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* HEADER */}
-
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
               <div className="flex items-center gap-3">
@@ -1380,8 +1371,6 @@ export default function Documents() {
               </button>
 
             </div>
-
-            {/* BODY */}
 
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
@@ -1424,8 +1413,6 @@ export default function Documents() {
                 </div>
 
               </div>
-
-              {/* DOCUMENT DETAILS BOX */}
 
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
 
@@ -1475,8 +1462,6 @@ export default function Documents() {
 
               </div>
 
-              {/* PREVIEW BOX */}
-
               <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5">
 
                 <div className="flex items-center gap-2 mb-4">
@@ -1505,8 +1490,8 @@ export default function Documents() {
 
                   <p className="text-xs text-slate-500 mt-2 max-w-md leading-5">
                     This document is available to your current role.
-                    Use the Download button below to open the actual PDF
-                    file when it is available in the public documents folder.
+                    Use the Download button below to download the PDF
+                    file.
                   </p>
 
                 </div>
@@ -1514,8 +1499,6 @@ export default function Documents() {
               </div>
 
             </div>
-
-            {/* FOOTER */}
 
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200 bg-white">
 
@@ -1563,8 +1546,6 @@ export default function Documents() {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* HEADER */}
-
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
               <div className="flex items-center gap-3">
@@ -1604,8 +1585,6 @@ export default function Documents() {
 
             </div>
 
-            {/* ARTICLE BODY */}
-
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
               <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-5">
@@ -1622,8 +1601,6 @@ export default function Documents() {
 
               </div>
 
-              {/* DESCRIPTION BOX */}
-
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mb-5">
 
                 <div className="rounded-xl bg-white border border-slate-200 p-4">
@@ -1635,8 +1612,6 @@ export default function Documents() {
                 </div>
 
               </div>
-
-              {/* GUIDE CONTENT BOX */}
 
               <div className="rounded-2xl border border-slate-200 bg-white p-5">
 
@@ -1664,8 +1639,6 @@ export default function Documents() {
               </div>
 
             </div>
-
-            {/* FOOTER */}
 
             <div className="flex justify-end px-6 py-4 border-t border-slate-200 bg-white">
 
