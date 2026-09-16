@@ -124,7 +124,7 @@ const documents = [
     size: '3.2 MB',
     access: ['CEO', 'MD'],
 
-    /* ACTUAL PDF AVAILABLE IN PUBLIC FOLDER */
+    // Actual PDF currently available in public folder
     fileUrl: '/documents/approvals/project-approval-record.pdf',
     fileName: 'Project-Development-Agreement.pdf'
   },
@@ -448,28 +448,81 @@ export default function Documents() {
      DOWNLOAD PDF
   ========================================================= */
 
-  const handleDownload = (document) => {
-    if (!canAccessDocument(document)) return
+  const handleDownload = async (document) => {
+    if (!document) return
+
+    if (!canAccessDocument(document)) {
+      alert('You do not have permission to download this document.')
+      return
+    }
 
     if (!document.fileUrl) {
       alert('Document file is not available yet.')
       return
     }
 
-    const link = window.document.createElement('a')
+    try {
+      /*
+        Vite public folder files are available from the root URL.
 
-    link.href = document.fileUrl
-    link.download =
-      document.fileName || `${document.name}.pdf`
+        Example:
+        public/documents/approvals/project-approval-record.pdf
 
-    link.target = '_blank'
-    link.rel = 'noopener noreferrer'
+        becomes:
+        /documents/approvals/project-approval-record.pdf
+      */
 
-    window.document.body.appendChild(link)
+      const fileUrl = document.fileUrl.startsWith('/')
+        ? document.fileUrl
+        : `/${document.fileUrl}`
 
-    link.click()
+      const response = await fetch(fileUrl, {
+        method: 'GET',
+        cache: 'no-cache'
+      })
 
-    window.document.body.removeChild(link)
+      if (!response.ok) {
+        throw new Error(
+          `File not found. Status: ${response.status}`
+        )
+      }
+
+      const blob = await response.blob()
+
+      if (!blob || blob.size === 0) {
+        throw new Error('The downloaded file is empty.')
+      }
+
+      const blobUrl = window.URL.createObjectURL(blob)
+
+      const link = window.document.createElement('a')
+
+      link.href = blobUrl
+      link.download =
+        document.fileName ||
+        `${document.name.replace(/\s+/g, '-')}.pdf`
+
+      link.style.display = 'none'
+
+      window.document.body.appendChild(link)
+
+      link.click()
+
+      window.document.body.removeChild(link)
+
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl)
+      }, 1000)
+
+    } catch (error) {
+      console.error('Download error:', error)
+
+      alert(
+        `"${document.name}" PDF file was not found.\n\n` +
+        `Please check that this file exists inside the public folder:\n\n` +
+        `${document.fileUrl}`
+      )
+    }
   }
 
   /* =========================================================
@@ -866,15 +919,20 @@ export default function Documents() {
               (item) => item.category === category.name
             ).length
 
-            const isActive = categoryFilter === category.name
+            const isActive =
+              categoryFilter === category.name
 
             return (
 
               <button
                 key={category.name}
                 type="button"
-                onClick={() => setCategoryFilter(category.name)}
-                style={{ animationDelay: `${index * 45}ms` }}
+                onClick={() =>
+                  setCategoryFilter(category.name)
+                }
+                style={{
+                  animationDelay: `${index * 45}ms`
+                }}
                 className={`doc-fade eq-card relative overflow-hidden p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] ${
                   isActive
                     ? 'ring-2 ring-primary shadow-md shadow-primary/10'
@@ -996,13 +1054,16 @@ export default function Documents() {
 
                 {filteredDocuments.map((document, index) => {
 
-                  const hasAccess = canAccessDocument(document)
+                  const hasAccess =
+                    canAccessDocument(document)
 
                   return (
 
                     <tr
                       key={document.id}
-                      style={{ animationDelay: `${index * 35}ms` }}
+                      style={{
+                        animationDelay: `${index * 35}ms`
+                      }}
                       className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
                     >
 
@@ -1107,7 +1168,9 @@ export default function Documents() {
                           <button
                             type="button"
                             disabled={!hasAccess}
-                            onClick={() => handleView(document)}
+                            onClick={() =>
+                              handleView(document)
+                            }
                             className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
                               hasAccess
                                 ? 'bg-card border-line text-text hover:bg-primary hover:text-white hover:border-primary hover:shadow-sm'
@@ -1126,7 +1189,9 @@ export default function Documents() {
                           <button
                             type="button"
                             disabled={!hasAccess}
-                            onClick={() => handleDownload(document)}
+                            onClick={() =>
+                              handleDownload(document)
+                            }
                             className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
                               hasAccess
                                 ? 'bg-primary text-white border-primary hover:opacity-90 shadow-sm shadow-primary/20'
@@ -1212,7 +1277,9 @@ export default function Documents() {
               type="text"
               placeholder="Search documentation..."
               value={articleSearch}
-              onChange={(e) => setArticleSearch(e.target.value)}
+              onChange={(e) =>
+                setArticleSearch(e.target.value)
+              }
               className="w-full h-11 pl-10 pr-4 rounded-2xl border border-line bg-card text-sm text-text placeholder:text-muted outline-none focus:border-primary focus:shadow-md focus:shadow-primary/10 transition"
             />
 
@@ -1227,7 +1294,9 @@ export default function Documents() {
             <button
               key={category}
               type="button"
-              onClick={() => setArticleCategory(category)}
+              onClick={() =>
+                setArticleCategory(category)
+              }
               className={`px-3.5 py-2 rounded-full border text-xs font-semibold transition ${
                 articleCategory === category
                   ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
@@ -1253,7 +1322,9 @@ export default function Documents() {
 
               <div
                 key={article.id}
-                style={{ animationDelay: `${index * 50}ms` }}
+                style={{
+                  animationDelay: `${index * 50}ms`
+                }}
                 className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
               >
 
@@ -1292,7 +1363,9 @@ export default function Documents() {
 
                   <button
                     type="button"
-                    onClick={() => setSelectedArticle(article)}
+                    onClick={() =>
+                      setSelectedArticle(article)
+                    }
                     className="h-9 px-4 rounded-full bg-primary text-white text-[11px] font-semibold flex items-center gap-2 hover:opacity-90 hover:gap-3 shadow-sm shadow-primary/20 transition-all"
                   >
 
@@ -1322,12 +1395,16 @@ export default function Documents() {
 
         <div
           className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-[2px] flex items-center justify-center p-4"
-          onClick={() => setSelectedDocument(null)}
+          onClick={() =>
+            setSelectedDocument(null)
+          }
         >
 
           <div
             className="doc-pop w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[24px] bg-white border border-slate-200 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
             {/* MODAL HEADER */}
@@ -1361,7 +1438,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedDocument(null)}
+                onClick={() =>
+                  setSelectedDocument(null)
+                }
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
@@ -1511,7 +1590,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedDocument(null)}
+                onClick={() =>
+                  setSelectedDocument(null)
+                }
                 className="h-10 px-5 rounded-full border border-slate-200 bg-white text-slate-800 text-sm font-semibold hover:bg-slate-100 transition"
               >
                 Close
@@ -1521,7 +1602,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => handleDownload(selectedDocument)}
+                onClick={() =>
+                  handleDownload(selectedDocument)
+                }
                 className="h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold flex items-center gap-2 hover:opacity-90 shadow-sm shadow-primary/20 transition"
               >
 
@@ -1547,12 +1630,16 @@ export default function Documents() {
 
         <div
           className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-[2px] flex items-center justify-center p-4"
-          onClick={() => setSelectedArticle(null)}
+          onClick={() =>
+            setSelectedArticle(null)
+          }
         >
 
           <div
             className="doc-pop w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[24px] bg-white border border-slate-200 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
             {/* ARTICLE HEADER */}
@@ -1586,7 +1673,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedArticle(null)}
+                onClick={() =>
+                  setSelectedArticle(null)
+                }
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
@@ -1659,7 +1748,9 @@ export default function Documents() {
 
               <button
                 type="button"
-                onClick={() => setSelectedArticle(null)}
+                onClick={() =>
+                  setSelectedArticle(null)
+                }
                 className="h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold hover:opacity-90 shadow-sm shadow-primary/20 transition"
               >
                 Close
@@ -1690,7 +1781,9 @@ function SummaryCard({
 }) {
   return (
     <div
-      style={{ animationDelay: `${delay}ms` }}
+      style={{
+        animationDelay: `${delay}ms`
+      }}
       className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
     >
 
