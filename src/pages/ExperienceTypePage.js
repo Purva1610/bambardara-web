@@ -69,16 +69,16 @@ const EXPLORE_BY_TYPE = {
    keyed by lane so leisure doesn't show trekking/temple photography. */
 const MOSAIC_BY_TYPE = {
   adventures: [
-    { slug: 'trekking-2', alt: 'A ridge line above the estate' },
-    { slug: 'well-planted-roads-and-street-lights', alt: 'A road winding through the estate' },
-    { slug: 'waterfalls-and-nature-trails-3', alt: 'Forest canopy along the nature trail' },
-    { slug: 'temple', alt: 'Light falling through the estate temple' },
+    { slug: 'zipline', alt: 'A rider crossing the valley on the zipline' },
+    { slug: 'rock-climbing', alt: 'A climber on the estate rock-climbing wall' },
+    { slug: 'trekking-3', alt: 'Guests trekking the forest trail' },
+    { slug: 'rope-course', alt: 'A guest crossing the suspended rope course' },
   ],
   leisure: [
-    { slug: 'organic-farming-and-farm-stay-3', alt: 'The estate golf course' },
-    { slug: 'cycling', alt: 'Cycling through the estate grounds' },
-    { slug: '5-star-hospitality', alt: 'The estate water park' },
-    { slug: 'banquet-and-conference', alt: 'The indoor games room' },
+    { slug: 'waterpark', alt: 'The estate water park' },
+    { slug: 'fun', alt: 'A family enjoying a fun afternoon on the estate' },
+    { slug: 'cycling-2', alt: 'A family cycling through the estate grounds' },
+    { slug: 'archery', alt: 'A guest taking aim on the archery range' },
   ],
 };
 
@@ -178,10 +178,11 @@ export default function ExperienceTypePage() {
       <section className="relative flex min-h-[65vh] items-end overflow-hidden bg-deep-forest">
         <div className="absolute inset-0">
           <EstateImage
-            slug={items[0].gallery[0]}
+            slug={meta.heroSlug || items[0].gallery[0]}
             alt={meta.label}
             sizes="100vw"
             className="h-full w-full object-cover"
+            position={meta.heroPosition || 'center'}
             priority
           />
         </div>
@@ -375,7 +376,7 @@ export default function ExperienceTypePage() {
               slug={EXPLORE_BY_TYPE[type].photoSlug}
               alt={EXPLORE_BY_TYPE[type].photoAlt}
               sizes="100vw"
-              className="h-full w-full object-cover"
+              className="isolate h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-black/25" />
 

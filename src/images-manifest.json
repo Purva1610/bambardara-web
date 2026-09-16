@@ -826,5 +826,101 @@
       640
     ],
     "fallbackWidth": 687
+  },
+  "rope-course": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "golf-court": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "golf-court-2": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "adv": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "archery": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "bridge": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "fun": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "indoor-games": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "paintball": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse1": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse2": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse3": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
   }
 }

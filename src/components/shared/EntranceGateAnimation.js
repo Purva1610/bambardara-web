@@ -64,11 +64,11 @@ export default function EntranceGateAnimation({ onComplete }) {
           height: 'max(100vh, calc(100vw * (1024 / 1536)))',
           transformOrigin: '50% 65%',
           transform: isEntering ? 'scale(1.45)' : 'scale(1)',
-          transition: isEntering ? 'transform 1.8s cubic-bezier(0.35, 0, 0.25, 1)' : 'none',
           // As soon as smoke covers the screen, hide the entrance images completely
           opacity: isSmoky ? 0 : 1,
           transitionProperty: 'transform, opacity',
           transitionDuration: isSmoky ? '1.8s, 0.5s' : '1.8s, 0s',
+          transitionTimingFunction: 'cubic-bezier(0.35, 0, 0.25, 1), ease',
         }}
       >
         {/* Base Layer: Closed Gate */}

@@ -18,6 +18,10 @@ import MANIFEST from '../../images-manifest.json';
  * `fit` overrides the default `object-fit: cover` (e.g. `contain` for a
  * logo mark that must not be cropped). Only meaningful for manifest entries
  * without WebP variants, since those never render the LQIP crop layer.
+ *
+ * `position` overrides the default `object-position: center` (e.g. a hero
+ * photo whose subject sits low in the frame, so the crop needs to favour
+ * the bottom instead of trimming evenly from top and bottom).
  */
 
 const OPT = `${process.env.PUBLIC_URL}/images/opt`;
@@ -29,6 +33,7 @@ export default function EstateImage({
   priority = false,
   sizes = '100vw',
   fit = 'cover',
+  position = 'center',
 }) {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef(null);
@@ -54,7 +59,7 @@ export default function EstateImage({
           fetchPriority={priority ? 'high' : undefined}
           onLoad={() => setLoaded(true)}
           className={`img-zoom ${loaded ? 'img-loaded' : ''}`}
-          style={{ objectFit: fit }}
+          style={{ objectFit: fit, objectPosition: position }}
         />
       </span>
     );
@@ -91,6 +96,7 @@ export default function EstateImage({
           aria-hidden="true"
           alt=""
           className="img-lqip"
+          style={{ objectPosition: position }}
         />
       )}
       {/* Full-resolution image — fades in once loaded */}
@@ -107,7 +113,7 @@ export default function EstateImage({
           fetchPriority={priority ? 'high' : undefined}
           onLoad={() => setLoaded(true)}
           className={`img-zoom ${loaded ? 'img-loaded' : ''}`}
-          style={{ objectFit: fit }}
+          style={{ objectFit: fit, objectPosition: position }}
         />
       </picture>
     </span>

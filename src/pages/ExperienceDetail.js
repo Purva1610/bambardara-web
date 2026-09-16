@@ -68,7 +68,7 @@ export default function ExperienceDetail() {
               </p>
             </Reveal>
 
-            {experience.gallery.length > 1 && (
+            {experience.gallery.length > 0 && (
               <Reveal delay={120} className="mt-14">
                 <span className="lux-label text-luxury-gold">Gallery</span>
                 <div className="lux-frame mt-6 aspect-[16/10] w-full">
