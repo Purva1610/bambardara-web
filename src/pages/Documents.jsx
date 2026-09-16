@@ -97,7 +97,8 @@ const documents = [
     type: 'PDF',
     size: '4.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-master-plan.pdf'
+    fileUrl: '/documents/project/project-master-plan.pdf',
+    fileName: 'Project-Master-Plan.pdf'
   },
   {
     id: 2,
@@ -109,7 +110,8 @@ const documents = [
     type: 'PDF',
     size: '2.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-overview.pdf'
+    fileUrl: '/documents/project/project-overview.pdf',
+    fileName: 'Project-Overview.pdf'
   },
   {
     id: 3,
@@ -121,7 +123,10 @@ const documents = [
     type: 'PDF',
     size: '3.2 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/contracts/project-development-agreement.pdf'
+
+    /* ACTUAL PDF AVAILABLE IN PUBLIC FOLDER */
+    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileName: 'Project-Development-Agreement.pdf'
   },
   {
     id: 4,
@@ -133,7 +138,8 @@ const documents = [
     type: 'PDF',
     size: '3.1 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/finance/annual-financial-report.pdf'
+    fileUrl: '/documents/finance/annual-financial-report.pdf',
+    fileName: 'Annual-Financial-Report.pdf'
   },
   {
     id: 5,
@@ -145,7 +151,8 @@ const documents = [
     type: 'PDF',
     size: '2.9 MB',
     access: ['CEO'],
-    fileUrl: '/documents/finance/investment-overview.pdf'
+    fileUrl: '/documents/finance/investment-overview.pdf',
+    fileName: 'Investment-Overview.pdf'
   },
   {
     id: 6,
@@ -157,7 +164,8 @@ const documents = [
     type: 'PDF',
     size: '1.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/procurement/procurement-summary.pdf'
+    fileUrl: '/documents/procurement/procurement-summary.pdf',
+    fileName: 'Procurement-Summary.pdf'
   },
   {
     id: 7,
@@ -169,7 +177,8 @@ const documents = [
     type: 'PDF',
     size: '2.7 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/reports/monthly-management-report.pdf'
+    fileUrl: '/documents/reports/monthly-management-report.pdf',
+    fileName: 'Monthly-Management-Report.pdf'
   },
   {
     id: 8,
@@ -181,7 +190,8 @@ const documents = [
     type: 'PDF',
     size: '3.6 MB',
     access: ['CEO'],
-    fileUrl: '/documents/reports/quarterly-project-report.pdf'
+    fileUrl: '/documents/reports/quarterly-project-report.pdf',
+    fileName: 'Quarterly-Project-Report.pdf'
   },
   {
     id: 9,
@@ -193,7 +203,8 @@ const documents = [
     type: 'PDF',
     size: '1.2 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/approvals/project-approval-record.pdf'
+    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileName: 'Project-Approval-Record.pdf'
   },
   {
     id: 10,
@@ -205,7 +216,8 @@ const documents = [
     type: 'PDF',
     size: '2.1 MB',
     access: ['CEO'],
-    fileUrl: '/documents/legal/legal-compliance-document.pdf'
+    fileUrl: '/documents/legal/legal-compliance-document.pdf',
+    fileName: 'Legal-Compliance-Document.pdf'
   },
   {
     id: 11,
@@ -217,7 +229,8 @@ const documents = [
     type: 'PDF',
     size: '1.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/management/management-review-notes.pdf'
+    fileUrl: '/documents/management/management-review-notes.pdf',
+    fileName: 'Management-Review-Notes.pdf'
   }
 ]
 
@@ -435,7 +448,7 @@ export default function Documents() {
      DOWNLOAD PDF
   ========================================================= */
 
-  const handleDownload = async (document) => {
+  const handleDownload = (document) => {
     if (!canAccessDocument(document)) return
 
     if (!document.fileUrl) {
@@ -443,40 +456,20 @@ export default function Documents() {
       return
     }
 
-    try {
-      const response = await fetch(document.fileUrl)
+    const link = window.document.createElement('a')
 
-      if (!response.ok) {
-        throw new Error('PDF file not found')
-      }
+    link.href = document.fileUrl
+    link.download =
+      document.fileName || `${document.name}.pdf`
 
-      const blob = await response.blob()
+    link.target = '_blank'
+    link.rel = 'noopener noreferrer'
 
-      const blobUrl = window.URL.createObjectURL(blob)
+    window.document.body.appendChild(link)
 
-      const link = window.document.createElement('a')
+    link.click()
 
-      link.href = blobUrl
-      link.download = `${document.name}.pdf`
-
-      link.style.display = 'none'
-
-      window.document.body.appendChild(link)
-
-      link.click()
-
-      window.document.body.removeChild(link)
-
-      setTimeout(() => {
-        window.URL.revokeObjectURL(blobUrl)
-      }, 1000)
-    } catch (error) {
-      console.error('Download error:', error)
-
-      alert(
-        `Unable to download "${document.name}". Please make sure the PDF file exists in the public/documents folder.`
-      )
-    }
+    window.document.body.removeChild(link)
   }
 
   /* =========================================================
@@ -1109,6 +1102,8 @@ export default function Documents() {
 
                         <div className="flex justify-center items-center gap-2">
 
+                          {/* VIEW BUTTON */}
+
                           <button
                             type="button"
                             disabled={!hasAccess}
@@ -1125,6 +1120,8 @@ export default function Documents() {
                             View
 
                           </button>
+
+                          {/* DOWNLOAD BUTTON */}
 
                           <button
                             type="button"
@@ -1333,6 +1330,8 @@ export default function Documents() {
             onClick={(e) => e.stopPropagation()}
           >
 
+            {/* MODAL HEADER */}
+
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
               <div className="flex items-center gap-3">
@@ -1371,6 +1370,8 @@ export default function Documents() {
               </button>
 
             </div>
+
+            {/* MODAL CONTENT */}
 
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
@@ -1413,6 +1414,8 @@ export default function Documents() {
                 </div>
 
               </div>
+
+              {/* DOCUMENT DETAILS */}
 
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
 
@@ -1462,6 +1465,8 @@ export default function Documents() {
 
               </div>
 
+              {/* DOCUMENT PREVIEW */}
+
               <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5">
 
                 <div className="flex items-center gap-2 mb-4">
@@ -1500,6 +1505,8 @@ export default function Documents() {
 
             </div>
 
+            {/* MODAL FOOTER */}
+
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200 bg-white">
 
               <button
@@ -1509,6 +1516,8 @@ export default function Documents() {
               >
                 Close
               </button>
+
+              {/* MODAL DOWNLOAD BUTTON */}
 
               <button
                 type="button"
@@ -1545,6 +1554,8 @@ export default function Documents() {
             className="doc-pop w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[24px] bg-white border border-slate-200 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
+
+            {/* ARTICLE HEADER */}
 
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
@@ -1584,6 +1595,8 @@ export default function Documents() {
               </button>
 
             </div>
+
+            {/* ARTICLE CONTENT */}
 
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
@@ -1639,6 +1652,8 @@ export default function Documents() {
               </div>
 
             </div>
+
+            {/* ARTICLE FOOTER */}
 
             <div className="flex justify-end px-6 py-4 border-t border-slate-200 bg-white">
 
