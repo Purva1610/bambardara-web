@@ -97,7 +97,8 @@ const documents = [
     type: 'PDF',
     size: '4.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-master-plan.pdf'
+    fileUrl: '/documents/project/project-master-plan.pdf',
+    fileName: 'Project-Master-Plan.pdf'
   },
   {
     id: 2,
@@ -109,7 +110,8 @@ const documents = [
     type: 'PDF',
     size: '2.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/project/project-overview.pdf'
+    fileUrl: '/documents/project/project-overview.pdf',
+    fileName: 'Project-Overview.pdf'
   },
   {
     id: 3,
@@ -121,7 +123,10 @@ const documents = [
     type: 'PDF',
     size: '3.2 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/contracts/project-development-agreement.pdf'
+
+    /* ACTUAL PDF AVAILABLE IN PUBLIC FOLDER */
+    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileName: 'Project-Development-Agreement.pdf'
   },
   {
     id: 4,
@@ -133,7 +138,8 @@ const documents = [
     type: 'PDF',
     size: '3.1 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/finance/annual-financial-report.pdf'
+    fileUrl: '/documents/finance/annual-financial-report.pdf',
+    fileName: 'Annual-Financial-Report.pdf'
   },
   {
     id: 5,
@@ -145,7 +151,8 @@ const documents = [
     type: 'PDF',
     size: '2.9 MB',
     access: ['CEO'],
-    fileUrl: '/documents/finance/investment-overview.pdf'
+    fileUrl: '/documents/finance/investment-overview.pdf',
+    fileName: 'Investment-Overview.pdf'
   },
   {
     id: 6,
@@ -157,7 +164,8 @@ const documents = [
     type: 'PDF',
     size: '1.8 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/procurement/procurement-summary.pdf'
+    fileUrl: '/documents/procurement/procurement-summary.pdf',
+    fileName: 'Procurement-Summary.pdf'
   },
   {
     id: 7,
@@ -169,7 +177,8 @@ const documents = [
     type: 'PDF',
     size: '2.7 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/reports/monthly-management-report.pdf'
+    fileUrl: '/documents/reports/monthly-management-report.pdf',
+    fileName: 'Monthly-Management-Report.pdf'
   },
   {
     id: 8,
@@ -181,7 +190,8 @@ const documents = [
     type: 'PDF',
     size: '3.6 MB',
     access: ['CEO'],
-    fileUrl: '/documents/reports/quarterly-project-report.pdf'
+    fileUrl: '/documents/reports/quarterly-project-report.pdf',
+    fileName: 'Quarterly-Project-Report.pdf'
   },
   {
     id: 9,
@@ -193,7 +203,8 @@ const documents = [
     type: 'PDF',
     size: '1.2 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/approvals/project-approval-record.pdf'
+    fileUrl: '/documents/approvals/project-approval-record.pdf',
+    fileName: 'Project-Approval-Record.pdf'
   },
   {
     id: 10,
@@ -205,7 +216,8 @@ const documents = [
     type: 'PDF',
     size: '2.1 MB',
     access: ['CEO'],
-    fileUrl: '/documents/legal/legal-compliance-document.pdf'
+    fileUrl: '/documents/legal/legal-compliance-document.pdf',
+    fileName: 'Legal-Compliance-Document.pdf'
   },
   {
     id: 11,
@@ -217,7 +229,8 @@ const documents = [
     type: 'PDF',
     size: '1.4 MB',
     access: ['CEO', 'MD'],
-    fileUrl: '/documents/management/management-review-notes.pdf'
+    fileUrl: '/documents/management/management-review-notes.pdf',
+    fileName: 'Management-Review-Notes.pdf'
   }
 ]
 
@@ -432,21 +445,30 @@ export default function Documents() {
   })
 
   /* =========================================================
-     DOWNLOAD
+     DOWNLOAD PDF
   ========================================================= */
 
   const handleDownload = (document) => {
     if (!canAccessDocument(document)) return
 
+    if (!document.fileUrl) {
+      alert('Document file is not available yet.')
+      return
+    }
+
     const link = window.document.createElement('a')
 
     link.href = document.fileUrl
-    link.download = `${document.name}.pdf`
+    link.download =
+      document.fileName || `${document.name}.pdf`
+
     link.target = '_blank'
     link.rel = 'noopener noreferrer'
 
     window.document.body.appendChild(link)
+
     link.click()
+
     window.document.body.removeChild(link)
   }
 
@@ -738,8 +760,6 @@ export default function Documents() {
 
             </div>
 
-            {/* PREMIUM FILTER BUTTON */}
-
             <button
               type="button"
               onClick={() => setShowFilter((value) => !value)}
@@ -905,9 +925,7 @@ export default function Documents() {
 
         </div>
 
-        {/* ===================================================
-            DOCUMENT TABLE
-        =================================================== */}
+        {/* DOCUMENT TABLE */}
 
         <div className="eq-card overflow-hidden">
 
@@ -946,37 +964,25 @@ export default function Documents() {
 
                 <tr className="bg-bg border-b border-line">
 
-                  {/* DOCUMENT */}
-
                   <th className="w-[25%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Document
                   </th>
-
-                  {/* DESCRIPTION */}
 
                   <th className="w-[16%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Description
                   </th>
 
-                  {/* CATEGORY */}
-
                   <th className="w-[14%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Category
                   </th>
-
-                  {/* LAST UPDATED */}
 
                   <th className="w-[13%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Last Updated
                   </th>
 
-                  {/* ACCESS */}
-
                   <th className="w-[12%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Access
                   </th>
-
-                  {/* ACTION */}
 
                   <th className="w-[20%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Action
@@ -999,8 +1005,6 @@ export default function Documents() {
                       style={{ animationDelay: `${index * 35}ms` }}
                       className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
                     >
-
-                      {/* DOCUMENT */}
 
                       <td className="px-4 py-5 align-middle">
 
@@ -1031,8 +1035,6 @@ export default function Documents() {
 
                       </td>
 
-                      {/* DESCRIPTION */}
-
                       <td className="px-4 py-5 align-middle">
 
                         <p className="text-[11px] text-muted leading-5 break-words">
@@ -1041,8 +1043,6 @@ export default function Documents() {
 
                       </td>
 
-                      {/* CATEGORY */}
-
                       <td className="px-4 py-5 align-middle">
 
                         <span className="inline-flex items-center max-w-full px-2.5 py-1.5 rounded-full bg-bg border border-line text-[10px] text-text font-medium leading-4 whitespace-normal break-words">
@@ -1050,8 +1050,6 @@ export default function Documents() {
                         </span>
 
                       </td>
-
-                      {/* LAST UPDATED */}
 
                       <td className="px-4 py-5 align-middle">
 
@@ -1069,8 +1067,6 @@ export default function Documents() {
                         </div>
 
                       </td>
-
-                      {/* ACCESS */}
 
                       <td className="px-2 py-5 align-middle">
 
@@ -1102,13 +1098,11 @@ export default function Documents() {
 
                       </td>
 
-                      {/* ACTION */}
-
                       <td className="px-2 py-5 align-middle">
 
                         <div className="flex justify-center items-center gap-2">
 
-                          {/* VIEW */}
+                          {/* VIEW BUTTON */}
 
                           <button
                             type="button"
@@ -1127,7 +1121,7 @@ export default function Documents() {
 
                           </button>
 
-                          {/* DOWNLOAD */}
+                          {/* DOWNLOAD BUTTON */}
 
                           <button
                             type="button"
@@ -1226,8 +1220,6 @@ export default function Documents() {
 
         </div>
 
-        {/* ARTICLE FILTER */}
-
         <div className="flex flex-wrap gap-2 mb-6">
 
           {documentationCategories.map((category) => (
@@ -1250,8 +1242,6 @@ export default function Documents() {
           ))}
 
         </div>
-
-        {/* ARTICLE CARDS */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
@@ -1340,7 +1330,7 @@ export default function Documents() {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* HEADER */}
+            {/* MODAL HEADER */}
 
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
@@ -1381,7 +1371,7 @@ export default function Documents() {
 
             </div>
 
-            {/* BODY */}
+            {/* MODAL CONTENT */}
 
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
@@ -1425,7 +1415,7 @@ export default function Documents() {
 
               </div>
 
-              {/* DOCUMENT DETAILS BOX */}
+              {/* DOCUMENT DETAILS */}
 
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
 
@@ -1475,7 +1465,7 @@ export default function Documents() {
 
               </div>
 
-              {/* PREVIEW BOX */}
+              {/* DOCUMENT PREVIEW */}
 
               <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5">
 
@@ -1505,8 +1495,8 @@ export default function Documents() {
 
                   <p className="text-xs text-slate-500 mt-2 max-w-md leading-5">
                     This document is available to your current role.
-                    Use the Download button below to open the actual PDF
-                    file when it is available in the public documents folder.
+                    Use the Download button below to download the PDF
+                    file.
                   </p>
 
                 </div>
@@ -1515,7 +1505,7 @@ export default function Documents() {
 
             </div>
 
-            {/* FOOTER */}
+            {/* MODAL FOOTER */}
 
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200 bg-white">
 
@@ -1526,6 +1516,8 @@ export default function Documents() {
               >
                 Close
               </button>
+
+              {/* MODAL DOWNLOAD BUTTON */}
 
               <button
                 type="button"
@@ -1563,7 +1555,7 @@ export default function Documents() {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* HEADER */}
+            {/* ARTICLE HEADER */}
 
             <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-primary/[0.06] to-transparent">
 
@@ -1604,7 +1596,7 @@ export default function Documents() {
 
             </div>
 
-            {/* ARTICLE BODY */}
+            {/* ARTICLE CONTENT */}
 
             <div className="p-6 bg-white overflow-y-auto max-h-[65vh]">
 
@@ -1622,8 +1614,6 @@ export default function Documents() {
 
               </div>
 
-              {/* DESCRIPTION BOX */}
-
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mb-5">
 
                 <div className="rounded-xl bg-white border border-slate-200 p-4">
@@ -1635,8 +1625,6 @@ export default function Documents() {
                 </div>
 
               </div>
-
-              {/* GUIDE CONTENT BOX */}
 
               <div className="rounded-2xl border border-slate-200 bg-white p-5">
 
@@ -1665,7 +1653,7 @@ export default function Documents() {
 
             </div>
 
-            {/* FOOTER */}
+            {/* ARTICLE FOOTER */}
 
             <div className="flex justify-end px-6 py-4 border-t border-slate-200 bg-white">
 

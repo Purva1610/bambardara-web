@@ -171,6 +171,7 @@ const PRIORITY_STYLE = {
 const getStatusTone = status => {
   if (status === 'RESOLVED' || status === 'CLOSED') return 'good'
   if (status === 'IN PROGRESS') return 'warn'
+  if (status === 'OPEN') return 'good'
   return 'critical'
 }
 
@@ -1200,7 +1201,7 @@ export default function RisksIssues() {
                       onClick={() => setSelectedIssue(issue)}
                       className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#173B2B] text-white text-[10px]"
                     >
-                      View
+                      Open
                       <ArrowUpRight size={12} />
                     </button>
 
