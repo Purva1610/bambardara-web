@@ -104,7 +104,5 @@ export const modulePurpose = {
   settings: 'Profile, notifications, security and preferences. System-wide settings remain with the Super Admin.'
 }
 
-// ============================================================
-// FINANCE PAGE DATA
-// ============================================================
+
 
