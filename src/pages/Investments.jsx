@@ -24,6 +24,28 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 /* =========================================================
+   THEME
+========================================================= */
+
+const THEME = {
+  dark: "#0B2E2A",
+  darkGreen: "#173B2B",
+  green: "#315B4B",
+  mutedGreen: "#527064",
+  gold: "#D6A92F",
+  goldDark: "#B88E20",
+  cream: "#F4F3EE",
+  card: "#FFFFFF",
+  border: "#E7E5DE",
+  text: "#26352F",
+  muted: "#78827C",
+  lightGreen: "#EEF3EF",
+  lightGold: "#F8F1D9",
+  danger: "#B95C52",
+  lightDanger: "#F8ECEA",
+};
+
+/* =========================================================
    INVESTMENT DATA
 ========================================================= */
 
@@ -168,8 +190,6 @@ export default function Investments() {
   const [refreshing, setRefreshing] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
-
-  // View Investment Modal
   const [selectedInvestment, setSelectedInvestment] = useState(null);
 
   /* =======================================================
@@ -275,7 +295,7 @@ export default function Investments() {
 
         /* HEADER */
 
-        doc.setFillColor(23, 35, 27);
+        doc.setFillColor(11, 46, 42);
         doc.rect(0, 0, pageWidth, 36, "F");
 
         doc.setTextColor(255, 255, 255);
@@ -321,7 +341,7 @@ export default function Investments() {
 
         /* EXECUTIVE SUMMARY */
 
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
 
@@ -333,7 +353,7 @@ export default function Investments() {
 
         y += 8;
 
-        doc.setFillColor(247, 249, 248);
+        doc.setFillColor(244, 243, 238);
 
         doc.roundedRect(
           15,
@@ -363,7 +383,7 @@ export default function Investments() {
 
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
 
         doc.text(
           formatCurrency(totalInvested),
@@ -397,9 +417,9 @@ export default function Investments() {
         doc.setFont("helvetica", "bold");
 
         if (totalGain >= 0) {
-          doc.setTextColor(67, 132, 87);
+          doc.setTextColor(23, 59, 43);
         } else {
-          doc.setTextColor(177, 91, 91);
+          doc.setTextColor(185, 92, 82);
         }
 
         doc.text(
@@ -420,7 +440,7 @@ export default function Investments() {
 
         /* PERFORMANCE */
 
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
 
@@ -478,7 +498,7 @@ export default function Investments() {
           y = 20;
         }
 
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
 
@@ -500,7 +520,7 @@ export default function Investments() {
           ]),
           theme: "striped",
           headStyles: {
-            fillColor: [23, 35, 27],
+            fillColor: [11, 46, 42],
             textColor: [255, 255, 255],
             fontStyle: "bold",
             fontSize: 9,
@@ -522,7 +542,7 @@ export default function Investments() {
 
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
 
         doc.text(
           "Top 5 Holdings",
@@ -554,7 +574,7 @@ export default function Investments() {
           ),
           theme: "striped",
           headStyles: {
-            fillColor: [23, 35, 27],
+            fillColor: [11, 46, 42],
             textColor: [255, 255, 255],
             fontStyle: "bold",
             fontSize: 8,
@@ -576,7 +596,7 @@ export default function Investments() {
 
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
 
         doc.text(
           "Complete Investment Portfolio",
@@ -610,7 +630,7 @@ export default function Investments() {
           ),
           theme: "striped",
           headStyles: {
-            fillColor: [23, 35, 27],
+            fillColor: [11, 46, 42],
             textColor: [255, 255, 255],
             fontStyle: "bold",
             fontSize: 7,
@@ -632,7 +652,7 @@ export default function Investments() {
 
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(23, 32, 27);
+        doc.setTextColor(11, 46, 42);
 
         doc.text(
           "Risk Assessment",
@@ -727,17 +747,12 @@ export default function Investments() {
     }, 300);
   };
 
-  /* =========================================================
-     JSX
-  ========================================================= */
-
   return (
     <div className="investments-page">
-
       <style>{`
 
         /* =====================================================
-           GLOBAL
+           THEME
         ===================================================== */
 
         .investments-page,
@@ -748,7 +763,7 @@ export default function Investments() {
         .investments-page {
           width: 100%;
           min-height: calc(100vh - 120px);
-          color: #17201b;
+          color: ${THEME.text};
           font-family:
             Inter,
             -apple-system,
@@ -756,6 +771,8 @@ export default function Investments() {
             "Segoe UI",
             Arial,
             sans-serif;
+
+          background: transparent;
         }
 
         /* =====================================================
@@ -772,12 +789,13 @@ export default function Investments() {
 
         .inv-breadcrumb {
           margin: 0 0 7px;
-          color: #89928d;
-          font-size: 12px;
+          color: ${THEME.muted};
+          font-size: 11px;
         }
 
         .inv-header h1 {
           margin: 0;
+          color: ${THEME.dark};
           font-size: 30px;
           line-height: 1.15;
           font-weight: 750;
@@ -786,7 +804,7 @@ export default function Investments() {
 
         .inv-subtitle {
           margin: 8px 0 0;
-          color: #7c8580;
+          color: ${THEME.muted};
           font-size: 13px;
         }
 
@@ -795,69 +813,71 @@ export default function Investments() {
           gap: 9px;
         }
 
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
         .inv-button {
           height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
+
           padding: 0 14px;
 
-          border-radius: 9px;
-          border: 1px solid #dce3df;
+          border-radius: 8px;
+          border: 1px solid #D9DDD8;
 
-          background: #fff;
-          color: #4e5a53;
+          background: #FFFFFF;
+          color: ${THEME.dark};
 
           font-size: 11px;
           font-weight: 650;
 
           cursor: pointer;
-
-          transition: all 0.3s ease;
+          transition: all 0.25s ease;
 
           box-shadow:
-            0 2px 4px rgba(0, 0, 0, 0.04);
+            0 2px 6px rgba(11, 46, 42, 0.04);
         }
 
         .inv-button:hover {
-          background: #f7f9f8;
-          transform: translateY(-2px);
+          background: ${THEME.lightGreen};
+          border-color: ${THEME.green};
+
+          color: ${THEME.dark};
+
+          transform: translateY(-1px);
 
           box-shadow:
-            0 7px 18px rgba(0, 0, 0, 0.08);
-
-          border-color: #c8d4cc;
+            0 7px 18px rgba(11, 46, 42, 0.09);
         }
 
         .inv-button.primary {
-          border-color: #2d7a4d;
+          border-color: ${THEME.dark};
 
-          background:
-            linear-gradient(
-              135deg,
-              #27ae60 0%,
-              #229954 100%
-            );
-
-          color: #fff;
+          background: ${THEME.dark};
+          color: #FFFFFF;
 
           box-shadow:
-            0 4px 12px rgba(39, 174, 96, 0.25);
+            0 5px 14px rgba(11, 46, 42, 0.18);
         }
 
         .inv-button.primary:hover {
-          background:
-            linear-gradient(
-              135deg,
-              #229954 0%,
-              #1e8449 100%
-            );
+          background: ${THEME.darkGreen};
+          border-color: ${THEME.gold};
+
+          color: #FFFFFF;
 
           box-shadow:
-            0 9px 22px rgba(39, 174, 96, 0.35);
+            0 8px 20px rgba(11, 46, 42, 0.22);
 
-          transform: translateY(-3px);
+          transform: translateY(-2px);
+        }
+
+        .inv-button.primary svg {
+          color: ${THEME.gold};
         }
 
         .spin-icon,
@@ -884,28 +904,25 @@ export default function Investments() {
           align-items: center;
           gap: 13px;
 
-          border: 1px solid #e3e8e5;
+          border: 1px solid ${THEME.border};
           border-radius: 13px;
 
-          background: #fff;
+          background: ${THEME.card};
 
           box-shadow:
-            0 2px 8px rgba(20, 35, 27, 0.03),
-            0 1px 3px rgba(0, 0, 0, 0.02);
+            0 2px 8px rgba(11, 46, 42, 0.035);
 
-          transition: all 0.3s ease;
-
-          cursor: pointer;
+          transition: all 0.25s ease;
+          cursor: default;
         }
 
         .inv-stat:hover {
-          transform: translateY(-5px);
+          transform: translateY(-3px);
 
-          border-color: #c8e6c9;
+          border-color: #CFCFBE;
 
           box-shadow:
-            0 14px 30px rgba(20, 35, 27, 0.09),
-            0 5px 15px rgba(39, 174, 96, 0.12);
+            0 12px 28px rgba(11, 46, 42, 0.09);
         }
 
         .inv-stat-icon {
@@ -919,66 +936,34 @@ export default function Investments() {
 
           border-radius: 10px;
 
-          background:
-            linear-gradient(
-              135deg,
-              #edf5ef 0%,
-              #e1f2e6 100%
-            );
-
-          color: #2d7a4d;
-
-          transition: all 0.3s ease;
-        }
-
-        .inv-stat:hover .inv-stat-icon {
-          transform: scale(1.1) rotate(5deg);
-
-          box-shadow:
-            0 5px 13px rgba(39, 174, 96, 0.22);
+          background: ${THEME.lightGreen};
+          color: ${THEME.dark};
         }
 
         .inv-stat:nth-child(2) .inv-stat-icon {
-          background:
-            linear-gradient(
-              135deg,
-              #fff5ed,
-              #ffe8d6
-            );
-
-          color: #e67e22;
+          background: ${THEME.lightGold};
+          color: ${THEME.goldDark};
         }
 
         .inv-stat:nth-child(3) .inv-stat-icon {
-          background:
-            linear-gradient(
-              135deg,
-              #e8f5ec,
-              #d4ead9
-            );
-
-          color: #27ae60;
+          background: ${THEME.lightGreen};
+          color: ${THEME.green};
         }
 
         .inv-stat:nth-child(4) .inv-stat-icon {
-          background:
-            linear-gradient(
-              135deg,
-              #fef5e7,
-              #fdebd0
-            );
-
-          color: #f39c12;
+          background: #EEF0ED;
+          color: ${THEME.darkGreen};
         }
 
         .inv-stat span {
           display: block;
           margin-bottom: 5px;
-          color: #8a938e;
+          color: ${THEME.muted};
           font-size: 10px;
         }
 
         .inv-stat strong {
+          color: ${THEME.dark};
           font-size: 20px;
           letter-spacing: -0.3px;
         }
@@ -986,24 +971,17 @@ export default function Investments() {
         .inv-stat small {
           display: block;
           margin-top: 5px;
+          color: ${THEME.green};
           font-size: 9px;
           font-weight: 650;
         }
 
-        .inv-stat:nth-child(1) small {
-          color: #27ae60;
-        }
-
         .inv-stat:nth-child(2) small {
-          color: #e67e22;
-        }
-
-        .inv-stat:nth-child(3) small {
-          color: #2ecc71;
+          color: ${THEME.goldDark};
         }
 
         .inv-stat:nth-child(4) small {
-          color: #f39c12;
+          color: ${THEME.muted};
         }
 
         /* =====================================================
@@ -1022,26 +1000,22 @@ export default function Investments() {
         }
 
         .inv-card {
-          border: 1px solid #e3e8e5;
+          border: 1px solid ${THEME.border};
           border-radius: 14px;
 
-          background: #fff;
+          background: ${THEME.card};
 
           box-shadow:
-            0 2px 8px rgba(20, 35, 27, 0.03),
-            0 1px 3px rgba(0, 0, 0, 0.02);
+            0 2px 8px rgba(11, 46, 42, 0.035);
 
-          transition: all 0.3s ease;
+          transition: all 0.25s ease;
         }
 
         .inv-card:hover {
           box-shadow:
-            0 14px 35px rgba(20, 35, 27, 0.09),
-            0 5px 15px rgba(39, 174, 96, 0.08);
+            0 12px 30px rgba(11, 46, 42, 0.075);
 
-          transform: translateY(-3px);
-
-          border-color: #d5e8d6;
+          border-color: #D8D9D0;
         }
 
         .inv-card-header {
@@ -1053,18 +1027,23 @@ export default function Investments() {
 
           padding: 18px 20px;
 
-          border-bottom: 1px solid #edf0ee;
+          border-bottom: 1px solid #ECEBE5;
         }
 
         .inv-card-header h2 {
           margin: 0;
+          color: ${THEME.dark};
           font-size: 15px;
         }
 
         .inv-card-header p {
           margin: 4px 0 0;
-          color: #8a938e;
+          color: ${THEME.muted};
           font-size: 9px;
+        }
+
+        .inv-card-header > svg {
+          color: ${THEME.green} !important;
         }
 
         /* =====================================================
@@ -1084,6 +1063,7 @@ export default function Investments() {
         }
 
         .performance-summary strong {
+          color: ${THEME.dark};
           font-size: 30px;
         }
 
@@ -1091,14 +1071,25 @@ export default function Investments() {
           display: flex;
           align-items: center;
           gap: 4px;
+
           padding-bottom: 5px;
 
-          color: #27ae60;
+          color: ${THEME.green};
           font-size: 11px;
           font-weight: 700;
         }
 
+        .performance-summary span svg {
+          color: ${THEME.goldDark};
+        }
+
+        /* =====================================================
+           BAR CHART
+        ===================================================== */
+
         .chart {
+          position: relative;
+
           width: 100%;
           height: 210px;
 
@@ -1109,10 +1100,37 @@ export default function Investments() {
 
           padding: 20px 10px 0;
 
-          border-bottom: 1px solid #e8ece9;
+          border-bottom: 1px solid #E5E6E0;
+        }
+
+        .chart::before {
+          content: "";
+
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 25%;
+          border-top: 1px dashed #E5E6E0;
+
+          pointer-events: none;
+        }
+
+        .chart::after {
+          content: "";
+
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          border-top: 1px dashed #E5E6E0;
+
+          pointer-events: none;
         }
 
         .chart-column {
+          position: relative;
+          z-index: 1;
+
           flex: 1;
           height: 100%;
 
@@ -1133,7 +1151,7 @@ export default function Investments() {
         }
 
         .chart-value {
-          color: #68736c;
+          color: ${THEME.muted};
           font-size: 9px;
           font-weight: 650;
 
@@ -1141,43 +1159,46 @@ export default function Investments() {
         }
 
         .chart-column:hover .chart-value {
-          color: #27ae60;
+          color: ${THEME.dark};
         }
 
         .chart-bar {
           width: min(42px, 75%);
           min-height: 10px;
 
-          border-radius: 7px 7px 0 0;
+          border-radius: 5px 5px 2px 2px;
 
-          background:
-            linear-gradient(
-              180deg,
-              #27ae60 0%,
-              #229954 50%,
-              #e67e22 100%
-            );
+          background: ${THEME.darkGreen};
 
           box-shadow:
-            0 -2px 8px rgba(39, 174, 96, 0.3);
+            0 4px 10px rgba(11, 46, 42, 0.15);
 
-          transition: all 0.4s ease;
+          transition:
+            height 0.4s ease,
+            transform 0.25s ease,
+            background 0.25s ease;
+        }
+
+        .chart-column:nth-child(even) .chart-bar {
+          background: ${THEME.green};
         }
 
         .chart-bar:hover {
-          transform: translateY(-4px);
+          background: ${THEME.gold};
+
+          transform: translateY(-3px);
 
           box-shadow:
-            0 -6px 15px rgba(39, 174, 96, 0.35);
+            0 7px 14px rgba(214, 169, 47, 0.22);
         }
 
         .chart-label {
-          color: #8c958f;
+          color: ${THEME.muted};
           font-size: 9px;
         }
 
         /* =====================================================
-           ALLOCATION
+           ALLOCATION DONUT
         ===================================================== */
 
         .allocation-circle {
@@ -1194,26 +1215,26 @@ export default function Investments() {
 
           background:
             conic-gradient(
-              #27ae60 0 29%,
-              #2ecc71 29% 58%,
-              #f39c12 58% 71%,
-              #e67e22 71% 88%,
-              #52be80 88% 100%
+              ${THEME.darkGreen} 0 29%,
+              ${THEME.green} 29% 58%,
+              #77867F 58% 71%,
+              #A2AAA4 71% 88%,
+              ${THEME.gold} 88% 100%
             );
 
           position: relative;
 
           box-shadow:
-            0 8px 24px rgba(39, 174, 96, 0.25);
+            0 7px 20px rgba(11, 46, 42, 0.13);
 
-          transition: all 0.4s ease;
+          transition: all 0.3s ease;
         }
 
         .allocation-circle:hover {
-          transform: scale(1.05) rotate(2deg);
+          transform: scale(1.035);
 
           box-shadow:
-            0 15px 35px rgba(39, 174, 96, 0.3);
+            0 12px 28px rgba(11, 46, 42, 0.18);
         }
 
         .allocation-circle::after {
@@ -1226,7 +1247,7 @@ export default function Investments() {
 
           border-radius: 50%;
 
-          background: #fff;
+          background: ${THEME.card};
         }
 
         .allocation-total {
@@ -1238,18 +1259,19 @@ export default function Investments() {
 
         .allocation-total strong {
           display: block;
+          color: ${THEME.dark};
           font-size: 18px;
         }
 
         .allocation-total span {
-          color: #8a938e;
+          color: ${THEME.muted};
           font-size: 9px;
         }
 
         .allocation-list {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 5px;
         }
 
         .allocation-item {
@@ -1261,20 +1283,17 @@ export default function Investments() {
 
           padding: 8px;
 
-          border-radius: 8px;
+          border-radius: 7px;
 
+          color: ${THEME.text};
           font-size: 10px;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .allocation-item:hover {
-          background: #f7fbf8;
-
-          transform: translateX(5px);
-
-          box-shadow:
-            0 4px 10px rgba(39, 174, 96, 0.08);
+          background: ${THEME.cream};
+          transform: translateX(3px);
         }
 
         .allocation-name {
@@ -1282,38 +1301,37 @@ export default function Investments() {
           align-items: center;
           gap: 7px;
 
-          color: #56615b;
+          color: #56615B;
         }
 
         .allocation-dot {
           width: 8px;
           height: 8px;
+          min-width: 8px;
 
           border-radius: 50%;
 
-          background: #27ae60;
-
-          transition: transform 0.2s ease;
-        }
-
-        .allocation-item:hover .allocation-dot {
-          transform: scale(1.4);
+          background: ${THEME.darkGreen};
         }
 
         .allocation-item:nth-child(2) .allocation-dot {
-          background: #2ecc71;
+          background: ${THEME.green};
         }
 
         .allocation-item:nth-child(3) .allocation-dot {
-          background: #f39c12;
+          background: #77867F;
         }
 
         .allocation-item:nth-child(4) .allocation-dot {
-          background: #e67e22;
+          background: #A2AAA4;
         }
 
         .allocation-item:nth-child(5) .allocation-dot {
-          background: #52be80;
+          background: ${THEME.gold};
+        }
+
+        .allocation-item strong {
+          color: ${THEME.dark};
         }
 
         /* =====================================================
@@ -1335,25 +1353,24 @@ export default function Investments() {
 
           padding: 0 9px;
 
-          border: 1px solid #dce3df;
-          border-radius: 8px;
+          border: 1px solid #D8DDD8;
+          border-radius: 7px;
 
-          background: #fff;
+          background: #FFFFFF;
 
-          color: #56615b;
+          color: ${THEME.dark};
 
           outline: none;
 
           font-size: 10px;
-
           cursor: pointer;
         }
 
         .filter-select:focus {
-          border-color: #72b88a;
+          border-color: ${THEME.gold};
 
           box-shadow:
-            0 0 0 3px rgba(39, 174, 96, 0.08);
+            0 0 0 3px rgba(214, 169, 47, 0.10);
         }
 
         .table-wrapper {
@@ -1371,9 +1388,9 @@ export default function Investments() {
         .investment-table th {
           padding: 12px 16px;
 
-          background: #fafbfa;
+          background: #FAFAF7;
 
-          color: #8b948f;
+          color: #7A837E;
 
           font-size: 9px;
           font-weight: 700;
@@ -1388,9 +1405,9 @@ export default function Investments() {
         .investment-table td {
           padding: 15px 16px;
 
-          border-top: 1px solid #edf0ee;
+          border-top: 1px solid #ECECE6;
 
-          color: #56615b;
+          color: #59645E;
 
           font-size: 10px;
 
@@ -1398,50 +1415,38 @@ export default function Investments() {
         }
 
         .investment-table tbody tr {
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .investment-table tbody tr:hover {
-          background:
-            linear-gradient(
-              90deg,
-              #f8fcf9,
-              #ffffff
-            );
+          background: #F7F7F2;
 
           box-shadow:
-            inset 4px 0 0 #27ae60;
+            inset 3px 0 0 ${THEME.gold};
         }
 
         .investment-name {
-          color: #263129;
+          color: ${THEME.dark};
 
           font-size: 11px;
           font-weight: 700;
-
-          transition: color 0.2s ease;
-        }
-
-        .investment-table tbody tr:hover
-          .investment-name {
-          color: #1e7a45;
         }
 
         .investment-category {
           margin-top: 3px;
 
-          color: #929a95;
+          color: #929992;
 
           font-size: 8px;
         }
 
         .return-positive {
-          color: #27ae60;
+          color: ${THEME.green};
           font-weight: 700;
         }
 
         .return-negative {
-          color: #e74c3c;
+          color: ${THEME.danger};
           font-weight: 700;
         }
 
@@ -1449,7 +1454,7 @@ export default function Investments() {
           display: inline-flex;
           align-items: center;
 
-          padding: 5px 8px;
+          padding: 5px 9px;
 
           border-radius: 20px;
 
@@ -1458,35 +1463,25 @@ export default function Investments() {
         }
 
         .status.active {
-          background:
-            linear-gradient(
-              135deg,
-              #eaf5ed,
-              #d5f4e6
-            );
+          background: ${THEME.lightGreen};
 
-          color: #27ae60;
+          color: ${THEME.darkGreen};
 
-          border: 1px solid #a9dfbf;
+          border: 1px solid #D4DED6;
         }
 
         .status.review {
-          background:
-            linear-gradient(
-              135deg,
-              #fff3e5,
-              #ffe5cc
-            );
+          background: ${THEME.lightGold};
 
-          color: #e67e22;
+          color: ${THEME.goldDark};
 
-          border: 1px solid #f5cba7;
+          border: 1px solid #E7D99D;
         }
 
         .empty-investments {
           padding: 35px;
 
-          color: #89928d;
+          color: ${THEME.muted};
 
           text-align: center;
 
@@ -1508,42 +1503,41 @@ export default function Investments() {
 
           padding: 0 11px;
 
-          border: 1px solid #d7e3da;
+          border: 1px solid #CDD7D1;
 
-          border-radius: 8px;
+          border-radius: 7px;
 
-          background: #f7fbf8;
+          background: ${THEME.lightGreen};
 
-          color: #287a4c;
+          color: ${THEME.dark};
 
           font-size: 9px;
           font-weight: 700;
 
           cursor: pointer;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
+        }
+
+        .view-investment-btn svg {
+          color: ${THEME.goldDark};
         }
 
         .view-investment-btn:hover {
-          background:
-            linear-gradient(
-              135deg,
-              #27ae60,
-              #229954
-            );
+          background: ${THEME.dark};
 
-          color: #ffffff;
+          color: #FFFFFF;
 
-          border-color: #27ae60;
+          border-color: ${THEME.dark};
 
-          transform: translateY(-2px);
+          transform: translateY(-1px);
 
           box-shadow:
-            0 7px 16px rgba(39, 174, 96, 0.28);
+            0 6px 14px rgba(11, 46, 42, 0.18);
         }
 
-        .view-investment-btn:active {
-          transform: translateY(0);
+        .view-investment-btn:hover svg {
+          color: ${THEME.gold};
         }
 
         /* =====================================================
@@ -1555,7 +1549,7 @@ export default function Investments() {
           inset: 0;
 
           background:
-            rgba(23, 35, 27, 0.6);
+            rgba(11, 46, 42, 0.62);
 
           backdrop-filter: blur(4px);
 
@@ -1576,7 +1570,7 @@ export default function Investments() {
 
           max-height: 90vh;
 
-          background: #fff;
+          background: #FFFFFF;
 
           border-radius: 16px;
 
@@ -1586,7 +1580,7 @@ export default function Investments() {
           overflow: hidden;
 
           box-shadow:
-            0 25px 70px rgba(20, 35, 27, 0.2);
+            0 25px 70px rgba(11, 46, 42, 0.28);
 
           animation: slideUp 0.3s ease;
         }
@@ -1600,7 +1594,7 @@ export default function Investments() {
 
           padding: 24px 28px;
 
-          border-bottom: 1px solid #e8ece9;
+          border-bottom: 1px solid #E8E7E0;
         }
 
         .report-modal-header h2 {
@@ -1611,13 +1605,19 @@ export default function Investments() {
 
           gap: 10px;
 
+          color: ${THEME.dark};
+
           font-size: 20px;
+        }
+
+        .report-modal-header h2 svg {
+          color: ${THEME.goldDark};
         }
 
         .report-modal-header p {
           margin: 6px 0 0;
 
-          color: #8a938e;
+          color: ${THEME.muted};
 
           font-size: 12px;
         }
@@ -1630,10 +1630,11 @@ export default function Investments() {
           align-items: center;
           justify-content: center;
 
-          border: 1px solid #dce3df;
+          border: 1px solid #D8DDD8;
           border-radius: 8px;
 
-          background: #fff;
+          background: #FFFFFF;
+          color: ${THEME.dark};
 
           cursor: pointer;
 
@@ -1641,7 +1642,11 @@ export default function Investments() {
         }
 
         .report-close-btn:hover {
-          background: #f7f9f8;
+          background: ${THEME.lightGold};
+
+          border-color: ${THEME.gold};
+
+          color: ${THEME.dark};
 
           transform: rotate(5deg);
         }
@@ -1662,15 +1667,19 @@ export default function Investments() {
 
           padding: 12px 16px;
 
-          background: #f7f9f8;
+          background: ${THEME.cream};
 
-          border-radius: 10px;
+          border-radius: 9px;
 
-          color: #56615b;
+          color: #56615B;
 
           font-size: 11px;
 
           margin-bottom: 24px;
+        }
+
+        .report-date svg {
+          color: ${THEME.goldDark};
         }
 
         .report-section {
@@ -1680,9 +1689,9 @@ export default function Investments() {
         .report-section h3 {
           margin: 0 0 16px;
 
-          font-size: 14px;
+          color: ${THEME.dark};
 
-          color: #263129;
+          font-size: 14px;
         }
 
         .report-summary-grid {
@@ -1696,20 +1705,22 @@ export default function Investments() {
         .report-summary-item {
           padding: 16px;
 
-          background: #fafbfa;
+          background: #FAFAF7;
 
-          border: 1px solid #e8ece9;
+          border: 1px solid #E7E6DF;
 
           border-radius: 10px;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .report-summary-item:hover {
           transform: translateY(-2px);
 
+          border-color: #D6D4C9;
+
           box-shadow:
-            0 6px 16px rgba(20, 35, 27, 0.06);
+            0 6px 16px rgba(11, 46, 42, 0.06);
         }
 
         .report-summary-item span {
@@ -1717,7 +1728,7 @@ export default function Investments() {
 
           margin-bottom: 8px;
 
-          color: #8a938e;
+          color: ${THEME.muted};
 
           font-size: 10px;
 
@@ -1725,15 +1736,17 @@ export default function Investments() {
         }
 
         .report-summary-item strong {
+          color: ${THEME.dark};
+
           font-size: 20px;
         }
 
         .report-summary-item strong.positive {
-          color: #438457;
+          color: ${THEME.darkGreen};
         }
 
         .report-summary-item strong.negative {
-          color: #b15b5b;
+          color: ${THEME.danger};
         }
 
         .report-metrics,
@@ -1758,30 +1771,30 @@ export default function Investments() {
 
           padding: 12px 16px;
 
-          background: #fafbfa;
+          background: #FAFAF7;
 
           border-radius: 8px;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .report-metric-row:hover,
         .report-holding-item:hover {
-          background: #f4faf6;
+          background: ${THEME.cream};
 
           transform: translateX(3px);
         }
 
         .report-metric-row span,
         .holding-details span {
-          color: #56615b;
+          color: #56615B;
 
           font-size: 11px;
         }
 
         .report-metric-row strong,
         .holding-details strong {
-          color: #263129;
+          color: ${THEME.dark};
 
           font-size: 12px;
         }
@@ -1804,12 +1817,19 @@ export default function Investments() {
           font-size: 11px;
         }
 
+        .breakdown-header span {
+          color: #56615B;
+        }
+
+        .breakdown-header strong {
+          color: ${THEME.dark};
+        }
+
         .breakdown-bar {
           width: 100%;
+          height: 7px;
 
-          height: 8px;
-
-          background: #e8ece9;
+          background: #E6E5DE;
 
           border-radius: 10px;
 
@@ -1819,38 +1839,45 @@ export default function Investments() {
         .breakdown-fill {
           height: 100%;
 
-          background:
-            linear-gradient(
-              90deg,
-              #27ae60,
-              #2ecc71,
-              #f39c12,
-              #e67e22
-            );
+          background: ${THEME.darkGreen};
 
           border-radius: 10px;
 
           transition: width 0.5s ease;
         }
 
+        .report-breakdown-item:nth-child(2)
+          .breakdown-fill {
+          background: ${THEME.green};
+        }
+
+        .report-breakdown-item:nth-child(3)
+          .breakdown-fill {
+          background: #77867F;
+        }
+
+        .report-breakdown-item:nth-child(4)
+          .breakdown-fill {
+          background: #A2AAA4;
+        }
+
+        .report-breakdown-item:nth-child(5)
+          .breakdown-fill {
+          background: ${THEME.gold};
+        }
+
         .holding-rank {
           width: 32px;
           height: 32px;
-
           min-width: 32px;
 
           display: flex;
           align-items: center;
           justify-content: center;
 
-          background:
-            linear-gradient(
-              135deg,
-              #27ae60,
-              #229954
-            );
+          background: ${THEME.dark};
 
-          color: #fff;
+          color: ${THEME.gold};
 
           border-radius: 8px;
 
@@ -1878,6 +1905,8 @@ export default function Investments() {
         }
 
         .holding-value strong {
+          color: ${THEME.dark};
+
           font-size: 13px;
         }
 
@@ -1890,11 +1919,11 @@ export default function Investments() {
         }
 
         .positive {
-          color: #438457;
+          color: ${THEME.darkGreen};
         }
 
         .negative {
-          color: #b15b5b;
+          color: ${THEME.danger};
         }
 
         .report-risk {
@@ -1908,22 +1937,22 @@ export default function Investments() {
         .risk-item {
           padding: 14px;
 
-          background: #fafbfa;
+          background: #FAFAF7;
 
-          border: 1px solid #e8ece9;
+          border: 1px solid #E7E6DF;
 
           border-radius: 10px;
 
           text-align: center;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .risk-item:hover {
-          transform: translateY(-3px);
+          transform: translateY(-2px);
 
           box-shadow:
-            0 7px 18px rgba(20, 35, 27, 0.07);
+            0 7px 18px rgba(11, 46, 42, 0.07);
         }
 
         .risk-item span {
@@ -1931,7 +1960,7 @@ export default function Investments() {
 
           margin-bottom: 8px;
 
-          color: #8a938e;
+          color: ${THEME.muted};
 
           font-size: 9px;
 
@@ -1939,6 +1968,8 @@ export default function Investments() {
         }
 
         .risk-item strong {
+          color: ${THEME.dark};
+
           font-size: 16px;
         }
 
@@ -1953,9 +1984,9 @@ export default function Investments() {
 
           padding: 20px 28px;
 
-          border-top: 1px solid #e8ece9;
+          border-top: 1px solid #E8E7E0;
 
-          background: #fafbfa;
+          background: #FAFAF7;
         }
 
         .report-download-btn,
@@ -1970,51 +2001,54 @@ export default function Investments() {
 
           padding: 0 18px;
 
-          border-radius: 9px;
+          border-radius: 8px;
 
           font-size: 12px;
           font-weight: 650;
 
           cursor: pointer;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .report-download-btn {
-          border: none;
+          border: 1px solid ${THEME.dark};
 
-          background:
-            linear-gradient(
-              135deg,
-              #27ae60,
-              #229954
-            );
+          background: ${THEME.dark};
 
-          color: #fff;
+          color: #FFFFFF;
 
           box-shadow:
-            0 4px 12px rgba(39, 174, 96, 0.3);
+            0 4px 12px rgba(11, 46, 42, 0.18);
+        }
+
+        .report-download-btn svg {
+          color: ${THEME.gold};
         }
 
         .report-download-btn:hover {
-          transform: translateY(-2px);
+          background: ${THEME.darkGreen};
+
+          border-color: ${THEME.gold};
+
+          transform: translateY(-1px);
 
           box-shadow:
-            0 8px 20px rgba(39, 174, 96, 0.35);
+            0 8px 20px rgba(11, 46, 42, 0.23);
         }
 
         .report-cancel-btn {
-          border: 1px solid #dce3df;
+          border: 1px solid #D8DDD8;
 
-          background: #fff;
+          background: #FFFFFF;
 
-          color: #56615b;
+          color: ${THEME.dark};
         }
 
         .report-cancel-btn:hover {
-          background: #f4f7f5;
+          background: ${THEME.lightGold};
 
-          transform: translateY(-1px);
+          border-color: #D9C982;
         }
 
         /* =====================================================
@@ -2034,7 +2068,7 @@ export default function Investments() {
           padding: 20px;
 
           background:
-            rgba(15, 28, 20, 0.65);
+            rgba(11, 46, 42, 0.65);
 
           backdrop-filter: blur(6px);
 
@@ -2052,15 +2086,13 @@ export default function Investments() {
 
           overflow: hidden;
 
-          background: #fff;
+          background: #FFFFFF;
 
-          border: 1px solid #e1e9e3;
-
+          border: 1px solid #E2E4DC;
           border-radius: 18px;
 
           box-shadow:
-            0 30px 80px rgba(20, 35, 27, 0.25),
-            0 10px 30px rgba(0, 0, 0, 0.12);
+            0 30px 80px rgba(11, 46, 42, 0.25);
 
           animation: slideUp 0.3s ease;
         }
@@ -2074,20 +2106,20 @@ export default function Investments() {
 
           padding: 23px 26px;
 
-          border-bottom: 1px solid #e8eeea;
+          border-bottom: 1px solid #E7E7E0;
 
           background:
             linear-gradient(
               135deg,
-              #ffffff,
-              #f8fbf9
+              #FFFFFF,
+              #F7F7F2
             );
         }
 
         .details-breadcrumb {
           margin: 0 0 6px;
 
-          color: #929b96;
+          color: ${THEME.muted};
 
           font-size: 10px;
         }
@@ -2100,9 +2132,13 @@ export default function Investments() {
 
           gap: 8px;
 
-          color: #263129;
+          color: ${THEME.dark};
 
           font-size: 19px;
+        }
+
+        .investment-details-header h2 svg {
+          color: ${THEME.goldDark};
         }
 
         .details-category {
@@ -2110,7 +2146,7 @@ export default function Investments() {
 
           margin-top: 7px;
 
-          color: #6f7c74;
+          color: #6F7C74;
 
           font-size: 10px;
         }
@@ -2125,25 +2161,25 @@ export default function Investments() {
 
           flex-shrink: 0;
 
-          border: 1px solid #dce5df;
+          border: 1px solid #D8DDD8;
 
           border-radius: 9px;
 
-          background: #fff;
+          background: #FFFFFF;
 
-          color: #65716a;
+          color: ${THEME.dark};
 
           cursor: pointer;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .details-close-btn:hover {
-          background: #f2f8f4;
+          background: ${THEME.lightGold};
 
-          color: #27ae60;
+          color: ${THEME.dark};
 
-          border-color: #b9d9c3;
+          border-color: ${THEME.gold};
 
           transform: rotate(5deg);
         }
@@ -2173,9 +2209,13 @@ export default function Investments() {
 
           gap: 5px;
 
-          color: #7c8780;
+          color: ${THEME.muted};
 
           font-size: 10px;
+        }
+
+        .details-date svg {
+          color: ${THEME.goldDark};
         }
 
         .details-value-card {
@@ -2191,28 +2231,28 @@ export default function Investments() {
 
           margin-bottom: 18px;
 
-          border: 1px solid #dfe9e2;
+          border: 1px solid #DCE3DC;
 
           border-radius: 13px;
 
           background:
             linear-gradient(
               135deg,
-              #f5fbf7,
-              #ffffff
+              #F3F6F2,
+              #FFFFFF
             );
 
           box-shadow:
-            0 5px 15px rgba(39, 174, 96, 0.07);
+            0 5px 15px rgba(11, 46, 42, 0.06);
 
-          transition: all 0.3s ease;
+          transition: all 0.25s ease;
         }
 
         .details-value-card:hover {
           transform: translateY(-2px);
 
           box-shadow:
-            0 10px 25px rgba(39, 174, 96, 0.12);
+            0 10px 25px rgba(11, 46, 42, 0.10);
         }
 
         .details-value-card > div:first-child span,
@@ -2221,7 +2261,7 @@ export default function Investments() {
 
           margin-bottom: 6px;
 
-          color: #89948d;
+          color: ${THEME.muted};
 
           font-size: 10px;
         }
@@ -2229,7 +2269,7 @@ export default function Investments() {
         .details-value-card > div:first-child strong {
           display: block;
 
-          color: #253129;
+          color: ${THEME.dark};
 
           font-size: 25px;
         }
@@ -2245,11 +2285,11 @@ export default function Investments() {
 
           border-radius: 10px;
 
-          background: #eef8f1;
+          background: ${THEME.lightGold};
         }
 
         .details-return svg {
-          color: #27ae60;
+          color: ${THEME.goldDark};
         }
 
         .details-return strong {
@@ -2275,22 +2315,22 @@ export default function Investments() {
 
           padding: 15px;
 
-          border: 1px solid #e5ebe7;
+          border: 1px solid #E3E6E0;
 
           border-radius: 11px;
 
-          background: #ffffff;
+          background: #FFFFFF;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .details-info-card:hover {
-          transform: translateY(-3px);
+          transform: translateY(-2px);
 
-          border-color: #cce0d2;
+          border-color: #D1D8D2;
 
           box-shadow:
-            0 7px 18px rgba(20, 35, 27, 0.07);
+            0 7px 18px rgba(11, 46, 42, 0.06);
         }
 
         .details-icon {
@@ -2305,9 +2345,13 @@ export default function Investments() {
 
           border-radius: 9px;
 
-          background: #edf7f0;
+          background: ${THEME.lightGreen};
 
-          color: #287a4c;
+          color: ${THEME.dark};
+        }
+
+        .details-icon svg {
+          color: ${THEME.goldDark};
         }
 
         .details-info-card span {
@@ -2315,7 +2359,7 @@ export default function Investments() {
 
           margin-bottom: 5px;
 
-          color: #8b958f;
+          color: ${THEME.muted};
 
           font-size: 9px;
         }
@@ -2323,7 +2367,7 @@ export default function Investments() {
         .details-info-card strong {
           display: block;
 
-          color: #2c3831;
+          color: ${THEME.dark};
 
           font-size: 13px;
         }
@@ -2331,11 +2375,11 @@ export default function Investments() {
         .details-performance {
           padding: 18px;
 
-          border: 1px solid #e4ebe6;
+          border: 1px solid #E1E5DF;
 
           border-radius: 12px;
 
-          background: #fafcfb;
+          background: #FAFAF7;
         }
 
         .details-performance-header {
@@ -2351,7 +2395,7 @@ export default function Investments() {
         .details-performance-header h3 {
           margin: 0;
 
-          color: #2b372f;
+          color: ${THEME.dark};
 
           font-size: 13px;
         }
@@ -2359,13 +2403,13 @@ export default function Investments() {
         .details-performance-header p {
           margin: 4px 0 0;
 
-          color: #8a938e;
+          color: ${THEME.muted};
 
           font-size: 9px;
         }
 
         .details-performance-header svg {
-          color: #668071;
+          color: ${THEME.goldDark};
         }
 
         .performance-line {
@@ -2383,9 +2427,9 @@ export default function Investments() {
 
           border-radius: 9px;
 
-          background: #ffffff;
+          background: #FFFFFF;
 
-          border: 1px solid #e8edea;
+          border: 1px solid #E5E7E0;
         }
 
         .performance-line span {
@@ -2393,13 +2437,13 @@ export default function Investments() {
 
           margin-bottom: 5px;
 
-          color: #8c958f;
+          color: ${THEME.muted};
 
           font-size: 9px;
         }
 
         .performance-line strong {
-          color: #2d3931;
+          color: ${THEME.dark};
 
           font-size: 13px;
         }
@@ -2414,14 +2458,14 @@ export default function Investments() {
 
           border-radius: 50%;
 
-          background: #eaf7ee;
+          background: ${THEME.dark};
 
-          color: #27ae60;
+          color: ${THEME.gold};
         }
 
         .details-progress {
           width: 100%;
-          height: 8px;
+          height: 7px;
 
           margin-top: 15px;
 
@@ -2429,7 +2473,7 @@ export default function Investments() {
 
           border-radius: 10px;
 
-          background: #e5ebe7;
+          background: #E3E5DE;
         }
 
         .details-progress-fill {
@@ -2441,21 +2485,11 @@ export default function Investments() {
         }
 
         .positive-fill {
-          background:
-            linear-gradient(
-              90deg,
-              #27ae60,
-              #2ecc71
-            );
+          background: ${THEME.darkGreen};
         }
 
         .negative-fill {
-          background:
-            linear-gradient(
-              90deg,
-              #e74c3c,
-              #f39c12
-            );
+          background: ${THEME.danger};
         }
 
         .details-gain {
@@ -2471,7 +2505,7 @@ export default function Investments() {
         }
 
         .details-gain span {
-          color: #7f8a83;
+          color: ${THEME.muted};
         }
 
         .investment-details-footer {
@@ -2481,9 +2515,9 @@ export default function Investments() {
 
           padding: 16px 26px;
 
-          border-top: 1px solid #e7ece9;
+          border-top: 1px solid #E7E8E1;
 
-          background: #fafcfb;
+          background: #FAFAF7;
         }
 
         .details-close-main-btn {
@@ -2491,13 +2525,13 @@ export default function Investments() {
 
           padding: 0 20px;
 
-          border: 1px solid #d5e0d9;
+          border: 1px solid ${THEME.dark};
 
           border-radius: 8px;
 
-          background: #fff;
+          background: ${THEME.dark};
 
-          color: #536158;
+          color: #FFFFFF;
 
           font-size: 11px;
 
@@ -2505,20 +2539,18 @@ export default function Investments() {
 
           cursor: pointer;
 
-          transition: all 0.25s ease;
+          transition: all 0.2s ease;
         }
 
         .details-close-main-btn:hover {
-          color: #fff;
+          background: ${THEME.darkGreen};
 
-          background: #287a4c;
+          border-color: ${THEME.gold};
 
-          border-color: #287a4c;
-
-          transform: translateY(-2px);
+          transform: translateY(-1px);
 
           box-shadow:
-            0 6px 15px rgba(39, 174, 96, 0.25);
+            0 6px 15px rgba(11, 46, 42, 0.20);
         }
 
         /* =====================================================
@@ -2588,7 +2620,6 @@ export default function Investments() {
         @media (max-width: 700px) {
           .inv-header {
             align-items: flex-start;
-
             flex-direction: column;
           }
 
@@ -2602,20 +2633,17 @@ export default function Investments() {
 
           .inv-stats {
             grid-template-columns: 1fr 1fr;
-
             gap: 10px;
           }
 
           .inv-stat {
             min-height: 85px;
-
             padding: 12px;
           }
 
           .inv-stat-icon {
             width: 35px;
             height: 35px;
-
             min-width: 35px;
           }
 
@@ -2625,7 +2653,6 @@ export default function Investments() {
 
           .inv-card-header {
             align-items: flex-start;
-
             flex-direction: column;
           }
 
@@ -2639,7 +2666,6 @@ export default function Investments() {
 
           .chart {
             height: 160px;
-
             gap: 10px;
           }
 
@@ -2653,9 +2679,7 @@ export default function Investments() {
 
           .report-modal {
             max-width: 100%;
-
             max-height: 100%;
-
             border-radius: 0;
           }
 
@@ -2688,7 +2712,6 @@ export default function Investments() {
 
           .investment-details-modal {
             max-height: 95vh;
-
             border-radius: 14px;
           }
 
@@ -2706,7 +2729,6 @@ export default function Investments() {
 
           .details-value-card {
             align-items: flex-start;
-
             flex-direction: column;
           }
 
@@ -2724,7 +2746,6 @@ export default function Investments() {
 
           .performance-arrow {
             margin: 0 auto;
-
             transform: rotate(90deg);
           }
         }
@@ -2748,9 +2769,7 @@ export default function Investments() {
 
           .chart {
             gap: 8px;
-
             height: 140px;
-
             padding: 15px 5px 0;
           }
 
@@ -2786,9 +2805,7 @@ export default function Investments() {
 
           .performance-summary {
             flex-direction: column;
-
             align-items: flex-start;
-
             gap: 5px;
           }
 
@@ -2831,9 +2848,7 @@ export default function Investments() {
           .investment-details-modal {
             width: 100%;
             height: 100%;
-
             max-height: 100vh;
-
             border-radius: 0;
           }
 
@@ -2851,7 +2866,6 @@ export default function Investments() {
 
           .details-status-row {
             align-items: flex-start;
-
             flex-direction: column;
           }
 
@@ -2861,7 +2875,6 @@ export default function Investments() {
 
           .view-investment-btn {
             height: 34px;
-
             padding: 0 10px;
           }
         }
@@ -2925,6 +2938,7 @@ export default function Investments() {
       <div className="inv-stats">
 
         <div className="inv-stat">
+
           <div className="inv-stat-icon">
             <IndianRupee size={19} />
           </div>
@@ -2936,9 +2950,11 @@ export default function Investments() {
               {formatCurrency(totalInvested)}
             </strong>
           </div>
+
         </div>
 
         <div className="inv-stat">
+
           <div className="inv-stat-icon">
             <PieChart size={19} />
           </div>
@@ -2950,18 +2966,23 @@ export default function Investments() {
               {formatCurrency(totalCurrent)}
             </strong>
           </div>
+
         </div>
 
         <div className="inv-stat">
+
           <div className="inv-stat-icon">
+
             {totalGain >= 0 ? (
               <TrendingUp size={19} />
             ) : (
               <TrendingDown size={19} />
             )}
+
           </div>
 
           <div>
+
             <span>Total Returns</span>
 
             <strong>
@@ -2972,15 +2993,19 @@ export default function Investments() {
               {overallReturn >= 0 ? "+" : ""}
               {overallReturn.toFixed(2)}% overall
             </small>
+
           </div>
+
         </div>
 
         <div className="inv-stat">
+
           <div className="inv-stat-icon">
             <BriefcaseBusiness size={19} />
           </div>
 
           <div>
+
             <span>Active Investments</span>
 
             <strong>
@@ -2990,7 +3015,9 @@ export default function Investments() {
             <small>
               Portfolio positions
             </small>
+
           </div>
+
         </div>
 
       </div>
@@ -3008,6 +3035,7 @@ export default function Investments() {
           <div className="inv-card-header">
 
             <div>
+
               <h2>
                 Portfolio Performance
               </h2>
@@ -3015,12 +3043,11 @@ export default function Investments() {
               <p>
                 Investment growth over recent months
               </p>
+
             </div>
 
-            <BarChart3
-              size={18}
-              color="#688070"
-            />
+            <BarChart3 size={18} />
+
           </div>
 
           <div className="performance-content">
@@ -3032,9 +3059,11 @@ export default function Investments() {
               </strong>
 
               <span>
+
                 <ArrowUpRight size={13} />
 
                 Portfolio Return
+
               </span>
 
             </div>
@@ -3046,6 +3075,7 @@ export default function Investments() {
                   className="chart-column"
                   key={item.month}
                 >
+
                   <span className="chart-value">
                     {item.value}%
                   </span>
@@ -3060,11 +3090,14 @@ export default function Investments() {
                   <span className="chart-label">
                     {item.month}
                   </span>
+
                 </div>
               ))}
 
             </div>
+
           </div>
+
         </div>
 
         {/* ALLOCATION */}
@@ -3074,6 +3107,7 @@ export default function Investments() {
           <div className="inv-card-header">
 
             <div>
+
               <h2>
                 Asset Allocation
               </h2>
@@ -3081,12 +3115,11 @@ export default function Investments() {
               <p>
                 Current portfolio distribution
               </p>
+
             </div>
 
-            <PieChart
-              size={18}
-              color="#688070"
-            />
+            <PieChart size={18} />
+
           </div>
 
           <div className="allocation-content">
@@ -3104,6 +3137,7 @@ export default function Investments() {
                 </span>
 
               </div>
+
             </div>
 
             <div className="allocation-list">
@@ -3130,7 +3164,9 @@ export default function Investments() {
               ))}
 
             </div>
+
           </div>
+
         </div>
 
       </div>
@@ -3144,6 +3180,7 @@ export default function Investments() {
         <div className="inv-card-header">
 
           <div>
+
             <h2>
               Investment Portfolio
             </h2>
@@ -3152,13 +3189,14 @@ export default function Investments() {
               Track individual investment positions
               and returns
             </p>
+
           </div>
 
           <div className="table-header-actions">
 
             <Filter
               size={14}
-              color="#89928d"
+              color={THEME.muted}
             />
 
             <select
@@ -3168,6 +3206,7 @@ export default function Investments() {
                 setFilter(event.target.value)
               }
             >
+
               {categories.map((category) => (
                 <option
                   key={category}
@@ -3176,9 +3215,11 @@ export default function Investments() {
                   {category}
                 </option>
               ))}
+
             </select>
 
           </div>
+
         </div>
 
         <div className="table-wrapper">
@@ -3276,11 +3317,13 @@ export default function Investments() {
                           gap: "5px",
                         }}
                       >
+
                         <CalendarDays size={11} />
 
                         {formatDate(
                           investment.date
                         )}
+
                       </span>
 
                     </td>
@@ -3300,8 +3343,6 @@ export default function Investments() {
 
                     </td>
 
-                    {/* VIEW BUTTON */}
-
                     <td>
 
                       <button
@@ -3313,9 +3354,11 @@ export default function Investments() {
                           )
                         }
                       >
+
                         <Eye size={13} />
 
                         View
+
                       </button>
 
                     </td>
@@ -3335,6 +3378,7 @@ export default function Investments() {
           )}
 
         </div>
+
       </div>
 
       {/* =====================================================
@@ -3362,9 +3406,11 @@ export default function Investments() {
               <div>
 
                 <h2>
+
                   <FileText size={20} />
 
                   Investment Report
+
                 </h2>
 
                 <p>
@@ -3419,6 +3465,7 @@ export default function Investments() {
                 <div className="report-summary-grid">
 
                   <div className="report-summary-item">
+
                     <span>
                       Total Capital Deployed
                     </span>
@@ -3428,9 +3475,11 @@ export default function Investments() {
                         totalInvested
                       )}
                     </strong>
+
                   </div>
 
                   <div className="report-summary-item">
+
                     <span>
                       Current Portfolio Value
                     </span>
@@ -3440,6 +3489,7 @@ export default function Investments() {
                         totalCurrent
                       )}
                     </strong>
+
                   </div>
 
                   <div className="report-summary-item">
@@ -3473,11 +3523,13 @@ export default function Investments() {
                           : "negative"
                       }
                     >
+
                       {overallReturn >= 0
                         ? "+"
                         : ""}
 
                       {overallReturn.toFixed(2)}%
+
                     </strong>
 
                   </div>
@@ -3649,11 +3701,13 @@ export default function Investments() {
                                 : "negative"
                             }
                           >
+
                             {investment.return >= 0
                               ? "+"
                               : ""}
 
                             {investment.return}%
+
                           </span>
 
                         </div>
@@ -3786,7 +3840,7 @@ export default function Investments() {
             }
           >
 
-            {/* DETAILS HEADER */}
+            {/* HEADER */}
 
             <div className="investment-details-header">
 
@@ -3822,7 +3876,7 @@ export default function Investments() {
 
             </div>
 
-            {/* DETAILS CONTENT */}
+            {/* CONTENT */}
 
             <div className="investment-details-content">
 
@@ -3891,12 +3945,14 @@ export default function Investments() {
                           : "negative"
                       }
                     >
+
                       {selectedInvestment.return >=
                       0
                         ? "+"
                         : ""}
 
                       {selectedInvestment.return}%
+
                     </strong>
 
                   </div>
@@ -3973,12 +4029,14 @@ export default function Investments() {
                           : "negative"
                       }
                     >
+
                       {selectedInvestment.return >=
                       0
                         ? "+"
                         : ""}
 
                       {selectedInvestment.return}%
+
                     </strong>
 
                   </div>
@@ -4108,10 +4166,12 @@ export default function Investments() {
                         : "negative"
                     }
                   >
+
                     {formatCurrency(
                       selectedInvestment.current -
                         selectedInvestment.invested
                     )}
+
                   </strong>
 
                 </div>
@@ -4120,7 +4180,7 @@ export default function Investments() {
 
             </div>
 
-            {/* DETAILS FOOTER */}
+            {/* FOOTER */}
 
             <div className="investment-details-footer">
 

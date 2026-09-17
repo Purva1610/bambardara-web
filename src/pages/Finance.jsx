@@ -24,6 +24,7 @@ import {
   Legend,
   LineChart,
   Line,
+  LabelList,
 } from "recharts";
 
 import { Card, SectionHead } from "../components/Ui.jsx";
@@ -91,28 +92,40 @@ const financeData = {
 
   departmentSpending: [
     {
-      department: "Construction",
+      department: "Hospitality",
       spending: 126,
     },
     {
-      department: "Operations",
+      department: "Adventure",
       spending: 72,
     },
     {
-      department: "Procurement",
+      department: "Farming",
       spending: 58,
     },
     {
-      department: "Marketing",
+      department: " Sales & Marketing",
       spending: 34,
     },
     {
-      department: "Human Resources",
+      department: "HR",
       spending: 26,
     },
     {
-      department: "Technology",
+      department: "IT",
       spending: 18,
+    },
+    {
+      department: "Events",
+      spending: 26,
+    },
+      {
+      department: "Adminitration",
+      spending: 14,
+    },
+      {
+      department: "Finance",
+      spending: 30,
     },
   ],
 
@@ -709,204 +722,235 @@ export default function Finance() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mb-6">
 
 
-        {/* ZONE-WISE REVENUE VS EXPENSE */}
+<Card>
 
-        <Card>
+  <div className="mb-5">
 
-          <div className="mb-5">
+    <h3 className="text-[14px] font-semibold m-0">
+      Zone-wise Revenue vs Expense
+    </h3>
 
-            <h3 className="text-[14px] font-semibold m-0">
-              Zone-wise Revenue vs Expense
-            </h3>
+    <p className="text-[11px] text-muted mt-1 m-0">
+      Revenue and expense comparison across zones
+    </p>
 
-            <p className="text-[11px] text-muted mt-1 m-0">
-              Revenue and expense comparison across zones
-            </p>
-
-          </div>
+  </div>
 
 
-          <div className="h-[310px]">
+  <div className="h-[310px]">
 
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-            >
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+    >
 
-              <BarChart
-                data={
-                  financeData.zoneRevenueExpense
-                }
-                margin={{
-                  top: 10,
-                  right: 10,
-                  left: -10,
-                  bottom: 5,
-                }}
-              >
+      <BarChart
+        data={
+          financeData.zoneRevenueExpense
+        }
+        margin={{
+          top: 20,
+          right: 10,
+          left: -10,
+          bottom: 5,
+        }}
+      >
 
-                <CartesianGrid
-                  stroke="#E7EBE6"
-                  vertical={false}
-                />
+        <CartesianGrid
+          stroke="#E7EBE6"
+          vertical={false}
+        />
 
-                <XAxis
-                  dataKey="zone"
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                />
+        <XAxis
+          dataKey="zone"
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+        />
 
-                <YAxis
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                  tickFormatter={(value) =>
-                    `₹${value}L`
-                  }
-                />
+        <YAxis
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) =>
+            `₹${value}L`
+          }
+        />
 
-                <Tooltip
-                  formatter={(value) =>
-                    `₹${value} L`
-                  }
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #E7EBE6",
-                    fontSize: 10,
-                  }}
-                />
+        <Tooltip
+          formatter={(value) =>
+            `₹${value} L`
+          }
+          contentStyle={{
+            borderRadius: 10,
+            border: "1px solid #E7EBE6",
+            fontSize: 10,
+          }}
+        />
 
-                <Legend
-                  wrapperStyle={{
-                    fontSize: 9,
-                  }}
-                />
+        <Legend
+          wrapperStyle={{
+            fontSize: 9,
+          }}
+        />
 
-                <Bar
-                  dataKey="revenue"
-                  name="Revenue"
-                  fill="#173B2B"
-                  radius={[4, 4, 0, 0]}
-                  barSize={15}
-                />
+        <Bar
+          dataKey="revenue"
+          name="Revenue"
+          fill="#173B2B"
+          radius={[4, 4, 0, 0]}
+          barSize={15}
+        >
+          <LabelList
+            dataKey="revenue"
+            position="top"
+            formatter={(value) => `₹${value}L`}
+            style={{
+              fontSize: 8,
+              fill: "#173B2B",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
 
-                <Bar
-                  dataKey="expense"
-                  name="Expense"
-                  fill="#D6A92F"
-                  radius={[4, 4, 0, 0]}
-                  barSize={15}
-                />
+        <Bar
+          dataKey="expense"
+          name="Expense"
+          fill="#D6A92F"
+          radius={[4, 4, 0, 0]}
+          barSize={15}
+        >
+          <LabelList
+            dataKey="expense"
+            position="top"
+            formatter={(value) => `₹${value}L`}
+            style={{
+              fontSize: 8,
+              fill: "#8A6B14",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
 
-              </BarChart>
+      </BarChart>
 
-            </ResponsiveContainer>
+    </ResponsiveContainer>
 
-          </div>
+  </div>
 
-        </Card>
-
-
-        {/* DEPARTMENT SPENDING */}
-
-        <Card>
-
-          <div className="mb-5">
-
-            <h3 className="text-[14px] font-semibold m-0">
-              Department-wise Spending
-            </h3>
-
-            <p className="text-[11px] text-muted mt-1 m-0">
-              Spending distribution by department
-            </p>
-
-          </div>
+</Card>
 
 
-          <div className="h-[310px]">
+{/* DEPARTMENT SPENDING */}
 
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-            >
+<Card>
 
-              <BarChart
-                layout="vertical"
-                data={
-                  financeData.departmentSpending
-                }
-                margin={{
-                  top: 5,
-                  right: 15,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
+  <div className="mb-5">
 
-                <CartesianGrid
-                  stroke="#E7EBE6"
-                  horizontal={false}
-                />
+    <h3 className="text-[14px] font-semibold m-0">
+      Department-wise Spending
+    </h3>
 
-                <XAxis
-                  type="number"
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                  tickFormatter={(value) =>
-                    `₹${value}L`
-                  }
-                />
+    <p className="text-[11px] text-muted mt-1 m-0">
+      Spending distribution by department
+    </p>
 
-                <YAxis
-                  type="category"
-                  dataKey="department"
-                  width={90}
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                />
+  </div>
 
-                <Tooltip
-                  formatter={(value) =>
-                    `₹${value} L`
-                  }
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #E7EBE6",
-                    fontSize: 10,
-                  }}
-                />
 
-                <Bar
-                  dataKey="spending"
-                  name="Spending"
-                  fill="#416454"
-                  radius={[0, 4, 4, 0]}
-                  barSize={18}
-                />
+  <div className="h-[310px]">
 
-              </BarChart>
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+    >
 
-            </ResponsiveContainer>
+      <BarChart
+        layout="vertical"
+        data={
+          financeData.departmentSpending
+        }
+        margin={{
+          top: 5,
+          right: 40,
+          left: 20,
+          bottom: 5,
+        }}
+      >
 
-          </div>
+        <CartesianGrid
+          stroke="#E7EBE6"
+          horizontal={false}
+        />
 
-        </Card>
+        <XAxis
+          type="number"
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) =>
+            `₹${value}L`
+          }
+        />
+
+        <YAxis
+          type="category"
+          dataKey="department"
+          width={90}
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+        />
+
+        <Tooltip
+          formatter={(value) =>
+            `₹${value} L`
+          }
+          contentStyle={{
+            borderRadius: 10,
+            border: "1px solid #E7EBE6",
+            fontSize: 10,
+          }}
+        />
+
+        <Bar
+          dataKey="spending"
+          name="Spending"
+          fill="#416454"
+          radius={[0, 4, 4, 0]}
+          barSize={18}
+        >
+          <LabelList
+            dataKey="spending"
+            position="right"
+            formatter={(value) => `₹${value}L`}
+            style={{
+              fontSize: 9,
+              fill: "#173B2B",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
+
+      </BarChart>
+
+    </ResponsiveContainer>
+
+  </div>
+
+</Card>
 
       </div>
 

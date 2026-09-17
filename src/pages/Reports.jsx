@@ -700,6 +700,50 @@ export default function Reports() {
   }
 
   /* =======================================================
+   CSV EXPORT
+======================================================= */
+
+function exportCSV(report) {
+  const detail = reportDetails[report.id];
+
+  if (!detail) {
+    setNotification("Report data is not available.");
+    return;
+  }
+
+  const worksheetData = [
+    detail.columns,
+    ...detail.rows,
+  ];
+
+  const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+  const csv = XLSX.utils.sheet_to_csv(worksheet);
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;",
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${report.title
+    .replace(/[^a-z0-9]+/gi, "_")
+    .toLowerCase()}_report.csv`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  setNotification(`${report.title} exported to CSV.`);
+
+  setExportReport(null);
+}
+
+  /* =======================================================
      PDF EXPORT
   ====================================================== */
 
@@ -1417,52 +1461,73 @@ export default function Reports() {
               </button>
             </div>
 
-            <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {/* PDF */}
+           <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+  {/* PDF */}
 
-              <button
-                type="button"
-                onClick={() =>
-                  exportPDF(exportReport)
-                }
-                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#B48718] hover:bg-[#FFFCF3] transition text-left"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#FBE5E3] text-[#A83F3D] flex items-center justify-center mb-3">
-                  <FileText size={18} />
-                </div>
+  <button
+    type="button"
+    onClick={() =>
+      exportPDF(exportReport)
+    }
+    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#B48718] hover:bg-[#FFFCF3] transition text-left"
+  >
+    <div className="w-10 h-10 rounded-xl bg-[#FBE5E3] text-[#A83F3D] flex items-center justify-center mb-3">
+      <FileText size={18} />
+    </div>
 
-                <div className="text-[12px] font-semibold text-ink">
-                  PDF
-                </div>
+    <div className="text-[12px] font-semibold text-ink">
+      PDF
+    </div>
 
-                <div className="text-[10px] text-muted mt-1">
-                  Printable report
-                </div>
-              </button>
+    <div className="text-[10px] text-muted mt-1">
+      Printable report
+    </div>
+  </button>
 
-              {/* Excel */}
+  {/* Excel */}
 
-              <button
-                type="button"
-                onClick={() =>
-                  exportExcel(exportReport)
-                }
-                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center mb-3">
-                  <FileSpreadsheet size={18} />
-                </div>
+  <button
+    type="button"
+    onClick={() =>
+      exportExcel(exportReport)
+    }
+    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left"
+  >
+    <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center mb-3">
+      <FileSpreadsheet size={18} />
+    </div>
 
-                <div className="text-[12px] font-semibold text-ink">
-                  Excel
-                </div>
+    <div className="text-[12px] font-semibold text-ink">
+      Excel
+    </div>
 
-                <div className="text-[10px] text-muted mt-1">
-                  XLSX spreadsheet
-                </div>
-              </button>
+    <div className="text-[10px] text-muted mt-1">
+      XLSX spreadsheet
+    </div>
+  </button>
 
-            </div>
+  {/* CSV */}
+
+  <button
+    type="button"
+    onClick={() =>
+      exportCSV(exportReport)
+    }
+    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left"
+  >
+    <div className="w-10 h-10 rounded-xl bg-[#EEF0EC] text-[#416454] flex items-center justify-center mb-3">
+      <FileDown size={18} />
+    </div>
+
+    <div className="text-[12px] font-semibold text-ink">
+      CSV
+    </div>
+
+    <div className="text-[10px] text-muted mt-1">
+      Comma-separated data
+    </div>
+  </button>
+</div>
           </div>
         </div>
       )}

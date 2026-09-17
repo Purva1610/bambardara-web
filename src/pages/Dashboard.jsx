@@ -35,6 +35,7 @@ import {
   Cell,
   LineChart,
   Line,
+  LabelList,
 } from "recharts";
 
 import { Card, SectionHead, StatusBadge } from "../components/Ui.jsx";
@@ -395,9 +396,14 @@ export default function Overview() {
   const totalBudget = projectFinancials.budget;
   const totalSpent = projectFinancials.spent;
 
+
   const budgetUtilization = Math.round(
     (totalSpent / totalBudget) * 100
   );
+  const totalZoneBudget = zoneBudgetData.reduce(
+  (total, item) => total + Number(item.value || 0),
+  0
+);
 
 
   /* ---------------------------------------------------------
@@ -466,7 +472,7 @@ export default function Overview() {
           HEADER
       ===================================================== */}
 
-      <SectionHead
+      {/* <SectionHead
         title="Executive Overview"
         right={
           <div className="flex items-center gap-2">
@@ -487,7 +493,7 @@ export default function Overview() {
             </button>
           </div>
         }
-      />
+      /> */}
 
       <p className="text-[13px] text-muted mt-[-6px] mb-6">
         Executive overview of financial performance, project execution,
@@ -634,246 +640,304 @@ export default function Overview() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mb-6">
 
 
-        {/* ---------------------------------------------------
-            ZONE REVENUE VS EXPENSE
-        --------------------------------------------------- */}
+{/* ---------------------------------------------------
+    ZONE REVENUE VS EXPENSE
+--------------------------------------------------- */}
 
-        <Card>
+<Card>
 
-          <div className="flex items-start justify-between mb-5">
+  <div className="flex items-start justify-between mb-5">
 
-            <div>
+    <div>
 
-              <h3 className="text-[14px] font-semibold m-0">
-                Zone Revenue vs Expense
-              </h3>
+      <h3 className="text-[14px] font-semibold m-0">
+        Zone Revenue vs Expense
+      </h3>
 
-              <p className="text-[11px] text-muted mt-1 m-0">
-                Financial performance by business zone
-              </p>
+      <p className="text-[11px] text-muted mt-1 m-0">
+        Financial performance by business zone
+      </p>
 
-            </div>
+    </div>
 
-            <div className="w-9 h-9 rounded-lg bg-[#EEF2ED] flex items-center justify-center">
-              <BarChart3
-                size={17}
-                className="text-[#173B2B]"
-              />
-            </div>
+    <div className="w-9 h-9 rounded-lg bg-[#EEF2ED] flex items-center justify-center">
+      <BarChart3
+        size={17}
+        className="text-[#173B2B]"
+      />
+    </div>
+
+  </div>
+
+
+  <div className="h-[300px]">
+
+    <ResponsiveContainer width="100%" height="100%">
+
+      <BarChart
+        data={zoneRevenueExpense}
+        margin={{
+          top: 20,
+          right: 10,
+          left: -15,
+          bottom: 5,
+        }}
+      >
+
+        <CartesianGrid
+          stroke="#E7EBE6"
+          vertical={false}
+        />
+
+        <XAxis
+          dataKey="zone"
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+        />
+
+        <YAxis
+          tick={{
+            fontSize: 9,
+            fill: "#71807C",
+          }}
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) => `₹${value}L`}
+        />
+
+        <Tooltip
+          formatter={(value) => [`₹${value} L`]}
+          contentStyle={{
+            borderRadius: 10,
+            border: "1px solid #E7EBE6",
+            fontSize: 10,
+          }}
+        />
+
+        <Legend
+          wrapperStyle={{
+            fontSize: 9,
+          }}
+        />
+
+        <Bar
+          dataKey="revenue"
+          name="Revenue"
+          fill="#173B2B"
+          radius={[4, 4, 0, 0]}
+          barSize={16}
+        >
+          <LabelList
+            dataKey="revenue"
+            position="top"
+            formatter={(value) => `₹${value}L`}
+            style={{
+              fontSize: 8,
+              fill: "#173B2B",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
+
+        <Bar
+          dataKey="expense"
+          name="Expense"
+          fill="#D6A92F"
+          radius={[4, 4, 0, 0]}
+          barSize={16}
+        >
+          <LabelList
+            dataKey="expense"
+            position="top"
+            formatter={(value) => `₹${value}L`}
+            style={{
+              fontSize: 8,
+              fill: "#8A6B14",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
+
+      </BarChart>
+
+    </ResponsiveContainer>
+
+  </div>
+
+</Card>
+
+
+{/* ---------------------------------------------------
+    ZONE BUDGET DISTRIBUTION
+--------------------------------------------------- */}
+
+<Card>
+
+  <div className="flex items-start justify-between mb-5">
+
+    <div>
+
+      <h3 className="text-[14px] font-semibold m-0">
+        Zone Budget Distribution
+      </h3>
+
+      <p className="text-[11px] text-muted mt-1 m-0">
+        Budget allocation across major zones
+      </p>
+
+    </div>
+
+    <div className="w-9 h-9 rounded-lg bg-[#EEF2ED] flex items-center justify-center">
+      <Wallet
+        size={17}
+        className="text-[#173B2B]"
+      />
+    </div>
+
+  </div>
+
+
+  <div className="flex items-center gap-5">
+
+    <div className="w-[230px] h-[260px]">
+
+<ResponsiveContainer width="100%" height="100%">
+  <PieChart>
+
+    <Pie
+      data={zoneBudgetData}
+      dataKey="value"
+      nameKey="name"
+      cx="50%"
+      cy="50%"
+      innerRadius={58}
+      outerRadius={95}
+      paddingAngle={2}
+    >
+
+      {zoneBudgetData.map((_, index) => (
+        <Cell
+          key={index}
+          fill={[
+            "#173B2B",
+            "#416454",
+            "#71807C",
+            "#9CA99F",
+            "#D6A92F",
+            "#B95C50",
+          ][index]}
+        />
+      ))}
+
+      <LabelList
+        dataKey="value"
+        position="outside"
+        formatter={(value) => `₹${value}L`}
+        style={{
+          fontSize: 9,
+          fontWeight: 600,
+          fill: "#173B2B",
+        }}
+      />
+
+    </Pie>
+
+    {/* CENTER TOTAL */}
+    <text
+      x="50%"
+      y="47%"
+      textAnchor="middle"
+      dominantBaseline="middle"
+      className="fill-[#173B2B]"
+      style={{
+        fontSize: 17,
+        fontWeight: 700,
+      }}
+    >
+      ₹{totalZoneBudget}L
+    </text>
+
+    <text
+      x="50%"
+      y="56%"
+      textAnchor="middle"
+      dominantBaseline="middle"
+      className="fill-[#6B756E]"
+      style={{
+        fontSize: 9,
+        fontWeight: 500,
+      }}
+    >
+      Total Budget
+    </text>
+
+    <Tooltip
+      formatter={(value) => [
+        `₹${value} L`,
+        "Budget",
+      ]}
+      contentStyle={{
+        borderRadius: 10,
+        border: "1px solid #E7EBE6",
+        fontSize: 10,
+      }}
+    />
+
+  </PieChart>
+</ResponsiveContainer>
+
+    </div>
+
+
+    <div className="space-y-3 flex-1">
+
+      {zoneBudgetData.map((item, index) => (
+
+        <div
+          key={item.name}
+          className="flex items-center justify-between"
+        >
+
+          <div className="flex items-center gap-2">
+
+            <span
+              className="w-2.5 h-2.5 rounded-full"
+              style={{
+                backgroundColor:
+                  [
+                    "#173B2B",
+                    "#416454",
+                    "#71807C",
+                    "#9CA99F",
+                    "#D6A92F",
+                    "#B95C50",
+                  ][index],
+              }}
+            />
+
+            <span className="text-[10px]">
+              {item.name}
+            </span>
 
           </div>
 
+          <span className="text-[10px] font-semibold">
+            ₹{item.value} L
+          </span>
 
-          <div className="h-[300px]">
+        </div>
 
-            <ResponsiveContainer width="100%" height="100%">
+      ))}
 
-              <BarChart
-                data={zoneRevenueExpense}
-                margin={{
-                  top: 10,
-                  right: 10,
-                  left: -15,
-                  bottom: 5,
-                }}
-              >
+    </div>
 
-                <CartesianGrid
-                  stroke="#E7EBE6"
-                  vertical={false}
-                />
+  </div>
 
-                <XAxis
-                  dataKey="zone"
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-
-                <YAxis
-                  tick={{
-                    fontSize: 9,
-                    fill: "#71807C",
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                  tickFormatter={(value) => `₹${value}L`}
-                />
-
-                <Tooltip
-                  formatter={(value) => [`₹${value} L`]}
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #E7EBE6",
-                    fontSize: 10,
-                  }}
-                />
-
-                <Legend
-                  wrapperStyle={{
-                    fontSize: 9,
-                  }}
-                />
-
-                <Bar
-                  dataKey="revenue"
-                  name="Revenue"
-                  fill="#173B2B"
-                  radius={[4, 4, 0, 0]}
-                  barSize={16}
-                />
-
-                <Bar
-                  dataKey="expense"
-                  name="Expense"
-                  fill="#D6A92F"
-                  radius={[4, 4, 0, 0]}
-                  barSize={16}
-                />
-
-              </BarChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </Card>
-
-
-        {/* ---------------------------------------------------
-            ZONE BUDGET DISTRIBUTION
-        --------------------------------------------------- */}
-
-        <Card>
-
-          <div className="flex items-start justify-between mb-5">
-
-            <div>
-
-              <h3 className="text-[14px] font-semibold m-0">
-                Zone Budget Distribution
-              </h3>
-
-              <p className="text-[11px] text-muted mt-1 m-0">
-                Budget allocation across major zones
-              </p>
-
-            </div>
-
-            <div className="w-9 h-9 rounded-lg bg-[#EEF2ED] flex items-center justify-center">
-              <Wallet
-                size={17}
-                className="text-[#173B2B]"
-              />
-            </div>
-
-          </div>
-
-
-          <div className="flex items-center gap-5">
-
-            <div className="w-[230px] h-[260px]">
-
-              <ResponsiveContainer width="100%" height="100%">
-
-                <PieChart>
-
-                  <Pie
-                    data={zoneBudgetData}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={58}
-                    outerRadius={95}
-                    paddingAngle={2}
-                  >
-
-                    {zoneBudgetData.map((_, index) => (
-                      <Cell
-                        key={index}
-                        fill={
-                          [
-                            "#173B2B",
-                            "#416454",
-                            "#71807C",
-                            "#9CA99F",
-                            "#D6A92F",
-                            "#B95C50",
-                          ][index]
-                        }
-                      />
-                    ))}
-
-                  </Pie>
-
-                  <Tooltip
-                    formatter={(value) => [
-                      `₹${value} L`,
-                      "Budget",
-                    ]}
-                    contentStyle={{
-                      borderRadius: 10,
-                      border: "1px solid #E7EBE6",
-                      fontSize: 10,
-                    }}
-                  />
-
-                </PieChart>
-
-              </ResponsiveContainer>
-
-            </div>
-
-
-            <div className="space-y-3 flex-1">
-
-              {zoneBudgetData.map((item, index) => (
-
-                <div
-                  key={item.name}
-                  className="flex items-center justify-between"
-                >
-
-                  <div className="flex items-center gap-2">
-
-                    <span
-                      className="w-2.5 h-2.5 rounded-full"
-                      style={{
-                        backgroundColor:
-                          [
-                            "#173B2B",
-                            "#416454",
-                            "#71807C",
-                            "#9CA99F",
-                            "#D6A92F",
-                            "#B95C50",
-                          ][index],
-                      }}
-                    />
-
-                    <span className="text-[10px]">
-                      {item.name}
-                    </span>
-
-                  </div>
-
-                  <span className="text-[10px] font-semibold">
-                    ₹{item.value} L
-                  </span>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-        </Card>
+</Card>
 
       </div>
 

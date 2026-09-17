@@ -37,6 +37,7 @@ import {
   AreaChart,
   Area,
   Legend,
+  LabelList,
 } from "recharts";
 
 import { Card, SectionHead } from "../components/Ui.jsx";
@@ -661,95 +662,112 @@ export default function SalesMarketing() {
 
         </Card>
 
-        {/* BOOKING PERFORMANCE */}
+<Card className="p-5">
 
-        <Card className="p-5">
+  <ChartHeader
+    title="Booking Performance"
+    subtitle="Total bookings versus confirmed bookings"
+  />
 
-          <ChartHeader
-            title="Booking Performance"
-            subtitle="Total bookings versus confirmed bookings"
+  <div className="h-[290px] mt-4">
+
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+    >
+
+      <BarChart
+        data={salesMarketingData.bookingPerformance}
+        margin={{
+          top: 20,
+          right: 10,
+          left: -10,
+          bottom: 5,
+        }}
+      >
+
+        <CartesianGrid
+          stroke="#E5EAE6"
+          strokeDasharray="3 3"
+        />
+
+        <XAxis
+          dataKey="month"
+          tick={{
+            fontSize: 10,
+            fill: "#7A8981",
+          }}
+        />
+
+        <YAxis
+          tick={{
+            fontSize: 10,
+            fill: "#7A8981",
+          }}
+        />
+
+        <Tooltip
+          contentStyle={{
+            borderRadius: 8,
+            border: "1px solid #DDE5DF",
+            fontSize: 11,
+          }}
+        />
+
+        <Legend
+          wrapperStyle={{
+            fontSize: 10,
+          }}
+        />
+
+        <Bar
+          dataKey="bookings"
+          name="Bookings"
+          fill="#416454"
+          radius={[4, 4, 0, 0]}
+        >
+          <LabelList
+            dataKey="bookings"
+            position="top"
+            style={{
+              fontSize: 9,
+              fill: "#173B2B",
+              fontWeight: 600,
+            }}
           />
+        </Bar>
 
-          <div className="h-[290px] mt-4">
+        <Bar
+          dataKey="confirmed"
+          name="Confirmed"
+          fill="#9BB8A5"
+          radius={[4, 4, 0, 0]}
+        >
+          <LabelList
+            dataKey="confirmed"
+            position="top"
+            style={{
+              fontSize: 9,
+              fill: "#416454",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
 
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-            >
+      </BarChart>
 
-              <BarChart
-                data={salesMarketingData.bookingPerformance}
-                margin={{
-                  top: 10,
-                  right: 10,
-                  left: -10,
-                  bottom: 5,
-                }}
-              >
+    </ResponsiveContainer>
 
-                <CartesianGrid
-                  stroke="#E5EAE6"
-                  strokeDasharray="3 3"
-                />
+  </div>
 
-                <XAxis
-                  dataKey="month"
-                  tick={{
-                    fontSize: 10,
-                    fill: "#7A8981",
-                  }}
-                />
-
-                <YAxis
-                  tick={{
-                    fontSize: 10,
-                    fill: "#7A8981",
-                  }}
-                />
-
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: 8,
-                    border: "1px solid #DDE5DF",
-                    fontSize: 11,
-                  }}
-                />
-
-                <Legend
-                  wrapperStyle={{
-                    fontSize: 10,
-                  }}
-                />
-
-                <Bar
-                  dataKey="bookings"
-                  name="Bookings"
-                  fill="#416454"
-                  radius={[4, 4, 0, 0]}
-                />
-
-                <Bar
-                  dataKey="confirmed"
-                  name="Confirmed"
-                  fill="#9BB8A5"
-                  radius={[4, 4, 0, 0]}
-                />
-
-              </BarChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </Card>
-
+</Card>
       </div>
 
       {/* =================================================
           REVENUE
       ================================================= */}
 
-      <Card className="p-5 mb-7">
+      {/* <Card className="p-5 mb-7">
 
         <div className="flex items-start justify-between mb-3">
 
@@ -844,7 +862,7 @@ export default function SalesMarketing() {
 
         </div>
 
-      </Card>
+      </Card> */}
 
       {/* =================================================
           MARKETING & LEAD ACQUISITION
@@ -857,6 +875,89 @@ export default function SalesMarketing() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-7">
 
+
+{/* LEAD SOURCES */}
+
+<Card className="p-5">
+
+  <ChartHeader
+    title="Lead Sources"
+    subtitle="Lead generation by acquisition channel"
+  />
+
+  <div className="h-[290px] mt-4">
+
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+    >
+
+      <BarChart
+        data={salesMarketingData.leadSources}
+        layout="vertical"
+        margin={{
+          top: 5,
+          right: 40,
+          left: 25,
+          bottom: 5,
+        }}
+      >
+
+        <CartesianGrid
+          stroke="#E5EAE6"
+          strokeDasharray="3 3"
+        />
+
+        <XAxis
+          type="number"
+          tick={{
+            fontSize: 9,
+            fill: "#7A8981",
+          }}
+        />
+
+        <YAxis
+          type="category"
+          dataKey="source"
+          tick={{
+            fontSize: 9,
+            fill: "#7A8981",
+          }}
+          width={90}
+        />
+
+        <Tooltip
+          contentStyle={{
+            borderRadius: 8,
+            border: "1px solid #DDE5DF",
+            fontSize: 11,
+          }}
+        />
+
+        <Bar
+          dataKey="leads"
+          name="Leads"
+          fill="#416454"
+          radius={[0, 4, 4, 0]}
+        >
+          <LabelList
+            dataKey="leads"
+            position="right"
+            style={{
+              fontSize: 9,
+              fill: "#173B2B",
+              fontWeight: 600,
+            }}
+          />
+        </Bar>
+
+      </BarChart>
+
+    </ResponsiveContainer>
+
+  </div>
+
+</Card>
         {/* MARKETING PERFORMANCE */}
 
         <Card className="p-5">
@@ -957,78 +1058,7 @@ export default function SalesMarketing() {
 
         </Card>
 
-        {/* LEAD SOURCES */}
 
-        <Card className="p-5">
-
-          <ChartHeader
-            title="Lead Sources"
-            subtitle="Lead generation by acquisition channel"
-          />
-
-          <div className="h-[290px] mt-4">
-
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-            >
-
-              <BarChart
-                data={salesMarketingData.leadSources}
-                layout="vertical"
-                margin={{
-                  top: 5,
-                  right: 15,
-                  left: 25,
-                  bottom: 5,
-                }}
-              >
-
-                <CartesianGrid
-                  stroke="#E5EAE6"
-                  strokeDasharray="3 3"
-                />
-
-                <XAxis
-                  type="number"
-                  tick={{
-                    fontSize: 9,
-                    fill: "#7A8981",
-                  }}
-                />
-
-                <YAxis
-                  type="category"
-                  dataKey="source"
-                  tick={{
-                    fontSize: 9,
-                    fill: "#7A8981",
-                  }}
-                  width={90}
-                />
-
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: 8,
-                    border: "1px solid #DDE5DF",
-                    fontSize: 11,
-                  }}
-                />
-
-                <Bar
-                  dataKey="leads"
-                  name="Leads"
-                  fill="#416454"
-                  radius={[0, 4, 4, 0]}
-                />
-
-              </BarChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </Card>
 
       </div>
 
