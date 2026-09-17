@@ -212,35 +212,47 @@ export default function RisksIssues() {
 
   /* =======================================================
      FILTERED ISSUES
+     
+     IMPORTANT:
+     This filteredIssues array is now used everywhere:
+     - KPI Cards
+     - Priority Breakdown
+     - Resolution Pipeline
+     - Top Issues & Risks
+     - Issues Register
   ======================================================= */
 
   const filteredIssues = useMemo(() => {
 
     let result = [...initialIssues]
 
+    /* PRIORITY FILTER */
     if (priorityFilter !== 'ALL') {
       result = result.filter(
         issue => issue.priority === priorityFilter
       )
     }
 
+    /* STATUS FILTER */
     if (statusFilter !== 'ALL') {
       result = result.filter(
         issue => issue.status === statusFilter
       )
     }
 
+    /* SEARCH FILTER */
     if (search.trim()) {
 
-      const query = search.toLowerCase()
+      const query = search.toLowerCase().trim()
 
       result = result.filter(issue =>
         issue.title.toLowerCase().includes(query) ||
         issue.department.toLowerCase().includes(query) ||
         issue.assignee.toLowerCase().includes(query) ||
-        issue.id.toLowerCase().includes(query)
+        issue.id.toLowerCase().includes(query) ||
+        issue.priority.toLowerCase().includes(query) ||
+        issue.status.toLowerCase().includes(query)
       )
-
     }
 
     return result
@@ -250,43 +262,66 @@ export default function RisksIssues() {
 
   /* =======================================================
      CALCULATIONS
+     
+     IMPORTANT:
+     All calculations are based on filteredIssues.
   ======================================================= */
 
-  const totalIssues = initialIssues.length
+  const totalIssues = filteredIssues.length
 
-  const criticalCount = initialIssues.filter(
+  const criticalCount = filteredIssues.filter(
     i => i.priority === 'CRITICAL'
   ).length
 
-  const highCount = initialIssues.filter(
+  const highCount = filteredIssues.filter(
     i => i.priority === 'HIGH'
   ).length
 
-  const mediumCount = initialIssues.filter(
+  const mediumCount = filteredIssues.filter(
     i => i.priority === 'MEDIUM'
   ).length
 
-  const lowCount = initialIssues.filter(
+  const lowCount = filteredIssues.filter(
     i => i.priority === 'LOW'
   ).length
 
-  const openCount = initialIssues.filter(
+  const openCount = filteredIssues.filter(
     i => i.status === 'OPEN'
   ).length
 
-  const inProgressCount = initialIssues.filter(
+  const inProgressCount = filteredIssues.filter(
     i => i.status === 'IN PROGRESS'
   ).length
 
-  const resolvedCount = initialIssues.filter(
+  const resolvedCount = filteredIssues.filter(
     i => i.status === 'RESOLVED'
   ).length
 
-  const closedCount = initialIssues.filter(
+  const closedCount = filteredIssues.filter(
     i => i.status === 'CLOSED'
   ).length
 
-  const topIssues = initialIssues.slice(0, 4)
+
+  /* TOP ISSUES ALSO USE FILTERED DATA */
+
+  const topIssues = filteredIssues.slice(0, 4)
+
+
+  /* =======================================================
+     FILTER INFORMATION
+  ======================================================= */
+
+  const hasActiveFilter =
+    priorityFilter !== 'ALL' ||
+    statusFilter !== 'ALL' ||
+    search.trim() !== ''
+
+
+  const clearFilters = () => {
+    setSearch('')
+    setPriorityFilter('ALL')
+    setStatusFilter('ALL')
+  }
 
 
   const scrollToRegister = () => {
@@ -459,6 +494,59 @@ export default function RisksIssues() {
       </div>
 
 
+      {/* ACTIVE FILTER INDICATOR */}
+
+      {hasActiveFilter && (
+
+        <div className="flex items-center justify-between gap-3 mb-5 px-3 py-2.5 rounded-xl bg-[#F5F7F4] border border-[#E7EBE6]">
+
+          <div className="flex items-center gap-2 flex-wrap">
+
+            <span className="text-[10px] text-muted">
+              Showing
+            </span>
+
+            <span className="text-[10px] font-semibold text-[#173B2B]">
+              {filteredIssues.length}
+            </span>
+
+            <span className="text-[10px] text-muted">
+              of {initialIssues.length} issues
+            </span>
+
+            {priorityFilter !== 'ALL' && (
+              <span className="text-[9px] font-semibold px-2 py-1 rounded-full bg-white border border-[#DDE4DE]">
+                Priority: {priorityFilter}
+              </span>
+            )}
+
+            {statusFilter !== 'ALL' && (
+              <span className="text-[9px] font-semibold px-2 py-1 rounded-full bg-white border border-[#DDE4DE]">
+                Status: {statusFilter}
+              </span>
+            )}
+
+            {search.trim() && (
+              <span className="text-[9px] font-semibold px-2 py-1 rounded-full bg-white border border-[#DDE4DE]">
+                Search: {search}
+              </span>
+            )}
+
+          </div>
+
+          <button
+            onClick={clearFilters}
+            className="inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#173B2B] hover:opacity-70 transition"
+          >
+            Clear
+            <X size={12} />
+          </button>
+
+        </div>
+
+      )}
+
+
       {/* KPI SNAPSHOT */}
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
@@ -612,11 +700,13 @@ export default function RisksIssues() {
               <div className="text-right">
 
                 <p className="text-[10px] text-muted m-0">
-                  Highest exposure
+                  Current filter
                 </p>
 
                 <p className="text-[12px] font-semibold text-[#B95C50] mt-1 m-0">
-                  High & Medium
+                  {priorityFilter === 'ALL'
+                    ? 'All Priorities'
+                    : priorityFilter}
                 </p>
 
               </div>
@@ -681,7 +771,6 @@ export default function RisksIssues() {
 
             <div className="grid grid-cols-4 gap-3 relative">
 
-
               <PipelineStep
                 label="Open"
                 value={openCount}
@@ -744,9 +833,11 @@ export default function RisksIssues() {
               <div className="text-right">
 
                 <p className="text-[18px] font-semibold text-[#173B2B] m-0">
-                  {Math.round(
-                    ((resolvedCount + closedCount) / totalIssues) * 100
-                  )}%
+                  {totalIssues > 0
+                    ? Math.round(
+                        ((resolvedCount + closedCount) / totalIssues) * 100
+                      )
+                    : 0}%
                 </p>
 
                 <p className="text-[9px] text-muted m-0">
@@ -763,7 +854,10 @@ export default function RisksIssues() {
               <div
                 className="h-full rounded-full bg-[#173B2B] transition-all duration-700"
                 style={{
-                  width: `${((resolvedCount + closedCount) / totalIssues) * 100}%`
+                  width:
+                    totalIssues > 0
+                      ? `${((resolvedCount + closedCount) / totalIssues) * 100}%`
+                      : '0%'
                 }}
               />
 
@@ -801,7 +895,7 @@ export default function RisksIssues() {
               </h3>
 
               <span className="text-[9px] uppercase tracking-wider font-semibold px-2 py-1 rounded-full bg-[#F8F5ED] text-[#B48718]">
-                4 Active Risks
+                {topIssues.length} Active Risks
               </span>
 
             </div>
@@ -818,10 +912,12 @@ export default function RisksIssues() {
             className="group text-[10px] font-semibold flex items-center gap-1.5 text-[#173B2B] px-3 py-2 rounded-lg border border-[#DDE4DE] bg-white hover:bg-[#F5F7F4] transition"
           >
             View All Issues
+
             <ArrowDown
               size={13}
               className="group-hover:translate-y-0.5 transition-transform"
             />
+
           </button>
 
         </div>
@@ -829,200 +925,223 @@ export default function RisksIssues() {
 
         {/* ISSUE CARDS */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {topIssues.length > 0 ? (
 
-          {topIssues.map((issue, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            const priorityStyle =
-              PRIORITY_STYLE[issue.priority] || PRIORITY_STYLE.LOW
+            {topIssues.map((issue, index) => {
 
-            return (
+              const priorityStyle =
+                PRIORITY_STYLE[issue.priority] || PRIORITY_STYLE.LOW
 
-              <div
-                key={issue.id}
-                className="ri-fade group relative overflow-hidden bg-white border border-[#E4E9E4] rounded-2xl p-5 shadow-[0_2px_10px_rgba(23,59,43,0.03)] hover:shadow-[0_12px_30px_rgba(23,59,43,0.09)] hover:-translate-y-0.5 transition-all duration-300"
-                style={{
-                  animationDelay: `${index * 80}ms`
-                }}
-              >
-
-                {/* TOP PRIORITY ACCENT */}
+              return (
 
                 <div
-                  className="absolute top-0 left-0 right-0 h-[3px]"
+                  key={issue.id}
+                  className="ri-fade group relative overflow-hidden bg-white border border-[#E4E9E4] rounded-2xl p-5 shadow-[0_2px_10px_rgba(23,59,43,0.03)] hover:shadow-[0_12px_30px_rgba(23,59,43,0.09)] hover:-translate-y-0.5 transition-all duration-300"
                   style={{
-                    background: priorityStyle.dot
+                    animationDelay: `${index * 80}ms`
                   }}
-                />
+                >
 
+                  {/* TOP PRIORITY ACCENT */}
 
-                {/* SOFT SIDE ACCENT */}
-
-                <div
-                  className="absolute left-0 top-5 bottom-5 w-[3px] rounded-r-full opacity-80"
-                  style={{
-                    background: priorityStyle.dot
-                  }}
-                />
-
-
-                {/* CARD TOP */}
-
-                <div className="flex items-start justify-between gap-3">
-
-                  <div className="flex items-center gap-2 min-w-0">
-
-                    <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                      style={{
-                        background: priorityStyle.bg,
-                        color: priorityStyle.text
-                      }}
-                    >
-                      <AlertTriangle size={14} />
-                    </div>
-
-                    <div className="min-w-0">
-
-                      <p className="text-[9px] uppercase tracking-[0.12em] text-muted m-0">
-                        Issue {String(index + 1).padStart(2, '0')}
-                      </p>
-
-                      <p className="text-[9px] text-muted mt-0.5 m-0">
-                        {issue.id}
-                      </p>
-
-                    </div>
-
-                  </div>
-
-
-                  <PriorityBadge
-                    priority={issue.priority}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[3px]"
+                    style={{
+                      background: priorityStyle.dot
+                    }}
                   />
 
-                </div>
+
+                  {/* SOFT SIDE ACCENT */}
+
+                  <div
+                    className="absolute left-0 top-5 bottom-5 w-[3px] rounded-r-full opacity-80"
+                    style={{
+                      background: priorityStyle.dot
+                    }}
+                  />
 
 
-                {/* TITLE */}
+                  {/* CARD TOP */}
 
-                <h4 className="text-[15px] font-semibold mt-4 mb-0 leading-snug pr-2">
-                  {issue.title}
-                </h4>
+                  <div className="flex items-start justify-between gap-3">
 
+                    <div className="flex items-center gap-2 min-w-0">
 
-                {/* DESCRIPTION */}
+                      <div
+                        className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
+                        style={{
+                          background: priorityStyle.bg,
+                          color: priorityStyle.text
+                        }}
+                      >
+                        <AlertTriangle size={14} />
+                      </div>
 
-                <div className="mt-2.5 min-h-[38px]">
+                      <div className="min-w-0">
 
-                  <p className="text-[10px] text-muted leading-5 m-0">
-                    {issue.description}
-                  </p>
+                        <p className="text-[9px] uppercase tracking-[0.12em] text-muted m-0">
+                          Issue {String(index + 1).padStart(2, '0')}
+                        </p>
 
-                </div>
+                        <p className="text-[9px] text-muted mt-0.5 m-0">
+                          {issue.id}
+                        </p>
 
-
-                {/* META INFORMATION */}
-
-                <div className="grid grid-cols-2 gap-2 mt-4">
-
-                  <div className="rounded-xl bg-[#F7F9F6] border border-[#EEF1ED] px-3 py-2.5">
-
-                    <div className="flex items-center gap-1.5">
-
-                      <Building2
-                        size={12}
-                        className="text-[#173B2B]"
-                      />
-
-                      <span className="text-[9px] text-muted uppercase tracking-wide">
-                        Department
-                      </span>
-
-                    </div>
-
-                    <p className="text-[10px] font-semibold mt-1.5 mb-0 truncate">
-                      {issue.department}
-                    </p>
-
-                  </div>
-
-
-                  <div className="rounded-xl bg-[#F7F9F6] border border-[#EEF1ED] px-3 py-2.5">
-
-                    <div className="flex items-center gap-1.5">
-
-                      <User
-                        size={12}
-                        className="text-[#173B2B]"
-                      />
-
-                      <span className="text-[9px] text-muted uppercase tracking-wide">
-                        Assigned To
-                      </span>
-
-                    </div>
-
-                    <p className="text-[10px] font-semibold mt-1.5 mb-0 truncate">
-                      {issue.assignee}
-                    </p>
-
-                  </div>
-
-                </div>
-
-
-                {/* BOTTOM ACTION BAR */}
-
-                <div className="flex items-center justify-between mt-4 pt-3.5 border-t border-[#EEF1ED]">
-
-                  <div className="flex items-center gap-3">
-
-                    <div className="flex items-center gap-1.5">
-
-                      <CalendarDays
-                        size={12}
-                        className="text-muted"
-                      />
-
-                      <span className="text-[9px] text-muted">
-                        {issue.created}
-                      </span>
+                      </div>
 
                     </div>
 
 
-                    <StatusBadge
-                      tone={getStatusTone(issue.status)}
-                    >
-                      {issue.status}
-                    </StatusBadge>
-
-                  </div>
-
-
-                  <button
-                    onClick={() => setSelectedIssue(issue)}
-                    className="group/review inline-flex items-center gap-1.5 text-[10px] font-semibold text-[#173B2B] px-2.5 py-1.5 rounded-lg hover:bg-[#EEF2ED] transition"
-                  >
-                    Review
-
-                    <ArrowUpRight
-                      size={12}
-                      className="group-hover/review:translate-x-0.5 group-hover/review:-translate-y-0.5 transition-transform"
+                    <PriorityBadge
+                      priority={issue.priority}
                     />
 
-                  </button>
+                  </div>
+
+
+                  {/* TITLE */}
+
+                  <h4 className="text-[15px] font-semibold mt-4 mb-0 leading-snug pr-2">
+                    {issue.title}
+                  </h4>
+
+
+                  {/* DESCRIPTION */}
+
+                  <div className="mt-2.5 min-h-[38px]">
+
+                    <p className="text-[10px] text-muted leading-5 m-0">
+                      {issue.description}
+                    </p>
+
+                  </div>
+
+
+                  {/* META INFORMATION */}
+
+                  <div className="grid grid-cols-2 gap-2 mt-4">
+
+                    <div className="rounded-xl bg-[#F7F9F6] border border-[#EEF1ED] px-3 py-2.5">
+
+                      <div className="flex items-center gap-1.5">
+
+                        <Building2
+                          size={12}
+                          className="text-[#173B2B]"
+                        />
+
+                        <span className="text-[9px] text-muted uppercase tracking-wide">
+                          Department
+                        </span>
+
+                      </div>
+
+                      <p className="text-[10px] font-semibold mt-1.5 mb-0 truncate">
+                        {issue.department}
+                      </p>
+
+                    </div>
+
+
+                    <div className="rounded-xl bg-[#F7F9F6] border border-[#EEF1ED] px-3 py-2.5">
+
+                      <div className="flex items-center gap-1.5">
+
+                        <User
+                          size={12}
+                          className="text-[#173B2B]"
+                        />
+
+                        <span className="text-[9px] text-muted uppercase tracking-wide">
+                          Assigned To
+                        </span>
+
+                      </div>
+
+                      <p className="text-[10px] font-semibold mt-1.5 mb-0 truncate">
+                        {issue.assignee}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+
+                  {/* BOTTOM ACTION BAR */}
+
+                  <div className="flex items-center justify-between mt-4 pt-3.5 border-t border-[#EEF1ED]">
+
+                    <div className="flex items-center gap-3">
+
+                      <div className="flex items-center gap-1.5">
+
+                        <CalendarDays
+                          size={12}
+                          className="text-muted"
+                        />
+
+                        <span className="text-[9px] text-muted">
+                          {issue.created}
+                        </span>
+
+                      </div>
+
+
+                      <StatusBadge
+                        tone={getStatusTone(issue.status)}
+                      >
+                        {issue.status}
+                      </StatusBadge>
+
+                    </div>
+
+
+                    <button
+                      onClick={() => setSelectedIssue(issue)}
+                      className="group/review inline-flex items-center gap-1.5 text-[10px] font-semibold text-[#173B2B] px-2.5 py-1.5 rounded-lg hover:bg-[#EEF2ED] transition"
+                    >
+                      Review
+
+                      <ArrowUpRight
+                        size={12}
+                        className="group-hover/review:translate-x-0.5 group-hover/review:-translate-y-0.5 transition-transform"
+                      />
+
+                    </button>
+
+                  </div>
 
                 </div>
 
-              </div>
+              )
 
-            )
+            })}
 
-          })}
+          </div>
 
-        </div>
+        ) : (
+
+          <div className="bg-white border border-[#E4E9E4] rounded-2xl p-10 text-center">
+
+            <Search
+              size={24}
+              className="mx-auto text-muted"
+            />
+
+            <p className="text-[12px] font-semibold mt-3 mb-0">
+              No issues found
+            </p>
+
+            <p className="text-[10px] text-muted mt-1">
+              Try another search or filter.
+            </p>
+
+          </div>
+
+        )}
 
       </div>
 
@@ -1559,9 +1678,13 @@ function RadialProgress({
     total > 0 ? (value / total) * 100 : 0
 
   const radius = 39
-  const circumference = 2 * Math.PI * radius
+
+  const circumference =
+    2 * Math.PI * radius
+
   const offset =
-    circumference - (percentage / 100) * circumference
+    circumference -
+    (percentage / 100) * circumference
 
   return (
 
@@ -1593,6 +1716,7 @@ function RadialProgress({
             stroke="#EEF1ED"
             strokeWidth="8"
           />
+
 
           {/* PROGRESS RING */}
 

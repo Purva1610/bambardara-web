@@ -3,7 +3,7 @@ import { navItems } from '../data.js'
 
 const icons={dashboard:LayoutDashboard,projects:FolderKanban,construction:HardHat,finance:Wallet,procurement:ShoppingCart,'sales-marketing':Megaphone,investments:TrendingUp,hr:Users,approvals:ClipboardCheck,reports:BarChart3,documents:FileText,'risks-issues':AlertTriangle,communications:MessageSquare,calendar:CalendarDays,settings:Settings}
 
-export default function Sidebar({active,onNavigate}){
+export default function Sidebar({active,onNavigate,onLogout}){
  return <aside className="bg-navy text-white flex flex-col h-screen sticky top-0 font-sans shadow-[4px_0_24px_rgba(11,46,42,.08)]">
    <div className="flex items-center gap-3 px-5 pb-6 pt-6 border-b border-white/10">
      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15"><span className="font-serif text-accent text-lg">B</span></span>
@@ -14,7 +14,7 @@ export default function Sidebar({active,onNavigate}){
    </nav>
    <div className="mx-3 mb-5 border-t border-white/10 pt-4 flex items-center gap-3">
      <div className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-xs">MD</div>
-     <div className="min-w-0 flex-1"><div className="text-[13px] text-white truncate">Managing Director</div><button onClick={()=>onNavigate('dashboard')} className="mt-1 flex items-center gap-1 text-[11px] text-[#9FB3AE] hover:text-white"><LogOut size={11}/>Logout</button></div>
+    <div className="min-w-0 flex-1"><div className="text-[13px] text-white truncate">Managing Director</div><button onClick={onLogout} className="mt-1 flex items-center gap-1 text-[11px] text-[#9FB3AE] hover:text-white"><LogOut size={11}/>Logout</button></div>
    </div>
  </aside>
 }

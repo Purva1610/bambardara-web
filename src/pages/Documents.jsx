@@ -24,15 +24,13 @@ import {
   ChevronDown,
   UserRoundCheck,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Lock,
+  Unlock
 } from 'lucide-react'
 
 /* =========================================================
    TEMPORARY PDF
-   ---------------------------------------------------------
-   Currently one PDF is available in the public folder.
-   This PDF is temporarily used for all documents.
-   Later, replace each fileUrl with the actual backend URL.
 ========================================================= */
 
 const TEMP_PDF_URL =
@@ -97,7 +95,7 @@ const documentCategories = [
    DOCUMENT DATA
 ========================================================= */
 
-const documents = [
+const initialDocuments = [
   {
     id: 1,
     name: 'Project Master Plan',
@@ -108,6 +106,7 @@ const documents = [
     type: 'PDF',
     size: '4.8 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Master-Plan.pdf'
   },
@@ -121,6 +120,7 @@ const documents = [
     type: 'PDF',
     size: '2.4 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Overview.pdf'
   },
@@ -134,6 +134,7 @@ const documents = [
     type: 'PDF',
     size: '3.2 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Development-Agreement.pdf'
   },
@@ -147,6 +148,7 @@ const documents = [
     type: 'PDF',
     size: '3.1 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Annual-Financial-Report.pdf'
   },
@@ -160,6 +162,7 @@ const documents = [
     type: 'PDF',
     size: '2.9 MB',
     access: ['CEO'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Investment-Overview.pdf'
   },
@@ -173,6 +176,7 @@ const documents = [
     type: 'PDF',
     size: '1.8 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Procurement-Summary.pdf'
   },
@@ -186,6 +190,7 @@ const documents = [
     type: 'PDF',
     size: '2.7 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Monthly-Management-Report.pdf'
   },
@@ -199,6 +204,7 @@ const documents = [
     type: 'PDF',
     size: '3.6 MB',
     access: ['CEO'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Quarterly-Project-Report.pdf'
   },
@@ -212,6 +218,7 @@ const documents = [
     type: 'PDF',
     size: '1.2 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Project-Approval-Record.pdf'
   },
@@ -225,6 +232,7 @@ const documents = [
     type: 'PDF',
     size: '2.1 MB',
     access: ['CEO'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Legal-Compliance-Document.pdf'
   },
@@ -238,6 +246,7 @@ const documents = [
     type: 'PDF',
     size: '1.4 MB',
     access: ['CEO', 'MD'],
+    restricted: false,
     fileUrl: TEMP_PDF_URL,
     fileName: 'Management-Review-Notes.pdf'
   }
@@ -419,9 +428,18 @@ const documentationCategories = [
 ========================================================= */
 
 export default function Documents() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [categoryFilter, setCategoryFilter] = useState('All')
-  const [showFilter, setShowFilter] = useState(false)
+
+  const [documents, setDocuments] =
+    useState(initialDocuments)
+
+  const [searchTerm, setSearchTerm] =
+    useState('')
+
+  const [categoryFilter, setCategoryFilter] =
+    useState('All')
+
+  const [showFilter, setShowFilter] =
+    useState(false)
 
   const [selectedDocument, setSelectedDocument] =
     useState(null)
@@ -429,12 +447,17 @@ export default function Documents() {
   const [selectedArticle, setSelectedArticle] =
     useState(null)
 
-  const [articleSearch, setArticleSearch] = useState('')
+  const [articleSearch, setArticleSearch] =
+    useState('')
+
   const [articleCategory, setArticleCategory] =
     useState('All')
 
-  const [currentRole, setCurrentRole] = useState('MD')
-  const [showRoleMenu, setShowRoleMenu] = useState(false)
+  const [currentRole, setCurrentRole] =
+    useState('MD')
+
+  const [showRoleMenu, setShowRoleMenu] =
+    useState(false)
 
   const roles = ['CEO', 'MD']
 
@@ -443,57 +466,119 @@ export default function Documents() {
   ========================================================= */
 
   const canAccessDocument = (document) => {
+
+    if (document.restricted) {
+      return false
+    }
+
     return document.access.includes(currentRole)
+  }
+
+  /* =========================================================
+     RESTRICT / AUTHORIZE
+  ========================================================= */
+
+  const handleToggleDocumentAccess = (documentId) => {
+
+    if (currentRole !== 'CEO') {
+      return
+    }
+
+    setDocuments((previousDocuments) =>
+      previousDocuments.map((document) => {
+
+        if (document.id !== documentId) {
+          return document
+        }
+
+        return {
+          ...document,
+          restricted: !document.restricted
+        }
+
+      })
+    )
+
+    setSelectedDocument((currentDocument) => {
+
+      if (
+        currentDocument &&
+        currentDocument.id === documentId
+      ) {
+        return null
+      }
+
+      return currentDocument
+    })
   }
 
   /* =========================================================
      FILTER DOCUMENTS
   ========================================================= */
 
-  const filteredDocuments = documents.filter(
-    (document) => {
-      const query = searchTerm.trim().toLowerCase()
+  const filteredDocuments =
+    documents.filter((document) => {
+
+      const query =
+        searchTerm.trim().toLowerCase()
 
       const matchesSearch =
         !query ||
-        document.name.toLowerCase().includes(query) ||
-        document.category.toLowerCase().includes(query) ||
-        document.description.toLowerCase().includes(query)
+        document.name
+          .toLowerCase()
+          .includes(query) ||
+        document.category
+          .toLowerCase()
+          .includes(query) ||
+        document.description
+          .toLowerCase()
+          .includes(query)
 
       const matchesCategory =
         categoryFilter === 'All' ||
         document.category === categoryFilter
 
-      return matchesSearch && matchesCategory
-    }
-  )
+      return (
+        matchesSearch &&
+        matchesCategory
+      )
+    })
 
   /* =========================================================
      DOWNLOAD PDF
   ========================================================= */
 
   const handleDownload = async (document) => {
+
     if (!document) return
 
     if (!canAccessDocument(document)) {
+
       alert(
         'You do not have permission to download this document.'
       )
+
       return
     }
 
     if (!document.fileUrl) {
+
       alert(
         `"${document.name}" PDF file is not available.`
       )
+
       return
     }
 
     try {
-      const response = await fetch(document.fileUrl, {
-        method: 'GET',
-        cache: 'no-cache'
-      })
+
+      const response = await fetch(
+        document.fileUrl,
+        {
+          method: 'GET',
+          cache: 'no-cache'
+        }
+      )
 
       if (!response.ok) {
         throw new Error(
@@ -530,8 +615,13 @@ export default function Documents() {
       setTimeout(() => {
         window.URL.revokeObjectURL(blobUrl)
       }, 1500)
+
     } catch (error) {
-      console.error('Download error:', error)
+
+      console.error(
+        'Download error:',
+        error
+      )
 
       alert(
         `"${document.name}" PDF could not be downloaded.\n\n` +
@@ -545,7 +635,15 @@ export default function Documents() {
   ========================================================= */
 
   const handleView = (document) => {
-    if (!canAccessDocument(document)) return
+
+    if (!canAccessDocument(document)) {
+
+      alert(
+        'You do not have permission to view this document.'
+      )
+
+      return
+    }
 
     setSelectedDocument(document)
   }
@@ -554,47 +652,66 @@ export default function Documents() {
      STATS
   ========================================================= */
 
-  const totalDocuments = documents.length
+  const totalDocuments =
+    documents.length
 
-  const totalReports = documents.filter(
-    (item) => item.category === 'Reports'
-  ).length
+  const totalReports =
+    documents.filter(
+      (item) =>
+        item.category === 'Reports'
+    ).length
 
-  const totalContracts = documents.filter(
-    (item) => item.category === 'Contracts'
-  ).length
+  const totalContracts =
+    documents.filter(
+      (item) =>
+        item.category === 'Contracts'
+    ).length
 
-  const totalApprovals = documents.filter(
-    (item) => item.category === 'Approvals'
-  ).length
+  const totalApprovals =
+    documents.filter(
+      (item) =>
+        item.category === 'Approvals'
+    ).length
 
   /* =========================================================
      FILTER DOCUMENTATION
   ========================================================= */
 
   const filteredArticles =
-    documentationArticles.filter((article) => {
-      const query =
-        articleSearch.trim().toLowerCase()
+    documentationArticles.filter(
+      (article) => {
 
-      const matchesSearch =
-        !query ||
-        article.title.toLowerCase().includes(query) ||
-        article.description
-          .toLowerCase()
-          .includes(query) ||
-        article.category
-          .toLowerCase()
-          .includes(query)
+        const query =
+          articleSearch
+            .trim()
+            .toLowerCase()
 
-      const matchesCategory =
-        articleCategory === 'All' ||
-        article.category === articleCategory
+        const matchesSearch =
+          !query ||
+          article.title
+            .toLowerCase()
+            .includes(query) ||
+          article.description
+            .toLowerCase()
+            .includes(query) ||
+          article.category
+            .toLowerCase()
+            .includes(query)
 
-      return matchesSearch && matchesCategory
-    })
+        const matchesCategory =
+          articleCategory === 'All' ||
+          article.category ===
+            articleCategory
+
+        return (
+          matchesSearch &&
+          matchesCategory
+        )
+      }
+    )
 
   return (
+
     <div className="min-h-full bg-bg text-text px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
 
       {/* =====================================================
@@ -602,6 +719,7 @@ export default function Documents() {
       ===================================================== */}
 
       <style>{`
+
         @keyframes docFadeUp {
           from {
             opacity: 0;
@@ -627,12 +745,49 @@ export default function Documents() {
         }
 
         .doc-fade {
-          animation: docFadeUp 0.4s ease-out both;
+          animation:
+            docFadeUp
+            0.4s
+            ease-out
+            both;
         }
 
         .doc-pop {
-          animation: docPop 0.35s ease-out both;
+          animation:
+            docPop
+            0.35s
+            ease-out
+            both;
         }
+
+        .document-action-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+          width: 100%;
+        }
+
+        .document-action-row button {
+          flex-shrink: 0;
+        }
+
+        @media (max-width: 1200px) {
+
+          .document-action-row {
+            gap: 4px;
+          }
+
+          .document-action-row button {
+            width: auto !important;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+          }
+
+        }
+
       `}</style>
 
       {/* =====================================================
@@ -665,8 +820,9 @@ export default function Documents() {
           </h1>
 
           <p className="text-sm text-muted mt-2 leading-6 max-w-2xl">
-            Access important management documents, reports,
-            contracts, approvals and system documentation from one place.
+            Access important management documents,
+            reports, contracts, approvals and system
+            documentation from one place.
           </p>
 
         </div>
@@ -678,7 +834,9 @@ export default function Documents() {
           <button
             type="button"
             onClick={() =>
-              setShowRoleMenu((value) => !value)
+              setShowRoleMenu(
+                (value) => !value
+              )
             }
             className="h-12 px-4 rounded-2xl border border-slate-300 bg-white text-slate-800 flex items-center gap-3 shadow-lg shadow-black/[0.08] hover:border-primary hover:shadow-primary/10 transition-all"
           >
@@ -707,7 +865,9 @@ export default function Documents() {
             <ChevronDown
               size={15}
               className={`text-slate-500 transition-transform duration-200 ${
-                showRoleMenu ? 'rotate-180' : ''
+                showRoleMenu
+                  ? 'rotate-180'
+                  : ''
               }`}
             />
 
@@ -737,10 +897,14 @@ export default function Documents() {
                   }`}
                 >
 
-                  <span>{role}</span>
+                  <span>
+                    {role}
+                  </span>
 
                   {currentRole === role && (
-                    <ShieldCheck size={15} />
+                    <ShieldCheck
+                      size={15}
+                    />
                   )}
 
                 </button>
@@ -829,7 +993,9 @@ export default function Documents() {
                 placeholder="Search documents..."
                 value={searchTerm}
                 onChange={(e) =>
-                  setSearchTerm(e.target.value)
+                  setSearchTerm(
+                    e.target.value
+                  )
                 }
                 className="w-full h-11 pl-10 pr-4 rounded-2xl border border-line bg-card text-sm text-text placeholder:text-muted outline-none focus:border-primary focus:shadow-md focus:shadow-primary/10 transition"
               />
@@ -839,7 +1005,9 @@ export default function Documents() {
             <button
               type="button"
               onClick={() =>
-                setShowFilter((value) => !value)
+                setShowFilter(
+                  (value) => !value
+                )
               }
               className={`group h-11 px-3.5 rounded-2xl border flex items-center justify-center gap-2.5 text-sm font-semibold transition-all duration-200 ${
                 showFilter
@@ -859,7 +1027,9 @@ export default function Documents() {
                 <SlidersHorizontal
                   size={16}
                   className={`transition-transform duration-200 ${
-                    showFilter ? 'rotate-90' : ''
+                    showFilter
+                      ? 'rotate-90'
+                      : ''
                   } ${
                     showFilter
                       ? 'text-white'
@@ -904,7 +1074,8 @@ export default function Documents() {
               {documentCategories.map(
                 (category) => {
 
-                  const Icon = category.icon
+                  const Icon =
+                    category.icon
 
                   return (
 
@@ -912,16 +1083,21 @@ export default function Documents() {
                       key={category.name}
                       type="button"
                       onClick={() =>
-                        setCategoryFilter(category.name)
+                        setCategoryFilter(
+                          category.name
+                        )
                       }
                       className={`px-3.5 py-2 rounded-full text-xs font-semibold border flex items-center gap-2 transition ${
-                        categoryFilter === category.name
+                        categoryFilter ===
+                        category.name
                           ? 'bg-primary text-white border-primary shadow-sm shadow-primary/30'
                           : 'bg-card border-line text-muted hover:text-text hover:border-primary/40'
                       }`}
                     >
 
-                      <Icon size={14} />
+                      <Icon
+                        size={14}
+                      />
 
                       {category.name}
 
@@ -944,15 +1120,19 @@ export default function Documents() {
           {documentCategories.map(
             (category, index) => {
 
-              const Icon = category.icon
+              const Icon =
+                category.icon
 
-              const count = documents.filter(
-                (item) =>
-                  item.category === category.name
-              ).length
+              const count =
+                documents.filter(
+                  (item) =>
+                    item.category ===
+                    category.name
+                ).length
 
               const isActive =
-                categoryFilter === category.name
+                categoryFilter ===
+                category.name
 
               return (
 
@@ -960,10 +1140,13 @@ export default function Documents() {
                   key={category.name}
                   type="button"
                   onClick={() =>
-                    setCategoryFilter(category.name)
+                    setCategoryFilter(
+                      category.name
+                    )
                   }
                   style={{
-                    animationDelay: `${index * 45}ms`
+                    animationDelay:
+                      `${index * 45}ms`
                   }}
                   className={`doc-fade eq-card relative overflow-hidden p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] ${
                     isActive
@@ -1015,7 +1198,10 @@ export default function Documents() {
 
         </div>
 
-        {/* DOCUMENT TABLE */}
+        {/* =================================================
+            DOCUMENT TABLE
+            STATIC TABLE - NO HORIZONTAL SLIDER
+        ================================================= */}
 
         <div className="eq-card overflow-hidden">
 
@@ -1046,35 +1232,37 @@ export default function Documents() {
 
           </div>
 
-          <div className="w-full overflow-hidden">
+          {/* STATIC TABLE — NO overflow-x-auto */}
 
-            <table className="w-full table-fixed border-collapse">
+          <div className="w-full">
+
+            <table className="w-full border-collapse table-fixed">
 
               <thead>
 
                 <tr className="bg-bg border-b border-line">
 
-                  <th className="w-[25%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[23%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Document
                   </th>
 
-                  <th className="w-[16%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[15%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Description
                   </th>
 
-                  <th className="w-[14%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[13%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Category
                   </th>
 
-                  <th className="w-[13%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[11%] text-left px-4 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Last Updated
                   </th>
 
-                  <th className="w-[12%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[10%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Access
                   </th>
 
-                  <th className="w-[20%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
+                  <th className="w-[28%] text-center px-2 py-4 text-[10px] uppercase tracking-[0.08em] text-muted font-semibold">
                     Action
                   </th>
 
@@ -1088,17 +1276,25 @@ export default function Documents() {
                   (document, index) => {
 
                     const hasAccess =
-                      canAccessDocument(document)
+                      canAccessDocument(
+                        document
+                      )
+
+                    const isRestricted =
+                      document.restricted
 
                     return (
 
                       <tr
                         key={document.id}
                         style={{
-                          animationDelay: `${index * 35}ms`
+                          animationDelay:
+                            `${index * 35}ms`
                         }}
                         className="doc-fade border-b border-line last:border-0 odd:bg-bg/30 hover:bg-primary/[0.03] transition-colors"
                       >
+
+                        {/* DOCUMENT */}
 
                         <td className="px-4 py-5 align-middle">
 
@@ -1120,7 +1316,9 @@ export default function Documents() {
                               </p>
 
                               <p className="text-[11px] text-muted mt-1">
-                                {document.type} • {document.size}
+                                {document.type}
+                                {' • '}
+                                {document.size}
                               </p>
 
                             </div>
@@ -1128,6 +1326,8 @@ export default function Documents() {
                           </div>
 
                         </td>
+
+                        {/* DESCRIPTION */}
 
                         <td className="px-4 py-5 align-middle">
 
@@ -1137,13 +1337,19 @@ export default function Documents() {
 
                         </td>
 
+                        {/* CATEGORY */}
+
                         <td className="px-4 py-5 align-middle">
 
                           <span className="inline-flex items-center max-w-full px-2.5 py-1.5 rounded-full bg-bg border border-line text-[10px] text-text font-medium leading-4 whitespace-normal break-words">
+
                             {document.category}
+
                           </span>
 
                         </td>
+
+                        {/* DATE */}
 
                         <td className="px-4 py-5 align-middle">
 
@@ -1162,6 +1368,8 @@ export default function Documents() {
 
                         </td>
 
+                        {/* ACCESS */}
+
                         <td className="px-2 py-5 align-middle">
 
                           <div className="flex justify-center items-center">
@@ -1170,7 +1378,9 @@ export default function Documents() {
 
                               <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold whitespace-nowrap">
 
-                                <ShieldCheck size={13} />
+                                <ShieldCheck
+                                  size={13}
+                                />
 
                                 Authorized
 
@@ -1180,7 +1390,9 @@ export default function Documents() {
 
                               <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-bg border border-line text-muted text-[10px] font-semibold whitespace-nowrap">
 
-                                <LockKeyhole size={13} />
+                                <LockKeyhole
+                                  size={13}
+                                />
 
                                 Restricted
 
@@ -1192,9 +1404,11 @@ export default function Documents() {
 
                         </td>
 
+                        {/* ACTIONS */}
+
                         <td className="px-2 py-5 align-middle">
 
-                          <div className="flex justify-center items-center gap-2">
+                          <div className="document-action-row">
 
                             {/* VIEW */}
 
@@ -1202,16 +1416,25 @@ export default function Documents() {
                               type="button"
                               disabled={!hasAccess}
                               onClick={() =>
-                                handleView(document)
+                                handleView(
+                                  document
+                                )
                               }
-                              className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
+                              title={
+                                hasAccess
+                                  ? 'View document'
+                                  : 'Document is restricted'
+                              }
+                              className={`h-9 w-[62px] rounded-full border flex items-center justify-center gap-1 text-[10px] font-semibold transition whitespace-nowrap ${
                                 hasAccess
                                   ? 'bg-card border-line text-text hover:bg-primary hover:text-white hover:border-primary hover:shadow-sm'
                                   : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
                               }`}
                             >
 
-                              <Eye size={14} />
+                              <Eye
+                                size={13}
+                              />
 
                               View
 
@@ -1223,20 +1446,78 @@ export default function Documents() {
                               type="button"
                               disabled={!hasAccess}
                               onClick={() =>
-                                handleDownload(document)
+                                handleDownload(
+                                  document
+                                )
                               }
-                              className={`w-[88px] h-9 rounded-full border flex items-center justify-center gap-1.5 text-[10px] font-semibold transition whitespace-nowrap ${
+                              title={
+                                hasAccess
+                                  ? 'Download document'
+                                  : 'Document is restricted'
+                              }
+                              className={`h-9 w-[82px] rounded-full border flex items-center justify-center gap-1 text-[10px] font-semibold transition whitespace-nowrap ${
                                 hasAccess
                                   ? 'bg-primary text-white border-primary hover:opacity-90 shadow-sm shadow-primary/20'
                                   : 'bg-bg border-line text-muted opacity-50 cursor-not-allowed'
                               }`}
                             >
 
-                              <Download size={14} />
+                              <Download
+                                size={13}
+                              />
 
                               Download
 
                             </button>
+
+                            {/* CEO ONLY */}
+
+                            {currentRole === 'CEO' && (
+
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleToggleDocumentAccess(
+                                    document.id
+                                  )
+                                }
+                                title={
+                                  isRestricted
+                                    ? 'Authorize document'
+                                    : 'Restrict document'
+                                }
+                                className={`h-9 w-[82px] rounded-full border flex items-center justify-center gap-1 text-[10px] font-semibold transition whitespace-nowrap ${
+                                  isRestricted
+                                    ? 'bg-primary/[0.06] border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary'
+                                    : 'bg-white border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300'
+                                }`}
+                              >
+
+                                {isRestricted ? (
+
+                                  <>
+                                    <Unlock
+                                      size={13}
+                                    />
+
+                                    Authorize
+                                  </>
+
+                                ) : (
+
+                                  <>
+                                    <Lock
+                                      size={13}
+                                    />
+
+                                    Restrict
+                                  </>
+
+                                )}
+
+                              </button>
+
+                            )}
 
                           </div>
 
@@ -1311,7 +1592,9 @@ export default function Documents() {
               placeholder="Search documentation..."
               value={articleSearch}
               onChange={(e) =>
-                setArticleSearch(e.target.value)
+                setArticleSearch(
+                  e.target.value
+                )
               }
               className="w-full h-11 pl-10 pr-4 rounded-2xl border border-line bg-card text-sm text-text placeholder:text-muted outline-none focus:border-primary focus:shadow-md focus:shadow-primary/10 transition"
             />
@@ -1329,7 +1612,9 @@ export default function Documents() {
                 key={category}
                 type="button"
                 onClick={() =>
-                  setArticleCategory(category)
+                  setArticleCategory(
+                    category
+                  )
                 }
                 className={`px-3.5 py-2 rounded-full border text-xs font-semibold transition ${
                   articleCategory === category
@@ -1352,14 +1637,16 @@ export default function Documents() {
           {filteredArticles.map(
             (article, index) => {
 
-              const Icon = article.icon
+              const Icon =
+                article.icon
 
               return (
 
                 <div
                   key={article.id}
                   style={{
-                    animationDelay: `${index * 50}ms`
+                    animationDelay:
+                      `${index * 50}ms`
                   }}
                   className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
                 >
@@ -1378,7 +1665,9 @@ export default function Documents() {
                     </div>
 
                     <span className="text-[11px] px-2.5 py-1 rounded-full border border-line text-muted bg-bg">
+
                       {article.category}
+
                     </span>
 
                   </div>
@@ -1400,14 +1689,18 @@ export default function Documents() {
                     <button
                       type="button"
                       onClick={() =>
-                        setSelectedArticle(article)
+                        setSelectedArticle(
+                          article
+                        )
                       }
                       className="h-9 px-4 rounded-full bg-primary text-white text-[11px] font-semibold flex items-center gap-2 hover:opacity-90 hover:gap-3 shadow-sm shadow-primary/20 transition-all"
                     >
 
                       Read Guide
 
-                      <ArrowRight size={13} />
+                      <ArrowRight
+                        size={13}
+                      />
 
                     </button>
 
@@ -1480,7 +1773,9 @@ export default function Documents() {
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
-                <X size={17} />
+                <X
+                  size={17}
+                />
 
               </button>
 
@@ -1570,7 +1865,9 @@ export default function Documents() {
 
                   <div className="flex items-center gap-2 text-xs text-slate-600">
 
-                    <CalendarDays size={15} />
+                    <CalendarDays
+                      size={15}
+                    />
 
                     Updated {selectedDocument.updated}
 
@@ -1641,12 +1938,16 @@ export default function Documents() {
               <button
                 type="button"
                 onClick={() =>
-                  handleDownload(selectedDocument)
+                  handleDownload(
+                    selectedDocument
+                  )
                 }
                 className="h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold flex items-center gap-2 hover:opacity-90 shadow-sm shadow-primary/20 transition"
               >
 
-                <Download size={16} />
+                <Download
+                  size={16}
+                />
 
                 Download
 
@@ -1717,7 +2018,9 @@ export default function Documents() {
                 className="w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 flex items-center justify-center hover:bg-slate-100 transition"
               >
 
-                <X size={17} />
+                <X
+                  size={17}
+                />
 
               </button>
 
@@ -1733,7 +2036,9 @@ export default function Documents() {
                   {selectedArticle.readTime}
                 </span>
 
-                <span>•</span>
+                <span>
+                  •
+                </span>
 
                 <span>
                   Updated {selectedArticle.updated}
@@ -1817,10 +2122,13 @@ function SummaryCard({
   icon: Icon,
   delay = 0
 }) {
+
   return (
+
     <div
       style={{
-        animationDelay: `${delay}ms`
+        animationDelay:
+          `${delay}ms`
       }}
       className="doc-fade eq-card relative overflow-hidden p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.06] transition-all duration-200"
     >

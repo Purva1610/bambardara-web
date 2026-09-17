@@ -15,6 +15,9 @@ import {
   AlertCircle,
 } from 'lucide-react'
 
+const SUPPORTING_DOCUMENT_URL =
+  '/documents/approvals/project-approval-record.pdf'
+
 const initialApprovals = [
   // ================= CEO APPROVALS =================
   {
@@ -31,10 +34,7 @@ const initialApprovals = [
     reason: 'Approval required for luxury villa construction budget.',
     description:
       'Budget approval is required to proceed with the planned luxury villa construction activities.',
-    documents: [
-      'Construction Budget.pdf',
-      'Project Estimate.pdf',
-    ],
+    documents: ['Construction Budget.pdf', 'Project Estimate.pdf'],
     approvalHistory: [
       {
         action: 'Submitted',
@@ -43,7 +43,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 2,
     role: 'CEO',
@@ -67,7 +66,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 3,
     role: 'CEO',
@@ -96,7 +94,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 4,
     role: 'CEO',
@@ -111,10 +108,7 @@ const initialApprovals = [
     reason: 'Approval required for upcoming marketing campaign.',
     description:
       'Marketing campaign budget approval for the upcoming promotional activities.',
-    documents: [
-      'Marketing Proposal.pdf',
-      'Campaign Plan.pdf',
-    ],
+    documents: ['Marketing Proposal.pdf', 'Campaign Plan.pdf'],
     approvalHistory: [
       {
         action: 'Submitted',
@@ -123,7 +117,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 5,
     role: 'CEO',
@@ -168,10 +161,7 @@ const initialApprovals = [
     reason: 'Purchase order approval for steel structure requirements.',
     description:
       'Approval required for the steel structure purchase order associated with project execution.',
-    documents: [
-      'Steel Structure PO.pdf',
-      'Vendor Quotation.pdf',
-    ],
+    documents: ['Steel Structure PO.pdf', 'Vendor Quotation.pdf'],
     approvalHistory: [
       {
         action: 'Submitted',
@@ -180,7 +170,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 7,
     role: 'MD',
@@ -195,10 +184,7 @@ const initialApprovals = [
     reason: 'Landscaping contractor appointment.',
     description:
       'Management approval required for the landscaping contract and vendor appointment.',
-    documents: [
-      'Landscaping Contract.pdf',
-      'Vendor Proposal.pdf',
-    ],
+    documents: ['Landscaping Contract.pdf', 'Vendor Proposal.pdf'],
     approvalHistory: [
       {
         action: 'Submitted',
@@ -207,7 +193,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 8,
     role: 'MD',
@@ -222,10 +207,7 @@ const initialApprovals = [
     reason: 'Budget approval for interior works.',
     description:
       'Approval required for the proposed interior works budget for the project.',
-    documents: [
-      'Interior Budget.pdf',
-      'Cost Estimate.pdf',
-    ],
+    documents: ['Interior Budget.pdf', 'Cost Estimate.pdf'],
     approvalHistory: [
       {
         action: 'Submitted',
@@ -234,7 +216,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 9,
     role: 'MD',
@@ -261,7 +242,6 @@ const initialApprovals = [
       },
     ],
   },
-
   {
     id: 10,
     role: 'MD',
@@ -297,14 +277,12 @@ const statusStyles = {
     border: '#fed7aa',
     icon: Clock3,
   },
-
   Approved: {
     background: '#ecfdf5',
     color: '#059669',
     border: '#a7f3d0',
     icon: CheckCircle2,
   },
-
   Rejected: {
     background: '#fff1f2',
     color: '#dc2626',
@@ -314,45 +292,29 @@ const statusStyles = {
 }
 
 export default function Approvals() {
-  const [approvals, setApprovals] =
-    useState(initialApprovals)
-
+  const [approvals, setApprovals] = useState(initialApprovals)
   const [search, setSearch] = useState('')
-
   const [statusFilter, setStatusFilter] =
     useState('All Status')
-
   const [departmentFilter, setDepartmentFilter] =
     useState('All Departments')
-
-  const [roleFilter, setRoleFilter] =
-    useState('MD')
-
+  const [roleFilter, setRoleFilter] = useState('MD')
   const [selectedApproval, setSelectedApproval] =
     useState(null)
-
-  const [confirmation, setConfirmation] =
-    useState(null)
-
-  // ================= DEPARTMENTS =================
+  const [confirmation, setConfirmation] = useState(null)
 
   const departments = useMemo(() => {
     return [
       'All Departments',
       ...new Set(
-        approvals.map(
-          (item) => item.department
-        )
+        approvals.map((item) => item.department)
       ),
     ]
   }, [approvals])
 
-  // ================= FILTER =================
-
   const filteredApprovals = useMemo(() => {
     return approvals.filter((approval) => {
-      const searchText =
-        search.toLowerCase().trim()
+      const searchText = search.toLowerCase().trim()
 
       const matchesSearch =
         approval.title
@@ -370,10 +332,8 @@ export default function Approvals() {
         approval.status === statusFilter
 
       const matchesDepartment =
-        departmentFilter ===
-          'All Departments' ||
-        approval.department ===
-          departmentFilter
+        departmentFilter === 'All Departments' ||
+        approval.department === departmentFilter
 
       const matchesRole =
         roleFilter === 'All Roles' ||
@@ -394,35 +354,22 @@ export default function Approvals() {
     roleFilter,
   ])
 
-  // ================= SUMMARY =================
-
   const summary = useMemo(() => {
     return {
       pending: approvals.filter(
-        (item) =>
-          item.status === 'Pending'
+        (item) => item.status === 'Pending'
       ).length,
-
       approved: approvals.filter(
-        (item) =>
-          item.status === 'Approved'
+        (item) => item.status === 'Approved'
       ).length,
-
       rejected: approvals.filter(
-        (item) =>
-          item.status === 'Rejected'
+        (item) => item.status === 'Rejected'
       ).length,
-
       total: approvals.length,
     }
   }, [approvals])
 
-  // ================= CONFIRMATION =================
-
-  const openConfirmation = (
-    approval,
-    status
-  ) => {
+  const openConfirmation = (approval, status) => {
     setConfirmation({
       approval,
       status,
@@ -432,24 +379,17 @@ export default function Approvals() {
   const confirmAction = () => {
     if (!confirmation) return
 
-    const {
-      approval,
-      status,
-    } = confirmation
+    const { approval, status } = confirmation
 
     setApprovals((current) =>
       current.map((item) => {
-        if (item.id !== approval.id) {
-          return item
-        }
+        if (item.id !== approval.id) return item
 
         return {
           ...item,
           status,
-
           approvalHistory: [
             ...item.approvalHistory,
-
             {
               action: status,
               by: 'Management',
@@ -470,8 +410,6 @@ export default function Approvals() {
     setSelectedApproval(null)
     setConfirmation(null)
   }
-
-  // ================= STATUS BADGE =================
 
   const getStatusBadge = (status) => {
     const config =
@@ -514,7 +452,6 @@ export default function Approvals() {
       }}
     >
       {/* ================= HEADER ================= */}
-
       <div
         style={{
           marginBottom: '22px',
@@ -569,7 +506,6 @@ export default function Approvals() {
       </div>
 
       {/* ================= SUMMARY CARDS ================= */}
-
       <div
         style={{
           display: 'grid',
@@ -609,7 +545,6 @@ export default function Approvals() {
       </div>
 
       {/* ================= FILTERS ================= */}
-
       <div
         style={{
           background: '#ffffff',
@@ -630,7 +565,6 @@ export default function Approvals() {
           }}
         >
           {/* SEARCH */}
-
           <div
             style={{
               position: 'relative',
@@ -643,8 +577,7 @@ export default function Approvals() {
                 position: 'absolute',
                 left: '14px',
                 top: '50%',
-                transform:
-                  'translateY(-50%)',
+                transform: 'translateY(-50%)',
                 color: '#9aa9a2',
               }}
             />
@@ -659,10 +592,8 @@ export default function Approvals() {
                 width: '100%',
                 height: '44px',
                 boxSizing: 'border-box',
-                padding:
-                  '0 14px 0 39px',
-                border:
-                  '1px solid #dce4df',
+                padding: '0 14px 0 39px',
+                border: '1px solid #dce4df',
                 borderRadius: '9px',
                 outline: 'none',
                 color: '#24332d',
@@ -673,7 +604,6 @@ export default function Approvals() {
           </div>
 
           {/* STATUS */}
-
           <select
             value={statusFilter}
             onChange={(e) =>
@@ -688,7 +618,6 @@ export default function Approvals() {
           </select>
 
           {/* ROLE */}
-
           <select
             value={roleFilter}
             onChange={(e) =>
@@ -702,7 +631,6 @@ export default function Approvals() {
           </select>
 
           {/* DEPARTMENT */}
-
           <select
             value={departmentFilter}
             onChange={(e) =>
@@ -710,21 +638,16 @@ export default function Approvals() {
             }
             style={selectStyle}
           >
-            {departments.map(
-              (department) => (
-                <option
-                  key={department}
-                >
-                  {department}
-                </option>
-              )
-            )}
+            {departments.map((department) => (
+              <option key={department}>
+                {department}
+              </option>
+            ))}
           </select>
         </div>
       </div>
 
-      {/* ================= TABLE ================= */}
-
+      {/* ================= APPROVAL TABLE ================= */}
       <div
         style={{
           background: '#ffffff',
@@ -736,12 +659,10 @@ export default function Approvals() {
         }}
       >
         {/* TABLE TOP */}
-
         <div
           style={{
             padding: '16px 10px',
-            borderBottom:
-              '1px solid #e8ecea',
+            borderBottom: '1px solid #e8ecea',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -771,8 +692,7 @@ export default function Approvals() {
           </span>
         </div>
 
-        {/* ================= TABLE ================= */}
-
+        {/* ================= STABLE TABLE ================= */}
         <table
           style={{
             width: '100%',
@@ -852,402 +772,298 @@ export default function Approvals() {
           </thead>
 
           <tbody>
-            {filteredApprovals.map(
-              (approval) => {
-                const isPending =
-                  approval.status ===
-                  'Pending'
-
-                return (
-                  <tr
-                    key={approval.id}
+            {filteredApprovals.map((approval) => (
+              <tr
+                key={approval.id}
+                style={{
+                  borderBottom:
+                    '1px solid #edf0ee',
+                }}
+              >
+                {/* REQUEST */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  <div
                     style={{
-                      borderBottom:
-                        '1px solid #edf0ee',
+                      fontSize: '11.5px',
+                      fontWeight: 700,
+                      color: '#17231e',
+                      lineHeight: 1.35,
+                      overflowWrap: 'anywhere',
                     }}
                   >
-                    {/* REQUEST */}
+                    {approval.title}
+                  </div>
 
-                    <td
+                  <div
+                    style={{
+                      marginTop: '3px',
+                      fontSize: '9px',
+                      color: '#89968f',
+                      lineHeight: 1.3,
+                      overflowWrap: 'anywhere',
+                    }}
+                  >
+                    {approval.type}
+                  </div>
+                </td>
+
+                {/* ROLE */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '4px 7px',
+                      borderRadius: '6px',
+                      background: '#edf5f1',
+                      color: '#176247',
+                      fontSize: '9px',
+                      fontWeight: 800,
+                    }}
+                  >
+                    {approval.role}
+                  </span>
+                </td>
+
+                {/* DEPARTMENT */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                    fontSize: '9.5px',
+                    color: '#52645b',
+                    overflowWrap: 'anywhere',
+                  }}
+                >
+                  {approval.department}
+                </td>
+
+                {/* REQUESTED BY */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      fontSize: '9.5px',
+                      color: '#52645b',
+                      overflowWrap: 'anywhere',
+                    }}
+                  >
+                    <User
+                      size={11}
+                      color="#9aa8a1"
                       style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
+                        flexShrink: 0,
+                      }}
+                    />
+                    {approval.requestedBy}
+                  </div>
+                </td>
+
+                {/* AMOUNT */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                    fontSize: '9.5px',
+                    fontWeight: 700,
+                    color: '#1c3329',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {approval.amount}
+                </td>
+
+                {/* SUBMITTED */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                    fontSize: '8.5px',
+                    color: '#607169',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {approval.submittedDate}
+                </td>
+
+                {/* REQUIRED BY */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    verticalAlign: 'middle',
+                    fontSize: '8.5px',
+                    color: '#607169',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {approval.requiredBy}
+                </td>
+
+                {/* STATUS */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    paddingRight: '16px',
+                    verticalAlign: 'middle',
+                    textAlign: 'center',
+                  }}
+                >
+                  {getStatusBadge(
+                    approval.status
+                  )}
+                </td>
+
+                {/* ACTION */}
+                <td
+                  style={{
+                    padding: '12px 8px',
+                    paddingLeft: '18px',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                      gap: '6px',
+                      flexWrap: 'nowrap',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {/* VIEW */}
+                    <button
+                      onClick={() =>
+                        setSelectedApproval(
+                          approval
+                        )
+                      }
+                      style={{
+                        width: '50px',
+                        height: '32px',
+                        padding: 0,
+                        boxSizing: 'border-box',
+                        border:
+                          '1px solid #d9e2dd',
+                        borderRadius: '7px',
+                        background: '#ffffff',
+                        color: '#40524a',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '4px',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
                       }}
                     >
-                      <div
-                        style={{
-                          fontSize: '11.5px',
-                          fontWeight: 700,
-                          color: '#17231e',
-                          lineHeight: 1.35,
-                          overflowWrap:
-                            'anywhere',
-                        }}
-                      >
-                        {approval.title}
-                      </div>
+                      <Eye size={12} />
+                      View
+                    </button>
 
-                      <div
+                    {/* APPROVE */}
+                    {approval.status ===
+                      'Pending' && (
+                      <button
+                        onClick={() =>
+                          openConfirmation(
+                            approval,
+                            'Approved'
+                          )
+                        }
                         style={{
-                          marginTop: '3px',
-                          fontSize: '9px',
-                          color: '#89968f',
-                          lineHeight: 1.3,
-                          overflowWrap:
-                            'anywhere',
-                        }}
-                      >
-                        {approval.type}
-                      </div>
-                    </td>
-
-                    {/* ROLE */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                      }}
-                    >
-                      <span
-                        style={{
-                          display:
-                            'inline-flex',
-                          alignItems:
-                            'center',
+                          width: '68px',
+                          height: '32px',
+                          padding: 0,
+                          boxSizing: 'border-box',
+                          border:
+                            '1px solid #c7e7da',
+                          borderRadius: '7px',
+                          background: '#f1faf6',
+                          color: '#138463',
+                          fontSize: '10px',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
                           justifyContent:
-                            'center',
-                          padding:
-                            '4px 7px',
-                          borderRadius: '6px',
-                          background:
-                            '#edf5f1',
-                          color: '#176247',
-                          fontSize: '9px',
-                          fontWeight: 800,
-                        }}
-                      >
-                        {approval.role}
-                      </span>
-                    </td>
-
-                    {/* DEPARTMENT */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                        fontSize: '9.5px',
-                        color: '#52645b',
-                        overflowWrap:
-                          'anywhere',
-                      }}
-                    >
-                      {approval.department}
-                    </td>
-
-                    {/* REQUESTED BY */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                      }}
-                    >
-                      <div
-                        style={{
-                          display:
-                            'flex',
-                          alignItems:
                             'center',
                           gap: '4px',
-                          fontSize: '9.5px',
-                          color: '#52645b',
-                          overflowWrap:
-                            'anywhere',
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0,
                         }}
                       >
-                        <User
-                          size={11}
-                          color="#9aa8a1"
-                          style={{
-                            flexShrink: 0,
-                          }}
+                        <CheckCircle2
+                          size={12}
                         />
+                        Approve
+                      </button>
+                    )}
 
-                        {approval.requestedBy}
-                      </div>
-                    </td>
-
-                    {/* AMOUNT */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                        fontSize: '9.5px',
-                        fontWeight: 700,
-                        color: '#1c3329',
-                        whiteSpace:
-                          'nowrap',
-                      }}
-                    >
-                      {approval.amount}
-                    </td>
-
-                    {/* SUBMITTED */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                        fontSize: '8.5px',
-                        color: '#607169',
-                        whiteSpace:
-                          'nowrap',
-                      }}
-                    >
-                      {approval.submittedDate}
-                    </td>
-
-                    {/* REQUIRED BY */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        verticalAlign:
-                          'middle',
-                        fontSize: '8.5px',
-                        color: '#607169',
-                        whiteSpace:
-                          'nowrap',
-                      }}
-                    >
-                      {approval.requiredBy}
-                    </td>
-
-                    {/* STATUS */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        paddingRight: '16px',
-                        verticalAlign:
-                          'middle',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {getStatusBadge(
-                        approval.status
-                      )}
-                    </td>
-
-                    {/* ACTION */}
-
-                    <td
-                      style={{
-                        padding: '12px 8px',
-                        paddingLeft: '18px',
-                        verticalAlign:
-                          'middle',
-                      }}
-                    >
-                      <div
+                    {/* REJECT */}
+                    {approval.status ===
+                      'Pending' && (
+                      <button
+                        onClick={() =>
+                          openConfirmation(
+                            approval,
+                            'Rejected'
+                          )
+                        }
                         style={{
-                          display:
-                            'flex',
-                          alignItems:
-                            'center',
+                          width: '58px',
+                          height: '32px',
+                          padding: 0,
+                          boxSizing: 'border-box',
+                          border:
+                            '1px solid #f0cccc',
+                          borderRadius: '7px',
+                          background: '#fff6f6',
+                          color: '#d44343',
+                          fontSize: '10px',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
                           justifyContent:
-                            'flex-start',
-                          gap: '6px',
-                          flexWrap:
-                            'nowrap',
-                          whiteSpace:
-                            'nowrap',
+                            'center',
+                          gap: '4px',
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0,
                         }}
                       >
-                        {/* VIEW */}
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setSelectedApproval(
-                              approval
-                            )
-                          }
-                          style={{
-                            width: '50px',
-                            height: '32px',
-                            padding: 0,
-                            boxSizing:
-                              'border-box',
-                            border:
-                              '1px solid #d9e2dd',
-                            borderRadius:
-                              '7px',
-                            background:
-                              '#ffffff',
-                            color:
-                              '#40524a',
-                            fontSize:
-                              '10px',
-                            fontWeight:
-                              600,
-                            cursor:
-                              'pointer',
-                            display:
-                              'inline-flex',
-                            alignItems:
-                              'center',
-                            justifyContent:
-                              'center',
-                            gap: '4px',
-                            whiteSpace:
-                              'nowrap',
-                            flexShrink: 0,
-                          }}
-                        >
-                          <Eye size={12} />
-                          View
-                        </button>
-
-                        {/* APPROVE - ALWAYS VISIBLE */}
-
-                        <button
-                          type="button"
-                          disabled={!isPending}
-                          onClick={() => {
-                            if (isPending) {
-                              openConfirmation(
-                                approval,
-                                'Approved'
-                              )
-                            }
-                          }}
-                          style={{
-                            width: '68px',
-                            height: '32px',
-                            padding: 0,
-                            boxSizing:
-                              'border-box',
-                            border:
-                              '1px solid #c7e7da',
-                            borderRadius:
-                              '7px',
-                            background:
-                              isPending
-                                ? '#f1faf6'
-                                : '#f5f7f6',
-                            color:
-                              isPending
-                                ? '#138463'
-                                : '#9aa7a1',
-                            fontSize:
-                              '10px',
-                            fontWeight:
-                              600,
-                            cursor:
-                              isPending
-                                ? 'pointer'
-                                : 'not-allowed',
-                            display:
-                              'inline-flex',
-                            alignItems:
-                              'center',
-                            justifyContent:
-                              'center',
-                            gap: '4px',
-                            whiteSpace:
-                              'nowrap',
-                            flexShrink: 0,
-                            opacity:
-                              isPending
-                                ? 1
-                                : 0.7,
-                          }}
-                        >
-                          <CheckCircle2
-                            size={12}
-                          />
-                          Approve
-                        </button>
-
-                        {/* REJECT - ALWAYS VISIBLE */}
-
-                        <button
-                          type="button"
-                          disabled={!isPending}
-                          onClick={() => {
-                            if (isPending) {
-                              openConfirmation(
-                                approval,
-                                'Rejected'
-                              )
-                            }
-                          }}
-                          style={{
-                            width: '58px',
-                            height: '32px',
-                            padding: 0,
-                            boxSizing:
-                              'border-box',
-                            border:
-                              '1px solid #f0cccc',
-                            borderRadius:
-                              '7px',
-                            background:
-                              isPending
-                                ? '#fff6f6'
-                                : '#f7f7f7',
-                            color:
-                              isPending
-                                ? '#d44343'
-                                : '#9aa7a1',
-                            fontSize:
-                              '10px',
-                            fontWeight:
-                              600,
-                            cursor:
-                              isPending
-                                ? 'pointer'
-                                : 'not-allowed',
-                            display:
-                              'inline-flex',
-                            alignItems:
-                              'center',
-                            justifyContent:
-                              'center',
-                            gap: '4px',
-                            whiteSpace:
-                              'nowrap',
-                            flexShrink: 0,
-                            opacity:
-                              isPending
-                                ? 1
-                                : 0.7,
-                          }}
-                        >
-                          <XCircle size={12} />
-                          Reject
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                )
-              }
-            )}
+                        <XCircle size={12} />
+                        Reject
+                      </button>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
         {/* NO RESULTS */}
-
         {filteredApprovals.length === 0 && (
           <div
             style={{
@@ -1286,7 +1102,6 @@ export default function Approvals() {
       </div>
 
       {/* ================= DETAILS MODAL ================= */}
-
       {selectedApproval && (
         <div style={modalOverlay}>
           <div
@@ -1302,15 +1117,13 @@ export default function Approvals() {
             }}
           >
             {/* MODAL HEADER */}
-
             <div
               style={{
                 padding: '20px 22px',
                 borderBottom:
                   '1px solid #e7ece9',
                 display: 'flex',
-                alignItems:
-                  'flex-start',
+                alignItems: 'flex-start',
                 justifyContent:
                   'space-between',
                 gap: '15px',
@@ -1339,7 +1152,6 @@ export default function Approvals() {
               </div>
 
               <button
-                type="button"
                 onClick={() =>
                   setSelectedApproval(null)
                 }
@@ -1350,7 +1162,6 @@ export default function Approvals() {
             </div>
 
             {/* MODAL CONTENT */}
-
             <div
               style={{
                 padding: '20px 22px',
@@ -1374,9 +1185,7 @@ export default function Approvals() {
                 />
 
                 <InfoBox
-                  icon={
-                    <Building2 size={15} />
-                  }
+                  icon={<Building2 size={15} />}
                   label="Department"
                   value={
                     selectedApproval.department
@@ -1384,9 +1193,7 @@ export default function Approvals() {
                 />
 
                 <InfoBox
-                  icon={
-                    <IndianRupee size={15} />
-                  }
+                  icon={<IndianRupee size={15} />}
                   label="Amount"
                   value={
                     selectedApproval.amount
@@ -1394,9 +1201,7 @@ export default function Approvals() {
                 />
 
                 <InfoBox
-                  icon={
-                    <CalendarDays size={15} />
-                  }
+                  icon={<CalendarDays size={15} />}
                   label="Required By"
                   value={
                     selectedApproval.requiredBy
@@ -1405,7 +1210,6 @@ export default function Approvals() {
               </div>
 
               {/* REASON */}
-
               <div style={sectionStyle}>
                 <div style={sectionTitle}>
                   Reason
@@ -1417,7 +1221,6 @@ export default function Approvals() {
               </div>
 
               {/* DESCRIPTION */}
-
               <div style={sectionStyle}>
                 <div style={sectionTitle}>
                   Description
@@ -1428,8 +1231,7 @@ export default function Approvals() {
                 </p>
               </div>
 
-              {/* DOCUMENTS */}
-
+              {/* ================= DOCUMENTS ================= */}
               <div style={sectionStyle}>
                 <div style={sectionTitle}>
                   Supporting Documents
@@ -1438,8 +1240,7 @@ export default function Approvals() {
                 <div
                   style={{
                     display: 'flex',
-                    flexDirection:
-                      'column',
+                    flexDirection: 'column',
                     gap: '7px',
                   }}
                 >
@@ -1448,52 +1249,39 @@ export default function Approvals() {
                       <button
                         key={document}
                         type="button"
-                        onClick={() =>
-                          alert(
-                            `Opening document: ${document}`
+                        onClick={() => {
+                          window.open(
+                            SUPPORTING_DOCUMENT_URL,
+                            '_blank',
+                            'noopener,noreferrer'
                           )
-                        }
+                        }}
                         style={{
                           width: '100%',
-                          display:
-                            'flex',
-                          alignItems:
-                            'center',
+                          display: 'flex',
+                          alignItems: 'center',
                           gap: '8px',
-                          padding:
-                            '9px 11px',
+                          padding: '9px 11px',
                           border:
                             '1px solid #e2e9e5',
-                          borderRadius:
-                            '8px',
-                          background:
-                            '#fafcfb',
-                          fontSize:
-                            '11px',
-                          color:
-                            '#42534b',
-                          cursor:
-                            'pointer',
-                          textAlign:
-                            'left',
+                          borderRadius: '8px',
+                          background: '#fafcfb',
+                          fontSize: '11px',
+                          color: '#42534b',
+                          cursor: 'pointer',
+                          textAlign: 'left',
                           transition:
                             'all 0.2s ease',
                         }}
-                        onMouseEnter={(
-                          e
-                        ) => {
+                        onMouseEnter={(e) => {
                           e.currentTarget.style.background =
                             '#f0f7f3'
-
                           e.currentTarget.style.borderColor =
                             '#c7ded3'
                         }}
-                        onMouseLeave={(
-                          e
-                        ) => {
+                        onMouseLeave={(e) => {
                           e.currentTarget.style.background =
                             '#fafcfb'
-
                           e.currentTarget.style.borderColor =
                             '#e2e9e5'
                         }}
@@ -1504,21 +1292,16 @@ export default function Approvals() {
                         />
 
                         <span
-                          style={{
-                            flex: 1,
-                          }}
+                          style={{ flex: 1 }}
                         >
                           {document}
                         </span>
 
                         <span
                           style={{
-                            fontSize:
-                              '9px',
-                            color:
-                              '#477566',
-                            fontWeight:
-                              600,
+                            fontSize: '9px',
+                            color: '#477566',
+                            fontWeight: 600,
                           }}
                         >
                           View
@@ -1530,7 +1313,6 @@ export default function Approvals() {
               </div>
 
               {/* APPROVAL HISTORY */}
-
               <div style={sectionStyle}>
                 <div style={sectionTitle}>
                   Approval History
@@ -1539,42 +1321,30 @@ export default function Approvals() {
                 <div
                   style={{
                     display: 'flex',
-                    flexDirection:
-                      'column',
+                    flexDirection: 'column',
                     gap: '8px',
                   }}
                 >
                   {selectedApproval.approvalHistory.map(
-                    (
-                      history,
-                      index
-                    ) => (
+                    (history, index) => (
                       <div
                         key={`${history.action}-${index}`}
                         style={{
-                          display:
-                            'flex',
-                          alignItems:
-                            'center',
+                          display: 'flex',
+                          alignItems: 'center',
                           justifyContent:
                             'space-between',
-                          padding:
-                            '9px 11px',
-                          background:
-                            '#f8faf9',
-                          borderRadius:
-                            '8px',
-                          fontSize:
-                            '10px',
+                          padding: '9px 11px',
+                          background: '#f8faf9',
+                          borderRadius: '8px',
+                          fontSize: '10px',
                           gap: '10px',
                         }}
                       >
                         <span
                           style={{
-                            fontWeight:
-                              700,
-                            color:
-                              '#30443a',
+                            fontWeight: 700,
+                            color: '#30443a',
                           }}
                         >
                           {history.action}
@@ -1582,8 +1352,7 @@ export default function Approvals() {
 
                         <span
                           style={{
-                            color:
-                              '#819088',
+                            color: '#819088',
                           }}
                         >
                           {history.by} •{' '}
@@ -1596,12 +1365,10 @@ export default function Approvals() {
               </div>
 
               {/* CURRENT STATUS */}
-
               <div
                 style={{
                   display: 'flex',
-                  alignItems:
-                    'center',
+                  alignItems: 'center',
                   justifyContent:
                     'space-between',
                   paddingTop: '4px',
@@ -1624,15 +1391,13 @@ export default function Approvals() {
             </div>
 
             {/* MODAL FOOTER */}
-
             <div
               style={{
                 padding: '15px 22px',
                 borderTop:
                   '1px solid #e7ece9',
                 display: 'flex',
-                justifyContent:
-                  'flex-end',
+                justifyContent: 'flex-end',
                 gap: '8px',
               }}
             >
@@ -1640,49 +1405,38 @@ export default function Approvals() {
                 'Pending' && (
                 <>
                   <button
-                    type="button"
                     onClick={() =>
                       openConfirmation(
                         selectedApproval,
                         'Rejected'
                       )
                     }
-                    style={
-                      modalRejectButton
-                    }
+                    style={modalRejectButton}
                   >
                     <XCircle size={14} />
                     Reject
                   </button>
 
                   <button
-                    type="button"
                     onClick={() =>
                       openConfirmation(
                         selectedApproval,
                         'Approved'
                       )
                     }
-                    style={
-                      modalApproveButton
-                    }
+                    style={modalApproveButton}
                   >
-                    <CheckCircle2
-                      size={14}
-                    />
+                    <CheckCircle2 size={14} />
                     Approve
                   </button>
                 </>
               )}
 
               <button
-                type="button"
                 onClick={() =>
                   setSelectedApproval(null)
                 }
-                style={
-                  modalCloseButton
-                }
+                style={modalCloseButton}
               >
                 Close
               </button>
@@ -1692,7 +1446,6 @@ export default function Approvals() {
       )}
 
       {/* ================= CONFIRMATION MODAL ================= */}
-
       {confirmation && (
         <div style={modalOverlay}>
           <div
@@ -1712,10 +1465,8 @@ export default function Approvals() {
                 height: '42px',
                 borderRadius: '50%',
                 display: 'flex',
-                alignItems:
-                  'center',
-                justifyContent:
-                  'center',
+                alignItems: 'center',
+                justifyContent: 'center',
                 marginBottom: '14px',
                 background:
                   confirmation.status ===
@@ -1731,9 +1482,7 @@ export default function Approvals() {
             >
               {confirmation.status ===
               'Approved' ? (
-                <CheckCircle2
-                  size={22}
-                />
+                <CheckCircle2 size={22} />
               ) : (
                 <XCircle size={22} />
               )}
@@ -1755,8 +1504,7 @@ export default function Approvals() {
 
             <p
               style={{
-                margin:
-                  '10px 0 0',
+                margin: '10px 0 0',
                 color: '#68776f',
                 fontSize: '12px',
                 lineHeight: 1.6,
@@ -1768,16 +1516,9 @@ export default function Approvals() {
                 ? 'approve'
                 : 'reject'}{' '}
               <strong
-                style={{
-                  color:
-                    '#263a31',
-                }}
+                style={{ color: '#263a31' }}
               >
-                {
-                  confirmation
-                    .approval
-                    .title
-                }
+                {confirmation.approval.title}
               </strong>
               ?
             </p>
@@ -1786,28 +1527,21 @@ export default function Approvals() {
               style={{
                 marginTop: '20px',
                 display: 'flex',
-                justifyContent:
-                  'flex-end',
+                justifyContent: 'flex-end',
                 gap: '8px',
               }}
             >
               <button
-                type="button"
                 onClick={() =>
                   setConfirmation(null)
                 }
-                style={
-                  modalCloseButton
-                }
+                style={modalCloseButton}
               >
                 Cancel
               </button>
 
               <button
-                type="button"
-                onClick={
-                  confirmAction
-                }
+                onClick={confirmAction}
                 style={
                   confirmation.status ===
                   'Approved'
@@ -1817,13 +1551,9 @@ export default function Approvals() {
               >
                 {confirmation.status ===
                 'Approved' ? (
-                  <CheckCircle2
-                    size={14}
-                  />
+                  <CheckCircle2 size={14} />
                 ) : (
-                  <XCircle
-                    size={14}
-                  />
+                  <XCircle size={14} />
                 )}
 
                 Confirm
@@ -1859,8 +1589,7 @@ function SummaryCard({
       <div
         style={{
           display: 'flex',
-          justifyContent:
-            'space-between',
+          justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
@@ -1883,8 +1612,7 @@ function SummaryCard({
             color: '#477566',
             display: 'flex',
             alignItems: 'center',
-            justifyContent:
-              'center',
+            justifyContent: 'center',
           }}
         >
           {icon}
@@ -1917,18 +1645,13 @@ function SummaryCard({
 
 /* ================= INFO BOX ================= */
 
-function InfoBox({
-  icon,
-  label,
-  value,
-}) {
+function InfoBox({ icon, label, value }) {
   return (
     <div
       style={{
         padding: '12px',
         background: '#f8faf9',
-        border:
-          '1px solid #e7ece9',
+        border: '1px solid #e7ece9',
         borderRadius: '9px',
       }}
     >
@@ -1951,8 +1674,7 @@ function InfoBox({
           fontSize: '11px',
           fontWeight: 700,
           color: '#293d34',
-          overflowWrap:
-            'anywhere',
+          overflowWrap: 'anywhere',
         }}
       >
         {value}
@@ -1981,8 +1703,7 @@ const modalOverlay = {
   position: 'fixed',
   inset: 0,
   zIndex: 100,
-  background:
-    'rgba(8, 27, 20, 0.48)',
+  background: 'rgba(8, 27, 20, 0.48)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -1993,8 +1714,7 @@ const closeButtonStyle = {
   width: '32px',
   height: '32px',
   borderRadius: '8px',
-  border:
-    '1px solid #e0e7e3',
+  border: '1px solid #e0e7e3',
   background: '#ffffff',
   color: '#64746c',
   display: 'flex',
@@ -2025,8 +1745,7 @@ const modalCloseButton = {
   height: '35px',
   padding: '0 14px',
   borderRadius: '8px',
-  border:
-    '1px solid #dce4df',
+  border: '1px solid #dce4df',
   background: '#ffffff',
   color: '#506158',
   fontSize: '11px',
@@ -2042,8 +1761,7 @@ const modalApproveButton = {
   height: '35px',
   padding: '0 14px',
   borderRadius: '8px',
-  border:
-    '1px solid #bfe5d7',
+  border: '1px solid #bfe5d7',
   background: '#effaf6',
   color: '#128463',
   fontSize: '11px',
@@ -2059,8 +1777,7 @@ const modalRejectButton = {
   height: '35px',
   padding: '0 14px',
   borderRadius: '8px',
-  border:
-    '1px solid #f1caca',
+  border: '1px solid #f1caca',
   background: '#fff5f5',
   color: '#d33f3f',
   fontSize: '11px',

@@ -17,6 +17,7 @@ import RisksIssues from './pages/RisksIssues.jsx'
 import Communications from './pages/Communications.jsx'
 import Calendar from './pages/Calendar.jsx'
 import Settings from './pages/Settings.jsx'
+import Login from './pages/Login.jsx'
 
 const pages = {
   dashboard: Dashboard,
@@ -37,6 +38,7 @@ const pages = {
 }
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
   const [active, setActive] = useState('dashboard')
   const [dateRange, setDateRange] = useState('Last 7 Days')
 
@@ -46,6 +48,14 @@ export default function App() {
     if (pages[page]) {
       setActive(page)
     }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+  }
+
+  if (!isAuthenticated) {
+    return <Login onLogin={() => setIsAuthenticated(true)} />
   }
 
   const handleDateRangeChange = (range) => {
@@ -60,6 +70,7 @@ export default function App() {
         <Sidebar
           active={active}
           onNavigate={handleNavigate}
+          onLogout={handleLogout}
         />
       </div>
 
@@ -69,9 +80,11 @@ export default function App() {
         <Topbar
           title="Managing Director Dashboard"
           subtitle="Execution • Performance • Growth"
+          active={active}
           dateRange={dateRange}
           onDateRangeChange={handleDateRangeChange}
           onNavigate={handleNavigate}
+          onLogout={handleLogout}
         />
 
         {/* SOFT PAGE SPACING */}

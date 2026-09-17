@@ -300,8 +300,20 @@ function NotificationPanel({ open, onClose }) {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
-      title: 'Management updates',
-      text: 'No new management notifications.',
+      title: 'Approval pending',
+      text: 'A construction budget approval needs your review.',
+      unread: true,
+    },
+    {
+      id: 2,
+      title: 'New lead received',
+      text: 'A new sales enquiry was added to the pipeline.',
+      unread: true,
+    },
+    {
+      id: 3,
+      title: 'Project update',
+      text: 'The monthly project report is ready to review.',
       unread: true,
     },
   ])
@@ -322,16 +334,16 @@ function NotificationPanel({ open, onClose }) {
   ).length
 
   return (
-    <div className="absolute right-16 top-12 z-[100] w-80 overflow-hidden rounded-xl border border-white/10 bg-navy shadow-xl">
+    <div className="absolute right-0 top-12 z-[100] w-80 overflow-hidden rounded-xl border border-[#DDE5DF] bg-white shadow-xl">
 
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-[#E5EAE6] px-4 py-3">
 
         <div>
-          <p className="text-sm font-semibold text-white">
+          <p className="text-sm font-semibold text-[#173B2B]">
             Notifications
           </p>
 
-          <p className="mt-1 text-xs text-[#9FB3AE]">
+          <p className="mt-1 text-xs text-[#7A8981]">
             Management updates
           </p>
         </div>
@@ -343,7 +355,7 @@ function NotificationPanel({ open, onClose }) {
               type="button"
               onClick={markAllRead}
               title="Mark all as read"
-              className="rounded-md p-2 text-[#9FB3AE] hover:bg-white/10 hover:text-white"
+              className="rounded-md p-2 text-[#7A8981] hover:bg-[#F0F4F1] hover:text-[#173B2B]"
             >
               <CheckCheck size={15} />
             </button>
@@ -352,7 +364,7 @@ function NotificationPanel({ open, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md px-2 py-1 text-xs text-[#9FB3AE] hover:bg-white/10 hover:text-white"
+            className="rounded-md px-2 py-1 text-xs text-[#7A8981] hover:bg-[#F0F4F1] hover:text-[#173B2B]"
           >
             Close
           </button>
@@ -367,8 +379,8 @@ function NotificationPanel({ open, onClose }) {
               key={notification.id}
               className={`rounded-lg p-3 ${
                 notification.unread
-                  ? 'bg-white/10'
-                  : 'bg-white/5'
+                    ? 'bg-[#EEF5F0]'
+                    : 'bg-[#F8FAF8]'
               }`}
             >
               <div className="flex items-start gap-2">
@@ -378,11 +390,11 @@ function NotificationPanel({ open, onClose }) {
                 )}
 
                 <div>
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-medium text-[#173B2B]">
                     {notification.title}
                   </p>
 
-                  <p className="mt-1 text-xs text-[#9FB3AE]">
+                  <p className="mt-1 text-xs text-[#6B7B72]">
                     {notification.text}
                   </p>
                 </div>
@@ -391,12 +403,12 @@ function NotificationPanel({ open, onClose }) {
             </div>
           ))
         ) : (
-          <div className="rounded-lg bg-white/5 p-4 text-center">
-            <p className="text-sm font-medium text-white">
+          <div className="rounded-lg bg-[#F8FAF8] p-4 text-center">
+            <p className="text-sm font-medium text-[#173B2B]">
               No new notifications
             </p>
 
-            <p className="mt-1 text-xs text-[#9FB3AE]">
+            <p className="mt-1 text-xs text-[#7A8981]">
               You're all caught up.
             </p>
           </div>
@@ -414,6 +426,7 @@ function ProfileMenu({
   open,
   onClose,
   onNavigate,
+  onLogout,
   onNotificationClick,
 }) {
   const [showProfile, setShowProfile] = useState(false)
@@ -648,7 +661,7 @@ function ProfileMenu({
         <button
           type="button"
           onClick={() => {
-            onNavigate?.('dashboard')
+            onLogout?.()
             onClose()
           }}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-red-300 transition-colors hover:bg-white/10"
@@ -674,13 +687,65 @@ function ProfileMenu({
 export default function Topbar({
   title,
   subtitle,
+  active,
   onMenuClick,
   dateRange,
   onDateRangeChange,
   onNavigate,
+  onLogout,
 }) {
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const notificationWrapperRef = useRef(null)
+  const profileWrapperRef = useRef(null)
+
+  useEffect(() => {
+    setNotificationsOpen(false)
+  }, [active])
+
+  useEffect(() => {
+    if (!notificationsOpen) return undefined
+
+    const handleOutsideClick = (event) => {
+      if (
+        notificationWrapperRef.current &&
+        !notificationWrapperRef.current.contains(event.target)
+      ) {
+        setNotificationsOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideClick)
+    }
+  }, [notificationsOpen])
+
+  useEffect(() => {
+    if (!profileOpen) return undefined
+
+    const handleOutsideClick = (event) => {
+      if (
+        profileWrapperRef.current &&
+        !profileWrapperRef.current.contains(event.target)
+      ) {
+        setProfileOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideClick)
+    }
+  }, [profileOpen])
+
+  const handleNavigate = (page) => {
+    setNotificationsOpen(false)
+    setProfileOpen(false)
+    onNavigate(page)
+  }
 
   const handleNotificationToggle = () => {
     setNotificationsOpen((prev) => !prev)
@@ -731,7 +796,7 @@ export default function Topbar({
         <div className="relative flex shrink-0 items-center gap-1.5 sm:gap-3">
 
           {/* SEARCH */}
-          <GlobalSearch onNavigate={onNavigate} />
+          <GlobalSearch onNavigate={handleNavigate} />
 
           {/* DATE RANGE */}
           <div className="hidden sm:block">
@@ -742,31 +807,33 @@ export default function Topbar({
           </div>
 
           {/* NOTIFICATION */}
-          <button
-            type="button"
-            aria-label="Notifications"
-            onClick={handleNotificationToggle}
-            className={`relative flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-              notificationsOpen
-                ? 'bg-white/10 text-white'
-                : 'text-[#9FB3AE] hover:bg-white/10 hover:text-white'
-            }`}
-          >
-            <Bell size={18} />
+          <div ref={notificationWrapperRef} className="relative">
+            <button
+              type="button"
+              aria-label="Notifications"
+              onClick={handleNotificationToggle}
+              className={`relative flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+                notificationsOpen
+                  ? 'bg-white/10 text-white'
+                  : 'text-[#9FB3AE] hover:bg-white/10 hover:text-white'
+              }`}
+            >
+              <Bell size={18} />
 
-            <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-accent" />
-          </button>
+              <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-accent" />
+            </button>
 
-          <NotificationPanel
-            open={notificationsOpen}
-            onClose={() => setNotificationsOpen(false)}
-          />
+            <NotificationPanel
+              open={notificationsOpen}
+              onClose={() => setNotificationsOpen(false)}
+            />
+          </div>
 
           {/* DIVIDER */}
           <div className="mx-1 hidden h-6 w-px bg-white/10 sm:block" />
 
           {/* PROFILE */}
-          <div className="relative">
+          <div ref={profileWrapperRef} className="relative">
 
             <button
               type="button"
@@ -780,7 +847,8 @@ export default function Topbar({
             <ProfileMenu
               open={profileOpen}
               onClose={() => setProfileOpen(false)}
-              onNavigate={onNavigate}
+              onNavigate={handleNavigate}
+              onLogout={onLogout}
               onNotificationClick={() => {
                 setNotificationsOpen(true)
                 setProfileOpen(false)
