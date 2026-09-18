@@ -86,6 +86,9 @@ export default function App() {
     setIsLoggedIn(false);
     setShowForgotPassword(false);
     setActive("dashboard");
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   };
 
   // FORGOT PASSWORD

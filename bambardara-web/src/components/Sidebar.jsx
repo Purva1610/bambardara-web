@@ -14,7 +14,7 @@ export default function Sidebar({active,onNavigate}){
    </nav>
    <div className="mx-3 mb-5 border-t border-white/10 pt-4 flex items-center gap-3">
      <div className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-xs">MD</div>
-     <div className="min-w-0 flex-1"><div className="text-[13px] text-white truncate">Managing Director</div><button onClick={()=>onNavigate('dashboard')} className="mt-1 flex items-center gap-1 text-[11px] text-[#9FB3AE] hover:text-white"><LogOut size={11}/>Logout</button></div>
+     <div className="min-w-0 flex-1"><div className="text-[13px] text-white truncate">Managing Director</div><button onClick={()=>onNavigate('logout')} className="mt-1 flex items-center gap-1 text-[11px] text-[#9FB3AE] hover:text-white cursor-pointer"><LogOut size={11}/>Logout</button></div>
    </div>
  </aside>
 }
