@@ -7,6 +7,7 @@ export const navItems = [
   { key: 'sales-marketing', label: 'Sales & Marketing' },
   { key: 'investments', label: 'Investments' },
   { key: 'hr', label: 'Human Resources' },
+  { key: 'teams-roles', label: 'Teams & Roles' },
   { key: 'approvals', label: 'Approvals' },
   { key: 'reports', label: 'Reports' },
   { key: 'documents', label: 'Documents' },

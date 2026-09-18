@@ -1,7 +1,7 @@
-import { LogOut, LayoutDashboard, FolderKanban, HardHat, Wallet, ShoppingCart, Megaphone, TrendingUp, Users, ClipboardCheck, BarChart3, FileText, AlertTriangle, MessageSquare, CalendarDays, Settings } from 'lucide-react'
+import { LogOut, LayoutDashboard, FolderKanban, HardHat, Wallet, ShoppingCart, Megaphone, TrendingUp, Users, ShieldCheck, ClipboardCheck, BarChart3, FileText, AlertTriangle, MessageSquare, CalendarDays, Settings } from 'lucide-react'
 import { navItems } from '../data.js'
 
-const icons={dashboard:LayoutDashboard,projects:FolderKanban,construction:HardHat,finance:Wallet,procurement:ShoppingCart,'sales-marketing':Megaphone,investments:TrendingUp,hr:Users,approvals:ClipboardCheck,reports:BarChart3,documents:FileText,'risks-issues':AlertTriangle,communications:MessageSquare,calendar:CalendarDays,settings:Settings}
+const icons={dashboard:LayoutDashboard,projects:FolderKanban,construction:HardHat,finance:Wallet,procurement:ShoppingCart,'sales-marketing':Megaphone,investments:TrendingUp,hr:Users,'teams-roles':ShieldCheck,approvals:ClipboardCheck,reports:BarChart3,documents:FileText,'risks-issues':AlertTriangle,communications:MessageSquare,calendar:CalendarDays,settings:Settings}
 
 export default function Sidebar({active,onNavigate}){
  return <aside className="bg-navy text-white flex flex-col h-screen sticky top-0 font-sans shadow-[4px_0_24px_rgba(11,46,42,.08)]">

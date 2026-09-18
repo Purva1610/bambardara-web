@@ -26,6 +26,7 @@ import {
   Moon,
   Monitor,
   CheckCheck,
+  ShieldCheck,
 } from 'lucide-react'
 
 const RANGES = [
@@ -47,6 +48,7 @@ const NAVIGATION = [
       { name: 'Sales & Marketing', icon: Megaphone, page: 'sales-marketing' },
       { name: 'Investments', icon: TrendingUp, page: 'investments' },
       { name: 'Human Resources', icon: Users, page: 'hr' },
+      { name: 'Teams & Roles', icon: ShieldCheck, page: 'teams-roles' },
     ],
   },
   {
