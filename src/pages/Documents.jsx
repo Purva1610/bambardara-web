@@ -598,44 +598,6 @@ export default function Documents() {
     <div className="min-h-full bg-bg text-text px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
 
       {/* =====================================================
-          PREMIUM ANIMATIONS
-      ===================================================== */}
-
-      <style>{`
-        @keyframes docFadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes docPop {
-          from {
-            opacity: 0;
-            transform: scale(0.96);
-          }
-
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .doc-fade {
-          animation: docFadeUp 0.4s ease-out both;
-        }
-
-        .doc-pop {
-          animation: docPop 0.35s ease-out both;
-        }
-      `}</style>
-
-      {/* =====================================================
           HEADER
       ===================================================== */}
 

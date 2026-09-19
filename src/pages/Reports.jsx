@@ -24,9 +24,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-import jsPDF from "jspdf";
-import * as XLSX from "xlsx";
-
 import { Card, SectionHead } from "../components/Ui.jsx";
 
 /* =========================================================
@@ -72,7 +69,6 @@ const reportsData = [
       ["Active Zones", "6"],
     ],
   },
-
   {
     id: "RPT-002",
     title: "Budget Utilization Report",
@@ -92,7 +88,6 @@ const reportsData = [
       ["Utilization", "43.0%"],
     ],
   },
-
   {
     id: "RPT-003",
     title: "Department Performance Report",
@@ -112,7 +107,6 @@ const reportsData = [
       ["Avg. Performance", "82%"],
     ],
   },
-
   {
     id: "RPT-004",
     title: "Construction Progress Report",
@@ -132,7 +126,6 @@ const reportsData = [
       ["Delayed", "2"],
     ],
   },
-
   {
     id: "RPT-005",
     title: "Procurement Report",
@@ -152,7 +145,6 @@ const reportsData = [
       ["Delayed", "5"],
     ],
   },
-
   {
     id: "RPT-006",
     title: "HR / Manpower Report",
@@ -172,7 +164,6 @@ const reportsData = [
       ["Attendance", "87%"],
     ],
   },
-
   {
     id: "RPT-007",
     title: "Risk & Issues Report",
@@ -192,7 +183,6 @@ const reportsData = [
       ["Mitigated", "9"],
     ],
   },
-
   {
     id: "RPT-008",
     title: "Milestone Report",
@@ -212,7 +202,6 @@ const reportsData = [
       ["Delayed", "4"],
     ],
   },
-
   {
     id: "RPT-009",
     title: "Management Performance Report",
@@ -240,12 +229,7 @@ const reportsData = [
 
 const reportDetails = {
   "RPT-001": {
-    columns: [
-      "Zone",
-      "Planned %",
-      "Actual %",
-      "Status",
-    ],
+    columns: ["Zone", "Planned %", "Actual %", "Status"],
     rows: [
       ["Stay & Hospitality", "60%", "55%", "In Progress"],
       ["Adventure & Fun", "40%", "30%", "Foundation"],
@@ -258,13 +242,7 @@ const reportDetails = {
   },
 
   "RPT-002": {
-    columns: [
-      "Zone",
-      "Budget",
-      "Spent",
-      "Remaining",
-      "Utilization",
-    ],
+    columns: ["Zone", "Budget", "Spent", "Remaining", "Utilization"],
     rows: [
       ["Stay & Hospitality", "₹190L", "₹110L", "₹80L", "58%"],
       ["Adventure & Fun", "₹45L", "₹14L", "₹31L", "31%"],
@@ -276,13 +254,7 @@ const reportDetails = {
   },
 
   "RPT-003": {
-    columns: [
-      "Department",
-      "Target",
-      "Actual",
-      "Performance",
-      "Status",
-    ],
+    columns: ["Department", "Target", "Actual", "Performance", "Status"],
     rows: [
       ["Hospitality", "90%", "86%", "86%", "On Track"],
       ["Adventure", "85%", "81%", "81%", "On Track"],
@@ -294,14 +266,7 @@ const reportDetails = {
   },
 
   "RPT-004": {
-    columns: [
-      "Zone",
-      "Stage",
-      "Progress",
-      "Budget",
-      "Spent",
-      "Status",
-    ],
+    columns: ["Zone", "Stage", "Progress", "Budget", "Spent", "Status"],
     rows: [
       [
         "Stay & Hospitality",
@@ -347,13 +312,7 @@ const reportDetails = {
   },
 
   "RPT-005": {
-    columns: [
-      "PO Number",
-      "Supplier",
-      "Category",
-      "Amount",
-      "Status",
-    ],
+    columns: ["PO Number", "Supplier", "Category", "Amount", "Status"],
     rows: [
       ["PO-1021", "ABC Materials", "Construction", "₹12.5L", "Delivered"],
       ["PO-1022", "Green Supply Co.", "Farming", "₹4.2L", "Pending"],
@@ -383,13 +342,7 @@ const reportDetails = {
   },
 
   "RPT-007": {
-    columns: [
-      "Risk / Issue",
-      "Category",
-      "Priority",
-      "Owner",
-      "Status",
-    ],
+    columns: ["Risk / Issue", "Category", "Priority", "Owner", "Status"],
     rows: [
       ["Hospitality manpower shortage", "HR", "Critical", "HR", "Open"],
       ["Material delivery delay", "Procurement", "High", "Procurement", "Open"],
@@ -400,13 +353,7 @@ const reportDetails = {
   },
 
   "RPT-008": {
-    columns: [
-      "Milestone",
-      "Planned Date",
-      "Actual Date",
-      "Progress",
-      "Status",
-    ],
+    columns: ["Milestone", "Planned Date", "Actual Date", "Progress", "Status"],
     rows: [
       ["Foundation Phase", "30 Sep 2026", "-", "70%", "In Progress"],
       ["Structural Work", "31 Oct 2026", "-", "45%", "In Progress"],
@@ -417,13 +364,7 @@ const reportDetails = {
   },
 
   "RPT-009": {
-    columns: [
-      "Management Area",
-      "KPI",
-      "Target",
-      "Actual",
-      "Status",
-    ],
+    columns: ["Management Area", "KPI", "Target", "Actual", "Status"],
     rows: [
       ["Project", "Overall Completion", "45%", "42%", "On Track"],
       ["Finance", "Budget Utilization", "45%", "43%", "On Track"],
@@ -491,18 +432,11 @@ function CategoryBadge({ category }) {
    REPORT CARD
 ========================================================= */
 
-function ReportCard({
-  report,
-  onView,
-  onExport,
-}) {
+function ReportCard({ report, onView, onExport }) {
   const Icon = report.icon;
 
   return (
     <Card className="p-5 h-full flex flex-col hover:border-[#C8D3CC] transition">
-      {/* Growing content area — everything above the buttons lives here,
-          so it absorbs any height difference between cards and the
-          action row below always lands on the same baseline. */}
       <div className="flex-1">
         {/* Header */}
 
@@ -518,9 +452,7 @@ function ReportCard({
               </h3>
 
               <div className="flex items-center gap-2 mt-1.5">
-                <CategoryBadge
-                  category={report.category}
-                />
+                <CategoryBadge category={report.category} />
 
                 <span className="text-[10px] text-muted">
                   {report.frequency}
@@ -541,19 +473,17 @@ function ReportCard({
         {/* Metrics */}
 
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#E8ECE7] pt-4">
-          {report.metrics.map(
-            ([label, value]) => (
-              <div key={label}>
-                <div className="text-[9px] uppercase tracking-wide text-muted">
-                  {label}
-                </div>
-
-                <div className="text-[12px] font-semibold text-ink mt-0.5">
-                  {value}
-                </div>
+          {report.metrics.map(([label, value]) => (
+            <div key={label}>
+              <div className="text-[9px] uppercase tracking-wide text-muted">
+                {label}
               </div>
-            )
-          )}
+
+              <div className="text-[12px] font-semibold text-ink mt-0.5">
+                {value}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Meta */}
@@ -570,8 +500,8 @@ function ReportCard({
         </div>
       </div>
 
-      {/* Actions — always sits at the same level since the block above
-          has already absorbed the extra space. */}
+      {/* Actions */}
+
       <div className="flex items-center gap-2 mt-4">
         <button
           type="button"
@@ -601,381 +531,582 @@ function ReportCard({
 
 export default function Reports() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] =
-    useState("All");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [exportReport, setExportReport] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [exporting, setExporting] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const [selectedReport, setSelectedReport] =
-    useState(null);
+  /* =======================================================
+     SUMMARY DATA
+  ====================================================== */
 
-  const [exportReport, setExportReport] =
-    useState(null);
+  const summary = useMemo(() => {
+    const ready = reportsData.filter(
+      (report) => report.status === "Ready"
+    ).length;
 
-  const [notification, setNotification] =
-    useState("");
+    const attention = reportsData.filter(
+      (report) => report.status === "Attention"
+    ).length;
+
+    const latestUpdate = reportsData.reduce(
+      (latest, report) => {
+        const currentDate = new Date(report.lastGenerated);
+        return currentDate > latest ? currentDate : latest;
+      },
+      new Date(0)
+    );
+
+    return {
+      total: reportsData.length,
+      ready,
+      attention,
+      latestUpdate:
+        latestUpdate.getTime() > 0
+          ? latestUpdate.toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })
+          : "-",
+    };
+  }, []);
 
   /* =======================================================
      FILTER REPORTS
   ====================================================== */
 
   const filteredReports = useMemo(() => {
-    return reportsData.filter((report) => {
-      const search = searchTerm
-        .toLowerCase()
-        .trim();
+    const search = searchTerm.toLowerCase().trim();
 
+    return reportsData.filter((report) => {
       const matchesSearch =
         !search ||
-        report.title
-          .toLowerCase()
-          .includes(search) ||
-        report.description
-          .toLowerCase()
-          .includes(search) ||
-        report.category
-          .toLowerCase()
-          .includes(search);
+        report.title.toLowerCase().includes(search) ||
+        report.description.toLowerCase().includes(search) ||
+        report.category.toLowerCase().includes(search);
 
       const matchesCategory =
         categoryFilter === "All" ||
         report.category === categoryFilter;
 
-      return (
-        matchesSearch &&
-        matchesCategory
-      );
+      return matchesSearch && matchesCategory;
     });
   }, [searchTerm, categoryFilter]);
+
+  /* =======================================================
+     NOTIFICATION HELPER
+  ====================================================== */
+
+  function showNotification(message) {
+    setNotification(message);
+
+    window.setTimeout(() => {
+      setNotification("");
+    }, 2500);
+  }
 
   /* =======================================================
      EXCEL EXPORT
   ====================================================== */
 
-  function exportExcel(report) {
+  async function exportExcel(report) {
     const detail = reportDetails[report.id];
 
     if (!detail) {
-      setNotification(
-        "Report data is not available."
-      );
-
+      showNotification("Report data is not available.");
       return;
     }
 
-    const worksheetData = [
-      detail.columns,
-      ...detail.rows,
-    ];
+    setExporting("excel");
 
-    const worksheet =
-      XLSX.utils.aoa_to_sheet(
+    try {
+      /*
+       * Dynamic import:
+       * XLSX is downloaded only when Excel/CSV export is used.
+       */
+      const XLSX = await import("xlsx");
+
+      const worksheetData = [
+        detail.columns,
+        ...detail.rows,
+      ];
+
+      const worksheet = XLSX.utils.aoa_to_sheet(
         worksheetData
       );
 
-    worksheet["!cols"] =
-      detail.columns.map(() => ({
+      worksheet["!cols"] = detail.columns.map(() => ({
         wch: 22,
       }));
 
-    const workbook =
-      XLSX.utils.book_new();
+      const workbook = XLSX.utils.book_new();
 
-    XLSX.utils.book_append_sheet(
-      workbook,
-      worksheet,
-      "Report"
-    );
+      XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        "Report"
+      );
 
-    XLSX.writeFile(
-      workbook,
-      `${report.title
+      const fileName = `${report.title
         .replace(/[^a-z0-9]+/gi, "_")
-        .toLowerCase()}_report.xlsx`
-    );
+        .toLowerCase()}_report.xlsx`;
 
-    setNotification(
-      `${report.title} exported to Excel.`
-    );
+      XLSX.writeFile(workbook, fileName);
 
-    setExportReport(null);
+      showNotification(
+        `${report.title} exported to Excel.`
+      );
+
+      setExportReport(null);
+    } catch (error) {
+      console.error("Excel export error:", error);
+
+      showNotification(
+        "Unable to export the report to Excel."
+      );
+    } finally {
+      setExporting(null);
+    }
   }
 
   /* =======================================================
-   CSV EXPORT
-======================================================= */
+     CSV EXPORT
+  ====================================================== */
 
-function exportCSV(report) {
-  const detail = reportDetails[report.id];
+  async function exportCSV(report) {
+    const detail = reportDetails[report.id];
 
-  if (!detail) {
-    setNotification("Report data is not available.");
-    return;
+    if (!detail) {
+      showNotification("Report data is not available.");
+      return;
+    }
+
+    setExporting("csv");
+
+    try {
+      /*
+       * CSV also uses XLSX utilities.
+       * The library is dynamically loaded only when needed.
+       */
+      const XLSX = await import("xlsx");
+
+      const worksheetData = [
+        detail.columns,
+        ...detail.rows,
+      ];
+
+      const worksheet = XLSX.utils.aoa_to_sheet(
+        worksheetData
+      );
+
+      const csv = XLSX.utils.sheet_to_csv(worksheet);
+
+      const blob = new Blob([csv], {
+        type: "text/csv;charset=utf-8;",
+      });
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = `${report.title
+        .replace(/[^a-z0-9]+/gi, "_")
+        .toLowerCase()}_report.csv`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showNotification(
+        `${report.title} exported to CSV.`
+      );
+
+      setExportReport(null);
+    } catch (error) {
+      console.error("CSV export error:", error);
+
+      showNotification(
+        "Unable to export the report to CSV."
+      );
+    } finally {
+      setExporting(null);
+    }
   }
-
-  const worksheetData = [
-    detail.columns,
-    ...detail.rows,
-  ];
-
-  const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-
-  const csv = XLSX.utils.sheet_to_csv(worksheet);
-
-  const blob = new Blob([csv], {
-    type: "text/csv;charset=utf-8;",
-  });
-
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${report.title
-    .replace(/[^a-z0-9]+/gi, "_")
-    .toLowerCase()}_report.csv`;
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  URL.revokeObjectURL(url);
-
-  setNotification(`${report.title} exported to CSV.`);
-
-  setExportReport(null);
-}
 
   /* =======================================================
      PDF EXPORT
   ====================================================== */
 
-  function exportPDF(report) {
+  async function exportPDF(report) {
     const detail = reportDetails[report.id];
 
     if (!detail) {
-      setNotification(
-        "Report data is not available."
-      );
-
+      showNotification("Report data is not available.");
       return;
     }
 
-    const doc = new jsPDF({
-      orientation:
-        detail.columns.length > 5
-          ? "landscape"
-          : "portrait",
-      unit: "mm",
-      format: "a4",
-    });
+    setExporting("pdf");
 
-    /* Header */
+    try {
+      /*
+       * Dynamic import:
+       * jsPDF is loaded only when the user requests a PDF.
+       */
+      const { default: jsPDF } = await import("jspdf");
 
-    doc.setFontSize(18);
+      const doc = new jsPDF({
+        orientation:
+          detail.columns.length > 5
+            ? "landscape"
+            : "portrait",
+        unit: "mm",
+        format: "a4",
+      });
 
-    doc.text(
-      report.title,
-      15,
-      18
-    );
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
 
-    doc.setFontSize(9);
+      /* Header */
 
-    doc.text(
-      "Bambardara Management Dashboard",
-      15,
-      25
-    );
+      doc.setFillColor(23, 59, 43);
+      doc.rect(0, 0, pageWidth, 25, "F");
 
-    doc.text(
-      `Generated: ${report.lastGenerated}`,
-      15,
-      31
-    );
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(17);
+      doc.setFont("helvetica", "bold");
 
-    /* Report information */
+      doc.text(
+        "BAMBARDARA",
+        15,
+        11
+      );
 
-    let y = 42;
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
 
-    doc.setFontSize(10);
+      doc.text(
+        "Management Intelligence Report",
+        15,
+        18
+      );
 
-    doc.text(
-      `Category: ${report.category}`,
-      15,
-      y
-    );
+      /* Report title */
 
-    doc.text(
-      `Owner: ${report.owner}`,
-      15,
-      y + 6
-    );
+      doc.setTextColor(23, 59, 43);
+      doc.setFontSize(15);
+      doc.setFont("helvetica", "bold");
 
-    /* Table */
+      doc.text(
+        report.title,
+        15,
+        38
+      );
 
-    y += 17;
+      /* Report metadata */
 
-    const pageWidth =
-      doc.internal.pageSize.getWidth();
+      doc.setFontSize(8.5);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(100, 110, 105);
 
-    const margin = 12;
+      doc.text(
+        `Report ID: ${report.id}`,
+        15,
+        45
+      );
 
-    const availableWidth =
-      pageWidth - margin * 2;
+      doc.text(
+        `Category: ${report.category}`,
+        15,
+        51
+      );
 
-    const columnWidth =
-      availableWidth /
-      detail.columns.length;
+      doc.text(
+        `Frequency: ${report.frequency}`,
+        15,
+        57
+      );
 
-    /* Header */
+      doc.text(
+        `Owner: ${report.owner}`,
+        pageWidth / 2,
+        45
+      );
 
-    doc.setFontSize(8);
+      doc.text(
+        `Generated: ${report.lastGenerated}`,
+        pageWidth / 2,
+        51
+      );
 
-    detail.columns.forEach(
-      (column, index) => {
-        const x =
-          margin +
-          index * columnWidth;
+      doc.text(
+        `Records: ${report.records}`,
+        pageWidth / 2,
+        57
+      );
 
-        doc.setFillColor(
-          23,
-          59,
-          43
-        );
+      /* Description */
 
-        doc.rect(
-          x,
-          y,
-          columnWidth,
-          8,
-          "F"
-        );
+      doc.setTextColor(55, 65, 60);
+      doc.setFontSize(9);
 
-        doc.setTextColor(
-          255,
-          255,
-          255
-        );
+      const descriptionLines = doc.splitTextToSize(
+        report.description,
+        pageWidth - 30
+      );
 
-        doc.text(
-          String(column),
-          x + 2,
-          y + 5
-        );
-      }
-    );
+      doc.text(
+        descriptionLines,
+        15,
+        67
+      );
 
-    y += 8;
+      let currentY =
+        67 + descriptionLines.length * 4.5 + 8;
 
-    /* Rows */
+      /* Metrics */
 
-    detail.rows.forEach(
-      (row, rowIndex) => {
-        if (y > 275) {
-          doc.addPage();
+      const metricWidth =
+        (pageWidth - 30 - 12) / 4;
 
-          y = 15;
+      report.metrics.forEach(
+        ([label, value], index) => {
+          const x =
+            15 + index * (metricWidth + 4);
+
+          doc.setFillColor(247, 249, 247);
+          doc.setDrawColor(228, 232, 227);
+
+          doc.roundedRect(
+            x,
+            currentY,
+            metricWidth,
+            18,
+            2,
+            2,
+            "FD"
+          );
+
+          doc.setTextColor(100, 110, 105);
+          doc.setFontSize(7);
+
+          doc.text(
+            label.toUpperCase(),
+            x + 4,
+            currentY + 6
+          );
+
+          doc.setTextColor(23, 59, 43);
+          doc.setFontSize(11);
+          doc.setFont("helvetica", "bold");
+
+          doc.text(
+            value,
+            x + 4,
+            currentY + 13
+          );
+
+          doc.setFont("helvetica", "normal");
         }
+      );
 
-        row.forEach(
-          (cell, index) => {
-            const x =
-              margin +
-              index * columnWidth;
+      currentY += 27;
 
-            doc.setFillColor(
-              rowIndex % 2 === 0
-                ? 248
-                : 255,
-              rowIndex % 2 === 0
-                ? 250
-                : 255,
-              rowIndex % 2 === 0
-                ? 248
-                : 255
-            );
+      /* Table */
+
+      const tableWidth = pageWidth - 30;
+      const columnWidth =
+        tableWidth / detail.columns.length;
+
+      doc.setFillColor(23, 59, 43);
+
+      doc.rect(
+        15,
+        currentY,
+        tableWidth,
+        9,
+        "F"
+      );
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(7.5);
+      doc.setFont("helvetica", "bold");
+
+      detail.columns.forEach(
+        (column, index) => {
+          doc.text(
+            column,
+            15 + index * columnWidth + 3,
+            currentY + 6
+          );
+        }
+      );
+
+      currentY += 9;
+
+      detail.rows.forEach(
+        (row, rowIndex) => {
+          const rowHeight = 9;
+
+          if (
+            currentY + rowHeight >
+            pageHeight - 20
+          ) {
+            doc.addPage();
+
+            currentY = 20;
+
+            doc.setFillColor(23, 59, 43);
 
             doc.rect(
-              x,
-              y,
-              columnWidth,
-              8,
+              15,
+              currentY,
+              tableWidth,
+              9,
               "F"
             );
 
-            doc.setDrawColor(
-              225,
-              230,
-              225
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(7.5);
+            doc.setFont("helvetica", "bold");
+
+            detail.columns.forEach(
+              (column, index) => {
+                doc.text(
+                  column,
+                  15 +
+                    index * columnWidth +
+                    3,
+                  currentY + 6
+                );
+              }
             );
+
+            currentY += 9;
+          }
+
+          if (rowIndex % 2 === 1) {
+            doc.setFillColor(250, 251, 250);
 
             doc.rect(
-              x,
-              y,
-              columnWidth,
-              8
-            );
-
-            doc.setTextColor(
-              45,
-              55,
-              49
-            );
-
-            doc.text(
-              String(cell ?? ""),
-              x + 2,
-              y + 5
+              15,
+              currentY,
+              tableWidth,
+              rowHeight,
+              "F"
             );
           }
+
+          doc.setDrawColor(238, 240, 236);
+
+          doc.line(
+            15,
+            currentY + rowHeight,
+            15 + tableWidth,
+            currentY + rowHeight
+          );
+
+          doc.setTextColor(45, 55, 50);
+          doc.setFontSize(7.5);
+          doc.setFont("helvetica", "normal");
+
+          row.forEach(
+            (cell, cellIndex) => {
+              const text = String(cell);
+
+              const maxChars =
+                detail.columns.length > 5
+                  ? 18
+                  : 25;
+
+              const safeText =
+                text.length > maxChars
+                  ? `${text.substring(
+                      0,
+                      maxChars - 3
+                    )}...`
+                  : text;
+
+              doc.text(
+                safeText,
+                15 +
+                  cellIndex * columnWidth +
+                  3,
+                currentY + 6
+              );
+            }
+          );
+
+          currentY += rowHeight;
+        }
+      );
+
+      /* Footer */
+
+      const totalPages =
+        doc.internal.getNumberOfPages();
+
+      for (
+        let page = 1;
+        page <= totalPages;
+        page++
+      ) {
+        doc.setPage(page);
+
+        doc.setDrawColor(228, 232, 227);
+
+        doc.line(
+          15,
+          pageHeight - 12,
+          pageWidth - 15,
+          pageHeight - 12
         );
 
-        y += 8;
+        doc.setTextColor(120, 130, 124);
+        doc.setFontSize(7);
+
+        doc.text(
+          "Bambardara Management CRM",
+          15,
+          pageHeight - 7
+        );
+
+        doc.text(
+          `Page ${page} of ${totalPages}`,
+          pageWidth - 15,
+          pageHeight - 7,
+          {
+            align: "right",
+          }
+        );
       }
-    );
 
-    /* Signature area */
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const signatureBottomMargin = 18;
-    const signatureY = pageHeight - signatureBottomMargin;
+      /* Download */
 
-    // Keep the signature area clear of the table.
-    if (y + 18 > signatureY) {
-      doc.addPage();
-    }
-
-    const finalPageHeight = doc.internal.pageSize.getHeight();
-    const finalSignatureY = finalPageHeight - signatureBottomMargin;
-    const signatureX = pageWidth - margin - 45;
-
-    doc.setDrawColor(120, 128, 122);
-    doc.setLineWidth(0.35);
-    doc.line(
-      signatureX,
-      finalSignatureY - 7,
-      pageWidth - margin,
-      finalSignatureY - 7
-    );
-
-    doc.setTextColor(45, 55, 49);
-    doc.setFontSize(9);
-    doc.setFont("helvetica", "normal");
-    doc.text(
-      "Signature",
-      pageWidth - margin - 22.5,
-      finalSignatureY - 2,
-      { align: "center" }
-    );
-
-    doc.save(
-      `${report.title
+      const fileName = `bambardara_${report.title
         .replace(/[^a-z0-9]+/gi, "_")
-        .toLowerCase()}_report.pdf`
-    );
+        .toLowerCase()}_report.pdf`;
 
-    setNotification(
-      `${report.title} exported to PDF.`
-    );
+      doc.save(fileName);
 
-    setExportReport(null);
+      showNotification(
+        `${report.title} exported to PDF.`
+      );
+
+      setExportReport(null);
+    } catch (error) {
+      console.error("PDF export error:", error);
+
+      showNotification(
+        "Unable to export the report to PDF."
+      );
+    } finally {
+      setExporting(null);
+    }
   }
 
   /* =======================================================
@@ -991,14 +1122,22 @@ function exportCSV(report) {
   ====================================================== */
 
   function refreshReports() {
-    setNotification(
+    if (refreshing) return;
+
+    setRefreshing(true);
+
+    showNotification(
       "Reports refreshed successfully."
     );
 
-    setTimeout(() => {
-      setNotification("");
-    }, 2500);
+    window.setTimeout(() => {
+      setRefreshing(false);
+    }, 800);
   }
+
+  /* =======================================================
+     RENDER
+  ====================================================== */
 
   return (
     <section className="space-y-7">
@@ -1026,10 +1165,21 @@ function exportCSV(report) {
         <button
           type="button"
           onClick={refreshReports}
-          className="h-9 px-4 rounded-lg border border-[#DDE3DD] bg-white text-[#416454] text-[11px] font-medium flex items-center justify-center gap-2 hover:bg-[#F7F9F7] transition"
+          disabled={refreshing}
+          className="h-9 px-4 rounded-lg border border-[#DDE3DD] bg-white text-[#416454] text-[11px] font-medium flex items-center justify-center gap-2 hover:bg-[#F7F9F7] transition disabled:opacity-60"
         >
-          <RefreshCw size={14} />
-          Refresh Reports
+          <RefreshCw
+            size={14}
+            className={
+              refreshing
+                ? "animate-spin"
+                : ""
+            }
+          />
+
+          {refreshing
+            ? "Refreshing..."
+            : "Refresh Reports"}
         </button>
       </div>
 
@@ -1038,6 +1188,8 @@ function exportCSV(report) {
       ====================================================== */}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Total */}
+
         <Card className="p-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center">
@@ -1050,11 +1202,13 @@ function exportCSV(report) {
               </div>
 
               <div className="text-[21px] font-semibold text-ink">
-                {reportsData.length}
+                {summary.total}
               </div>
             </div>
           </div>
         </Card>
+
+        {/* Ready */}
 
         <Card className="p-4">
           <div className="flex items-center gap-3">
@@ -1068,16 +1222,13 @@ function exportCSV(report) {
               </div>
 
               <div className="text-[21px] font-semibold text-ink">
-                {
-                  reportsData.filter(
-                    (r) =>
-                      r.status === "Ready"
-                  ).length
-                }
+                {summary.ready}
               </div>
             </div>
           </div>
         </Card>
+
+        {/* Attention */}
 
         <Card className="p-4">
           <div className="flex items-center gap-3">
@@ -1091,17 +1242,13 @@ function exportCSV(report) {
               </div>
 
               <div className="text-[21px] font-semibold text-ink">
-                {
-                  reportsData.filter(
-                    (r) =>
-                      r.status ===
-                      "Attention"
-                  ).length
-                }
+                {summary.attention}
               </div>
             </div>
           </div>
         </Card>
+
+        {/* Latest */}
 
         <Card className="p-4">
           <div className="flex items-center gap-3">
@@ -1115,7 +1262,7 @@ function exportCSV(report) {
               </div>
 
               <div className="text-[13px] font-semibold text-ink mt-1">
-                15 Sep 2026
+                {summary.latestUpdate}
               </div>
             </div>
           </div>
@@ -1157,9 +1304,7 @@ function exportCSV(report) {
             <select
               value={categoryFilter}
               onChange={(e) =>
-                setCategoryFilter(
-                  e.target.value
-                )
+                setCategoryFilter(e.target.value)
               }
               className="h-9 w-full lg:w-[190px] pl-8 pr-8 rounded-lg border border-[#DDE3DD] bg-white text-[11px] text-ink outline-none appearance-none"
             >
@@ -1216,16 +1361,14 @@ function exportCSV(report) {
 
         {filteredReports.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-            {filteredReports.map(
-              (report) => (
-                <ReportCard
-                  key={report.id}
-                  report={report}
-                  onView={viewReport}
-                  onExport={setExportReport}
-                />
-              )
-            )}
+            {filteredReports.map((report) => (
+              <ReportCard
+                key={report.id}
+                report={report}
+                onView={viewReport}
+                onExport={setExportReport}
+              />
+            ))}
           </div>
         ) : (
           <Card>
@@ -1240,8 +1383,8 @@ function exportCSV(report) {
               </div>
 
               <div className="text-[11px] text-muted mt-1">
-                Try changing your search or
-                category filter.
+                Try changing your search or category
+                filter.
               </div>
             </div>
           </Card>
@@ -1265,14 +1408,12 @@ function exportCSV(report) {
               e.stopPropagation()
             }
           >
-            {/* Modal Header */}
+            {/* Header */}
 
             <div className="p-5 border-b border-[#E8ECE7] flex items-start justify-between gap-4">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center">
-                  <selectedReport.icon
-                    size={18}
-                  />
+                  <selectedReport.icon size={18} />
                 </div>
 
                 <div>
@@ -1301,7 +1442,7 @@ function exportCSV(report) {
               </button>
             </div>
 
-            {/* Modal Body */}
+            {/* Body */}
 
             <div className="p-5 overflow-y-auto max-h-[65vh]">
               {/* Summary */}
@@ -1327,25 +1468,21 @@ function exportCSV(report) {
 
               {/* Table */}
 
-              {reportDetails[
-                selectedReport.id
-              ] && (
+              {reportDetails[selectedReport.id] && (
                 <div className="overflow-x-auto border border-[#E8ECE7] rounded-xl">
                   <table className="w-full min-w-[650px] border-collapse">
                     <thead>
                       <tr className="bg-[#173B2B]">
                         {reportDetails[
                           selectedReport.id
-                        ].columns.map(
-                          (column) => (
-                            <th
-                              key={column}
-                              className="text-left px-3 py-3 text-[10px] font-medium text-white"
-                            >
-                              {column}
-                            </th>
-                          )
-                        )}
+                        ].columns.map((column) => (
+                          <th
+                            key={column}
+                            className="text-left px-3 py-3 text-[10px] font-medium text-white"
+                          >
+                            {column}
+                          </th>
+                        ))}
                       </tr>
                     </thead>
 
@@ -1357,9 +1494,7 @@ function exportCSV(report) {
                           <tr
                             key={rowIndex}
                             className={`border-b border-[#EEF0EC] last:border-0 ${
-                              rowIndex %
-                                2 ===
-                              0
+                              rowIndex % 2 === 0
                                 ? "bg-white"
                                 : "bg-[#FAFBFA]"
                             }`}
@@ -1370,9 +1505,7 @@ function exportCSV(report) {
                                 cellIndex
                               ) => (
                                 <td
-                                  key={
-                                    cellIndex
-                                  }
+                                  key={cellIndex}
                                   className="px-3 py-3 text-[11px] text-ink"
                                 >
                                   {cell}
@@ -1388,7 +1521,7 @@ function exportCSV(report) {
               )}
             </div>
 
-            {/* Modal Footer */}
+            {/* Footer */}
 
             <div className="px-5 py-4 border-t border-[#E8ECE7] flex flex-col sm:flex-row justify-between gap-3">
               <div className="flex items-center gap-2 text-[10px] text-muted">
@@ -1424,9 +1557,11 @@ function exportCSV(report) {
       {exportReport && (
         <div
           className="fixed inset-0 z-[60] bg-black/30 flex items-center justify-center p-4"
-          onClick={() =>
-            setExportReport(null)
-          }
+          onClick={() => {
+            if (!exporting) {
+              setExportReport(null);
+            }
+          }}
         >
           <div
             className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-[#E4E8E3]"
@@ -1434,6 +1569,8 @@ function exportCSV(report) {
               e.stopPropagation()
             }
           >
+            {/* Header */}
+
             <div className="p-5 border-b border-[#E8ECE7] flex items-start justify-between">
               <div>
                 <div className="text-[10px] uppercase tracking-wide text-[#B48718] font-semibold">
@@ -1445,89 +1582,121 @@ function exportCSV(report) {
                 </h3>
 
                 <p className="text-[11px] text-muted mt-1">
-                  Choose your preferred export
-                  format.
+                  Choose your preferred export format.
                 </p>
               </div>
 
               <button
                 type="button"
+                disabled={Boolean(exporting)}
                 onClick={() =>
                   setExportReport(null)
                 }
-                className="w-8 h-8 rounded-lg bg-[#EEF0EC] flex items-center justify-center text-muted"
+                className="w-8 h-8 rounded-lg bg-[#EEF0EC] flex items-center justify-center text-muted disabled:opacity-50"
               >
                 <X size={16} />
               </button>
             </div>
 
-           <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-  {/* PDF */}
+            {/* Export Options */}
 
-  <button
-    type="button"
-    onClick={() =>
-      exportPDF(exportReport)
-    }
-    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#B48718] hover:bg-[#FFFCF3] transition text-left"
-  >
-    <div className="w-10 h-10 rounded-xl bg-[#FBE5E3] text-[#A83F3D] flex items-center justify-center mb-3">
-      <FileText size={18} />
-    </div>
+            <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* PDF */}
 
-    <div className="text-[12px] font-semibold text-ink">
-      PDF
-    </div>
+              <button
+                type="button"
+                disabled={Boolean(exporting)}
+                onClick={() =>
+                  exportPDF(exportReport)
+                }
+                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#B48718] hover:bg-[#FFFCF3] transition text-left disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#FBE5E3] text-[#A83F3D] flex items-center justify-center mb-3">
+                  {exporting === "pdf" ? (
+                    <RefreshCw
+                      size={18}
+                      className="animate-spin"
+                    />
+                  ) : (
+                    <FileText size={18} />
+                  )}
+                </div>
 
-    <div className="text-[10px] text-muted mt-1">
-      Printable report
-    </div>
-  </button>
+                <div className="text-[12px] font-semibold text-ink">
+                  {exporting === "pdf"
+                    ? "Exporting..."
+                    : "PDF"}
+                </div>
 
-  {/* Excel */}
+                <div className="text-[10px] text-muted mt-1">
+                  Printable report
+                </div>
+              </button>
 
-  <button
-    type="button"
-    onClick={() =>
-      exportExcel(exportReport)
-    }
-    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left"
-  >
-    <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center mb-3">
-      <FileSpreadsheet size={18} />
-    </div>
+              {/* Excel */}
 
-    <div className="text-[12px] font-semibold text-ink">
-      Excel
-    </div>
+              <button
+                type="button"
+                disabled={Boolean(exporting)}
+                onClick={() =>
+                  exportExcel(exportReport)
+                }
+                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#DDF2E4] text-[#247246] flex items-center justify-center mb-3">
+                  {exporting === "excel" ? (
+                    <RefreshCw
+                      size={18}
+                      className="animate-spin"
+                    />
+                  ) : (
+                    <FileSpreadsheet size={18} />
+                  )}
+                </div>
 
-    <div className="text-[10px] text-muted mt-1">
-      XLSX spreadsheet
-    </div>
-  </button>
+                <div className="text-[12px] font-semibold text-ink">
+                  {exporting === "excel"
+                    ? "Exporting..."
+                    : "Excel"}
+                </div>
 
-  {/* CSV */}
+                <div className="text-[10px] text-muted mt-1">
+                  XLSX spreadsheet
+                </div>
+              </button>
 
-  <button
-    type="button"
-    onClick={() =>
-      exportCSV(exportReport)
-    }
-    className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left"
-  >
-    <div className="w-10 h-10 rounded-xl bg-[#EEF0EC] text-[#416454] flex items-center justify-center mb-3">
-      <FileDown size={18} />
-    </div>
+              {/* CSV */}
 
-    <div className="text-[12px] font-semibold text-ink">
-      CSV
-    </div>
+              <button
+                type="button"
+                disabled={Boolean(exporting)}
+                onClick={() =>
+                  exportCSV(exportReport)
+                }
+                className="group border border-[#E8ECE7] rounded-xl p-4 hover:border-[#416454] hover:bg-[#F7FBF8] transition text-left disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#EEF0EC] text-[#416454] flex items-center justify-center mb-3">
+                  {exporting === "csv" ? (
+                    <RefreshCw
+                      size={18}
+                      className="animate-spin"
+                    />
+                  ) : (
+                    <FileDown size={18} />
+                  )}
+                </div>
 
-    <div className="text-[10px] text-muted mt-1">
-      Comma-separated data
-    </div>
-  </button>
-</div>
+                <div className="text-[12px] font-semibold text-ink">
+                  {exporting === "csv"
+                    ? "Exporting..."
+                    : "CSV"}
+                </div>
+
+                <div className="text-[10px] text-muted mt-1">
+                  Comma-separated data
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       )}

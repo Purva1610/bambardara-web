@@ -400,10 +400,7 @@ export default function Overview() {
   const budgetUtilization = Math.round(
     (totalSpent / totalBudget) * 100
   );
-  const totalZoneBudget = zoneBudgetData.reduce(
-  (total, item) => total + Number(item.value || 0),
-  0
-);
+  
 
 
   /* ---------------------------------------------------------
@@ -805,90 +802,65 @@ export default function Overview() {
 
     <div className="w-[230px] h-[260px]">
 
-<ResponsiveContainer width="100%" height="100%">
-  <PieChart>
+      <ResponsiveContainer width="100%" height="100%">
 
-    <Pie
-      data={zoneBudgetData}
-      dataKey="value"
-      nameKey="name"
-      cx="50%"
-      cy="50%"
-      innerRadius={58}
-      outerRadius={95}
-      paddingAngle={2}
-    >
+        <PieChart>
 
-      {zoneBudgetData.map((_, index) => (
-        <Cell
-          key={index}
-          fill={[
-            "#173B2B",
-            "#416454",
-            "#71807C",
-            "#9CA99F",
-            "#D6A92F",
-            "#B95C50",
-          ][index]}
-        />
-      ))}
+          <Pie
+            data={zoneBudgetData}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={58}
+            outerRadius={95}
+            paddingAngle={2}
+          >
 
-      <LabelList
-        dataKey="value"
-        position="outside"
-        formatter={(value) => `₹${value}L`}
-        style={{
-          fontSize: 9,
-          fontWeight: 600,
-          fill: "#173B2B",
-        }}
-      />
+            {zoneBudgetData.map((_, index) => (
+              <Cell
+                key={index}
+                fill={
+                  [
+                    "#173B2B",
+                    "#416454",
+                    "#71807C",
+                    "#9CA99F",
+                    "#D6A92F",
+                    "#B95C50",
+                  ][index]
+                }
+              />
+            ))}
 
-    </Pie>
+            <LabelList
+              dataKey="value"
+              position="outside"
+              formatter={(value) => `₹${value}L`}
+              style={{
+                fontSize: 9,
+                fontWeight: 600,
+                fill: "#173B2B",
+              }}
+            />
 
-    {/* CENTER TOTAL */}
-    <text
-      x="50%"
-      y="47%"
-      textAnchor="middle"
-      dominantBaseline="middle"
-      className="fill-[#173B2B]"
-      style={{
-        fontSize: 17,
-        fontWeight: 700,
-      }}
-    >
-      ₹{totalZoneBudget}L
-    </text>
+          </Pie>
 
-    <text
-      x="50%"
-      y="56%"
-      textAnchor="middle"
-      dominantBaseline="middle"
-      className="fill-[#6B756E]"
-      style={{
-        fontSize: 9,
-        fontWeight: 500,
-      }}
-    >
-      Total Budget
-    </text>
+          <Tooltip
+            formatter={(value) => [
+              `₹${value} L`,
+              "Budget",
+            ]}
+            contentStyle={{
+              borderRadius: 10,
+              border: "1px solid #E7EBE6",
+              fontSize: 10,
+            }}
+          />
 
-    <Tooltip
-      formatter={(value) => [
-        `₹${value} L`,
-        "Budget",
-      ]}
-      contentStyle={{
-        borderRadius: 10,
-        border: "1px solid #E7EBE6",
-        fontSize: 10,
-      }}
-    />
+        </PieChart>
 
-  </PieChart>
-</ResponsiveContainer>
+      </ResponsiveContainer>
 
     </div>
 

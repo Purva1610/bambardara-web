@@ -236,13 +236,13 @@ export default function Settings() {
      SAVE SETTINGS
   ========================================================= */
 
-  const saveAllSettings = () => {
-    saveSettingsToStorage(settings);
+const saveAllSettings = () => {
+  saveSettingsToStorage(settings);
 
-    setSavedSettings(deepClone(settings));
+  setSavedSettings(deepClone(settings));
 
-    showMessage("Settings saved successfully.");
-  };
+  showMessage("Changes saved successfully.", "success");
+};
 
   /* =========================================================
      RESET CURRENT SECTION
@@ -394,9 +394,7 @@ export default function Settings() {
       confirm: "",
     });
 
-    showMessage(
-      "Password changed successfully. Click Save Changes to persist it."
-    );
+showMessage("Password saved successfully.", "success");
   };
 
   /* =========================================================
@@ -420,7 +418,10 @@ export default function Settings() {
             },
           }));
 
-          showMessage("Two-factor authentication disabled.", "info");
+          showMessage(
+  "Two-factor authentication settings saved successfully.",
+  "success"
+);
         },
       });
 
@@ -577,35 +578,53 @@ export default function Settings() {
 
       {/* GLOBAL MESSAGE */}
 
-      {message && (
-        <div
-          className={`
-            mb-5
-            px-4 py-3
-            rounded-lg
-            border
-            flex items-center gap-3
-            text-[12.5px]
-            ${
-              message.type === "error"
-                ? "bg-[#FFF5F5] border-[#F1CCCC] text-[#A33A3A]"
-                : message.type === "info"
-                ? "bg-[#F3F7F5] border-[#D6E2DB] text-[#416454]"
-                : "bg-[#F0F7F2] border-[#C8DED0] text-[#2F7651]"
-            }
-          `}
-        >
-
-          {message.type === "error" ? (
-            <AlertTriangle size={16} />
-          ) : (
-            <CheckCircle2 size={16} />
-          )}
-
-          {message.text}
-
-        </div>
+{message && (
+  <div
+    className={`
+      mb-5
+      px-4 py-3
+      rounded-xl
+      border
+      flex items-center gap-3
+      text-[12.5px]
+      shadow-sm
+      transition-all
+      duration-200
+      ${
+        message.type === "error"
+          ? "bg-[#FFF5F5] border-[#F1CCCC] text-[#A33A3A]"
+          : message.type === "info"
+          ? "bg-[#F3F7F5] border-[#D6E2DB] text-[#416454]"
+          : "bg-[#F0F7F2] border-[#BFD8C8] text-[#356B4D]"
+      }
+    `}
+  >
+    <div
+      className={`
+        w-7 h-7
+        rounded-full
+        flex items-center justify-center
+        ${
+          message.type === "error"
+            ? "bg-[#FBEAEA]"
+            : message.type === "info"
+            ? "bg-[#E8F0EB]"
+            : "bg-[#DDEEE3]"
+        }
+      `}
+    >
+      {message.type === "error" ? (
+        <AlertTriangle size={15} />
+      ) : (
+        <Check size={15} />
       )}
+    </div>
+
+    <span className="font-medium">
+      {message.text}
+    </span>
+  </div>
+)}
 
       {/* HORIZONTAL NAVIGATION */}
 
@@ -1677,31 +1696,35 @@ function Toggle({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={enabled}
       className={`
         relative
         w-11
         h-6
         rounded-full
         flex-shrink-0
-        transition-colors
+        transition-all
+        duration-200
+        border
         ${
           enabled
-            ? "bg-[#173B2B]"
-            : "bg-[#CBD5CE]"
+            ? "bg-[#5F8F72] border-[#5F8F72] shadow-sm"
+            : "bg-[#D8E0DA] border-[#C7D1CA]"
         }
       `}
     >
-
       <span
         className={`
           absolute
           top-1
+          left-0
           w-4
           h-4
           bg-white
           rounded-full
-          shadow-sm
+          shadow-[0_1px_3px_rgba(0,0,0,0.18)]
           transition-transform
+          duration-200
           ${
             enabled
               ? "translate-x-6"
@@ -1709,7 +1732,6 @@ function Toggle({
           }
         `}
       />
-
     </button>
   );
 }

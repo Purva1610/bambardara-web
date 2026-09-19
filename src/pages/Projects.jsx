@@ -269,56 +269,6 @@ export default function Projects() {
 
     <section className="pb-8">
 
-      {/* ANIMATION STYLES */}
-
-      <style>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.88);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes modalIn {
-          from {
-            opacity: 0;
-            transform: translateY(12px) scale(0.98);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        .dashboard-fade {
-          animation: fadeUp 0.5s ease-out both;
-        }
-
-        .dashboard-scale {
-          animation: scaleIn 0.7s ease-out both;
-        }
-
-        .dashboard-modal {
-          animation: modalIn 0.25s ease-out both;
-        }
-      `}</style>
-
-
       {/* HEADER */}
 
       <SectionHead

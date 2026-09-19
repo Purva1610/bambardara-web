@@ -561,7 +561,7 @@ function ProfileMenu({
         </button>
 
         {/* Appearance */}
-        <button
+        {/* <button
           type="button"
           onClick={() => setShowAppearance((prev) => !prev)}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-white transition-colors hover:bg-white/10"
@@ -580,7 +580,7 @@ function ProfileMenu({
               showAppearance ? 'rotate-180' : ''
             }`}
           />
-        </button>
+        </button> */}
 
         {/* Appearance Options */}
         {showAppearance && (

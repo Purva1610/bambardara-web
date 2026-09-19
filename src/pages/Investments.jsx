@@ -20,12 +20,14 @@ import {
   Activity,
 } from "lucide-react";
 
-import jsPDF from "jspdf";
+
 import autoTable from "jspdf-autotable";
 
 /* =========================================================
    THEME
 ========================================================= */
+
+
 
 const THEME = {
   dark: "#0B2E2A",

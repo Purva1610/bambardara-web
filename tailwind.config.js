@@ -12,7 +12,33 @@ export default {
       },
       fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'], serif: ['Fraunces','Georgia','serif'] },
       borderRadius: { xl2: '14px' },
-      boxShadow: { soft: '0 8px 28px rgba(25,48,45,0.06)' }
+      boxShadow: { soft: '0 8px 28px rgba(25,48,45,0.06)' },
+      keyframes: {
+        fadeUp: { from: { opacity: '0', transform: 'translateY(10px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+        scaleIn: { from: { opacity: '0', transform: 'scale(0.94)' }, to: { opacity: '1', transform: 'scale(1)' } },
+        modalIn: { from: { opacity: '0', transform: 'translateY(15px) scale(0.98)' }, to: { opacity: '1', transform: 'translateY(0) scale(1)' } },
+        docFadeUp: { from: { opacity: '0', transform: 'translateY(8px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+        docPop: { from: { opacity: '0', transform: 'scale(0.96)' }, to: { opacity: '1', transform: 'scale(1)' } },
+        slideIn: { from: { opacity: '0', transform: 'translateX(-12px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+        riPulse: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '.55' } },
+        riRingIn: { from: { strokeDashoffset: '100', opacity: '0' }, to: { opacity: '1' } }
+      },
+      animation: {
+        'dashboard-fade': 'fadeUp 0.5s ease-out both',
+        'dashboard-scale': 'scaleIn 0.7s ease-out both',
+        'dashboard-modal': 'modalIn 0.25s ease-out both',
+        'doc-fade': 'docFadeUp 0.4s ease-out both',
+        'doc-pop': 'docPop 0.35s ease-out both',
+        'proc-fade': 'fadeUp 0.45s ease-out both',
+        'proc-scale': 'scaleIn 0.55s ease-out both',
+        'proc-slide': 'slideIn 0.45s ease-out both',
+        'proc-modal': 'modalIn 0.25s ease-out both',
+        'ri-fade': 'fadeUp 0.45s ease-out both',
+        'ri-scale': 'scaleIn 0.5s ease-out both',
+        'ri-modal': 'modalIn 0.25s ease-out both',
+        'ri-pulse': 'riPulse 2s ease-in-out infinite',
+        'ri-ring': 'riRingIn 0.9s ease-out both'
+      }
     }
   },
   plugins: []
