@@ -33,7 +33,7 @@ import {
   Check,
 } from "lucide-react";
 
-import { Card, SectionHead } from "../components/Ui.jsx";
+import { Card, Modal, SectionHead } from "../components/Ui.jsx";
 
 /* =========================================================
    THEME
@@ -555,49 +555,6 @@ function KpiCard({ icon: Icon, label, value, subtitle, tone = "green" }) {
         </div>
       </div>
     </Card>
-  );
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function Modal({ title, subtitle, onClose, children, width = "max-w-2xl" }) {
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
-        onClick={onClose}
-      />
-
-      <div
-        className={`relative w-full ${width} max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl`}
-      >
-        <div
-          className="px-6 py-5 border-b flex items-start justify-between"
-          style={{ borderColor: COLORS.border }}
-        >
-          <div>
-            <h3 className="text-lg font-bold text-[#173B2B]">{title}</h3>
-
-            {subtitle && (
-              <p className="text-[12px] text-[#6B756E] mt-1">
-                {subtitle}
-              </p>
-            )}
-          </div>
-
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100"
-          >
-            <X size={18} />
-          </button>
-        </div>
-
-        <div className="p-6">{children}</div>
-      </div>
-    </div>
   );
 }
 

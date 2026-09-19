@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-
 import {
   Users,
   IndianRupee,
@@ -26,12 +25,13 @@ import {
 
 import {
   Card,
+  Modal,
   SectionHead,
   StatusBadge,
 } from "../components/Ui.jsx";
 
 /* =========================================================
-   MOCK DATA
+  MOCK DATA
 ========================================================= */
 
 const initialMembers = [
@@ -1587,45 +1587,6 @@ function InfoBox({
       <p className="text-[11px] font-semibold mt-2 m-0">
         {value}
       </p>
-
-    </div>
-  );
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function Modal({
-  title,
-  children,
-  onClose,
-}) {
-  return (
-    <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-4">
-
-      <div className="bg-white rounded-2xl w-full max-w-xl shadow-2xl">
-
-        <div className="px-6 py-5 border-b border-[#E7EBE6] flex items-center justify-between">
-
-          <h2 className="text-[17px] font-semibold">
-            {title}
-          </h2>
-
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-[#F1F3F0] flex items-center justify-center hover:bg-[#E8ECE7]"
-          >
-            <X size={15} />
-          </button>
-
-        </div>
-
-        <div className="p-6">
-          {children}
-        </div>
-
-      </div>
 
     </div>
   );

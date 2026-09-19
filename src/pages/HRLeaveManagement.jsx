@@ -28,7 +28,7 @@ import {
   MapPin,
 } from "lucide-react";
 
-import { Card, StatusBadge } from "../components/Ui.jsx";
+import { Card, Modal, StatusBadge } from "../components/Ui.jsx";
 
 /* =========================================================
    SAMPLE DATA
@@ -352,38 +352,6 @@ function EmployeeAvatar({ name }) {
   return (
     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#173B2B] text-[9px] font-semibold text-white">
       {getInitials(name)}
-    </div>
-  );
-}
-
-function Modal({ title, subtitle, onClose, children, maxWidth = "max-w-xl" }) {
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-[2px]">
-      <div
-        className={`w-full ${maxWidth} overflow-hidden rounded-2xl bg-white shadow-2xl`}
-      >
-        <div className="flex items-start justify-between border-b border-[#E7EBE6] px-6 py-5">
-          <div>
-            <h2 className="text-[15px] font-semibold text-[#173B2B]">
-              {title}
-            </h2>
-
-            {subtitle && (
-              <p className="mt-1 text-[10px] text-[#7A847E]">{subtitle}</p>
-            )}
-          </div>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F1F3F0] text-[#5D6861] transition hover:bg-[#E7EBE6]"
-          >
-            <X size={15} />
-          </button>
-        </div>
-
-        {children}
-      </div>
     </div>
   );
 }

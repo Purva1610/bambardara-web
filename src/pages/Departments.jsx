@@ -34,7 +34,7 @@ import {
   Cell,
 } from "recharts";
 
-import { Card, SectionHead, StatusBadge } from "../components/Ui.jsx";
+import { Card, Modal, SectionHead, StatusBadge } from "../components/Ui.jsx";
 
 const initialDepartments = [
   {
@@ -359,37 +359,6 @@ function InfoBox({ label, value, icon: Icon }) {
           <p className="text-[11px] font-semibold text-[#173B2B] mt-0.5 truncate">
             {value}
           </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Modal({ children, onClose, title, subtitle }) {
-  return (
-    <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl w-full max-w-3xl shadow-2xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-5 border-b border-[#E7EBE6] flex items-start justify-between">
-          <div>
-            <h2 className="text-[15px] font-semibold text-[#173B2B]">
-              {title}
-            </h2>
-
-            {subtitle && (
-              <p className="text-[10px] text-muted mt-1">{subtitle}</p>
-            )}
-          </div>
-
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-[#F1F3F0] flex items-center justify-center text-[#173B2B] hover:bg-[#E7EBE6]"
-          >
-            <X size={15} />
-          </button>
-        </div>
-
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-90px)]">
-          {children}
         </div>
       </div>
     </div>

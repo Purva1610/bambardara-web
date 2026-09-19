@@ -21,6 +21,7 @@ import {
 
 import {
   Card,
+  Modal,
   StatusBadge,
   ProgressBar
 } from '../components/Ui.jsx'
@@ -1387,9 +1388,13 @@ export default function Procurement() {
 
       {selectedPO && (
 
-        <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-4">
-
-          <div className="proc-modal bg-white rounded-[24px] w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
+        <Modal
+          onClose={() => setSelectedPO(null)}
+          width="max-w-3xl"
+          hideHeader
+          bodyClassName="p-0"
+          className="proc-modal rounded-[24px]"
+        >
 
             <div className="px-6 py-5 border-b border-[#E7EBE6]">
 
@@ -1686,9 +1691,7 @@ export default function Procurement() {
 
             </div>
 
-          </div>
-
-        </div>
+        </Modal>
 
       )}
 
