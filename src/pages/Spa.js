@@ -161,7 +161,7 @@ export default function Spa() {
             <Reveal delay={200}>
               <div className="relative h-80 md:h-96 overflow-hidden">
                 <EstateImage
-                  slug="spaaa"
+                  slug="ayurvedic-spa-therapy"
                   alt="Cosmetic Acupuncture"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"

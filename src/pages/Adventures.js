@@ -32,7 +32,7 @@ const STATS = [
 const SLIDE_DURATION = 7000;
 const SLIDES = [
   {
-    slug: 'ropeway-opt',
+    slug: 'ropeway-cable-car',
     kicker: 'New',
     label: 'Ropeway Point · Aerial Adventure',
     title: ['Soar Above', 'the Valley'],
@@ -40,7 +40,7 @@ const SLIDES = [
     cta: { label: 'Explore Experiences', href: '/experiences/adventures' },
   },
   {
-    slug: 'kayaking-opt',
+    slug: 'kayaking-lake-view',
     kicker: 'Water',
     label: 'The Reservoir · Kayaking & Boating',
     title: ['Flat Water', 'at First Light'],
@@ -48,7 +48,7 @@ const SLIDES = [
     cta: { label: 'View Water Adventures', href: '/experiences/adventures' },
   },
   {
-    slug: 'treking',
+    slug: 'mountain-trekking',
     kicker: 'Trek',
     label: 'The Ridge Trail · Guided Trekking',
     title: ['Ridges Worth', 'the Climb'],
@@ -71,16 +71,16 @@ const SLIDES = [
    vertical gap (not negative margin) keeps captions from colliding with
    the circle above or below them. */
 const HERO_SPOTS = [
-  { slug: 'ropeway-opt', title: 'Ropeway Point', subtitle: 'Aerial Adventure', curve: 0 },
-  { slug: 'kayaking-opt', title: 'The Reservoir', subtitle: 'Kayaking & Boating', curve: 4 },
-  { slug: 'treking', title: 'The Ridge Trail', subtitle: 'Guided Trekking', curve: 1.5 },
+  { slug: 'ropeway-cable-car', title: 'Ropeway Point', subtitle: 'Aerial Adventure', curve: 0 },
+  { slug: 'kayaking-lake-view', title: 'The Reservoir', subtitle: 'Kayaking & Boating', curve: 4 },
+  { slug: 'mountain-trekking', title: 'The Ridge Trail', subtitle: 'Guided Trekking', curve: 1.5 },
   { slug: 'waterpark', title: 'The Water Park', subtitle: 'Family Fun', curve: 5 },
 ];
 
 const LANES = [
   {
     id: 'adventures',
-    slug: 'treking',
+    slug: 'mountain-trekking',
     label: 'For the Adventurous',
     title: 'Outdoor Adventures',
     body: 'Ropeways, rock faces and jungle trails — ten routes across the estate, each led by a certified guide.',

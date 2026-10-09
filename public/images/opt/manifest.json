@@ -19,6 +19,16 @@
     "width": 6048,
     "height": 8064
   },
+  "aarti.jpg": {
+    "slug": "aarti",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6720,
+    "height": 4480
+  },
   "about.jpg": {
     "slug": "about",
     "widths": [
@@ -28,6 +38,26 @@
     ],
     "width": 4480,
     "height": 6720
+  },
+  "animal-farm-and-dairy-farm.jpg": {
+    "slug": "animal-farm-and-dairy-farm",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3796,
+    "height": 5061
+  },
+  "autum.jpg": {
+    "slug": "autum",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4498,
+    "height": 2994
   },
   "ayur.jpg": {
     "slug": "ayur",
@@ -84,6 +114,36 @@
     ],
     "width": 10954,
     "height": 7303
+  },
+  "bday.jpg": {
+    "slug": "bday",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5659,
+    "height": 3766
+  },
+  "bells.jpg": {
+    "slug": "bells",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5911,
+    "height": 3940
+  },
+  "birthday.jpg": {
+    "slug": "birthday",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 7008,
+    "height": 4672
   },
   "boating-2.jpg": {
     "slug": "boating-2",
@@ -163,6 +223,24 @@
     "width": 612,
     "height": 399
   },
+  "confrence.jpg": {
+    "slug": "confrence",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 491
+  },
+  "co_event.jpg": {
+    "slug": "co-event",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
   "cupping.jpg": {
     "slug": "cupping",
     "widths": [
@@ -203,6 +281,26 @@
     "width": 4000,
     "height": 5328
   },
+  "darshan.jpg": {
+    "slug": "darshan",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "devotion.jpg": {
+    "slug": "devotion",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
   "dining.jpg": {
     "slug": "dining",
     "widths": [
@@ -212,6 +310,24 @@
     ],
     "width": 4608,
     "height": 3072
+  },
+  "diyas.jpg": {
+    "slug": "diyas",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2557,
+    "height": 1707
+  },
+  "durgamaa.jpg": {
+    "slug": "durgamaa",
+    "widths": [
+      640
+    ],
+    "width": 720,
+    "height": 949
   },
   "energy.jpg": {
     "slug": "energy",
@@ -231,6 +347,26 @@
     ],
     "width": 1536,
     "height": 1024
+  },
+  "event-and-cultural-experience.jpg": {
+    "slug": "event-and-cultural-experience",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3240,
+    "height": 5760
+  },
+  "event.jpg": {
+    "slug": "event",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3648,
+    "height": 2432
   },
   "facial.jpg": {
     "slug": "facial",
@@ -272,6 +408,16 @@
     "width": 2784,
     "height": 4176
   },
+  "family-gettogther.jpg": {
+    "slug": "family-gettogther",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5384,
+    "height": 3540
+  },
   "farmhouse.jpg": {
     "slug": "farmhouse",
     "widths": [
@@ -289,6 +435,130 @@
     ],
     "width": 736,
     "height": 1104
+  },
+  "fine-dining-restaurant-2.jpg": {
+    "slug": "fine-dining-restaurant-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4608,
+    "height": 2592
+  },
+  "fine-dining-restaurant.jpg": {
+    "slug": "fine-dining-restaurant",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4608,
+    "height": 3072
+  },
+  "fish-catla.jpg": {
+    "slug": "fish-catla",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 736
+  },
+  "fish-magur.jpg": {
+    "slug": "fish-magur",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 736
+  },
+  "fish-pangasius.jpg": {
+    "slug": "fish-pangasius",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 736
+  },
+  "fish-rohu.jpg": {
+    "slug": "fish-rohu",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 736
+  },
+  "flim.jpg": {
+    "slug": "flim",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4096,
+    "height": 2304
+  },
+  "fort-protector.png": {
+    "slug": "fort-protector",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
+  },
+  "ganesha.jpg": {
+    "slug": "ganesha",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 6000
+  },
+  "gettogther.jpg": {
+    "slug": "gettogther",
+    "widths": [
+      640
+    ],
+    "width": 735,
+    "height": 634
+  },
+  "hanumanji.jpg": {
+    "slug": "hanumanji",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3472,
+    "height": 4624
+  },
+  "harvest_nights.jpg": {
+    "slug": "harvest-nights",
+    "widths": [
+      640
+    ],
+    "width": 735,
+    "height": 490
+  },
+  "hawan.jpg": {
+    "slug": "hawan",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4000,
+    "height": 5328
+  },
+  "hindavi-swarajya.png": {
+    "slug": "hindavi-swarajya",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
   },
   "hydrotherapy.jpg": {
     "slug": "hydrotherapy",
@@ -310,6 +580,16 @@
     "width": 5375,
     "height": 3580
   },
+  "interior.jpg": {
+    "slug": "interior",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2234,
+    "height": 3984
+  },
   "international-meditation-center.jpg": {
     "slug": "international-meditation-center",
     "widths": [
@@ -319,6 +599,16 @@
     ],
     "width": 3072,
     "height": 4096
+  },
+  "kalash.jpg": {
+    "slug": "kalash",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4024,
+    "height": 6048
   },
   "kayaking-2.jpg": {
     "slug": "kayaking-2",
@@ -358,6 +648,16 @@
     "width": 612,
     "height": 408
   },
+  "luxury-hotel-rooms-and-suites-2.jpg": {
+    "slug": "luxury-hotel-rooms-and-suites-2",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3872,
+    "height": 2334
+  },
   "luxury-hotel-rooms-and-suites-3.jpg": {
     "slug": "luxury-hotel-rooms-and-suites-3",
     "widths": [
@@ -367,6 +667,25 @@
     ],
     "width": 6720,
     "height": 4480
+  },
+  "luxury-hotel-rooms-and-suites-4.jpg": {
+    "slug": "luxury-hotel-rooms-and-suites-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4032,
+    "height": 3024
+  },
+  "luxury-hotel-rooms-and-suites.jpg": {
+    "slug": "luxury-hotel-rooms-and-suites",
+    "widths": [
+      640,
+      1280
+    ],
+    "width": 1696,
+    "height": 2560
   },
   "luxury-suits.jpg": {
     "slug": "luxury-suits",
@@ -378,6 +697,16 @@
     "width": 5616,
     "height": 3744
   },
+  "mahadev.jpg": {
+    "slug": "mahadev",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2206,
+    "height": 3876
+  },
   "male.jpg": {
     "slug": "male",
     "widths": [
@@ -387,6 +716,14 @@
     ],
     "width": 3868,
     "height": 5802
+  },
+  "mandala-motif.png": {
+    "slug": "mandala-motif",
+    "widths": [
+      315
+    ],
+    "width": 315,
+    "height": 473
   },
   "massage.jpg": {
     "slug": "massage",
@@ -407,6 +744,44 @@
     ],
     "width": 5472,
     "height": 3648
+  },
+  "meditation.jpg": {
+    "slug": "meditation",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3485,
+    "height": 2846
+  },
+  "monsoon.jpg": {
+    "slug": "monsoon",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
+  },
+  "movie.jpg": {
+    "slug": "movie",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 12462,
+    "height": 8308
+  },
+  "night_harvest.jpg": {
+    "slug": "night-harvest",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 507
   },
   "organic-farming-and-farm-stay-2.jpg": {
     "slug": "organic-farming-and-farm-stay-2",
@@ -438,6 +813,42 @@
     "width": 3072,
     "height": 4096
   },
+  "organic-farming-and-farm-stay.jpg": {
+    "slug": "organic-farming-and-farm-stay",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4080,
+    "height": 3072
+  },
+  "prasadam.jpg": {
+    "slug": "prasadam",
+    "widths": [
+      640
+    ],
+    "width": 735,
+    "height": 413
+  },
+  "pratapgad-victory.png": {
+    "slug": "pratapgad-victory",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
+  },
+  "preweed.jpg": {
+    "slug": "preweed",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6048,
+    "height": 4024
+  },
   "process.jpg": {
     "slug": "process",
     "widths": [
@@ -448,6 +859,14 @@
     "width": 6000,
     "height": 4000
   },
+  "rajgad-coronation.png": {
+    "slug": "rajgad-coronation",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
+  },
   "resort-and-villas-2.jpg": {
     "slug": "resort-and-villas-2",
     "widths": [
@@ -457,6 +876,46 @@
     ],
     "width": 7708,
     "height": 5781
+  },
+  "resort-and-villas-3.jpg": {
+    "slug": "resort-and-villas-3",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5350,
+    "height": 3564
+  },
+  "resort-and-villas-4.jpg": {
+    "slug": "resort-and-villas-4",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3024,
+    "height": 4032
+  },
+  "resort-and-villas-5.jpg": {
+    "slug": "resort-and-villas-5",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5165,
+    "height": 3030
+  },
+  "resort-and-villas.jpg": {
+    "slug": "resort-and-villas",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2266,
+    "height": 3021
   },
   "ritual.jpg": {
     "slug": "ritual",
@@ -548,6 +1007,32 @@
     "width": 2958,
     "height": 3943
   },
+  "sacrade.jpg": {
+    "slug": "sacrade",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5857,
+    "height": 3905
+  },
+  "shivaji-maharaj.jpg": {
+    "slug": "shivaji-maharaj",
+    "widths": [
+      640
+    ],
+    "width": 1080,
+    "height": 1920
+  },
+  "shriram.jpg": {
+    "slug": "shriram",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 1306
+  },
   "spa-and-wellness-2.jpg": {
     "slug": "spa-and-wellness-2",
     "widths": [
@@ -568,6 +1053,24 @@
     "width": 3644,
     "height": 5466
   },
+  "strategic-leader.png": {
+    "slug": "strategic-leader",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
+  },
+  "summer.jpg": {
+    "slug": "summer",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6016,
+    "height": 4000
+  },
   "sustainable-and-eco-friendly-2.jpg": {
     "slug": "sustainable-and-eco-friendly-2",
     "widths": [
@@ -577,6 +1080,56 @@
     ],
     "width": 4416,
     "height": 2944
+  },
+  "tech-nursury.jpg": {
+    "slug": "tech-nursury",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2201,
+    "height": 3913
+  },
+  "temple-1.jpg": {
+    "slug": "temple-1",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3675,
+    "height": 2450
+  },
+  "temple-interior.jpg": {
+    "slug": "temple-interior",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 7389,
+    "height": 5820
+  },
+  "temple.jpg": {
+    "slug": "temple",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 8064,
+    "height": 4536
+  },
+  "temple_hero.jpg": {
+    "slug": "temple-hero",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5977,
+    "height": 3985
   },
   "trekking-2.jpg": {
     "slug": "trekking-2",
@@ -608,6 +1161,16 @@
     "width": 2832,
     "height": 4240
   },
+  "trishul.jpg": {
+    "slug": "trishul",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3072,
+    "height": 4096
+  },
   "valley-villas.jpg": {
     "slug": "valley-villas",
     "widths": [
@@ -617,6 +1180,42 @@
     ],
     "width": 4032,
     "height": 3024
+  },
+  "village-blessing.jpg": {
+    "slug": "village-blessing",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3000,
+    "height": 1971
+  },
+  "visionary-king.png": {
+    "slug": "visionary-king",
+    "widths": [
+      375
+    ],
+    "width": 375,
+    "height": 246
+  },
+  "vitthal-rukmini.jpg": {
+    "slug": "vitthal-rukmini",
+    "widths": [
+      640
+    ],
+    "width": 736,
+    "height": 1303
+  },
+  "vows.jpg": {
+    "slug": "vows",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5760,
+    "height": 3840
   },
   "waterfall.jpg": {
     "slug": "waterfall",
@@ -647,5 +1246,109 @@
     ],
     "width": 4336,
     "height": 5776
+  },
+  "waterpark-food.jpg": {
+    "slug": "waterpark-food",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4608,
+    "height": 3072
+  },
+  "waterpark-hero.jpg": {
+    "slug": "waterpark-hero",
+    "widths": [
+      640,
+      1280
+    ],
+    "width": 1376,
+    "height": 768
+  },
+  "waterpark-kids.jpg": {
+    "slug": "waterpark-kids",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4567,
+    "height": 2938
+  },
+  "waterpark-lazyriver.jpg": {
+    "slug": "waterpark-lazyriver",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 2784,
+    "height": 4176
+  },
+  "waterpark-rides.jpg": {
+    "slug": "waterpark-rides",
+    "widths": [
+      640
+    ],
+    "width": 1200,
+    "height": 896
+  },
+  "waterpark-wavepool.jpg": {
+    "slug": "waterpark-wavepool",
+    "widths": [
+      640
+    ],
+    "width": 1200,
+    "height": 896
+  },
+  "waterpark.jpg": {
+    "slug": "waterpark",
+    "widths": [
+      640,
+      1280
+    ],
+    "width": 1376,
+    "height": 768
+  },
+  "weed.jpg": {
+    "slug": "weed",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3000,
+    "height": 2000
+  },
+  "weeding_shoot.jpg": {
+    "slug": "weeding-shoot",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6720,
+    "height": 4480
+  },
+  "well-planted-roads-and-street-lights.jpg": {
+    "slug": "well-planted-roads-and-street-lights",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 5157,
+    "height": 3438
+  },
+  "winter.jpg": {
+    "slug": "winter",
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 6000,
+    "height": 4000
   }
 }

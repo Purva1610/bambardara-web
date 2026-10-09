@@ -136,7 +136,7 @@ const PLATES = [
   { slug: 'trekking',                    alt: 'A guided trek along the escarpment',        span: 'md:col-span-2 md:row-span-2' },
   { slug: 'luxury-hotel-rooms-and-suites-3', alt: 'Interior of an orchard suite',          span: 'md:col-span-2' },
 
-  { slug: 'familiy',                     alt: 'Family fun and hospitality at the estate',  span: 'md:col-span-2' },
+  { slug: 'family-vacation',                     alt: 'Family fun and hospitality at the estate',  span: 'md:col-span-2' },
   { slug: 'pick',                        alt: 'Family walk through the estate',            span: 'md:col-span-2' },
 
   { slug: 'international-meditation-center', alt: 'Meditation and wellness at the estate', span: 'md:col-span-2' },
@@ -156,7 +156,7 @@ const MEASURES = [
 
 const OCCASIONS = [
   {
-    slug: 'weeding',
+    slug: 'wedding-ceremony',
     label: 'Weddings',
     title: 'Terrace Weddings',
     body:
@@ -164,7 +164,7 @@ const OCCASIONS = [
     capacity: 'Up to 300 guests',
   },
   {
-    slug: 'coorporate',
+    slug: 'corporate-events',
     label: 'Corporate',
     title: 'Offsites & Conferences',
     body:
@@ -217,7 +217,7 @@ const RITUALS = [
     body: 'Heated to twenty-nine degrees year round, set flush with the ridge so the water meets the valley.',
   },
   {
-    slug: 'temp',
+    slug: 'temple-sanctum',
     title: 'The Estate Temple',
     body: 'Two hundred years older than anything else here. Morning aarti is open to guests who wish to attend.',
   },

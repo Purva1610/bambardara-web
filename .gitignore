@@ -14,6 +14,10 @@
 # misc
 .DS_Store
 
+# Local machine's antivirus TLS-inspection root cert (needed only to build
+# Docker images behind this machine's network; irrelevant on other machines/CI)
+avast-root.pem
+
 # Environment variables (use .env.example as a template)
 .env
 .env.local

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 import Reveal from './shared/Reveal';
 import SectionHeading from './shared/SectionHeading';
 import EstateImage from './shared/EstateImage';
@@ -14,31 +15,33 @@ const directors = [
     name: 'Prakash Patil',
     title: 'Director',
     bio: 'Prakash contributes valuable insights and strategic direction, leveraging his deep industry knowledge and experience to shape our future. Specializes in luxury resort operations and guest experience excellence.',
-    slug: 'patil',
+    slug: 'director-patil',
   },
   {
     name: 'Prakash Pawar',
     title: 'Director',
     bio: 'Prakash oversees daily operations and implements innovative hospitality solutions. His expertise in sustainable tourism and community development has transformed Bambarddara into a premier destination.',
-    slug: 'pawar',
+    slug: 'director-pawar',
   },
   {
     name: 'Mr Krushnath Sutar',
     title: 'Director',
     bio: 'Krushnath ensures financial excellence and strategic investments with his extensive background in corporate finance. He brings fiscal discipline and growth-oriented strategies to the board.',
-    slug: 'krushnath',
+    // Headshot file was lost and never committed to git — placeholder icon
+    // shown until a real photo is supplied (see render logic below).
+    photoMissing: true,
   },
   {
     name: 'Mr Suhas Kadam',
     title: 'Director',
     bio: 'Suhas leads operational excellence across all estate facilities. His commitment to quality standards and safety protocols ensures world-class guest experiences and staff development.',
-    slug: 'sushas',
+    slug: 'director-suhas-patil',
   },
   {
     name: 'Mr Sachin Choughule',
     title: 'Director',
     bio: "Sachin drives brand positioning and strategic partnerships. His innovative marketing campaigns and digital strategies have elevated Bambarddara's presence in luxury travel markets globally.",
-    slug: 'sachin',
+    slug: 'leader-sachin',
   },
   {
     name: 'Mr Maruti More',
@@ -50,7 +53,7 @@ const directors = [
     name: 'Mr Dilip Ghavale',
     title: 'Director',
     bio: 'Dilip champions exceptional guest experiences and service excellence. His background in international hospitality brings world-class standards and personalized care to every visitor.',
-    slug: 'dilip',
+    slug: 'founder-dilip-patil',
   },
 ];
 
@@ -76,12 +79,18 @@ const BoardOfDirectors = () => {
             <Reveal key={director.name} delay={index * 100}>
               <article className="group flex flex-col h-full">
                 <div className="lux-frame zoom-hover h-72 w-full mx-auto mb-6 border border-luxury-gold p-2 flex-shrink-0">
-                  <EstateImage
-                    slug={director.slug}
-                    alt={director.name}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                    className="transition-transform duration-[1800ms] ease-luxe group-hover:scale-105"
-                  />
+                  {director.photoMissing ? (
+                    <div className="flex h-full w-full items-center justify-center bg-warm-sand">
+                      <FaUserCircle className="h-24 w-24 text-forest-green/30" aria-hidden="true" />
+                    </div>
+                  ) : (
+                    <EstateImage
+                      slug={director.slug}
+                      alt={director.name}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="transition-transform duration-[1800ms] ease-luxe group-hover:scale-105"
+                    />
+                  )}
                 </div>
                 <div>
                   <span className="lux-label text-xs">{director.title}</span>

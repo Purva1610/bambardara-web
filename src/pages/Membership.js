@@ -1,36 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaLeaf, FaMedal, FaGem, FaCrown, FaStar, FaHome, FaCampground, FaUsers, FaLandmark, FaSpa } from 'react-icons/fa';
+import { GiFruitBowl, GiWheat, GiPartyPopper } from 'react-icons/gi';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
 
 const TIERS = [
   {
-    name: '🌿 Silver Explorer',
+    icon: FaLeaf,
+    name: 'Silver Explorer',
     amount: '₹1,50,000',
     duration: '5 Years',
     days: '10 Days',
   },
   {
-    name: '🏅 Gold Adventure',
+    icon: FaMedal,
+    name: 'Gold Adventure',
     amount: '₹3,00,000',
     duration: '10 Years',
     days: '10 Days',
   },
   {
-    name: '💎 Platinum Nature',
+    icon: FaGem,
+    name: 'Platinum Nature',
     amount: '₹6,00,000',
     duration: '15 Years',
     days: '15 Days',
   },
   {
-    name: '👑 Diamond Heritage',
+    icon: FaCrown,
+    name: 'Diamond Heritage',
     amount: '₹10,00,000',
     duration: '20 Years',
     days: '20 Days',
   },
   {
-    name: '⭐ Founder Club',
+    icon: FaStar,
+    name: 'Founder Club',
     amount: '₹30,00,000',
     duration: '30 Years',
     days: '30 Days',
@@ -39,42 +46,42 @@ const TIERS = [
 
 const BENEFITS = [
   {
-    icon: '🏡',
+    icon: FaHome,
     title: 'Farm Stay',
     body: 'Complimentary or discounted stays every year at our nature resorts',
   },
   {
-    icon: '🥗',
+    icon: GiFruitBowl,
     title: 'Organic Food',
     body: 'Fresh, healthy organic meals and farm produce',
   },
   {
-    icon: '🌾',
+    icon: GiWheat,
     title: 'Farm Activities',
     body: 'Bullock cart rides, farming experience, fruit picking, village tours & more',
   },
   {
-    icon: '🏕️',
+    icon: FaCampground,
     title: 'Adventure',
     body: 'Trekking, camping, fishing, bird watching and exciting outdoor activities',
   },
   {
-    icon: '🎊',
+    icon: GiPartyPopper,
     title: 'Wedding, Birthday, Corporate Events',
     body: 'Host your special occasions and corporate events at our premium estate',
   },
   {
-    icon: '👨‍👩‍👧',
+    icon: FaUsers,
     title: 'Family Benefits',
     body: 'Membership valid for you and your family members',
   },
   {
-    icon: '🏛️',
+    icon: FaLandmark,
     title: 'Cultural Heritage',
     body: 'Experience local traditions, festivals, and rural culture',
   },
   {
-    icon: '🧖',
+    icon: FaSpa,
     title: 'Wellness & Relax',
     body: 'Meditation sessions and luxury spa experiences for complete rejuvenation',
   },
@@ -193,9 +200,9 @@ export default function Membership() {
             {TIERS.map((tier, idx) => (
               <Reveal key={tier.name} delay={idx * 80}>
                 <div className="flex h-full flex-col border border-stone bg-white p-6 text-center transition-shadow duration-700 hover:shadow-xl">
-                  <span className="text-3xl">{tier.name.split(' ')[0]}</span>
+                  <tier.icon className="mx-auto h-8 w-8 text-luxury-gold" aria-hidden="true" />
                   <h3 className="mt-3 font-heading text-base font-light text-forest-green">
-                    {tier.name.split(' ').slice(1).join(' ')}
+                    {tier.name}
                   </h3>
                   <span className="lux-rule mt-4" />
                   <div className="mt-4 space-y-3">
@@ -256,7 +263,7 @@ export default function Membership() {
           {BENEFITS.map((benefit, idx) => (
             <Reveal key={benefit.title} delay={idx * 80}>
               <div className="flex h-full flex-col border border-stone bg-white p-8 transition-shadow duration-700 hover:shadow-xl">
-                <span className="text-4xl">{benefit.icon}</span>
+                <benefit.icon className="h-9 w-9 text-luxury-gold" aria-hidden="true" />
                 <h3 className="mt-4 font-heading text-lg font-light text-forest-green">
                   {benefit.title}
                 </h3>

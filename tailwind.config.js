@@ -4,9 +4,9 @@ module.exports = {
     extend: {
       colors: {
         /* Ultra-Luxury Palette - Refined & Opulent */
-        'forest-green': '#0A4D2E',
-        'luxury-gold': '#C9A961',
-        'rich-gold': '#D4B560',
+        'forest-green': '#0B5D3A',
+        'luxury-gold': '#D4AF37',
+        'rich-gold': '#E5C158',
         'rose-gold': '#E8C4A0',
         'champagne': '#F7E7CE',
         'dark-charcoal': '#1A1916',
@@ -30,11 +30,13 @@ module.exports = {
         'pearl': '#F0EAE2',
       },
       fontFamily: {
-        heading: ['"Cormorant Garamond"', '"Playfair Display"', 'serif'],
-        subheading: ['"Gilda Display"', 'serif'],
-        body: ['"Inter"', 'Poppins', 'sans-serif'],
+        heading: ['"Playfair Display"', 'Georgia', 'serif'],
+        subheading: ['"Playfair Display"', 'serif'],
+        body: ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         accent: ['"Cinzel"', 'serif'],
         mono: ['"Space Mono"', '"IBM Plex Mono"', 'monospace'],
+        /* Margin-note annotations only — never body copy or headings. */
+        hand: ['"Caveat"', 'cursive'],
       },
       letterSpacing: {
         label: '0.28em',
@@ -63,8 +65,8 @@ module.exports = {
       boxShadow: {
         'luxury': '0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04)',
         'luxury-lg': '0 40px 100px rgba(0, 0, 0, 0.12), 0 15px 40px rgba(0, 0, 0, 0.06)',
-        'gold': '0 8px 32px rgba(201, 169, 97, 0.25)',
-        'gold-lg': '0 20px 60px rgba(201, 169, 97, 0.35)',
+        'gold': '0 8px 32px rgba(212, 175, 55, 0.25)',
+        'gold-lg': '0 20px 60px rgba(212, 175, 55, 0.35)',
         'soft': '0 4px 16px rgba(0, 0, 0, 0.03)',
       },
       backdropBlur: {

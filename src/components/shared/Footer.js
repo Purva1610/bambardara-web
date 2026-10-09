@@ -33,9 +33,9 @@ const COLUMNS = [
   {
     heading: 'Occasions',
     links: [
-      { name: 'Weddings', href: '/#occasions' },
-      { name: 'Conferences', href: '/#occasions' },
-      { name: 'Harvest Nights', href: '/#occasions' },
+      { name: 'Weddings', href: '/occasions' },
+      { name: 'Conferences', href: '/occasions' },
+      { name: 'Harvest Nights', href: '/occasions' },
       { name: 'Enquiries', href: '/enquire' },
     ],
   },
@@ -43,7 +43,6 @@ const COLUMNS = [
     heading: 'Opportunities',
     links: [
       { name: 'Membership', href: '/membership' },
-      { name: 'Investment', href: '/investment' },
       { name: 'Enquiries', href: '/enquire' },
     ],
   },

@@ -1,29 +1,113 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import EstateImage from './EstateImage';
+import { EXPERIENCES } from '../../data/experiences';
+
+const ADVENTURE_ITEMS = EXPERIENCES
+  .filter((e) => e.type === 'adventures')
+  .map((e) => ({ name: e.title, href: `/experience/${e.id}` }));
+
+const FUN_ITEMS = EXPERIENCES
+  .filter((e) => e.type === 'leisure')
+  .map((e) => ({ name: e.title, href: `/experience/${e.id}` }));
 
 /* Routes that open on a full-bleed dark hero, like the homepage, and so want
    the header to start transparent and turn solid only once the visitor
    scrolls past it. Everything else (auth screens, 404) opens on a plain
    light background and needs the solid header from the first frame. */
-const HERO_ROUTES = ['/experiences', '/spa', '/membership', '/investment', '/enquire', '/stays'];
+const HERO_ROUTES = [
+  '/experiences',
+  '/spa',
+  '/spa/booking',
+  '/dining',
+  '/agro-farming',
+  '/agro-farming/nursery',
+  '/agro-farming/high-tech-nursery',
+  '/agro-farming/organic-farming',
+  '/agro-farming/animal-farm',
+  '/agro-farming/animal-care',
+  '/agro-farming/poultry-farming',
+  '/agro-farming/fish-farming',
+  '/cultural-experience',
+  '/cultural-experience/shivaji-statue',
+  '/cultural-experience/temple',
+  '/cultural-experience/meditation-center',
+  '/occasions',
+  '/membership',
+  '/investment',
+  '/enquire',
+  '/stays',
+  '/nature-trails',
+  '/nature-trails/waterfall',
+  '/nature-trails/bambarddara-waterfall',
+  '/nature-trails/kadavi-dam',
+  '/nature-trails/oxygen-park',
+  '/experience/nature-trails',
+];
 const hasHeroAtTop = (pathname) =>
   pathname === '/' ||
   HERO_ROUTES.includes(pathname) ||
   pathname.startsWith('/stays/') ||
   pathname.startsWith('/room/') ||
+  pathname.startsWith('/nature-trails') ||
   pathname.startsWith('/experiences/') ||
   pathname.startsWith('/experience/');
 
 const NAV_LINKS = [
-  { name: 'Estate',      hash: '#estate' },
-  { name: 'Residences',  href: '/stays' },
-  { name: 'Spa',         href: '/spa' },
-  { name: 'Experiences', href: '/experiences' },
-  { name: 'Dining',      hash: '#dining' },
-  { name: 'Occasions',   hash: '#occasions' },
-  { name: 'Gallery',     hash: '#gallery' },
-  { name: 'Investment',  href: '/investment' },
+  {
+    name: 'Resort',
+    children: [
+      { name: 'Residences', href: '/stays' },
+      { name: 'Spa',        href: '/spa' },
+      { name: 'Dining',     href: '/dining' },
+      { name: 'Occasions',  href: '/occasions' },
+    ],
+  },
+  {
+    name: 'Experiences',
+    href: '/experiences',
+    groups: [
+      { title: 'Adventure', href: '/experiences/adventures', items: ADVENTURE_ITEMS },
+      { title: 'Fun',       href: '/experiences/leisure',    items: FUN_ITEMS },
+    ],
+  },
+  {
+    name: 'Nature Trails',
+    href: '/nature-trails',
+    children: [
+      { name: 'Bambarddara Waterfall', href: '/nature-trails/waterfall' },
+      { name: 'Kadavi Dam',             href: '/nature-trails/kadavi-dam' },
+      { name: 'Oxygen Park',            href: '/nature-trails/oxygen-park' },
+    ],
+  },
+  {
+    name: 'Agro Farming',
+    href: '/agro-farming',
+    children: [
+      { name: 'Organic Farming',   href: '/agro-farming/organic-farming' },
+      { name: 'High Tech Nursery', href: '/agro-farming/high-tech-nursery' },
+      { name: 'Indoor Plantation', href: '/agro-farming/nursery' },
+    ],
+  },
+  {
+    name: 'Animal Farm',
+    href: '/agro-farming/animal-farm',
+    children: [
+      { name: 'Dairy Farm',    href: '/agro-farming/dairy-farm' },
+      { name: 'Animal Care',   href: '/agro-farming/animal-care' },
+      { name: 'Poultry Farm',  href: '/agro-farming/poultry-farming' },
+      { name: 'Fish Farming',  href: '/agro-farming/fish-farming' },
+    ],
+  },
+  {
+    name: 'Cultural Experience',
+    href: '/cultural-experience',
+    children: [
+      { name: 'Shivaji Maharaj Statue', href: '/cultural-experience/shivaji-statue' },
+      { name: 'Temple',                 href: '/cultural-experience/temple' },
+      { name: 'International Meditation Center', href: '/cultural-experience/meditation-center' },
+    ],
+  },
   { name: 'Membership',  href: '/membership' },
 ];
 
@@ -32,6 +116,8 @@ export default function Header({ user, onLogout }) {
   const isHome = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -46,34 +132,157 @@ export default function Header({ user, onLogout }) {
   const getHref = (link) =>
     link.href ? link.href : isHome ? link.hash : `/${link.hash}`;
 
-  /* Shared classes for every nav link */
+  /* Shared classes for every nav link. `group` scopes the hover underline
+     in <NavLabel> to just this one link. */
   const linkCls = [
-    'font-body text-[0.7rem] uppercase tracking-wide whitespace-nowrap',
-    'transition-all duration-500 ease-out relative',
+    'group font-body text-[0.7rem] uppercase tracking-[0.12em] whitespace-nowrap',
+    'transition-colors duration-500 ease-out relative',
     solid
       ? 'text-forest-green hover:text-luxury-gold'
       : 'text-ivory-white/90 hover:text-luxury-gold',
   ].join(' ');
 
+  /* A label with a gold underline that slides in from the left on hover,
+     used for every top-level nav trigger. */
+  const NavLabel = ({ children }) => (
+    <span className="relative inline-block py-1">
+      {children}
+      <span className="pointer-events-none absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-luxury-gold transition-transform duration-500 ease-out group-hover:scale-x-100" />
+    </span>
+  );
+
+  /* `side` flips which edge a dropdown hangs from, so menus on the
+     right-hand nav don't spill off the edge of the viewport. */
+  const renderNavLink = (link, side = 'left') => {
+    if (link.children) {
+      return (
+        <div
+          key={link.name}
+          className="relative"
+          onMouseEnter={() => setOpenMenu(link.name)}
+          onMouseLeave={() => setOpenMenu(null)}
+        >
+          {link.href ? (
+            <Link to={link.href} className={linkCls}>
+              <NavLabel>{link.name}</NavLabel>
+            </Link>
+          ) : (
+            <button type="button" className={linkCls}>
+              <NavLabel>{link.name}</NavLabel>
+            </button>
+          )}
+          <div
+            className={[
+              side === 'right' ? 'absolute right-0 top-full pt-3' : 'absolute left-0 top-full pt-3',
+              'transition-all duration-300',
+              openMenu === link.name ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none',
+            ].join(' ')}
+          >
+            <div className="min-w-[10rem] border border-stone bg-ivory-white shadow-lg py-2 z-50">
+              {link.children.map((child) => (
+                child.href ? (
+                  <Link
+                    key={child.name}
+                    to={child.href}
+                    className="block px-5 py-2.5 font-body text-[0.7rem] uppercase tracking-wide text-forest-green hover:bg-warm-sand hover:text-luxury-gold whitespace-nowrap"
+                  >
+                    {child.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={child.name}
+                    href={getHref(child)}
+                    className="block px-5 py-2.5 font-body text-[0.7rem] uppercase tracking-wide text-forest-green hover:bg-warm-sand hover:text-luxury-gold whitespace-nowrap"
+                  >
+                    {child.name}
+                  </a>
+                )
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (link.groups) {
+      return (
+        <div
+          key={link.name}
+          className="relative"
+          onMouseEnter={() => setOpenMenu(link.name)}
+          onMouseLeave={() => setOpenMenu(null)}
+        >
+          <Link to={link.href} className={linkCls}>
+            <NavLabel>{link.name}</NavLabel>
+          </Link>
+          <div
+            className={[
+              'absolute left-1/2 top-full -translate-x-1/2 pt-3 transition-all duration-300',
+              openMenu === link.name ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none',
+            ].join(' ')}
+          >
+            <div className="flex min-w-[32rem] gap-8 border border-stone bg-ivory-white shadow-lg p-6 z-50">
+              {link.groups.map((group) => (
+                <div key={group.title} className="flex-1">
+                  <Link
+                    to={group.href}
+                    className="block font-heading text-sm font-light tracking-wide text-luxury-gold hover:text-forest-green"
+                  >
+                    {group.title}
+                  </Link>
+                  <span className="mt-2 block h-px w-8 bg-stone" />
+                  <div className="mt-3 grid grid-cols-1 gap-x-4 gap-y-1">
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block py-1.5 font-body text-[0.7rem] uppercase tracking-wide text-forest-green hover:text-luxury-gold whitespace-nowrap"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (link.href) {
+      return (
+        <Link key={link.name} to={link.href} className={linkCls}>
+          <NavLabel>{link.name}</NavLabel>
+        </Link>
+      );
+    }
+
+    return (
+      <a key={link.name} href={getHref(link)} className={linkCls}>
+        <NavLabel>{link.name}</NavLabel>
+      </a>
+    );
+  };
+
   return (
     <header
       className={[
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-700 ease-luxe',
-        'overflow-x-hidden',          /* hard clip — nothing can escape the header */
+        'fixed inset-x-0 top-0 z-50 isolate transition-colors duration-700 ease-luxe',
         solid
           ? 'bg-ivory-white/95 shadow-sm backdrop-blur-sm'
-          : 'bg-gradient-to-b from-black/75 via-black/35 to-transparent',
+          : 'bg-gradient-to-b from-black/90 via-black/60 to-transparent',
       ].join(' ')}
     >
       {/* ─── Main bar ─────────────────────────────────────────── */}
-      <div className="mx-auto flex h-20 w-full max-w-screen-2xl items-center justify-between px-5 md:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center justify-between px-5 md:px-8">
 
         {/* Logo */}
         <Link
           to="/"
-          className="shrink-0 flex items-center gap-3 transition-all duration-500 group"
+          className="shrink-0 flex items-center gap-2.5 transition-all duration-500 group"
         >
-          <div className="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center bg-ivory-white/90 border border-luxury-gold/50 shadow-sm p-1 transition-all duration-500 group-hover:border-luxury-gold group-hover:scale-105">
+          <div className="h-9 w-9 rounded-full overflow-hidden flex items-center justify-center bg-ivory-white/90 border border-luxury-gold/50 shadow-sm p-1 transition-all duration-500 group-hover:border-luxury-gold group-hover:scale-105">
             <EstateImage
               slug="logo"
               alt="BAMBARDDARA"
@@ -82,11 +291,19 @@ export default function Header({ user, onLogout }) {
               className="h-full w-full"
             />
           </div>
-          <span className={[
-            'font-heading text-lg tracking-[0.06em] transition-colors duration-500',
-            solid ? 'text-forest-green' : 'text-ivory-white',
-          ].join(' ')}>
-            BAMBARDDARA
+          <span className="flex flex-col leading-tight">
+            <span className={[
+              'font-heading text-base tracking-[0.08em] transition-colors duration-500',
+              solid ? 'text-forest-green' : 'text-ivory-white',
+            ].join(' ')}>
+              BAMBARDDARA
+            </span>
+            <span className={[
+              'font-body text-[0.55rem] tracking-[0.25em] transition-colors duration-500',
+              solid ? 'text-forest-green/70' : 'text-ivory-white/80',
+            ].join(' ')}>
+              AGRO TOURISM
+            </span>
           </span>
         </Link>
 
@@ -95,36 +312,26 @@ export default function Header({ user, onLogout }) {
           aria-label="Main navigation"
           className="hidden xl:flex items-center gap-[1.1rem]"
         >
-          {NAV_LINKS.map((link) =>
-            link.href ? (
-              <Link key={link.name} to={link.href} className={linkCls}>
-                {link.name}
-              </Link>
-            ) : (
-              <a key={link.name} href={getHref(link)} className={linkCls}>
-                {link.name}
-              </a>
-            )
-          )}
+          {NAV_LINKS.map((link) => renderNavLink(link, 'left'))}
         </nav>
 
         {/* ── Desktop right actions ── */}
         <div className="hidden xl:flex items-center gap-4 shrink-0">
           {user ? (
             <button type="button" onClick={onLogout} className={linkCls}>
-              Sign Out
+              <NavLabel>Sign Out</NavLabel>
             </button>
           ) : (
             <Link to="/login" className={linkCls}>
-              Sign In
+              <NavLabel>Sign In</NavLabel>
             </Link>
           )}
 
           <Link
             to="/enquire"
             className={[
-              'inline-flex items-center border px-5 py-2.5',
-              'font-body text-[0.7rem] uppercase tracking-wide whitespace-nowrap',
+              'inline-flex items-center border px-6 py-2',
+              'font-body text-[0.65rem] uppercase tracking-[0.15em] whitespace-nowrap',
               'transition-all duration-700 ease-out',
               solid
                 ? 'border-forest-green text-forest-green hover:bg-forest-green hover:text-ivory-white hover:shadow-lg'
@@ -186,6 +393,106 @@ export default function Header({ user, onLogout }) {
                 ? 'border-stone text-forest-green hover:text-luxury-gold'
                 : 'border-ivory-white/10 text-ivory-white/90 hover:text-luxury-gold',
             ].join(' ');
+
+            if (link.children) {
+              const isOpen = mobileOpenMenu === link.name;
+              return (
+                <div key={link.name} className={['border-b', solid ? 'border-stone' : 'border-ivory-white/10'].join(' ')}>
+                  <button
+                    type="button"
+                    onClick={() => setMobileOpenMenu((m) => (m === link.name ? null : link.name))}
+                    className={[
+                      'flex w-full items-center justify-between py-4 font-body text-sm uppercase tracking-wide',
+                      'transition-colors duration-300',
+                      solid ? 'text-forest-green hover:text-luxury-gold' : 'text-ivory-white/90 hover:text-luxury-gold',
+                    ].join(' ')}
+                    aria-expanded={isOpen}
+                  >
+                    {link.name}
+                    <span className={['transition-transform duration-300', isOpen ? 'rotate-180' : ''].join(' ')}>▾</span>
+                  </button>
+                  <div className={['overflow-hidden transition-all duration-300', isOpen ? 'max-h-60 pb-2' : 'max-h-0'].join(' ')}>
+                    {link.children.map((child) => (
+                      child.href ? (
+                        <Link
+                          key={child.name}
+                          to={child.href}
+                          onClick={() => setMobileOpen(false)}
+                          className={[
+                            'block py-3 pl-4 font-body text-sm uppercase tracking-wide',
+                            solid ? 'text-forest-green/80 hover:text-luxury-gold' : 'text-ivory-white/70 hover:text-luxury-gold',
+                          ].join(' ')}
+                        >
+                          {child.name}
+                        </Link>
+                      ) : (
+                        <a
+                          key={child.name}
+                          href={getHref(child)}
+                          onClick={() => setMobileOpen(false)}
+                          className={[
+                            'block py-3 pl-4 font-body text-sm uppercase tracking-wide',
+                            solid ? 'text-forest-green/80 hover:text-luxury-gold' : 'text-ivory-white/70 hover:text-luxury-gold',
+                          ].join(' ')}
+                        >
+                          {child.name}
+                        </a>
+                      )
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            if (link.groups) {
+              const isOpen = mobileOpenMenu === link.name;
+              return (
+                <div key={link.name} className={['border-b', solid ? 'border-stone' : 'border-ivory-white/10'].join(' ')}>
+                  <button
+                    type="button"
+                    onClick={() => setMobileOpenMenu((m) => (m === link.name ? null : link.name))}
+                    className={[
+                      'flex w-full items-center justify-between py-4 font-body text-sm uppercase tracking-wide',
+                      'transition-colors duration-300',
+                      solid ? 'text-forest-green hover:text-luxury-gold' : 'text-ivory-white/90 hover:text-luxury-gold',
+                    ].join(' ')}
+                    aria-expanded={isOpen}
+                  >
+                    {link.name}
+                    <span className={['transition-transform duration-300', isOpen ? 'rotate-180' : ''].join(' ')}>▾</span>
+                  </button>
+                  <div className={['overflow-hidden transition-all duration-300', isOpen ? 'max-h-[36rem] pb-4' : 'max-h-0'].join(' ')}>
+                    {link.groups.map((group) => (
+                      <div key={group.title} className="mt-2">
+                        <Link
+                          to={group.href}
+                          onClick={() => setMobileOpen(false)}
+                          className={[
+                            'block pl-4 py-2 font-body text-xs font-semibold uppercase tracking-wider',
+                            solid ? 'text-luxury-gold' : 'text-muted-gold',
+                          ].join(' ')}
+                        >
+                          {group.title}
+                        </Link>
+                        {group.items.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={[
+                              'block py-2 pl-8 font-body text-sm uppercase tracking-wide',
+                              solid ? 'text-forest-green/80 hover:text-luxury-gold' : 'text-ivory-white/70 hover:text-luxury-gold',
+                            ].join(' ')}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
 
             return link.href ? (
               <Link

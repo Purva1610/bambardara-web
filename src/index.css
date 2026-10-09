@@ -1,22 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&family=Cinzel:wght@400;500;600&family=Gilda+Display&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --forest-green: #0B5D3A;
+  --luxury-gold: #D4AF37;
+  --dark-charcoal: #1A1916;
+  --ivory-white: #FFFBF5;
+  --natural-brown: #5C3D28;
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
     margin: 0;
     overflow-x: hidden;
+    overflow-x: clip;
     background: linear-gradient(180deg, #FFFBF5 0%, #FFF9F0 100%);
     color: #1A1916;
-    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -29,7 +39,7 @@
   h4,
   h5,
   h6 {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.02em;
     color: #1A1916;
@@ -53,7 +63,7 @@
   }
 
   ::selection {
-    background: linear-gradient(135deg, #C9A961 0%, #D4B560 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%);
     color: #FFFBF5;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
@@ -79,14 +89,14 @@
     @apply font-body text-label uppercase text-luxury-gold;
     font-weight: 500;
     letter-spacing: 0.28em;
-    text-shadow: 0 1px 2px rgba(201, 169, 97, 0.15);
+    text-shadow: 0 1px 2px rgba(212, 175, 55, 0.15);
   }
 
   /* Elegant decorative rule with gradient */
   .lux-rule {
     @apply block h-px w-20 origin-left;
-    background: linear-gradient(90deg, #C9A961 0%, #D4B560 50%, transparent 100%);
-    box-shadow: 0 1px 3px rgba(201, 169, 97, 0.2);
+    background: linear-gradient(90deg, #D4AF37 0%, #E5C158 50%, transparent 100%);
+    box-shadow: 0 1px 3px rgba(212, 175, 55, 0.2);
   }
 
   /* PRIMARY BUTTON SYSTEM - Ultra-refined interactions */
@@ -113,7 +123,7 @@
   .lux-btn::before {
     content: '';
     @apply absolute inset-0 z-0 opacity-0 transition-opacity duration-700;
-    background: radial-gradient(circle at center, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
   }
   
   .lux-btn:hover::after {
@@ -125,7 +135,7 @@
   }
   
   .lux-btn:hover {
-    box-shadow: 0 8px 32px rgba(201, 169, 97, 0.25);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
     transform: translateY(-2px);
   }
 
@@ -148,32 +158,32 @@
   /* Dark variant - for light backgrounds */
   .lux-btn-dark {
     @apply lux-btn text-forest-green;
-    border-color: rgba(10, 77, 46, 0.3);
+    border-color: rgba(11, 93, 58, 0.3);
   }
   
   .lux-btn-dark::after {
-    background: linear-gradient(135deg, #0A4D2E 0%, #0D3B2F 100%);
+    background: linear-gradient(135deg, #0B5D3A 0%, #0D3B2F 100%);
   }
   
   .lux-btn-dark:hover {
     @apply text-ivory-white;
-    border-color: #0A4D2E;
+    border-color: #0B5D3A;
   }
 
   /* Gold variant - premium accent */
   .lux-btn-gold {
     @apply lux-btn text-dark-charcoal;
-    border-color: rgba(201, 169, 97, 0.5);
-    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 181, 96, 0.1) 100%);
+    border-color: rgba(212, 175, 55, 0.5);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.1) 100%);
   }
   
   .lux-btn-gold::after {
-    background: linear-gradient(135deg, #C9A961 0%, #D4B560 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%);
   }
   
   .lux-btn-gold:hover {
-    border-color: #C9A961;
-    box-shadow: 0 12px 48px rgba(201, 169, 97, 0.4);
+    border-color: #D4AF37;
+    box-shadow: 0 12px 48px rgba(212, 175, 55, 0.4);
   }
 
   /* LINK SYSTEM - Refined underline animations */
@@ -268,6 +278,51 @@
     background: linear-gradient(135deg, #F8F4ED 0%, #F5EFE6 100%);
     position: relative;
     overflow: hidden;
+    border-radius: inherit;
+  }
+
+  /* Frames & card images default to elegant curved rectangle / square */
+  .lux-frame,
+  .img-curved,
+  .estate-card-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+  }
+
+  /* Universal curved rectangle/square styling for cards across the whole site */
+  .card,
+  .lux-card,
+  .taj-card,
+  .bento-card,
+  .feature-card,
+  .experience-card,
+  .stay-card,
+  .room-card,
+  .activity-card,
+  .benefit-card,
+  .stat-card,
+  .spec-card,
+  .price-card,
+  .review-card,
+  .testimonial-card,
+  .gallery-card,
+  .package-card,
+  .amenity-card {
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+
+  /* Ensure standalone img-placeholders outside explicit full-bleed hero wrappers get curved corners */
+  :not(.min-h-viewport):not(#hero):not([data-fullbleed]) > .img-placeholder {
+    border-radius: 1.25rem;
+  }
+
+  /* Full-bleed heroes preserve square edges */
+  #hero .img-placeholder,
+  .min-h-viewport .img-placeholder,
+  [data-fullbleed] .img-placeholder {
+    border-radius: 0;
   }
 
   /* Gold shimmer — hidden once the LQIP image itself is visible */
@@ -284,6 +339,7 @@
     );
     animation: shimmer 3s ease-in-out infinite;
     pointer-events: none;
+    border-radius: inherit;
   }
 
   /* LQIP: tiny WebP shown blurred as the background layer */
@@ -297,6 +353,7 @@
     transform: scale(1.08); /* avoid blur edge fringe */
     z-index: 1;
     pointer-events: none;
+    border-radius: inherit;
   }
 
   /* Full-res picture wrapper */
@@ -307,12 +364,14 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    border-radius: inherit;
   }
 
   .img-placeholder picture {
     display: block;
     height: 100%;
     width: 100%;
+    border-radius: inherit;
   }
 
   .img-placeholder picture img,
@@ -323,6 +382,7 @@
     object-fit: cover;
     will-change: transform;
     backface-visibility: hidden;
+    border-radius: inherit;
   }
 
   /* Direct img fallback (when <picture> is not used) */
@@ -333,6 +393,7 @@
     object-fit: cover;
     will-change: transform;
     backface-visibility: hidden;
+    border-radius: inherit;
   }
 
   /* Full-res fade-in: starts invisible, cross-fades in smoothly */
@@ -341,6 +402,7 @@
     transition:
       opacity   0.9s cubic-bezier(0.19, 1, 0.22, 1),
       filter    0.9s cubic-bezier(0.19, 1, 0.22, 1);
+    border-radius: inherit;
   }
 
   .img-zoom.img-loaded {
@@ -376,7 +438,7 @@
   
   .gallery-tile {
     @apply relative overflow-hidden;
-    background: linear-gradient(135deg, #1A1916 0%, #0A4D2E 100%);
+    background: linear-gradient(135deg, #1A1916 0%, #0B5D3A 100%);
   }
   
   .gallery-tile::after {
@@ -384,8 +446,8 @@
     @apply absolute inset-0 transition-all duration-800 ease-luxe;
     background: linear-gradient(
       135deg,
-      rgba(10, 77, 46, 0) 0%,
-      rgba(10, 77, 46, 0.5) 100%
+      rgba(11, 93, 58, 0) 0%,
+      rgba(11, 93, 58, 0.5) 100%
     );
     opacity: 0;
   }
@@ -414,7 +476,7 @@
   .luxury-card {
     @apply relative overflow-hidden;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 244, 237, 0.95) 100%);
-    border: 1px solid rgba(201, 169, 97, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 2px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
     backdrop-filter: blur(16px);
@@ -424,13 +486,13 @@
   .luxury-card::before {
     content: '';
     @apply absolute top-0 left-0 right-0 h-px;
-    background: linear-gradient(90deg, transparent 0%, rgba(201, 169, 97, 0.5) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%);
   }
   
   .luxury-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(201, 169, 97, 0.15);
-    border-color: rgba(201, 169, 97, 0.4);
+    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.4);
   }
 }
 
@@ -440,9 +502,9 @@
   .lux-scrim {
     background: linear-gradient(
       to top,
-      rgba(10, 77, 46, 0.92) 0%,
-      rgba(10, 77, 46, 0.55) 40%,
-      rgba(10, 77, 46, 0.18) 75%,
+      rgba(11, 93, 58, 0.92) 0%,
+      rgba(11, 93, 58, 0.55) 40%,
+      rgba(11, 93, 58, 0.18) 75%,
       transparent 100%
     );
   }
@@ -450,9 +512,9 @@
   .lux-scrim-soft {
     background: linear-gradient(
       to top,
-      rgba(10, 77, 46, 0.75) 0%,
-      rgba(10, 77, 46, 0.25) 50%,
-      rgba(10, 77, 46, 0.05) 80%,
+      rgba(11, 93, 58, 0.75) 0%,
+      rgba(11, 93, 58, 0.25) 50%,
+      rgba(11, 93, 58, 0.05) 80%,
       transparent 100%
     );
   }
@@ -469,9 +531,9 @@
   .lux-scrim-elegant {
     background: linear-gradient(
       135deg,
-      rgba(10, 77, 46, 0.85) 0%,
+      rgba(11, 93, 58, 0.85) 0%,
       rgba(26, 25, 22, 0.6) 50%,
-      rgba(10, 77, 46, 0.85) 100%
+      rgba(11, 93, 58, 0.85) 100%
     );
   }
 
@@ -489,8 +551,8 @@
   .gradient-gold {
     background: linear-gradient(
       135deg,
-      #C9A961 0%,
-      #D4B560 50%,
+      #D4AF37 0%,
+      #E5C158 50%,
       #E8C4A0 100%
     );
   }
@@ -498,7 +560,7 @@
   .gradient-forest {
     background: linear-gradient(
       135deg,
-      #0A4D2E 0%,
+      #0B5D3A 0%,
       #062018 50%,
       #0D3B2F 100%
     );
@@ -515,14 +577,14 @@
   /* TEXT GRADIENTS */
   
   .text-gradient-gold {
-    background: linear-gradient(135deg, #C9A961 0%, #D4B560 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-luxury {
-    background: linear-gradient(135deg, #0A4D2E 0%, #C9A961 100%);
+    background: linear-gradient(135deg, #0B5D3A 0%, #D4AF37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -571,14 +633,14 @@
   }
 
   .luxury-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #C9A961 0%, #B39558 100%);
+    background: linear-gradient(180deg, #D4AF37 0%, #B39558 100%);
     border-radius: 5px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
 
   .luxury-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #D4B560 0%, #C9A961 100%);
+    background: linear-gradient(180deg, #E5C158 0%, #D4AF37 100%);
     background-clip: content-box;
   }
 
@@ -600,14 +662,14 @@
     background: rgba(255, 251, 245, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(201, 169, 97, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
 
   .glass-dark {
     background: rgba(26, 25, 22, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(201, 169, 97, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.15);
   }
 
   /* TEXT EFFECTS */
@@ -617,17 +679,17 @@
   }
 
   .text-shadow-luxury {
-    text-shadow: 0 4px 16px rgba(201, 169, 97, 0.25);
+    text-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
   }
 
   .text-shadow-gold {
-    text-shadow: 0 2px 12px rgba(201, 169, 97, 0.4);
+    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
   }
 
   /* BORDER GRADIENTS */
   
   .border-gradient-gold {
-    border-image: linear-gradient(135deg, #C9A961 0%, #D4B560 100%) 1;
+    border-image: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%) 1;
   }
 
   /* FILTER EFFECTS */
@@ -712,14 +774,14 @@ button:hover {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1.5px solid rgba(201, 169, 97, 0.2);
+  border: 1.5px solid rgba(212, 175, 55, 0.2);
   pointer-events: none;
   transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .arch-frame:hover::after {
-  border-color: rgba(201, 169, 97, 0.5);
-  box-shadow: inset 0 0 40px rgba(201, 169, 97, 0.1);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.1);
 }
 
 .arch-card {
@@ -727,7 +789,7 @@ button:hover {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 244, 237, 0.95) 100%);
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid rgba(201, 169, 97, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
   backdrop-filter: blur(16px);
 }
@@ -743,7 +805,7 @@ button:hover {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(201, 169, 97, 0.5) 50%,
+    rgba(212, 175, 55, 0.5) 50%,
     transparent 100%
   );
 }
@@ -752,8 +814,8 @@ button:hover {
   transform: translateY(-8px);
   box-shadow: 
     0 24px 72px rgba(0, 0, 0, 0.08),
-    0 8px 24px rgba(201, 169, 97, 0.15);
-  border-color: rgba(201, 169, 97, 0.3);
+    0 8px 24px rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 /* ============================================================
@@ -777,7 +839,7 @@ button:hover {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(201, 169, 97, 0.4) 50%,
+    rgba(212, 175, 55, 0.4) 50%,
     transparent 100%
   );
 }
@@ -790,7 +852,7 @@ button:hover {
   transform: translate(-50%, -50%);
   width: 10px;
   height: 10px;
-  background: radial-gradient(circle, rgba(201, 169, 97, 0.6) 0%, rgba(201, 169, 97, 0.2) 70%, transparent 100%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.6) 0%, rgba(212, 175, 55, 0.2) 70%, transparent 100%);
   border-radius: 50%;
 }
 
@@ -810,7 +872,7 @@ button:hover {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(201, 169, 97, 0.5) 50%,
+    rgba(212, 175, 55, 0.5) 50%,
     transparent 100%
   );
   max-width: 140px;
@@ -819,10 +881,10 @@ button:hover {
 .palace-rule-dot {
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, #C9A961 0%, #B39558 100%);
+  background: radial-gradient(circle, #D4AF37 0%, #B39558 100%);
   border-radius: 50%;
   opacity: 0.7;
-  box-shadow: 0 2px 8px rgba(201, 169, 97, 0.3);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 /* ============================================================
@@ -845,7 +907,7 @@ button:hover {
 .hero-arch-border {
   position: absolute;
   inset: 2.5rem;
-  border: 1.5px solid rgba(201, 169, 97, 0.25);
+  border: 1.5px solid rgba(212, 175, 55, 0.25);
   pointer-events: none;
   z-index: 2;
   border-radius: 2px;
@@ -855,7 +917,7 @@ button:hover {
 .hero-arch-inner {
   position: absolute;
   inset: 4rem;
-  border: 1px solid rgba(201, 169, 97, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.12);
   pointer-events: none;
   z-index: 2;
   border-radius: 2px;
@@ -867,7 +929,7 @@ button:hover {
 
 .reserve-input {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(248, 244, 237, 0.12) 100%);
-  border: 1.5px solid rgba(201, 169, 97, 0.2);
+  border: 1.5px solid rgba(212, 175, 55, 0.2);
   color: #FFFBF5;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   backdrop-filter: blur(8px);
@@ -875,9 +937,9 @@ button:hover {
 
 .reserve-input:focus {
   outline: none;
-  border-color: rgba(201, 169, 97, 0.6);
+  border-color: rgba(212, 175, 55, 0.6);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(248, 244, 237, 0.18) 100%);
-  box-shadow: 0 4px 16px rgba(201, 169, 97, 0.2);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
 }
 
 .reserve-input::placeholder {
@@ -885,23 +947,23 @@ button:hover {
 }
 
 .reserve-btn {
-  background: linear-gradient(135deg, #C9A961 0%, #D4B560 50%, #E8C4A0 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #E8C4A0 100%);
   color: #1A1916;
   font-weight: 500;
   letter-spacing: 0.08em;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0 8px 24px rgba(201, 169, 97, 0.3);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
 }
 
 .reserve-btn:hover {
-  background: linear-gradient(135deg, #D4B560 0%, #E8C4A0 50%, #F7E7CE 100%);
+  background: linear-gradient(135deg, #E5C158 0%, #E8C4A0 50%, #F7E7CE 100%);
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(201, 169, 97, 0.4);
+  box-shadow: 0 16px 40px rgba(212, 175, 55, 0.4);
 }
 
 .reserve-btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(201, 169, 97, 0.35);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
 }
 
 /* ============================================================
@@ -939,7 +1001,7 @@ button:hover {
   background: linear-gradient(
     90deg,
     rgba(248, 244, 237, 0.1) 0%,
-    rgba(201, 169, 97, 0.15) 50%,
+    rgba(212, 175, 55, 0.15) 50%,
     rgba(248, 244, 237, 0.1) 100%
   );
   background-size: 200% 100%;
@@ -1070,10 +1132,10 @@ button:hover {
 /* Pulse Glow Animation */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(201, 169, 97, 0.6);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
   }
 }
 
@@ -1167,4 +1229,179 @@ button:hover {
   );
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
+}
+
+/* ============================================================
+   INTEGRATED FARMING — organic masks, orbit and atmosphere
+   (All of these are switched off by the reduced-motion block above.)
+   ============================================================ */
+
+@keyframes olay-blob {
+  0%,
+  100% {
+    border-radius: 58% 42% 46% 54% / 46% 52% 48% 54%;
+  }
+  33% {
+    border-radius: 44% 56% 62% 38% / 56% 44% 56% 44%;
+  }
+  66% {
+    border-radius: 52% 48% 38% 62% / 38% 58% 42% 62%;
+  }
+}
+
+.olay-blob {
+  border-radius: 58% 42% 46% 54% / 46% 52% 48% 54%;
+  animation: olay-blob 18s ease-in-out infinite;
+}
+
+@keyframes olay-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes olay-orbit-counter {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* The ring turns; each badge counter-turns at the same rate so its label
+   stays upright while it travels around the dome. */
+.olay-orbit { animation: olay-orbit 38s linear infinite; }
+.olay-orbit-badge { animation: olay-orbit-counter 38s linear infinite; }
+
+@keyframes olay-haze {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+  50%      { transform: translate3d(3%, -2%, 0) scale(1.08); opacity: 0.8; }
+}
+
+.olay-haze { animation: olay-haze 16s ease-in-out infinite; }
+
+@keyframes olay-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.olay-float { animation: olay-float 7s ease-in-out infinite; }
+
+@keyframes olay-clover {
+  0%   { transform: rotate(0deg)   scale(0.9); }
+  50%  { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(0.9); }
+}
+
+.olay-clover { animation: olay-clover 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+
+/* Chamfered (notched) card — a hairline is faked by nesting two clipped
+   layers, because clip-path would otherwise cut a real border off. */
+.olay-chamfer {
+  clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
+}
+
+/* Orbit radius as a custom property so the ring can shrink on small screens
+   while the per-badge transforms stay plain inline values. */
+.olay-orbit-ring { --orbit-r: 13rem; }
+
+/* ============================================================
+   ORGANIC FARMING — field-journal / almanac styling
+   ============================================================ */
+
+/* Faint horizontal rule lines, like loose-leaf paper. Line spacing must match
+   the line-height of whatever sits on top of it or the text will drift off
+   the rules — used only behind short, fixed-line-height blocks. */
+.ruled-paper {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(10, 77, 46, 0.09) 32px
+  );
+}
+
+.ruled-paper-dark {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(255, 251, 245, 0.07) 32px
+  );
+}
+
+/* A hand-stamped ink-badge look for entry numbers and date ranges. */
+.field-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid currentColor;
+  border-radius: 0.35rem;
+  transform: rotate(-3deg);
+}
+
+/* A photograph "taped" into the journal: white margin, slight tilt, a torn
+   strip of washi tape across one corner made from a pseudo-element rather
+   than an image. */
+.taped-photo {
+  transform: rotate(-1.4deg);
+  transition: transform 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.taped-photo:hover {
+  transform: rotate(0deg);
+}
+
+.taped-photo::before {
+  content: '';
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  width: 4.5rem;
+  height: 1.6rem;
+  background: rgba(212, 181, 96, 0.55);
+  transform: translateX(-50%) rotate(-4deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+/* ============================================================
+   ANIMAL CARE — naturalist's field guide styling
+   ============================================================ */
+
+/* Small rotated-square specimen marker, used in place of a numbered badge
+   for each field-guide entry — a nod to the diamond marks in old
+   identification plates. */
+.specimen-mark {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  transform: rotate(45deg);
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+}
+
+/* A thin double rule under family headings, echoing the hairline rules on a
+   printed field-guide page — two 1px borders with a 1px gap between them. */
+.guide-rule {
+  height: 3px;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.35;
+}
+
+/* ── About section responsive grid ─────────────────────────── */
+@media (max-width: 700px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* ── Specialties bento responsive ───────────────────────────── */
+@media (max-width: 768px) {
+  .specialties-bento {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 280px 280px !important;
+    height: auto !important;
+  }
+  .specialties-bento > div:nth-child(4) {
+    display: none !important;
+  }
 }

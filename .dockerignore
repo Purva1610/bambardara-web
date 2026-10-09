@@ -14,6 +14,9 @@ yarn-error.log*
 public/images/*.jpg
 public/images/*.jpeg
 
+# 4K video original — the site serves the 1080p dairy-web.mp4 instead
+public/videos/dairy.mp4
+
 # Testing
 coverage/
 .nyc_output/
@@ -35,6 +38,14 @@ Thumbs.db
 # Git
 .git/
 .gitignore
+
+# Agent & Dev tooling
+.agents/
+.claude/
+.kilo/
+screenshots/
+*.md
+!README.md
 
 # Misc
 .eslintcache

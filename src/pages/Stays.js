@@ -4,7 +4,7 @@ import { FaArrowRight, FaConciergeBell, FaSwimmingPool, FaWineGlass, FaHelicopte
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 
-const GOLD = "#c9a24b";
+const GOLD = "#D4AF37";
 
 // Image slugs for EstateImage component
 const IMAGE_SLUGS = {
@@ -491,7 +491,7 @@ export default function Stay() {
                   <div 
                     className="w-20 h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                     style={{ 
-                      background: 'linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 181, 96, 0.05) 100%)',
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.05) 100%)',
                       borderRadius: '50%'
                     }}
                   >
@@ -513,7 +513,7 @@ export default function Stay() {
                   <div 
                     className="w-20 h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                     style={{ 
-                      background: 'linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 181, 96, 0.05) 100%)',
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.05) 100%)',
                       borderRadius: '50%'
                     }}
                   >
@@ -535,7 +535,7 @@ export default function Stay() {
                   <div 
                     className="w-20 h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                     style={{ 
-                      background: 'linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 181, 96, 0.05) 100%)',
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.05) 100%)',
                       borderRadius: '50%'
                     }}
                   >
@@ -557,7 +557,7 @@ export default function Stay() {
                   <div 
                     className="w-20 h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                     style={{ 
-                      background: 'linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 181, 96, 0.05) 100%)',
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.05) 100%)',
                       borderRadius: '50%'
                     }}
                   >
@@ -596,9 +596,9 @@ export default function Stay() {
               color: '#1A1916'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#D4B560';
+              e.currentTarget.style.backgroundColor = '#E5C158';
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(201, 169, 97, 0.4)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = GOLD;
