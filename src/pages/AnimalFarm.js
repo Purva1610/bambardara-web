@@ -20,14 +20,7 @@ const LANES = [
     title: 'Dairy Farm',
     body: 'Open, naturally ventilated sheds and a herd milked by hand at four in the morning and again at dusk — the same families have kept cattle on this land for three generations.',
   },
-  {
-    id: 'poultry-farm',
-    to: '/agro-farming/poultry-farming',
-    slug: 'farmhouse-villa-1',
-    label: 'Free-Ranging, Gathered Fresh',
-    title: 'Poultry Farm',
-    body: 'Hens and chicks, free-ranging near the coop through the day, opened at first light and shut in safe at dusk. Eggs are gathered fresh every morning for the kitchen.',
-  },
+
   {
     id: 'fish-farming',
     to: '/agro-farming/fish-farming',

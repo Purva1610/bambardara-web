@@ -26,7 +26,6 @@ const HERO_ROUTES = [
   '/agro-farming/organic-farming',
   '/agro-farming/animal-farm',
   '/agro-farming/animal-care',
-  '/agro-farming/poultry-farming',
   '/agro-farming/fish-farming',
   '/cultural-experience',
   '/cultural-experience/shivaji-statue',
@@ -95,7 +94,6 @@ const NAV_LINKS = [
     children: [
       { name: 'Dairy Farm',    href: '/agro-farming/dairy-farm' },
       { name: 'Animal Care',   href: '/agro-farming/animal-care' },
-      { name: 'Poultry Farm',  href: '/agro-farming/poultry-farming' },
       { name: 'Fish Farming',  href: '/agro-farming/fish-farming' },
     ],
   },

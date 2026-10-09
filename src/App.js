@@ -25,7 +25,6 @@ const OrganicFarming = lazy(() => import('./pages/OrganicFarming'));
 const AnimalFarm = lazy(() => import('./pages/AnimalFarm'));
 const AnimalCare = lazy(() => import('./pages/AnimalCare'));
 const DairyFarm = lazy(() => import('./pages/DairyFarm'));
-const PoultryFarming = lazy(() => import('./pages/PoultryFarming'));
 const FishFarming = lazy(() => import('./pages/FishFarming'));
 const Adventures = lazy(() => import('./pages/Adventures'));
 const ExperienceTypePage = lazy(() => import('./pages/ExperienceTypePage'));
@@ -115,7 +114,6 @@ function AppContent() {
               <Route path="/agro-farming/animal-farm" element={<AnimalFarm />} />
               <Route path="/agro-farming/animal-care" element={<AnimalCare />} />
               <Route path="/agro-farming/dairy-farm" element={<DairyFarm />} />
-              <Route path="/agro-farming/poultry-farming" element={<PoultryFarming />} />
               <Route path="/agro-farming/fish-farming" element={<FishFarming />} />
               <Route path="/experiences" element={<Adventures />} />
               <Route path="/experiences/:type" element={<ExperienceTypePage />} />
