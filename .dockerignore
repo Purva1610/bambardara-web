@@ -13,6 +13,8 @@ yarn-error.log*
 # Camera originals — only the optimised derivatives in opt/ are served
 public/images/*.jpg
 public/images/*.jpeg
+public/images/*.png
+public/images/*.webp
 
 # 4K video original — the site serves the 1080p dairy-web.mp4 instead
 public/videos/dairy.mp4

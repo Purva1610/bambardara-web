@@ -17,10 +17,11 @@ ENV REACT_APP_API_URL=$REACT_APP_API_URL
 ENV REACT_APP_ENQUIRY_ENDPOINT=$REACT_APP_ENQUIRY_ENDPOINT
 
 # Prevent Webpack 5 / Terser worker thread deadlocks and OOM during container builds
-ENV GENERATE_SOURCEMAP=false
-ENV CI=false
-ENV DISABLE_ESLINT_PLUGIN=true
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV GENERATE_SOURCEMAP=false \
+    CI=false \
+    DISABLE_ESLINT_PLUGIN=true \
+    NODE_OPTIONS="--max-old-space-size=4096" \
+    UV_THREADPOOL_SIZE=8
 
 # Trusts this machine's antivirus TLS-inspection root cert if present, so npm
 # can verify registry.npmjs.org through it (glob pattern is a no-op, not an
@@ -30,7 +31,7 @@ RUN [ -f /usr/local/share/ca-certificates/avast-root.crt ] && update-ca-certific
 ENV NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/avast-root.crt
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci --prefer-offline --no-audit || npm install --no-audit
 COPY . .
 RUN npm run build
 
