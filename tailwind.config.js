@@ -13,6 +13,7 @@ module.exports = {
         'ivory-white': '#FFFBF5',
         'cream': '#FFF9F0',
         'natural-brown': '#5C3D28',
+        'dark-brown': '#23160F',
         'light-charcoal': '#665F54',
         
         /* Deep, Sophisticated Tones */
@@ -25,16 +26,36 @@ module.exports = {
         'soft-beige': '#F8F4ED',
         
         /* Accent Colors */
-        'emerald': '#116B4C',
+        'emerald': {
+          DEFAULT: '#116B4C',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065f46',
+          900: '#064e3b',
+          950: '#022c22',
+        },
+        'emerald-950': '#022c22',
+        'emerald-900': '#064e3b',
+        'emerald-700': '#047857',
         'copper': '#B87333',
         'pearl': '#F0EAE2',
       },
       fontFamily: {
+        sans: ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
         heading: ['"Playfair Display"', 'Georgia', 'serif'],
         subheading: ['"Playfair Display"', 'serif'],
         body: ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        accent: ['"Cinzel"', 'serif'],
-        mono: ['"Space Mono"', '"IBM Plex Mono"', 'monospace'],
+        accent: ['"Playfair Display"', 'Georgia', 'serif'],
+        condensed: ['"Playfair Display"', 'Georgia', 'serif'],
+        gaming: ['"Playfair Display"', 'Georgia', 'serif'],
+        mono: ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         /* Margin-note annotations only — never body copy or headings. */
         hand: ['"Caveat"', 'cursive'],
       },

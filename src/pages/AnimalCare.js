@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
@@ -11,19 +12,19 @@ const FAMILIES = [
     numeral: 'I',
     name: 'Grazing & Small Stock',
     entries: [
-      { name: 'Goats', binomial: 'Capra hircus', body: 'Kept for milk and for the children who visit.' },
-      { name: 'Sheep', binomial: 'Ovis aries', body: 'Grazed along the pasture fence, kept for their wool.' },
-      { name: 'Horses', binomial: 'Equus caballus', body: 'A short, led ride along the pasture fence line.' },
-      { name: 'Rabbits', binomial: 'Oryctolagus cuniculus', body: 'A hutch by the feed store, always the first stop.' },
-      { name: 'Bees', binomial: 'Apis mellifera', body: 'A working apiary at the orchard’s edge, for the kitchen’s own honey.' },
+      { name: 'Goats', binomial: 'Capra hircus', slug: 'goat', body: 'Kept for milk and for the children who visit.' },
+      { name: 'Sheep', binomial: 'Ovis aries', slug: 'sheep', body: 'Grazed along the pasture fence, kept for their wool.' },
+      { name: 'Horses', binomial: 'Equus caballus', slug: 'horse', body: 'A short, led ride along the pasture fence line.' },
+      { name: 'Rabbits', binomial: 'Oryctolagus cuniculus', slug: 'rabbit', body: 'A hutch by the feed store, always the first stop.' },
+      { name: 'Bees', binomial: 'Apis mellifera', slug: 'bee', body: 'A working apiary at the orchard’s edge, for the kitchen’s own honey.' },
     ],
   },
   {
     numeral: 'II',
     name: 'Birds',
     entries: [
-      { name: 'Aviary Birds', binomial: 'Psittaculidae', body: 'A quiet corner of parakeets and finches.' },
-      { name: 'Ducks & Geese', binomial: 'Anatidae', body: 'Free-ranging along the pond’s edge.' },
+      { name: 'Aviary Birds', binomial: 'Psittaculidae', slug: 'aviary-birds', body: 'A quiet corner of parakeets and finches.' },
+      { name: 'Ducks & Geese', binomial: 'Anatidae', slug: 'duck', body: 'Free-ranging along the pond’s edge.' },
     ],
   },
 ];
@@ -37,10 +38,10 @@ const FEATURES = [
 ];
 
 const CARE_GALLERY = [
-  { slug: 'farmhouse-villa-2', title: 'Rabbit Friendly Corner' },
-  { slug: 'organic-farming-landscape', title: 'Goat Feeding Time' },
-  { slug: 'farmhouse-villa-1', title: 'Poultry Area' },
-  { slug: 'farm-about', title: 'Memories That Last' },
+  { slug: 'rabbit-friendly-corner', title: 'Rabbit Friendly Corner' },
+  { slug: 'goat-feeding-time', title: 'Goat Feeding Time' },
+  { slug: 'poultry-area', title: 'Poultry Area' },
+  { slug: 'memories-that-last', title: 'Memories That Last' },
 ];
 
 const CARE_BENEFITS = [
@@ -68,49 +69,166 @@ const A_MORNING_HERE = [
 ];
 
 export default function AnimalCare() {
+  useEffect(() => {
+    document.title = 'Animal Care & Petting Farm — Bambardara Estate';
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="bg-ivory-white">
-      {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="bg-ivory-white px-6 pb-16 pt-28 md:px-10 md:pb-24 md:pt-36">
-        <div className="mx-auto grid max-w-editorial grid-cols-1 items-center gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-6">
+      {/* ── HERO - THE CARE WE GIVE TO OUR ANIMALS ─────────────────── */}
+      <section className="relative min-h-[580px] sm:min-h-[640px] md:min-h-[700px] overflow-hidden bg-deep-forest">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <EstateImage
+            slug="animalcare-hero"
+            alt="Compassionate Animal Care at Bambardara Estate"
+            sizes="100vw"
+            priority
+            className="h-full w-full object-cover object-[70%_center] md:object-center"
+          />
+          {/* Subtle gradient overlay to make white text pop */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/30 pointer-events-none" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 mx-auto flex min-h-[580px] sm:min-h-[640px] md:min-h-[700px] max-w-7xl flex-col justify-center px-6 pt-28 pb-32 sm:pt-36 sm:pb-36 md:px-12 lg:px-16">
+          <div className="max-w-2xl">
+            {/* Care badge & underline accent */}
             <Reveal>
-              <h1 className="font-heading text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.1] text-deep-forest">
-                Where Care Meets
-                <span className="block">the Animal Corner</span>
+              <div className="mb-4 flex items-center gap-2.5">
+                <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-luxury-gold">
+                  Ethical Husbandry &amp; Welfare
+                </span>
+                <div className="h-[2px] w-12 rounded-full bg-luxury-gold" />
+              </div>
+            </Reveal>
+
+            {/* Heading */}
+            <Reveal delay={80}>
+              <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-ivory-white leading-[1.08]">
+                The Care We Give
+                <span className="block font-normal italic text-luxury-gold">To Our Animals</span>
               </h1>
             </Reveal>
-            <Reveal delay={100}>
-              <p className="mt-6 max-w-md font-body text-[0.9rem] font-light leading-[1.85] text-light-charcoal">
-                A smaller corner of the estate, kept for guests to spend an
-                hour with — goats, sheep, horses, rabbits, bees, and a quiet
-                stretch of aviary birds and pond fowl.
+
+            {/* Subtext */}
+            <Reveal delay={160}>
+              <p className="mt-5 max-w-xl font-body text-sm sm:text-base font-light leading-relaxed text-ivory-white/90 drop-shadow-sm">
+                At Bambardara Estate, our animals are valued companions in our sustainable agro-tourism ecosystem. 
+                From daily veterinary monitoring and wholesome organic farm fodder to spacious free-range pastures, 
+                every creature is nurtured with dignity, patience, and love.
               </p>
             </Reveal>
-            <Reveal delay={180}>
-              <a
-                href="#guide"
-                className="mt-8 inline-flex items-center rounded-full bg-luxury-gold px-7 py-3 font-body text-[0.8rem] font-semibold text-deep-forest transition-colors duration-400 hover:bg-forest-green hover:text-ivory-white"
-              >
-                Explore More
-              </a>
+
+            {/* CTA Buttons */}
+            <Reveal delay={240}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href="#guide"
+                  className="group inline-flex items-center gap-2 rounded-full bg-forest-green px-8 py-3.5 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-ivory-white border border-luxury-gold/50 shadow-gold transition-all duration-300 hover:scale-105 hover:bg-luxury-gold hover:text-deep-forest cursor-pointer"
+                >
+                  <span>Our Care Practices</span>
+                </a>
+                <Link
+                  to="/enquire"
+                  className="inline-flex items-center gap-2 rounded-full border border-ivory-white/40 bg-black/30 backdrop-blur-sm px-7 py-3.5 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-ivory-white transition-all duration-300 hover:bg-ivory-white hover:text-dark-charcoal hover:border-ivory-white cursor-pointer"
+                >
+                  <span>Plan An Educational Visit</span>
+                </Link>
+              </div>
             </Reveal>
           </div>
+        </div>
 
-          <Reveal delay={120} className="relative lg:col-span-6">
-            <div className="absolute -left-6 top-6 h-28 w-28 rounded-full bg-warm-sand md:h-36 md:w-36" aria-hidden="true" />
-            <div className="absolute -right-4 -top-6 h-14 w-14 rounded-full bg-luxury-gold md:h-20 md:w-20" aria-hidden="true" />
-            <div className="absolute -right-6 bottom-8 h-20 w-20 rounded-full bg-luxury-gold/40 md:h-28 md:w-28" aria-hidden="true" />
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] shadow-xl">
-              <EstateImage
-                slug="farmhouse-villa-2"
-                alt="Goats and rabbits at the estate's animal corner"
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                priority
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
+        {/* Organic Bottom Wave */}
+        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+          <svg
+            className="relative block w-full h-14 sm:h-18 md:h-22"
+            viewBox="0 0 1440 120"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,45 C280,105 520,110 760,65 C1000,20 1220,80 1440,50 L1440,120 L0,120 Z"
+              fill="#FBF9F5"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* ── 3 FLOATING CARE PILLAR CARDS ─────────────────────────── */}
+      <section className="relative z-20 -mt-12 sm:-mt-16 md:-mt-20 px-6 md:px-10 pb-12">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+            {/* Card 1 - Holistic Veterinary Care */}
+            <Reveal delay={100} className="h-full">
+              <div className="group flex h-full flex-col items-center justify-between rounded-3xl bg-ivory-white p-7 sm:p-8 text-center shadow-xl shadow-black/8 border border-stone/40 transition-all duration-300 hover:-translate-y-1.5 hover:border-luxury-gold hover:shadow-2xl">
+                <div>
+                  <div className="mb-5 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-transform duration-300 group-hover:scale-110 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v4m-2-2h4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-normal text-forest-green">
+                    Holistic Health &amp; Vet Care
+                  </h3>
+                  <p className="mt-3 font-body text-xs sm:text-sm font-light leading-relaxed text-light-charcoal">
+                    Routine veterinary check-ups, timely vaccinations, seasonal preventive wellness, and round-the-clock attentive supervision.
+                  </p>
+                </div>
+                <span className="mt-5 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-luxury-gold font-semibold">
+                  Preventive Health
+                </span>
+              </div>
+            </Reveal>
+
+            {/* Card 2 - Organic Farm Nutrition */}
+            <Reveal delay={180} className="h-full">
+              <div className="group flex h-full flex-col items-center justify-between rounded-3xl bg-ivory-white p-7 sm:p-8 text-center shadow-xl shadow-black/8 border border-stone/40 transition-all duration-300 hover:-translate-y-1.5 hover:border-luxury-gold hover:shadow-2xl">
+                <div>
+                  <div className="mb-5 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-transform duration-300 group-hover:scale-110 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-normal text-forest-green">
+                    Organic Farm Nutrition
+                  </h3>
+                  <p className="mt-3 font-body text-xs sm:text-sm font-light leading-relaxed text-light-charcoal">
+                    Freshly cut green fodder cultivated on estate soil, balanced natural seed blends, and fresh mountain spring drinking water.
+                  </p>
+                </div>
+                <span className="mt-5 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-luxury-gold font-semibold">
+                  Pure Organic Diet
+                </span>
+              </div>
+            </Reveal>
+
+            {/* Card 3 - Free-Range Living */}
+            <Reveal delay={260} className="h-full">
+              <div className="group flex h-full flex-col items-center justify-between rounded-3xl bg-ivory-white p-7 sm:p-8 text-center shadow-xl shadow-black/8 border border-stone/40 transition-all duration-300 hover:-translate-y-1.5 hover:border-luxury-gold hover:shadow-2xl">
+                <div>
+                  <div className="mb-5 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-transform duration-300 group-hover:scale-110 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-normal text-forest-green">
+                    Free-Range Natural Living
+                  </h3>
+                  <p className="mt-3 font-body text-xs sm:text-sm font-light leading-relaxed text-light-charcoal">
+                    Clean, airy shelters, open sunlight grazing paddocks, and calm environments that allow natural herd socialization.
+                  </p>
+                </div>
+                <span className="mt-5 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-luxury-gold font-semibold">
+                  Stress-Free Habitat
+                </span>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -164,21 +282,37 @@ export default function AnimalCare() {
                   <span className="guide-rule mt-3 block text-luxury-gold" />
                 </Reveal>
 
-                <div className="mt-6 grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {family.entries.map((e, i) => (
-                    <Reveal key={e.name} delay={fi * 80 + i * 50}>
-                      <div className="flex gap-4 border-t border-stone/70 py-5">
-                        <span className="specimen-mark mt-2 text-luxury-gold" />
+                    <Reveal key={e.name} delay={fi * 80 + i * 50} className="h-full">
+                      <div className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-stone/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/50 hover:bg-ivory-white hover:shadow-xl">
                         <div>
-                          <h4 className="font-heading text-lg font-light leading-tight text-forest-green">
-                            {e.name}
-                          </h4>
-                          <span className="mt-0.5 block font-body text-[0.7rem] font-light italic text-light-charcoal/60">
-                            {e.binomial}
-                          </span>
-                          <p className="mt-2 max-w-sm font-body text-[0.78rem] font-light leading-[1.7] text-light-charcoal">
-                            {e.body}
-                          </p>
+                          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-warm-sand/50 shadow-inner">
+                            <EstateImage
+                              slug={e.slug}
+                              alt={e.name}
+                              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                          </div>
+
+                          <div className="mt-4">
+                            <div className="flex items-baseline justify-between gap-2">
+                              <h4 className="font-heading text-xl font-medium leading-tight text-forest-green">
+                                {e.name}
+                              </h4>
+                              <span className="font-mono text-xs font-semibold text-luxury-gold">
+                                {String(i + 1).padStart(2, '0')}
+                              </span>
+                            </div>
+                            <span className="mt-0.5 block font-mono text-[0.7rem] font-light italic text-light-charcoal/70">
+                              {e.binomial}
+                            </span>
+                            <p className="mt-2.5 font-body text-[0.82rem] font-light leading-relaxed text-light-charcoal">
+                              {e.body}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </Reveal>
@@ -243,7 +377,7 @@ export default function AnimalCare() {
           <div className="mt-10 grid grid-cols-2 gap-4 md:mt-12 md:grid-cols-4">
             {CARE_GALLERY.map((item, i) => (
               <Reveal key={item.title} delay={i * 90}>
-                <div className="aspect-[4/5] w-full overflow-hidden rounded-sm">
+                <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md">
                   <EstateImage
                     slug={item.slug}
                     alt={item.title}

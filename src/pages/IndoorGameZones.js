@@ -25,9 +25,9 @@ import {
   FaCircle,
   FaVolleyballBall,
 } from 'react-icons/fa';
-import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
+import IndoorGameHero from '../components/experiences/IndoorGameHero';
 
 const SEVEN_PILLARS = [
   {
@@ -204,78 +204,8 @@ const GROUP_EXPERIENCES = [
 export default function IndoorGameZones() {
   return (
     <main className="bg-ivory-white text-dark-charcoal">
-      {/* HERO SECTION */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-deep-forest">
-        <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="indoor-games"
-            alt="Bambardara Indoor Games Zone with Billiards, Table Tennis, and Gaming Arcades"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(6,32,24,0.35) 0%, rgba(6,32,24,0.7) 65%, rgba(6,32,24,0.95) 100%), linear-gradient(90deg, rgba(6,32,24,0.85) 0%, rgba(6,32,24,0.4) 60%, transparent 100%)',
-          }}
-        />
-
-        <div className="relative z-10 mx-auto w-full max-w-editorial px-6 pb-16 pt-32 md:px-10 md:pb-24">
-          <Reveal>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-luxury-gold/50 bg-ivory-white/15 px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wider text-muted-gold backdrop-blur-md">
-              <span className="font-semibold text-ivory-white">Bambardara Agrotourism Pvt. Ltd.</span>
-              <span className="text-luxury-gold">•</span>
-              <span>Live Green • Live Smart • Live Better</span>
-            </div>
-          </Reveal>
-
-          {/* Slogan Banner */}
-          <Reveal delay={100}>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-lg border border-amber-600/40 bg-gradient-to-r from-amber-900/80 to-amber-950/80 px-4 py-2 text-amber-200 shadow-luxury-md backdrop-blur-sm">
-              <span className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-luxury-gold md:text-sm">
-                Fun • Fitness • Entertainment • Relaxation
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <h1 className="mt-4 max-w-3xl font-heading text-5xl font-light leading-[1.05] tracking-tight text-ivory-white md:text-7xl">
-              Indoor <span className="italic text-luxury-gold">Games Zone</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <p className="mt-4 max-w-2xl font-heading text-2xl font-normal italic text-luxury-gold md:text-3xl">
-              Play • Enjoy • Connect — Memories for Life
-            </p>
-          </Reveal>
-
-          <Reveal delay={280}>
-            <p className="mt-3 font-body text-[0.85rem] font-semibold uppercase tracking-[0.25em] text-ivory-white/85">
-              &ldquo;Bambardara &mdash; More Than A Destination, It&rsquo;s An Experience&rdquo;
-            </p>
-          </Reveal>
-
-          <Reveal delay={340}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link to="/enquire" className="lux-btn-gold inline-flex items-center gap-2">
-                <span>Book Group Session</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-              <a
-                href="tel:+917588775757"
-                className="inline-flex items-center gap-2 rounded-full border border-ivory-white/30 bg-ivory-white/10 px-6 py-3 font-body text-xs font-semibold uppercase tracking-wider text-ivory-white backdrop-blur-md transition-colors hover:bg-ivory-white/20"
-              >
-                <FaPhoneAlt className="h-3.5 w-3.5 text-luxury-gold" />
-                <span>+91 75887 75757</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* BESPOKE CYBER HERO SECTION (Matching User Design Mockup) */}
+      <IndoorGameHero />
 
       {/* PROMO TICKER STRIP */}
       <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
@@ -314,7 +244,7 @@ export default function IndoorGameZones() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SEVEN_PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={i * 70}>
-                <div className="group relative flex h-full flex-col border border-stone bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
+                <div className="group relative flex h-full flex-col border border-stone bg-ivory-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-colors group-hover:bg-forest-green group-hover:text-luxury-gold p-3">
                       <p.icon className="h-6 w-6" aria-hidden="true" />
@@ -357,7 +287,7 @@ export default function IndoorGameZones() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {GAME_ACTIVITIES.map((game, idx) => (
               <Reveal key={game.title} delay={idx * 50}>
-                <div className="group flex h-full flex-col rounded-xl border border-stone bg-white p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
+                <div className="group flex h-full flex-col rounded-xl border border-stone bg-ivory-white p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-green/10 text-forest-green transition-colors group-hover:bg-forest-green group-hover:text-luxury-gold">
                       <game.icon className="h-6 w-6" />
@@ -404,7 +334,7 @@ export default function IndoorGameZones() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {GROUP_EXPERIENCES.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-lg border border-stone bg-white p-7 transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
+                <div className="flex h-full flex-col rounded-lg border border-stone bg-ivory-white p-7 transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
                   <span className="font-heading text-2xl font-light text-luxury-gold">
                     0{i + 1}.
                   </span>
@@ -456,7 +386,7 @@ export default function IndoorGameZones() {
               <div className="mt-6 space-y-6">
                 <div>
                   <h4 className="font-heading text-lg font-medium text-ivory-white">
-                    Bambardara Agrotourism Pvt. Ltd.
+                    Bambarddara Agro Tourism Pvt. Ltd.
                   </h4>
                   <p className="mt-2 flex items-start gap-3 font-body text-sm font-light leading-relaxed text-ivory-white/80">
                     <FaMapMarkerAlt className="mt-1 h-4 w-4 flex-shrink-0 text-luxury-gold" />

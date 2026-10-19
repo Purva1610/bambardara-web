@@ -89,7 +89,7 @@ const EXPERIENCES = [
   {
     n: '03',
     slug: 'boat',
-    title: 'Kayaking & Boating',
+    title: 'Lake Boating',
     body: 'Flat water on the reservoir at dawn, when the surface holds the ridge line perfectly still.',
   },
   {

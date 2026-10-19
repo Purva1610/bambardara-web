@@ -36,7 +36,7 @@ const DINING_VENUES = [
     subtitle: 'Fine Dining Under the Stars',
     description: 'Our signature restaurant offers panoramic valley views and an extensive menu featuring local Maharashtrian specialties alongside international favorites. Open for breakfast, lunch, and dinner.',
     hours: '7:00 AM - 11:00 PM',
-    image: 'fine-dining-restaurant',
+    image: 'restraunt',
     features: ['Valley Views', 'Multi-Cuisine', 'Indoor & Outdoor Seating'],
   },
   {
@@ -44,7 +44,7 @@ const DINING_VENUES = [
     subtitle: 'Alfresco Dining',
     description: 'Dine surrounded by lush gardens and mountain breezes. Perfect for romantic dinners, family celebrations, and special occasions with customizable private dining experiences.',
     hours: 'Dinner Only | 6:30 PM - 10:30 PM',
-    image: 'fine-dining-restaurant-2',
+    image: 'garden-tarrace',
     features: ['Private Dining', 'Romantic Setting', 'Chef\'s Tasting Menu'],
   },
   {
@@ -52,39 +52,168 @@ const DINING_VENUES = [
     subtitle: 'Casual All-Day Dining',
     description: 'A relaxed café atmosphere serving freshly brewed coffee, homemade pastries, light meals, and snacks. Perfect for a quick bite between adventures.',
     hours: '6:30 AM - 8:00 PM',
-    image: 'dining',
+    image: 'harvest-cafe',
     features: ['Artisan Coffee', 'Fresh Pastries', 'Quick Service'],
   },
 ];
 
-const THALI_ITEMS = [
-  'Varan Bhaat',
-  'Pithla Bhakri',
-  'Thecha & Bhakri',
-  'Bharli Vangi',
-  'Batata Bhaji',
-  'Zunka',
-  'Usal',
-  'Misal',
-  'Seasonal Vegetable',
-  'Takk / Mattha',
-  'Papad & Loncha',
-  'Gavran Chicken',
-  'Sweets & Desserts',
+const THALI_DISHES = [
+  {
+    name: 'Varan Bhaat',
+    marathi: 'वरण भात',
+    slug: 'varan-bhaat',
+    tag: 'Pure Ghee & Dal',
+    desc: 'Golden toor dal tempered with cumin, mustard seeds and homemade ghee over fragrant steamed rice.',
+  },
+  {
+    name: 'Pithla Bhakri',
+    marathi: 'पिठलं भाकरी',
+    slug: 'pitla-bhakri',
+    tag: 'Rustic Classic',
+    desc: 'Velvety spiced besan pithla cooked in earthen pots, served piping hot with fresh jowar bhakri.',
+  },
+  {
+    name: 'Bharli Vangi',
+    marathi: 'भारली वांगी',
+    slug: 'bharli-vangi',
+    tag: 'Estate Specialty',
+    desc: 'Baby eggplants stuffed with roasted peanuts, sesame, goda masala and grated fresh coconut.',
+  },
+  {
+    name: 'Batata Bhaji',
+    marathi: 'बटाटा भाजी',
+    slug: 'batata-bhaji',
+    tag: 'Traditional',
+    desc: 'Golden turmeric potato tempered with mustard, curry leaves, green chilies and grated coconut.',
+  },
+  {
+    name: 'Zunka',
+    marathi: 'झुणका',
+    slug: 'zunka',
+    tag: 'Clay Pot Cooked',
+    desc: 'Coarse gram flour dry-roasted with caramelized onions, garlic, and aromatic Maharashtrian spices.',
+  },
+  {
+    name: 'Usal',
+    marathi: 'मटकी उसळ',
+    slug: 'matki-usal',
+    tag: 'Farm Sprouted',
+    desc: 'Organic sprouted matki simmered in a spiced goda masala gravy with fresh coconut garnish.',
+  },
+  {
+    name: 'Misal',
+    marathi: 'कोल्हापुरी मिसळ',
+    slug: 'kolhapuri-misal',
+    tag: 'Fiery & Crisp',
+    desc: 'Iconic Kolhapuri spiced sprout curry served with crispy farsan, fresh onions, lemon and pav.',
+  },
+  {
+    name: 'Seasonal Vegetable',
+    marathi: 'हंगामी भाजी',
+    slug: 'seasonal-vegetable',
+    tag: 'Harvest Fresh',
+    desc: 'Farm-fresh vegetables harvested daily from our organic gardens and cooked in village style.',
+  },
+  {
+    name: 'Takk / Mattha',
+    marathi: 'ताक / मठ्ठा',
+    slug: 'taak-mattha',
+    tag: 'Chilled & Spiced',
+    desc: 'Refreshing churned buttermilk infused with roasted cumin, fresh ginger, cilantro and boondi.',
+  },
+  {
+    name: 'Papad & Loncha',
+    marathi: 'पापड आणि लोणचं',
+    slug: 'papad-loncha',
+    tag: 'Crisp & Tangy',
+    desc: 'Roasted spiced urad dal papad accompanied by house-cured raw mango loncha and lemon.',
+  },
+  {
+    name: 'Gavran Chicken',
+    marathi: 'गावरान चिकन',
+    slug: 'gavran-chicken',
+    tag: 'Village Special',
+    desc: 'Free-range country chicken slow-cooked in earthen pots with roasted spices and rassa.',
+  },
+  {
+    name: 'Sweets & Desserts',
+    marathi: 'मिष्टान्न / पुरणपोळी',
+    slug: 'sweets-desserts',
+    tag: 'Festive Delight',
+    desc: 'Handmade puran poli with pure ghee, served alongside festive seviyan kheer and sheera.',
+  },
 ];
 
-const FEATURED_DISHES = [
-  { name: 'Pithla Bhakri', slug: 'kolhapuri-food' },
-  { name: 'Thecha & Bhakri', slug: 'dining' },
-  { name: 'Zunka Bhakri', slug: 'fine-dining-restaurant' },
-  { name: 'Bharli Vangi', slug: 'fine-dining-restaurant-2' },
-  { name: 'Batata Bhaji', slug: 'kolhapuri-food' },
-  { name: 'Usal Pav', slug: 'dining' },
+const THALI_ITEMS = THALI_DISHES.map((d) => d.name);
+
+const LOCAL_BREAKFAST_ITEMS = [
+  {
+    name: 'Kanda Pohe',
+    marathi: 'कांदे पोहे',
+    slug: 'kanda-pohe',
+    tag: 'Morning Classic',
+    desc: 'Light flattened rice tossed with crunchy roasted peanuts, mustard seeds, onions, fresh coriander, and grated coconut.',
+  },
+  {
+    name: 'Rava Upma',
+    marathi: 'रवा उपमा',
+    slug: 'rava-upma',
+    tag: 'Fresh Roasted',
+    desc: 'Golden semolina roasted in pure cow ghee and tempered with ginger, mustard seeds, green chillies, and garden herbs.',
+  },
+  {
+    name: 'Sabudana Khichadi',
+    marathi: 'साबुदाणा खिचडी',
+    slug: 'sabudana-khichadi',
+    tag: 'Fasting Special',
+    desc: 'Soft tapioca pearls tossed with coarsely crushed roasted groundnuts, cumin, green chillies, and potatoes in pure ghee.',
+  },
+  {
+    name: 'Bhajani Thalipeeth',
+    marathi: 'भाजणी थालीपीठ',
+    slug: 'bhajani-thalipeeth',
+    tag: 'Multigrain Heritage',
+    desc: 'Pan-roasted multigrain spiced flatbread with onions, coriander, and sesame seeds, served with a dollop of white butter.',
+  },
+  {
+    name: 'Kolhapuri Misal Pav',
+    marathi: 'कोल्हापुरी मिसळ',
+    slug: 'kolhapuri-misal',
+    tag: 'Fiery & Crisp',
+    desc: 'Fiery sprouted moth bean curry with zesty red rassa, crisp farsan, fresh onions, coriander, and warm buttered pav.',
+  },
+  {
+    name: 'Masala Dosa',
+    marathi: 'मसाला डोसा',
+    slug: 'masala-dosa',
+    tag: 'Golden Crisp',
+    desc: 'Crispy golden fermented crepe filled with spiced potato masala, paired with fresh coconut chutney and hot sambar.',
+  },
 ];
 
-const LOCAL_BREAKFAST = ['Pohe', 'Upma', 'Sabudana Khichadi', 'Thalipeeth', 'Kanda Pohe', 'Masala Dosa'];
-
-const VILLAGE_SPECIALS = ['Gavran Chicken', 'Mattha / Taak', 'Puran Poli'];
+const VILLAGE_SPECIAL_ITEMS = [
+  {
+    name: 'Solkadhi',
+    marathi: 'सोलकढी',
+    slug: 'solkadhi',
+    tag: 'Kokum & Coconut',
+    desc: 'Refreshing pink digestive drink made from freshly pressed coconut milk, wild kokum extract, garlic, and fresh herbs.',
+  },
+  {
+    name: 'Kosambari',
+    marathi: 'पारंपरिक कोशिंबीर',
+    slug: 'kosambari',
+    tag: 'Fresh & Crisp',
+    desc: 'Refreshing traditional tempered salad prepared with soaked yellow lentils, fresh grated carrots, coconut, green chillies, and coriander.',
+  },
+  {
+    name: 'Puran Poli with Ghee',
+    marathi: 'पारंपरिक पुरणपोळी',
+    slug: 'puran-poli',
+    tag: 'Pure Ghee & Jaggery',
+    desc: 'Delicate hand-rolled flatbread stuffed with sweet aromatic chana dal, jaggery, cardamom, and nutmeg, served with warm ghee.',
+  },
+];
 
 const FOOD_FEATURES = [
   'Pure Veg & Non-Veg Options',
@@ -97,7 +226,13 @@ const FOOD_FEATURES = [
 ];
 
 const SIGNATURE_DISHES = [
-  { name: 'Kolhapuri Pandhra Rassa', category: 'Local Specialties', spice: 'Mild' },
+  {
+    name: 'Kolhapuri Pandhra Rassa',
+    marathi: 'कोल्हापुरी पांढरा रस्सा',
+    category: 'Local Specialties',
+    spice: 'Mild',
+    slug: 'pandhra-rassa',
+  },
   { name: 'Tandoori Malvani Pomfret', category: 'Coastal Delights', spice: 'Medium' },
   { name: 'Organic Farm Salad Bowl', category: 'Healthy Choice', spice: 'None' },
   { name: 'Wood-Fired Margherita', category: 'Continental', spice: 'None' },
@@ -161,16 +296,29 @@ export default function Dining() {
   return (
     <main className="bg-ivory-white overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen min-h-[640px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full isolate">
-          <EstateImage
-            slug="fine-dining-restaurant"
-            alt="Fine dining at Bambardara"
-            sizes="100vw"
-            priority={true}
-            className="w-full h-full object-cover"
+          <picture className="block w-full h-full">
+            <source
+              srcSet="/images/opt/dining-hero-1920.webp 1920w, /images/opt/dining-hero-1280.webp 1280w, /images/opt/dining-hero-640.webp 640w"
+              sizes="100vw"
+              type="image/webp"
+            />
+            <img
+              src="/images/opt/dining-hero.jpg"
+              alt="Fine dining and authentic Maharashtrian delicacies at Bambardara Estate"
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-full object-cover object-center transform scale-[1.01]"
+            />
+          </picture>
+          <div
+            className="absolute inset-0 z-[5]"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(6,32,24,0.52) 0%, rgba(6,32,24,0.32) 45%, rgba(6,32,24,0.72) 100%), radial-gradient(circle at center, transparent 40%, rgba(6,32,24,0.45) 100%)',
+            }}
           />
-          <div className="absolute inset-0 z-[5] bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -247,38 +395,51 @@ export default function Dining() {
             </Reveal>
           </div>
 
-          <div className="space-y-20">
+          <div className="space-y-20 md:space-y-28">
             {DINING_VENUES.map((venue, idx) => (
               <Reveal key={venue.title} delay={idx * 100}>
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center ${idx % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
                   <div className={idx % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="aspect-[4/3] overflow-hidden shadow-2xl">
-                      <EstateImage
-                        slug={venue.image}
-                        alt={venue.title}
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      />
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-stone/50 bg-stone/20 group">
+                      <picture className="block w-full h-full">
+                        <source
+                          srcSet={`/images/opt/${venue.image}-1920.webp 1920w, /images/opt/${venue.image}-1280.webp 1280w, /images/opt/${venue.image}-640.webp 640w`}
+                          sizes="(min-width: 1024px) 50vw, 100vw"
+                          type="image/webp"
+                        />
+                        <img
+                          src={`/images/opt/${venue.image}.jpg`}
+                          alt={venue.title}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                      </picture>
                     </div>
                   </div>
 
                   <div className={idx % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                    <span className="text-copper uppercase tracking-[0.2em] text-xs font-body">{venue.subtitle}</span>
-                    <h3 className="text-2xl md:text-3xl font-light text-forest-green mt-3 mb-4">{venue.title}</h3>
-                    <p className="text-light-charcoal font-light leading-relaxed mb-6">
+                    <span className="inline-flex items-center gap-2 text-copper uppercase tracking-[0.22em] text-[0.72rem] font-medium font-body">
+                      <span className="h-1.5 w-1.5 rounded-full bg-copper" />
+                      {venue.subtitle}
+                    </span>
+                    <h3 className="text-3xl md:text-4xl font-light text-forest-green mt-3 mb-4 font-heading">
+                      {venue.title}
+                    </h3>
+                    <p className="text-light-charcoal font-light leading-relaxed mb-6 font-body text-sm md:text-base">
                       {venue.description}
                     </p>
                     
-                    <div className="flex items-center gap-2 text-copper mb-6">
-                      <FaClock className="w-4 h-4" />
-                      <span className="text-sm font-light">{venue.hours}</span>
+                    <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-warm-sand/70 border border-stone/80 text-copper mb-6 font-body">
+                      <FaClock className="w-3.5 h-3.5" />
+                      <span className="text-xs font-light tracking-wide text-forest-green">{venue.hours}</span>
                     </div>
 
-                    <div className="flex flex-wrap gap-3 mb-8">
+                    <div className="flex flex-wrap gap-2.5 mb-8">
                       {venue.features.map((feature) => (
                         <span
                           key={feature}
-                          className="px-4 py-2 bg-copper/5 text-copper text-xs uppercase tracking-wide border border-copper/20"
+                          className="px-3.5 py-1.5 rounded-full bg-warm-sand/50 text-forest-green text-[0.72rem] uppercase tracking-wider font-medium border border-copper/30"
                         >
                           {feature}
                         </span>
@@ -287,10 +448,10 @@ export default function Dining() {
 
                     <Link
                       to="/enquire"
-                      className="inline-flex items-center gap-2 text-copper text-sm uppercase tracking-wide hover:text-bronze transition-colors group"
+                      className="inline-flex items-center gap-2 text-copper text-xs uppercase tracking-[0.2em] font-medium hover:text-forest-green transition-colors group"
                     >
                       <span>Book Now</span>
-                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                      <span className="transform group-hover:translate-x-1.5 transition-transform">&rarr;</span>
                     </Link>
                   </div>
                 </div>
@@ -317,68 +478,216 @@ export default function Dining() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <Reveal>
-              <div className="aspect-[4/3] overflow-hidden shadow-2xl">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-copper/20 group">
                 <EstateImage
                   slug="kolhapuri-food"
-                  alt="Authentic Maharashtrian thali"
+                  alt="Authentic Maharashtrian Grand Thali at Bambardara"
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-green/70 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-ivory-white">
+                  <div>
+                    <span className="text-[11px] uppercase tracking-widest text-copper font-medium block">Complete Experience</span>
+                    <h3 className="text-xl md:text-2xl font-light font-heading">The Grand Maharashtrian Thali</h3>
+                  </div>
+                  <span className="px-3.5 py-1.5 bg-ivory-white/90 text-forest-green text-xs uppercase tracking-wider font-semibold rounded-full shadow-md backdrop-blur-sm">
+                    {THALI_DISHES.length} Preparations
+                  </span>
+                </div>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-                {THALI_ITEMS.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-light-charcoal font-light text-sm">
-                    <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-copper" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-light text-forest-green">
+                    An Authentic <span className="italic text-copper">Village Feast</span>
+                  </h3>
+                  <p className="mt-3 text-light-charcoal font-light text-sm md:text-base leading-relaxed">
+                    Crafted with ancestral recipes, every thali is prepared with stone-ground masalas, cold-pressed oils, and farm-fresh ingredients harvested daily right from our agro-tourism estate.
+                  </p>
+                </div>
+                <div className="p-6 bg-white/70 rounded-2xl border border-stone/60 shadow-sm backdrop-blur-sm">
+                  <h4 className="text-xs uppercase tracking-widest text-copper font-medium mb-4">
+                    All {THALI_DISHES.length} Thali Inclusions
+                  </h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                    {THALI_ITEMS.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-forest-green font-light text-sm">
+                        <span className="h-2 w-2 flex-shrink-0 rounded-full bg-copper ring-2 ring-copper/20" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </Reveal>
           </div>
 
-          <Reveal delay={150}>
-            <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 gap-5">
-              {FEATURED_DISHES.map((dish, idx) => (
-                <Reveal key={dish.name} delay={idx * 60}>
-                  <div className="aspect-square overflow-hidden shadow-lg">
-                    <EstateImage
-                      slug={dish.slug}
-                      alt={dish.name}
-                      sizes="(min-width: 1024px) 16vw, 45vw"
-                      className="w-full h-full object-cover"
-                    />
+          {/* ALL DISHES PHOTO SHOWCASE */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <Reveal>
+                <span className="text-copper uppercase tracking-[0.2em] text-xs font-body">Visual Menu</span>
+              </Reveal>
+              <Reveal delay={100}>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-forest-green mt-3">
+                  Each Dish <span className="italic text-copper">Made Fresh Daily</span>
+                </h3>
+              </Reveal>
+              <Reveal delay={150}>
+                <p className="mt-2 text-light-charcoal text-sm max-w-xl mx-auto font-light">
+                  Explore every individual element of our traditional Maharashtrian Thali, prepared with heirloom spices and wood-fired rustic flavours.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {THALI_DISHES.map((dish, idx) => (
+                <Reveal key={dish.slug} delay={(idx % 3) * 75}>
+                  <div className="group bg-ivory-white rounded-2xl overflow-hidden border border-stone/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <div className="aspect-square overflow-hidden relative bg-stone/20">
+                      <EstateImage
+                        slug={dish.slug}
+                        alt={dish.name}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-3 left-3 px-3 py-1 bg-forest-green/85 backdrop-blur-sm text-ivory-white text-[11px] tracking-wider uppercase font-medium rounded-full shadow">
+                        {dish.tag}
+                      </span>
+                    </div>
+                    <div className="p-5 flex flex-col flex-grow justify-between">
+                      <div>
+                        <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                          <h4 className="text-forest-green font-medium text-base md:text-lg group-hover:text-copper transition-colors">
+                            {dish.name}
+                          </h4>
+                          <span className="text-copper/90 text-sm font-serif italic">
+                            {dish.marathi}
+                          </span>
+                        </div>
+                        <p className="mt-2.5 text-light-charcoal/80 text-sm leading-relaxed line-clamp-2">
+                          {dish.desc}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <span className="mt-2 block text-center text-forest-green text-xs uppercase tracking-wide">
-                    {dish.name}
-                  </span>
                 </Reveal>
               ))}
             </div>
-          </Reveal>
+          </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-stone pt-14">
-            <Reveal delay={100}>
-              <span className="text-copper uppercase tracking-[0.2em] text-xs font-body">Local Breakfast</span>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {LOCAL_BREAKFAST.map((item) => (
-                  <span key={item} className="px-4 py-2 bg-warm-sand text-forest-green text-xs uppercase tracking-wide">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <span className="text-copper uppercase tracking-[0.2em] text-xs font-body">Village Style Specials</span>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {VILLAGE_SPECIALS.map((item) => (
-                  <span key={item} className="px-4 py-2 bg-warm-sand text-forest-green text-xs uppercase tracking-wide">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
+          {/* Local Breakfast Section */}
+          <div className="mt-20 border-t border-stone pt-16">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <Reveal>
+                <span className="text-copper uppercase tracking-[0.2em] text-xs font-body block mb-2">
+                  Estate Morning Traditions
+                </span>
+              </Reveal>
+              <Reveal delay={100}>
+                <h3 className="font-serif text-2xl md:text-3xl text-forest-green font-light">
+                  Local Maharashtrian Breakfast
+                </h3>
+              </Reveal>
+              <Reveal delay={150}>
+                <p className="mt-2 text-light-charcoal text-sm max-w-xl mx-auto font-light">
+                  Awaken to authentic countryside aromas — wholesome, handcrafted morning favorites prepared fresh on order with pure cow ghee and fragrant garden spices.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {LOCAL_BREAKFAST_ITEMS.map((dish, idx) => (
+                <Reveal key={dish.slug} delay={(idx % 3) * 75}>
+                  <div className="group bg-ivory-white rounded-2xl overflow-hidden border border-stone/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <div className="aspect-square overflow-hidden relative bg-stone/20">
+                      <EstateImage
+                        slug={dish.slug}
+                        alt={dish.name}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-3 left-3 px-3 py-1 bg-forest-green/85 backdrop-blur-sm text-ivory-white text-[11px] tracking-wider uppercase font-medium rounded-full shadow">
+                        {dish.tag}
+                      </span>
+                    </div>
+                    <div className="p-5 flex flex-col flex-grow justify-between">
+                      <div>
+                        <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                          <h4 className="text-forest-green font-medium text-base md:text-lg group-hover:text-copper transition-colors">
+                            {dish.name}
+                          </h4>
+                          <span className="text-copper/90 text-sm font-serif italic">
+                            {dish.marathi}
+                          </span>
+                        </div>
+                        <p className="mt-2.5 text-light-charcoal/80 text-sm leading-relaxed line-clamp-2">
+                          {dish.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Village Style Specials Section */}
+          <div className="mt-20 border-t border-stone pt-16">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <Reveal>
+                <span className="text-copper uppercase tracking-[0.2em] text-xs font-body block mb-2">
+                  Rustic Culinary Heritage
+                </span>
+              </Reveal>
+              <Reveal delay={100}>
+                <h3 className="font-serif text-2xl md:text-3xl text-forest-green font-light">
+                  Village Style Specials
+                </h3>
+              </Reveal>
+              <Reveal delay={150}>
+                <p className="mt-2 text-light-charcoal text-sm max-w-xl mx-auto font-light">
+                  Slow-simmered earthen delicacies and traditional festive treasures celebrated across generations in rural Maharashtra.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {VILLAGE_SPECIAL_ITEMS.map((dish, idx) => (
+                <Reveal key={dish.slug} delay={(idx % 3) * 75}>
+                  <div className="group bg-ivory-white rounded-2xl overflow-hidden border border-stone/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <div className="aspect-square overflow-hidden relative bg-stone/20">
+                      <EstateImage
+                        slug={dish.slug}
+                        alt={dish.name}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-3 left-3 px-3 py-1 bg-forest-green/85 backdrop-blur-sm text-ivory-white text-[11px] tracking-wider uppercase font-medium rounded-full shadow">
+                        {dish.tag}
+                      </span>
+                    </div>
+                    <div className="p-5 flex flex-col flex-grow justify-between">
+                      <div>
+                        <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                          <h4 className="text-forest-green font-medium text-base md:text-lg group-hover:text-copper transition-colors">
+                            {dish.name}
+                          </h4>
+                          <span className="text-copper/90 text-sm font-serif italic">
+                            {dish.marathi}
+                          </span>
+                        </div>
+                        <p className="mt-2.5 text-light-charcoal/80 text-sm leading-relaxed line-clamp-2">
+                          {dish.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal delay={200}>
@@ -444,14 +753,31 @@ export default function Dining() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {SIGNATURE_DISHES.map((dish, idx) => (
               <Reveal key={dish.name} delay={idx * 60}>
-                <div className="flex items-start justify-between border-b border-stone pb-4 group hover:border-copper transition-colors">
-                  <div className="flex-1">
-                    <h4 className="text-lg font-light text-forest-green group-hover:text-copper transition-colors">
-                      {dish.name}
-                    </h4>
+                <div className="flex items-center gap-4 border-b border-stone pb-4 group hover:border-copper transition-colors">
+                  {dish.slug && (
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-stone/20 border border-stone/50 shadow-sm">
+                      <EstateImage
+                        slug={dish.slug}
+                        alt={dish.name}
+                        sizes="80px"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                      <h4 className="text-lg font-light text-forest-green group-hover:text-copper transition-colors">
+                        {dish.name}
+                      </h4>
+                      {dish.marathi && (
+                        <span className="text-copper/90 text-sm font-serif italic">
+                          {dish.marathi}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-copper mt-1">{dish.category}</p>
                   </div>
-                  <span className="text-xs text-light-charcoal bg-ivory-white px-3 py-1 border border-stone">
+                  <span className="text-xs text-light-charcoal bg-ivory-white px-3 py-1 border border-stone flex-shrink-0">
                     {dish.spice}
                   </span>
                 </div>

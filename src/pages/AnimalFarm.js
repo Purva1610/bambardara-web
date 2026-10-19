@@ -7,7 +7,7 @@ const LANES = [
   {
     id: 'animal-care',
     to: '/agro-farming/animal-care',
-    slug: 'farmhouse-villa-2',
+    slug: 'animal-caree',
     label: 'Goats · Sheep · Rabbits · Birds',
     title: 'Animal Care',
     body: 'A smaller corner of the estate kept for guests to spend an hour with — goats, sheep, horses, rabbits, bees, and a quiet stretch of aviary birds and pond fowl.',
@@ -24,7 +24,7 @@ const LANES = [
   {
     id: 'fish-farming',
     to: '/agro-farming/fish-farming',
-    slug: 'boating',
+    slug: 'fish-farmingg',
     label: 'Seven Varieties, One Pond',
     title: 'Fish Farming',
     body: 'Seven varieties raised with the same care as the dairy or the nursery, checked on the same morning round as the herd — nothing raised here is sold off the estate.',
@@ -32,16 +32,16 @@ const LANES = [
 ];
 
 const ANIMAL_CATEGORIES = [
-  { label: 'Cow', slug: 'dairy', body: 'Provides milk, dung, urine & farm power' },
-  { label: 'Buffalo', slug: 'animal-farm-and-dairy-farm', body: 'High milk production, strong & hardy' },
-  { label: 'Goat', slug: 'organic-farming-landscape', body: 'Easy to rear, high milk & meat' },
-  { label: 'Sheep', slug: 'farmhouse-villa-2', body: 'Provides wool, meat & fertiliser' },
-  { label: 'Horse', slug: 'farmhouse-villa-3', body: 'Transport, farm work, riding & sports' },
-  { label: 'Poultry (Chicken)', slug: 'farmhouse-villa-1', body: 'Eggs, meat & high protein' },
-  { label: 'Rabbit', slug: 'farm-about', body: 'High breeding rate, meat & fur' },
-  { label: 'Duck', slug: 'about-farm', body: 'Eggs, meat & pest control' },
-  { label: 'Fish', slug: 'boating', body: 'High protein, fast growth' },
-  { label: 'Bee', slug: 'organic-farming-and-farm-stay-3', body: 'Honey production & pollination' },
+  { label: 'Cow', slug: 'cow', body: 'Provides milk, dung, urine & farm power' },
+  { label: 'Buffalo', slug: 'buffalo', body: 'High milk production, strong & hardy' },
+  { label: 'Goat', slug: 'goat', body: 'Easy to rear, high milk & meat' },
+  { label: 'Sheep', slug: 'sheep', body: 'Provides wool, meat & fertiliser' },
+  { label: 'Horse', slug: 'horse', body: 'Transport, farm work, riding & sports' },
+  { label: 'Poultry (Chicken)', slug: 'hen', body: 'Eggs, meat & high protein' },
+  { label: 'Rabbit', slug: 'rabbit', body: 'High breeding rate, meat & fur' },
+  { label: 'Duck', slug: 'duck', body: 'Eggs, meat & pest control' },
+  { label: 'Fish', slug: 'fishi', body: 'High protein, fast growth' },
+  { label: 'Bee', slug: 'bee', body: 'Honey production & pollination' },
 ];
 
 const FARM_FEATURES = [
@@ -58,17 +58,23 @@ export default function AnimalFarm() {
   return (
     <main className="bg-ivory-white">
       {/* HERO */}
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-deep-forest text-center">
+      <section className="relative flex min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] items-center justify-center overflow-hidden bg-deep-forest text-center pt-24 sm:pt-28 md:pt-32">
         <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="animal-farm"
-            alt="The estate's animal farm at golden hour"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/animalfarm-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/animalfarm-hero.jpg`}
+              alt="The estate's animal farm at golden hour"
+              className="h-full w-full object-cover object-center select-none"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/55 pointer-events-none" />
         <div className="relative z-10 mx-auto w-full max-w-3xl px-6 py-24 md:px-10">
           <Reveal>
             <h1 className="max-w-2xl mx-auto font-heading text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.1] text-ivory-white">
@@ -142,8 +148,8 @@ export default function AnimalFarm() {
           <Reveal delay={100} className="lg:col-span-7">
             <div className="lux-frame aspect-[4/3] w-full">
               <EstateImage
-                slug="farmhouse-villa-2"
-                alt="A guest with the estate's animals"
+                slug="farm-activity"
+                alt="Families enjoying farm activities with the animals"
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="h-full w-full object-cover"
               />
@@ -158,8 +164,8 @@ export default function AnimalFarm() {
           <Reveal delay={100} className="lg:col-span-6">
             <div className="lux-frame aspect-[4/3] w-full">
               <EstateImage
-                slug="farmhouse-villa-3"
-                alt="A dairy cow on the estate"
+                slug="farm-passion"
+                alt="The estate's animal herd grazing in pasture"
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="h-full w-full object-cover"
               />
@@ -222,8 +228,8 @@ export default function AnimalFarm() {
           <Reveal delay={100} className="lg:col-span-7">
             <div className="lux-frame aspect-[4/3] w-full">
               <EstateImage
-                slug="interior"
-                alt="A guest cottage interior on the estate"
+                slug="unique-farm"
+                alt="A friendly farm animal on the estate"
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="h-full w-full object-cover"
               />
@@ -238,8 +244,8 @@ export default function AnimalFarm() {
           <Reveal delay={100} className="lg:col-span-6">
             <div className="lux-frame aspect-[4/3] w-full">
               <EstateImage
-                slug="about-farm"
-                alt="A calf on the estate"
+                slug="estate-way"
+                alt="The Estate's Way with Animals - Bambarddara Agro Tourism Pvt. Ltd."
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="h-full w-full object-cover"
               />

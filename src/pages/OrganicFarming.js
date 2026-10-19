@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PiLeaf, PiRecycle, PiPlant, PiArrowsClockwise } from 'react-icons/pi';
-import { FiArrowUpRight, FiTruck } from 'react-icons/fi';
-import { GiWheat, GiFlowerPot } from 'react-icons/gi';
+import { FiArrowUpRight, FiTruck, FiX, FiCheck } from 'react-icons/fi';
+import { GiFlowerPot } from 'react-icons/gi';
 import { TbClipboardData } from 'react-icons/tb';
 import { BsBarChartLine } from 'react-icons/bs';
 import EstateImage from '../components/shared/EstateImage';
@@ -62,9 +62,80 @@ const SEASONS = [
   },
 ];
 
+const SUSTAINABLE_PRACTICES = [
+  {
+    id: 'harvest-services',
+    title: 'Harvest Services',
+    subtitle: 'Precision crop collection & handling',
+    shortDesc: 'Harvest Services ensure timely crop collection using efficient tools and skilled teams.',
+    fullDesc: 'Harvest Services ensure timely, gentle crop collection using clean cutting tools and experienced estate hands. We align harvest windows precisely with peak maturity and moisture levels, minimizing post-harvest field loss and transferring freshly gathered produce straight into shaded, aerated sorting bays to lock in wholesome organic goodness.',
+    slug: 'harvest-service',
+    alt: 'Harvest services in action',
+    imagePosition: 'bottom',
+    delay: 150,
+    highlights: [
+      'Timed harvesting based on crop sugar and moisture indices',
+      'Specialized non-damaging cutting methods to preserve vine and root health',
+      'Immediate field sorting, grading, and organic cool-down',
+      '100% leftover biomass routed to the organic compost yards',
+    ],
+  },
+  {
+    id: 'land-cultivation',
+    title: 'Land Cultivation',
+    subtitle: 'Conservation tillage & soil preparation',
+    shortDesc: 'Land Cultivation prepares soil for planting through ploughing, tilling, and conditioning.',
+    fullDesc: 'Land Cultivation prepares nutrient-dense soil for planting through low-impact ploughing, deep chisel aeration, and organic soil conditioning. Rather than disrupting fragile micro-ecosystems with aggressive chemical additives, our tillage techniques naturally aerate the root zones, retain precious subsoil moisture, and enrich each terrace with matured farm compost.',
+    slug: 'land-cultuvation',
+    alt: 'Land cultivation with tractor',
+    imagePosition: 'top',
+    delay: 200,
+    highlights: [
+      'Conservation tillage protecting earthworm and mycorrhizal networks',
+      'Aged manure and green compost turned naturally into seedbeds',
+      'Deep subsoil aeration without inversion of sensitive topsoil',
+      'Laser-aligned terrace leveling for uniform gravity irrigation',
+    ],
+  },
+  {
+    id: 'farm-management',
+    title: 'Farm Management',
+    subtitle: 'Holistic daily operations & livestock care',
+    shortDesc: 'Farm Management oversees daily operations to ensure productive and efficient farming.',
+    fullDesc: 'Farm Management oversees daily estate operations to ensure productive, ethical, and regenerative farming. From automated, clean stall feeding routines in the dairy sheds to seasonal crop scheduling, telemetry-guided irrigation, and zero-waste nutrient cycles, our integrated operations keep every acre thriving in balance.',
+    slug: 'farm-management',
+    alt: 'Farm management operations with cattle feeding stalls',
+    imagePosition: 'bottom',
+    delay: 250,
+    highlights: [
+      'Clean automated feeding lanes with balanced green & dry fodder',
+      'Ethical animal husbandry, regular veterinary care, and herd telemetry',
+      'Closed-loop nutrient transfer: dairy slurry fuels crop fertility',
+      'Daily resource tracking for water conservation and zero runoff',
+    ],
+  },
+];
+
 export default function OrganicFarming() {
   const [activeSeason, setActiveSeason] = useState(0);
+  const [selectedPractice, setSelectedPractice] = useState(null);
   const season = SEASONS[activeSeason];
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedPractice(null);
+    };
+    if (selectedPractice) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPractice]);
 
   return (
     <main className="bg-ivory-white">
@@ -90,7 +161,7 @@ export default function OrganicFarming() {
           <div className="mx-auto w-full max-w-7xl">
             <Reveal>
               <span className="inline-block font-body text-sm uppercase tracking-[0.2em] text-white/70">
-                🌾 Bambardara Agro Tourism
+                🌾 Bambarddara Agro Tourism Pvt. Ltd.
               </span>
             </Reveal>
             
@@ -197,12 +268,17 @@ export default function OrganicFarming() {
               </Reveal>
 
               <Reveal delay={300}>
-                <button className="group inline-flex items-center gap-3 rounded-full bg-luxury-gold px-8 py-4 font-body text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-muted-gold">
+                <a
+                  href="https://wa.me/917588775757"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-full bg-luxury-gold px-8 py-4 font-body text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-muted-gold"
+                >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                   <span>Chat With Us</span>
-                </button>
+                </a>
               </Reveal>
             </div>
 
@@ -211,7 +287,7 @@ export default function OrganicFarming() {
               <Reveal delay={100}>
                 <div className="overflow-hidden rounded-2xl">
                   <EstateImage
-                    slug="farming"
+                    slug="land-cultuvation"
                     alt="Tractor working in the field"
                     sizes="(min-width: 768px) 50vw, 100vw"
                     className="h-full w-full object-cover"
@@ -252,113 +328,168 @@ export default function OrganicFarming() {
 
           {/* 3 Service Cards Grid */}
           <div className="mt-16 grid gap-8 md:grid-cols-3">
-            
-            {/* Card 1 - Harvest Services (Text Top, Image Bottom) */}
-            <Reveal delay={150}>
-              <div className="group overflow-hidden rounded-3xl bg-white">
-                <div className="p-8">
-                  <h3 className="font-heading text-2xl font-bold text-dark-charcoal">
-                    Harvest Services
-                  </h3>
+            {SUSTAINABLE_PRACTICES.map((practice) => {
+              const isImageTop = practice.imagePosition === 'top';
+              return (
+                <Reveal key={practice.id} delay={practice.delay}>
+                  <div className="group flex h-full flex-col overflow-hidden rounded-3xl bg-ivory-white shadow-sm transition-all duration-300 hover:shadow-xl">
+                    {isImageTop ? (
+                      <>
+                        {/* Top Image */}
+                        <div className="overflow-hidden">
+                          <EstateImage
+                            slug={practice.slug}
+                            alt={practice.alt}
+                            sizes="(min-width: 768px) 33vw, 100vw"
+                            className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
 
-                  <p className="mt-4 font-body text-sm leading-relaxed text-light-charcoal">
-                    Harvest Services ensure timely crop collection using efficient tools and skilled teams.
-                  </p>
+                        {/* Bottom Content */}
+                        <div className="flex flex-1 flex-col justify-between p-8">
+                          <div>
+                            <h3 className="font-heading text-2xl font-bold text-dark-charcoal">
+                              {practice.title}
+                            </h3>
 
-                  <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-forest-green transition-all hover:gap-3">
-                    <span>View Details</span>
-                    <FiArrowUpRight className="h-4 w-4" />
-                  </button>
-                </div>
+                            <p className="mt-4 font-body text-sm leading-relaxed text-light-charcoal">
+                              {practice.shortDesc}
+                            </p>
+                          </div>
 
-                {/* Bottom Image */}
-                <div className="overflow-hidden">
-                  <EstateImage
-                    slug="harvest"
-                    alt="Harvest services in action"
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-              </div>
-            </Reveal>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedPractice(practice)}
+                            className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-forest-green transition-all hover:gap-3"
+                          >
+                            <span>View Details</span>
+                            <FiArrowUpRight className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {/* Top Content */}
+                        <div className="flex flex-1 flex-col justify-between p-8">
+                          <div>
+                            <h3 className="font-heading text-2xl font-bold text-dark-charcoal">
+                              {practice.title}
+                            </h3>
 
-            {/* Card 2 - Land Cultivation (Image Top, Text Bottom) */}
-            <Reveal delay={200}>
-              <div className="group overflow-hidden rounded-3xl bg-white">
-                {/* Top Image */}
-                <div className="overflow-hidden">
-                  <EstateImage
-                    slug="farming"
-                    alt="Land cultivation with tractor"
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
+                            <p className="mt-4 font-body text-sm leading-relaxed text-light-charcoal">
+                              {practice.shortDesc}
+                            </p>
+                          </div>
 
-                <div className="p-8">
-                  <h3 className="font-heading text-2xl font-bold text-dark-charcoal">
-                    Land Cultivation
-                  </h3>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedPractice(practice)}
+                            className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-forest-green transition-all hover:gap-3"
+                          >
+                            <span>View Details</span>
+                            <FiArrowUpRight className="h-4 w-4" />
+                          </button>
+                        </div>
 
-                  <p className="mt-4 font-body text-sm leading-relaxed text-light-charcoal">
-                    Land Cultivation prepares soil for planting through ploughing, tilling, and conditioning.
-                  </p>
-
-                  <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-forest-green transition-all hover:gap-3">
-                    <span>View Details</span>
-                    <FiArrowUpRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Card 3 - Farm Management (Text Top, Image Bottom) */}
-            <Reveal delay={250}>
-              <div className="group overflow-hidden rounded-3xl bg-white">
-                <div className="p-8">
-                  <h3 className="font-heading text-2xl font-bold text-dark-charcoal">
-                    Farm Management
-                  </h3>
-
-                  <p className="mt-4 font-body text-sm leading-relaxed text-light-charcoal">
-                    Farm Management oversees daily operations to ensure productive and efficient farming.
-                  </p>
-
-                  <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-forest-green transition-all hover:gap-3">
-                    <span>View Details</span>
-                    <FiArrowUpRight className="h-4 w-4" />
-                  </button>
-                </div>
-
-                {/* Bottom Image */}
-                <div className="overflow-hidden">
-                  <EstateImage
-                    slug="dairy"
-                    alt="Farm management operations"
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-              </div>
-            </Reveal>
-
+                        {/* Bottom Image */}
+                        <div className="overflow-hidden">
+                          <EstateImage
+                            slug={practice.slug}
+                            alt={practice.alt}
+                            sizes="(min-width: 768px) 33vw, 100vw"
+                            className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
-
-          {/* See All Services Button */}
-          <Reveal delay={300}>
-            <div className="mt-12 text-center">
-              <Link
-                to="/enquire"
-                className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-body text-sm font-semibold text-dark-charcoal shadow-lg transition-all duration-300 hover:scale-105 hover:bg-ivory-white"
-              >
-                <GiWheat className="h-5 w-5 text-luxury-gold" />
-                <span>See All Services</span>
-              </Link>
-            </div>
-          </Reveal>
-
         </div>
+
+        {/* ── PRACTICE DETAILS MODAL ── */}
+        {selectedPractice && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm animate-fade-in"
+            onClick={() => setSelectedPractice(null)}
+          >
+            <div
+              className="relative w-full max-w-xl overflow-hidden rounded-3xl bg-ivory-white shadow-2xl border border-stone/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Image Header */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-forest-green/10">
+                <EstateImage
+                  slug={selectedPractice.slug}
+                  alt={selectedPractice.alt}
+                  sizes="(min-width: 640px) 600px, 100vw"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                
+                <button
+                  type="button"
+                  onClick={() => setSelectedPractice(null)}
+                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-all hover:bg-black/90 hover:scale-105"
+                  aria-label="Close dialog"
+                >
+                  <FiX className="h-5 w-5" />
+                </button>
+
+                <div className="absolute bottom-4 left-6 right-6">
+                  <span className="font-body text-xs font-semibold uppercase tracking-wider text-luxury-gold">
+                    {selectedPractice.subtitle}
+                  </span>
+                  <h3 className="mt-1 font-heading text-2xl font-bold text-white sm:text-3xl">
+                    {selectedPractice.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8 space-y-6">
+                <p className="font-body text-sm leading-relaxed text-light-charcoal sm:text-base">
+                  {selectedPractice.fullDesc}
+                </p>
+
+                <div className="rounded-2xl bg-warm-sand/50 p-5 border border-stone/20">
+                  <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-forest-green">
+                    Key Practices & Standards
+                  </h4>
+                  <ul className="mt-3 space-y-2.5">
+                    {selectedPractice.highlights.map((highlight, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 font-body text-xs leading-relaxed text-dark-charcoal sm:text-sm">
+                        <FiCheck className="mt-0.5 h-4 w-4 shrink-0 text-forest-green" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-stone/20 pt-4">
+                  <Link
+                    to="/enquire"
+                    onClick={() => setSelectedPractice(null)}
+                    className="rounded-full bg-forest-green px-6 py-2.5 font-body text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-dark-charcoal"
+                  >
+                    Book Farm Visit
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPractice(null)}
+                    className="rounded-full border border-stone/40 px-5 py-2.5 font-body text-xs font-medium text-light-charcoal transition-all hover:border-dark-charcoal hover:text-dark-charcoal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ══════════════════════════════════════════════════════════
@@ -734,10 +865,13 @@ export default function OrganicFarming() {
 
               {/* Learn More Button */}
               <Reveal delay={370}>
-                <button className="group inline-flex items-center gap-3 self-start rounded-full bg-white px-8 py-4 font-body text-sm font-semibold text-dark-charcoal shadow-lg transition-all hover:scale-105 hover:bg-luxury-gold hover:text-white">
+                <Link
+                  to="/enquire"
+                  className="group inline-flex items-center gap-3 self-start rounded-full bg-ivory-white px-8 py-4 font-body text-sm font-semibold text-dark-charcoal shadow-lg transition-all hover:scale-105 hover:bg-luxury-gold hover:text-white"
+                >
                   <span>Learn More</span>
                   <FiArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
+                </Link>
               </Reveal>
 
             </div>

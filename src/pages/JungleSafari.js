@@ -18,6 +18,10 @@ import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
 
+import JungleSafariHero from '../components/experiences/JungleSafariHero';
+import JungleSafariDestinations from '../components/experiences/JungleSafariDestinations';
+import JungleSafariWhyUs from '../components/experiences/JungleSafariWhyUs';
+
 const HIGHLIGHTS = [
   { icon: GiJeep, label: 'Open Jeep Safari' },
   { icon: FaPaw, label: 'Wildlife Spotting' },
@@ -27,10 +31,10 @@ const HIGHLIGHTS = [
 ];
 
 const GALLERY = [
-  { slug: 'jungle', caption: 'Forest Trails' },
-  { slug: 'jungle-safari', caption: 'Open Jeep Drives' },
-  { slug: 'waterfalls-and-nature-trails-2', caption: 'Wild Landscapes' },
-  { slug: 'waterfall', caption: 'Cascading Waterfalls' },
+  { slug: 'forest-trails', caption: 'Forest Trails' },
+  { slug: 'jeep-drives', caption: 'Open Jeep Drives' },
+  { slug: 'wild-landscapes', caption: 'Wild Landscapes' },
+  { slug: 'cascade-water', caption: 'Cascading Waterfalls' },
 ];
 
 const PERFECT_FOR = [
@@ -50,69 +54,55 @@ const SAFETY = [
 export default function JungleSafari() {
   return (
     <main className="bg-ivory-white">
-      {/* HERO */}
-      <section className="relative flex min-h-[90vh] items-end overflow-hidden bg-deep-forest">
-        <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="jungle"
-            alt="An open jeep on a jungle safari at the estate"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="lux-scrim absolute inset-0" />
+      {/* ── HERO SECTION: EXACT REFERENCE DESIGN ── */}
+      <JungleSafariHero />
 
-        <div className="relative z-10 mx-auto w-full max-w-editorial px-6 pb-16 md:px-10 md:pb-24">
-          <Reveal>
-            <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted-gold">
-              <span>Explore the Wild</span>
-              <span>&bull;</span>
-              <span>Feel the Adventure</span>
-              <span>&bull;</span>
-              <span>Experience Nature</span>
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="mt-5 max-w-2xl text-section font-heading font-light leading-[1.06] text-ivory-white">
-              Jungle
-              <span className="italic text-luxury-gold"> Safari</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-4 font-heading text-lg italic font-light text-luxury-gold">
-              An unforgettable adventure into the heart of nature.
-            </p>
-          </Reveal>
+      {/* ── NEXT SECTION: EMBARK ON A JOURNEY OF A LIFETIME (EXACT REFERENCE) ── */}
+      <JungleSafariDestinations />
 
-          <Reveal delay={240}>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-6">
-              {HIGHLIGHTS.map((h) => (
-                <div key={h.label} className="flex flex-col items-center text-center">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-luxury-gold/40 bg-ivory-white/10 text-ivory-white backdrop-blur-sm">
-                    <h.icon className="h-4 w-4" />
-                  </span>
-                  <span className="mt-2 max-w-[6rem] font-body text-[0.62rem] uppercase leading-tight tracking-wider text-ivory-white/80">
-                    {h.label}
-                  </span>
-                </div>
-              ))}
+      {/* ── NEXT SECTION: WHY SIDAI AFRICA SAFARIS? (EXACT REFERENCE) ── */}
+      <JungleSafariWhyUs />
+
+      {/* ── SAFARI OVERVIEW & HIGHLIGHTS ── */}
+      <section
+        id="safari-sanctuary-highlights"
+        className="bg-[#120f0c] text-ivory-white py-16 md:py-24 border-b border-white/10"
+      >
+        <div className="mx-auto max-w-editorial px-6 md:px-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/15 pb-10">
+            <div>
+              <span className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-[#D4AF37]">
+                Reserve Intelligence
+              </span>
+              <h2 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-light text-white leading-tight">
+                Into the Heart of the Sanctuary
+              </h2>
             </div>
-          </Reveal>
-
-          <Reveal delay={300}>
-            <p className="mt-10 max-w-prose font-body text-[0.9rem] font-light leading-[1.9] text-ivory-white/75">
-              Drive through dense forests, scenic trails and breathtaking
-              landscapes. Spot native wildlife, colourful birds and explore
-              the beauty of nature like never before.
-            </p>
-          </Reveal>
-
-          <Reveal delay={360}>
-            <Link to="/enquire" className="lux-btn-light mt-9 inline-flex">
+            <Link to="/enquire" className="lux-btn-light self-start md:self-auto shrink-0">
               <span>Book Your Safari Today</span>
             </Link>
-          </Reveal>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
+            {HIGHLIGHTS.map((h) => (
+              <div
+                key={h.label}
+                className="flex flex-col items-center text-center p-5 rounded-sm bg-white/5 border border-white/10 hover:border-[#D4AF37]/50 hover:bg-white/10 transition-all duration-300"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 text-[#D4AF37] mb-3">
+                  <h.icon className="h-5 w-5" />
+                </span>
+                <span className="font-body text-xs uppercase font-medium tracking-wider text-white/90">
+                  {h.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 max-w-3xl font-body text-sm sm:text-base font-light leading-relaxed text-white/75">
+            Drive through dense forests, scenic trails, and breathtaking landscapes of Bambardara Reserve.
+            Spot native wildlife, vibrant birds, and experience the raw majesty of nature in open-top 4x4 safari vehicles.
+          </p>
         </div>
       </section>
 

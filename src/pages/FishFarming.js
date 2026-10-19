@@ -74,7 +74,7 @@ const VARIETIES = [
   },
   {
     name: 'Mrigal',
-    slug: null,
+    slug: 'fish-mrigal',
     scientific: 'Cirrhinus mrigala',
     group: 'Indian major carp',
     feeds: 'Bottom, on settled organic matter',
@@ -84,7 +84,7 @@ const VARIETIES = [
   },
   {
     name: 'Tilapia',
-    slug: null,
+    slug: 'fish-tilapia',
     scientific: 'Oreochromis niloticus',
     group: 'Cichlid',
     feeds: 'Omnivore, mostly plant-based',
@@ -104,7 +104,7 @@ const VARIETIES = [
   },
   {
     name: 'Singhi',
-    slug: null,
+    slug: 'fish-singhi',
     scientific: 'Heteropneustes fossilis',
     group: 'Air-breathing catfish',
     feeds: 'Omnivore, feeding near the bottom',
@@ -437,7 +437,7 @@ export default function FishFarming() {
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-6 max-w-lg font-body text-[0.92rem] font-light leading-[1.9] text-light-charcoal">
-                Bambardara Agrotourism runs a working fish farm and helps
+                Bambarddara Agro Tourism runs a working fish farm and helps
                 farmers, investors and young entrepreneurs start their own —
                 from pond construction to fresh fish reaching the market.
               </p>
@@ -641,7 +641,7 @@ export default function FishFarming() {
             </div>
             <Reveal delay={140}>
               <div className="space-y-5 rounded-2xl border border-ivory-white/10 bg-ivory-white/5 p-7">
-                <span className="font-heading text-lg font-light text-ivory-white">Bambardara Agrotourism Pvt. Ltd.</span>
+                <span className="font-heading text-lg font-light text-ivory-white">Bambarddara Agro Tourism Pvt. Ltd.</span>
                 <div className="flex items-start gap-3 font-body text-[0.85rem] font-light text-ivory-white/75">
                   <FiMapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-luxury-gold" />
                   Parale Ninai, Shahuwadi, Kolhapur – 415101, Maharashtra

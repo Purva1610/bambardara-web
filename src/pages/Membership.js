@@ -151,8 +151,8 @@ export default function Membership() {
     <div className="bg-ivory-white">
       <section className="relative h-[90vh] min-h-[40rem] overflow-hidden">
         <EstateImage
-          slug="international-meditation-center"
-          alt="Wellness meditation center surrounded by nature"
+          slug="membership-hero"
+          alt="Bambarddara Agro Tourism Club Membership — Family and Community"
           sizes="100vw"
           priority
           className="isolate h-full w-full object-cover"
@@ -160,20 +160,20 @@ export default function Membership() {
         <div className="lux-scrim absolute inset-0" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-editorial px-6 pt-24 pb-16 md:px-10 md:pb-20">
-            <span className="lux-label text-muted-gold">Membership</span>
+            <span className="lux-label text-luxury-gold">Membership</span>
             <h1 className="mt-6 max-w-3xl font-heading text-[clamp(2.25rem,5vw,4rem)] font-light leading-[1.06] text-ivory-white">
-              BAMBARDDARA AGROTOURISM PVT. LTD.
-              <span className="block italic text-muted-gold">
-                AGROTOURISM CLUB MEMBERSHIP
+              BAMBARDDARA AGRO TOURISM PVT. LTD.
+              <span className="block italic text-luxury-gold">
+                AGRO TOURISM CLUB MEMBERSHIP
               </span>
             </h1>
             <p className="mt-8 max-w-2xl font-body text-[0.95rem] font-light leading-[1.85] text-ivory-white/70 md:text-[1.05rem]">
               Experience Nature. Create Memories.
             </p>
             <p className="mt-4 max-w-2xl font-body text-[0.95rem] font-light leading-[1.85] text-ivory-white/70 md:text-[1.05rem]">
-              Become a member of the BAMBARDDARA Agrotourism Club and experience the perfect blend of nature, adventure, comfort and rural culture with exclusive benefits every year.
+              Become a member of the BAMBARDDARA Agro Tourism Club and experience the perfect blend of nature, adventure, comfort and rural culture with exclusive benefits every year.
             </p>
-            <span className="mt-8 inline-block border border-muted-gold px-5 py-2 font-body text-[0.625rem] uppercase tracking-label text-muted-gold">
+            <span className="mt-8 inline-block border border-luxury-gold/50 px-5 py-2 font-body text-[0.625rem] uppercase tracking-label text-luxury-gold">
               Escape the City, Embrace Nature
             </span>
           </div>
@@ -199,7 +199,7 @@ export default function Membership() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {TIERS.map((tier, idx) => (
               <Reveal key={tier.name} delay={idx * 80}>
-                <div className="flex h-full flex-col border border-stone bg-white p-6 text-center transition-shadow duration-700 hover:shadow-xl">
+                <div className="flex h-full flex-col border border-stone bg-ivory-white p-6 text-center transition-shadow duration-700 hover:shadow-xl">
                   <tier.icon className="mx-auto h-8 w-8 text-luxury-gold" aria-hidden="true" />
                   <h3 className="mt-3 font-heading text-base font-light text-forest-green">
                     {tier.name}
@@ -262,7 +262,7 @@ export default function Membership() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {BENEFITS.map((benefit, idx) => (
             <Reveal key={benefit.title} delay={idx * 80}>
-              <div className="flex h-full flex-col border border-stone bg-white p-8 transition-shadow duration-700 hover:shadow-xl">
+              <div className="flex h-full flex-col border border-stone bg-ivory-white p-8 transition-shadow duration-700 hover:shadow-xl">
                 <benefit.icon className="h-9 w-9 text-luxury-gold" aria-hidden="true" />
                 <h3 className="mt-4 font-heading text-lg font-light text-forest-green">
                   {benefit.title}
@@ -367,7 +367,7 @@ export default function Membership() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {VALUES.map((value, idx) => (
                 <Reveal key={value.text} delay={idx * 100}>
-                  <div className="flex flex-col items-center border border-stone bg-white p-8 text-center shadow-sm transition-shadow duration-700 hover:shadow-xl">
+                  <div className="flex flex-col items-center border border-stone bg-ivory-white p-8 text-center shadow-sm transition-shadow duration-700 hover:shadow-xl">
                     <span className="text-5xl">{value.icon}</span>
                     <span className="mt-4 font-body text-[0.95rem] font-light text-forest-green">
                       {value.text}

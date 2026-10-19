@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
@@ -85,7 +86,7 @@ const TOP_SELLING_PLANTS = [
     id: 3,
     name: 'ZZ Plant',
     botanical: '(Zamioculcas zamiifolia)',
-    image: '/images/opt/ZZ_Plant.png',
+    image: '/images/opt/zz-plant.png',
     feature1: 'Low Light Tolerant',
     feature2: 'Very Low Maintenance',
     iconType: 'plant',
@@ -94,7 +95,7 @@ const TOP_SELLING_PLANTS = [
     id: 4,
     name: 'Pothos',
     botanical: '(Epipremnum aureum)',
-    image: '/images/opt/Golden_Pothos.png',
+    image: '/images/opt/golden-pothos.png',
     feature1: 'Easy to Grow',
     feature2: 'Purifies Indoor Air',
     iconType: 'leaf',
@@ -103,7 +104,7 @@ const TOP_SELLING_PLANTS = [
     id: 5,
     name: 'Spider Plant',
     botanical: '(Chlorophytum comosum)',
-    image: '/images/opt/Spider_Plants.png',
+    image: '/images/opt/spider-plants.png',
     feature1: 'Air Purifier • Non Toxic',
     feature2: 'Best for Hanging Baskets',
     iconType: 'air',
@@ -112,7 +113,7 @@ const TOP_SELLING_PLANTS = [
     id: 6,
     name: 'Rubber Plant',
     botanical: '(Ficus elastica)',
-    image: '/images/opt/Rubber_Tree_Plant_.png',
+    image: '/images/opt/rubber-tree-plant.png',
     feature1: 'Large Air Purifier',
     feature2: 'Bright Indirect Light',
     iconType: 'leaf',
@@ -121,7 +122,7 @@ const TOP_SELLING_PLANTS = [
     id: 7,
     name: 'Areca Palm',
     botanical: '(Dypsis lutescens)',
-    image: '/images/opt/Areca_Palm.png',
+    image: '/images/opt/areca-palm.png',
     feature1: 'Natural Humidifier',
     feature2: 'Bright Indirect Light',
     iconType: 'water',
@@ -130,7 +131,7 @@ const TOP_SELLING_PLANTS = [
     id: 8,
     name: 'Aglaonema',
     botanical: '(Chinese Evergreen)',
-    image: '/images/opt/Aglaonema_White.png',
+    image: '/images/opt/aglaonema-white.png',
     feature1: 'Low Light Tolerant',
     feature2: 'Attractive Foliage',
     iconType: 'plant',
@@ -139,7 +140,7 @@ const TOP_SELLING_PLANTS = [
     id: 9,
     name: 'Monstera',
     botanical: '(Monstera deliciosa)',
-    image: '/images/opt/Monstera_Plant.png',
+    image: '/images/opt/monstera-plant.png',
     feature1: 'Unique Look',
     feature2: 'Bright Indirect Light',
     iconType: 'sun',
@@ -148,7 +149,7 @@ const TOP_SELLING_PLANTS = [
     id: 10,
     name: 'Bamboo Palm',
     botanical: '(Chamaedorea seifrizii)',
-    image: '/images/opt/Bamboo_plant.png',
+    image: '/images/opt/bamboo-plant.png',
     feature1: 'Air Purifier • Pet Friendly',
     feature2: 'Low to Bright Light',
     iconType: 'leaf',
@@ -192,6 +193,9 @@ function PlantIcon({ type }) {
 }
 
 export default function NurseryCatalogue() {
+  const SLIDES = ['nursery-indoor-plants', 'indoor-plantation', 'botanical-care-eucalyptus'];
+  const [activeSlide, setActiveSlide] = useState(0);
+
   return (
     <main className="bg-ivory-white">
       {/* ── HERO ─────────────────────────────────────────────────── */}
@@ -259,7 +263,8 @@ export default function NurseryCatalogue() {
             {/* Image Container */}
             <div className="h-full w-full">
               <EstateImage
-                slug="nursery-indoor-plants"
+                key={SLIDES[activeSlide]}
+                slug={SLIDES[activeSlide]}
                 alt="Indoor courtyard with plants"
                 sizes="(min-width: 1024px) 65vw, 100vw"
                 priority
@@ -271,18 +276,19 @@ export default function NurseryCatalogue() {
 
         {/* Navigation Dots - Bottom Right */}
         <div className="absolute bottom-12 right-12 z-30 flex flex-col gap-3">
-          <button 
-            className="h-2 w-2 rounded-full bg-forest-green/40 transition-all hover:bg-forest-green"
-            aria-label="Slide 1"
-          ></button>
-          <button 
-            className="h-2 w-2 rounded-full bg-forest-green"
-            aria-label="Slide 2"
-          ></button>
-          <button 
-            className="h-2 w-2 rounded-full bg-forest-green/40 transition-all hover:bg-forest-green"
-            aria-label="Slide 3"
-          ></button>
+          {SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setActiveSlide(idx)}
+              className={`cursor-pointer transition-all duration-300 rounded-full ${
+                activeSlide === idx
+                  ? 'h-6 w-2 bg-forest-green shadow-sm'
+                  : 'h-2 w-2 bg-forest-green/40 hover:bg-forest-green/70'
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            ></button>
+          ))}
         </div>
       </section>
 
@@ -351,7 +357,7 @@ export default function NurseryCatalogue() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {FEATURES.map((f, i) => (
               <Reveal key={f.label} delay={i * 80}>
-                <div className="group flex h-full flex-col items-center rounded-2xl border border-stone/70 bg-white/70 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/60 hover:bg-white hover:shadow-luxury-md">
+                <div className="group flex h-full flex-col items-center rounded-2xl border border-stone/70 bg-white/70 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/60 hover:bg-ivory-white hover:shadow-luxury-md">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-forest-green/10 text-forest-green transition-all duration-300 group-hover:bg-forest-green group-hover:text-luxury-gold">
                     {f.icon}
                   </div>
@@ -389,7 +395,7 @@ export default function NurseryCatalogue() {
           {/* Section Heading */}
           <div className="mb-10 text-left">
             <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-deep-forest md:text-3xl lg:text-[2.2rem]">
-              PROJECT SPACES &amp; LIVING ARCHITECTURE
+              INDOOR PLANTATION &amp; LIVING SPACES
             </h2>
           </div>
 
@@ -397,9 +403,10 @@ export default function NurseryCatalogue() {
           <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12">
             {/* Left Large Vertical Image */}
             <div className="group relative overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:col-span-6 lg:h-[540px]">
-              <img
-                src="/images/opt/plantation.jpg"
+              <EstateImage
+                slug="indoor-plantation-main"
                 alt="Main Indoor Living Garden Area"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -408,36 +415,40 @@ export default function NurseryCatalogue() {
             <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-6 lg:h-[540px]">
               {/* Top-Left: Garden patio */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
-                <img
-                  src="/images/opt/plant.jpg"
+                <EstateImage
+                  slug="indoor-garden-patio"
                   alt="Outdoor Garden Seating"
+                  sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
               {/* Top-Right: Aerial canopy walkway */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
-                <img
-                  src="/images/opt/sappling.jpg"
+                <EstateImage
+                  slug="indoor-aerial-walkway"
                   alt="Aerial View Garden Walkways"
+                  sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
               {/* Bottom-Left: Balcony nook */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
-                <img
-                  src="/images/opt/plantt.jpg"
+                <EstateImage
+                  slug="indoor-balcony-lounge"
                   alt="Cozy Balcony Lounge"
+                  sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
               {/* Bottom-Right: Skylight water feature */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
-                <img
-                  src="/images/opt/plan.jpg"
+                <EstateImage
+                  slug="indoor-skylight-court"
                   alt="Skylight Architectural Court"
+                  sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -457,7 +468,7 @@ export default function NurseryCatalogue() {
               </h3>
               <a
                 href="#catalogue"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-2 sm:px-7 sm:py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-[#33473B] shadow-sm transition-all duration-300 hover:bg-[#2B3D32] hover:text-white hover:shadow-md"
+                className="inline-flex items-center justify-center rounded-full bg-ivory-white px-6 py-2 sm:px-7 sm:py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-[#33473B] shadow-sm transition-all duration-300 hover:bg-[#2B3D32] hover:text-white hover:shadow-md"
               >
                 EXPLORE NOW
               </a>
@@ -465,27 +476,35 @@ export default function NurseryCatalogue() {
 
             {/* Right Leaf Branch Graphic */}
             <div className="pointer-events-none absolute right-0 top-0 h-full w-2/5 sm:w-1/3 md:w-1/4 lg:w-[260px] overflow-hidden">
-              <img
-                src="/images/opt/eucalyptus_branch_hd.png"
-                alt="Eucalyptus foliage"
-                className="h-full w-full object-cover object-left mix-blend-multiply opacity-90"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/opt/botanical-care-eucalyptus-640.webp" />
+                <img
+                  src="/images/opt/eucalyptus-branch-hd.png"
+                  alt="Eucalyptus foliage"
+                  className="h-full w-full object-cover object-left mix-blend-multiply opacity-90"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/opt/botanical-care-eucalyptus-756.jpg';
+                  }}
+                />
+              </picture>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── ABOUT US ────────────────────────────────────────────── */}
-      <section className="bg-white px-6 py-16 md:px-12 md:py-24 border-t border-stone/50">
+      <section className="bg-ivory-white px-6 py-16 md:px-12 md:py-24 border-t border-stone/50">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-14">
             {/* Left Plant Illustration */}
             <div className="flex items-center justify-center md:col-span-5">
-              <div className="relative w-full max-w-sm overflow-hidden rounded-2xl shadow-md">
-                <img
-                  src="/images/opt/indorep.jpg"
+              <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-2xl shadow-md">
+                <EstateImage
+                  slug="nursery-about-plant"
                   alt="About Us Plant"
-                  className="w-full h-auto object-cover"
+                  sizes="(min-width: 768px) 380px, 90vw"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>

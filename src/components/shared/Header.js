@@ -4,11 +4,11 @@ import EstateImage from './EstateImage';
 import { EXPERIENCES } from '../../data/experiences';
 
 const ADVENTURE_ITEMS = EXPERIENCES
-  .filter((e) => e.type === 'adventures')
+  .filter((e) => e.type === 'adventures' && e.id !== 'kayaking')
   .map((e) => ({ name: e.title, href: `/experience/${e.id}` }));
 
 const FUN_ITEMS = EXPERIENCES
-  .filter((e) => e.type === 'leisure')
+  .filter((e) => e.type === 'leisure' && e.id !== 'camping')
   .map((e) => ({ name: e.title, href: `/experience/${e.id}` }));
 
 /* Routes that open on a full-bleed dark hero, like the homepage, and so want
@@ -36,13 +36,23 @@ const HERO_ROUTES = [
   '/investment',
   '/enquire',
   '/stays',
-  '/nature-trails',
-  '/nature-trails/waterfall',
-  '/nature-trails/bambarddara-waterfall',
-  '/nature-trails/kadavi-dam',
-  '/nature-trails/oxygen-park',
-  '/experience/nature-trails',
+  '/paintball',
+  '/paintball-arena',
+  '/cycling',
+  '/jungle-safari',
+  '/archery',
+  '/boating',
+  '/waterpark',
+  '/indoor-game-zones',
+  '/indoor-games',
+  '/indoor-game',
+  '/trekking',
+  '/zipline',
+  '/tree-climbing',
+  '/rock-climbing',
+  '/ropeway',
 ];
+
 const hasHeroAtTop = (pathname) =>
   pathname === '/' ||
   HERO_ROUTES.includes(pathname) ||
@@ -165,7 +175,11 @@ export default function Header({ user, onLogout }) {
               <NavLabel>{link.name}</NavLabel>
             </Link>
           ) : (
-            <button type="button" className={linkCls}>
+            <button
+              type="button"
+              onClick={() => setOpenMenu(openMenu === link.name ? null : link.name)}
+              className={linkCls}
+            >
               <NavLabel>{link.name}</NavLabel>
             </button>
           )}
@@ -297,10 +311,10 @@ export default function Header({ user, onLogout }) {
               BAMBARDDARA
             </span>
             <span className={[
-              'font-body text-[0.55rem] tracking-[0.25em] transition-colors duration-500',
+              'font-body text-[0.45rem] tracking-[0.14em] uppercase transition-colors duration-500 whitespace-nowrap',
               solid ? 'text-forest-green/70' : 'text-ivory-white/80',
             ].join(' ')}>
-              AGRO TOURISM
+              AGRO TOURISM PVT. LTD.
             </span>
           </span>
         </Link>

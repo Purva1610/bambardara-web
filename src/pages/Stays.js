@@ -53,7 +53,7 @@ export default function Stay() {
   };
 
   return (
-    <div className="w-full bg-ivory-white text-forest-green font-sans">
+    <div className="w-full bg-ivory-white text-forest-green font-body">
       {/* Hero */}
       <div className="relative flex min-h-viewport w-full flex-col overflow-hidden">
         <video
@@ -590,7 +590,9 @@ export default function Stay() {
           
           {/* CTA Button */}
           <button 
-            className="inline-flex items-center gap-3 px-12 py-5 text-xs tracking-[0.28em] uppercase font-medium transition-all duration-500"
+            type="button"
+            onClick={() => navigate('/membership')}
+            className="inline-flex items-center gap-3 px-12 py-5 text-xs tracking-[0.28em] uppercase font-medium transition-all duration-500 cursor-pointer"
             style={{ 
               backgroundColor: GOLD,
               color: '#1A1916'

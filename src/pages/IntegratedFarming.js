@@ -32,12 +32,11 @@ const PLOTS = [
     blurb:
       'Transplanted by hand in June and cut in October. Wheat and gram go in straight behind it while the soil still holds the rain.',
     sends: 'Grain to the kitchen, residue for composting',
-    slug: 'farming',
+    slug: 'rice-tarrace',
     alt: 'The rice harvest across the estate terraces',
     link: { to: '/enquire', label: 'Come for harvest' },
     icon: GiWheat,
     color: 'from-yellow-800 to-amber-700',
-    span: 'sm:col-span-3',
     aspect: 'aspect-[16/9]',
   },
   {
@@ -48,12 +47,11 @@ const PLOTS = [
     blurb:
       'Spring-fed streams run down through the forest edge and feed the irrigation tanks below. The morning farm walk starts here.',
     sends: 'Water to every plot on the plan',
-    slug: 'nature',
+    slug: 'water-source',
     alt: 'Guests walking the estate terraces',
     link: { to: '/experiences/adventures', label: 'Walk the trails' },
     icon: FiDroplet,
     color: 'from-blue-900 to-cyan-800',
-    span: 'sm:col-span-3',
     aspect: 'aspect-[16/9]',
   },
   {
@@ -64,13 +62,12 @@ const PLOTS = [
     blurb:
       'Mango, chikoo and jackfruit along the eastern boundary, planted by the grandparents of the men who prune them now.',
     sends: 'Fruit to the kitchen, prunings to the compost yard',
-    slug: 'farm',
+    slug: 'the-orchad',
     alt: 'The estate orchards at golden hour',
     link: { to: '/enquire', label: 'Pick in season' },
     icon: GiFruitBowl,
     color: 'from-orange-800 to-red-700',
-    span: 'sm:col-span-2',
-    aspect: 'aspect-square',
+    aspect: 'aspect-[16/9]',
   },
   {
     id: 'beds',
@@ -85,8 +82,7 @@ const PLOTS = [
     link: { to: '/#dining', label: 'See the kitchen' },
     icon: PiLeaf,
     color: 'from-lime-800 to-green-700',
-    span: 'sm:col-span-2',
-    aspect: 'aspect-square',
+    aspect: 'aspect-[16/9]',
   },
   {
     id: 'nursery',
@@ -96,13 +92,12 @@ const PLOTS = [
     blurb:
       'A climate-controlled polyhouse where every sapling on the estate starts its life with temperature, humidity and irrigation monitored daily, well before a single seedling goes out to the terraces or the orchard.',
     sends: 'Saplings to the orchard and beds, herbs to the kitchen year-round',
-    slug: 'high-tech-nursery-facility',
+    slug: 'high-nursury',
     alt: 'Rows of lettuce under grow-lights in the estate vertical nursery',
     link: { to: '/enquire', label: 'Ask about the nursery' },
     icon: GiPlantSeed,
     color: 'from-teal-800 to-cyan-700',
-    span: 'sm:col-span-2',
-    aspect: 'aspect-square',
+    aspect: 'aspect-[16/9]',
   },
   {
     id: 'compost',
@@ -112,13 +107,12 @@ const PLOTS = [
     blurb:
       'Natural composting where organic waste is transformed through the monsoon and turned three times, creating rich soil for the beds and terraces.',
     sends: 'Natural compost to the beds and the terraces',
-    slug: 'organic-farming-landscape',
+    slug: 'compost-yard',
     alt: 'The organic compost yard',
     link: { to: '/enquire', label: 'See how it works' },
     icon: FiRefreshCw,
     color: 'from-stone-800 to-slate-700',
-    span: 'sm:col-span-2',
-    aspect: 'aspect-square',
+    aspect: 'aspect-[16/9]',
   },
 ];
 
@@ -315,12 +309,17 @@ export default function AgroFarming() {
               </Reveal>
 
               <Reveal delay={350}>
-                <button className="group inline-flex items-center gap-3 rounded-full bg-luxury-gold px-8 py-4 font-body text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-muted-gold">
+                <a
+                  href="https://wa.me/917588775757"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-full bg-luxury-gold px-8 py-4 font-body text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-muted-gold"
+                >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                   <span>Chat With Us</span>
-                </button>
+                </a>
               </Reveal>
             </div>
 
@@ -360,7 +359,7 @@ export default function AgroFarming() {
             
             {/* Card 1 - Harvest Services */}
             <Reveal delay={200}>
-              <div className="group rounded-3xl bg-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+              <div className="group rounded-3xl bg-ivory-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1B4D3E]">
                   <GiWheat className="h-8 w-8 text-luxury-gold" />
                 </div>
@@ -373,16 +372,19 @@ export default function AgroFarming() {
                   Professional harvesting solutions with modern equipment and trained teams ensuring maximum yield recovery and minimal crop loss during harvest season.
                 </p>
 
-                <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3">
+                <Link
+                  to="/enquire"
+                  className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3"
+                >
                   <span>Learn More</span>
                   <FiArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </Reveal>
 
             {/* Card 2 - Land Cultivation */}
             <Reveal delay={250}>
-              <div className="group rounded-3xl bg-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+              <div className="group rounded-3xl bg-ivory-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1B4D3E]">
                   <PiLeaf className="h-8 w-8 text-luxury-gold" />
                 </div>
@@ -395,16 +397,19 @@ export default function AgroFarming() {
                   Expert land preparation and cultivation services using sustainable practices that improve soil health while preparing optimal growing conditions.
                 </p>
 
-                <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3">
+                <Link
+                  to="/enquire"
+                  className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3"
+                >
                   <span>Learn More</span>
                   <FiArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </Reveal>
 
             {/* Card 3 - Farm Management */}
             <Reveal delay={300}>
-              <div className="group rounded-3xl bg-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+              <div className="group rounded-3xl bg-ivory-white p-8 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1B4D3E]">
                   <GiPlantSeed className="h-8 w-8 text-luxury-gold" />
                 </div>
@@ -417,10 +422,13 @@ export default function AgroFarming() {
                   Comprehensive farm management support including planning, resource optimization, and expert guidance for improved productivity and profitability.
                 </p>
 
-                <button className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3">
+                <Link
+                  to="/enquire"
+                  className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#1B4D3E] transition-all hover:gap-3"
+                >
                   <span>Learn More</span>
                   <FiArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </Reveal>
 
@@ -655,10 +663,13 @@ export default function AgroFarming() {
 
               {/* Learn More Button */}
               <Reveal delay={340}>
-                <button className="group inline-flex items-center gap-3 self-start rounded-full bg-white px-8 py-4 font-body text-sm font-semibold text-dark-charcoal shadow-lg transition-all hover:scale-105 hover:bg-luxury-gold hover:text-white">
+                <Link
+                  to="/enquire"
+                  className="group inline-flex items-center gap-3 self-start rounded-full bg-ivory-white px-8 py-4 font-body text-sm font-semibold text-dark-charcoal shadow-lg transition-all hover:scale-105 hover:bg-luxury-gold hover:text-white"
+                >
                   <span>Learn More</span>
                   <FiArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
+                </Link>
               </Reveal>
 
             </div>
@@ -755,15 +766,13 @@ export default function AgroFarming() {
             </Reveal>
           </div>
 
-          {/* Plot Cards Grid — sized by acreage, not uniform, so the layout
-              itself reads as a rough map of the estate rather than a plain
-              photo gallery. */}
-          <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-6">
+          {/* Plot Cards Grid — 2 cards per row */}
+          <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
             {PLOTS.map((plot, i) => (
-              <Reveal key={plot.id} delay={i * 80} className={plot.span}>
+              <Reveal key={plot.id} delay={i * 80} className="h-full">
                 <button
                   onClick={() => setActivePlot(activePlot === plot.id ? null : plot.id)}
-                  className={`group relative h-full w-full overflow-hidden rounded-2xl border-2 transition-all duration-500 ${
+                  className={`group relative flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border-2 transition-all duration-500 ${
                     activePlot === plot.id
                       ? 'border-luxury-gold bg-luxury-gold/5 shadow-xl shadow-luxury-gold/20'
                       : 'border-ivory-white/10 bg-ivory-white/5 hover:border-luxury-gold/50 hover:bg-ivory-white/10'
@@ -774,7 +783,7 @@ export default function AgroFarming() {
                     <EstateImage
                       slug={plot.slug}
                       alt={plot.alt}
-                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-t ${plot.color} opacity-60 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-40`} />
@@ -800,38 +809,40 @@ export default function AgroFarming() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 text-left">
-                    <h3 className="font-heading text-xl font-light text-ivory-white">
-                      {plot.name}
-                    </h3>
-                    
-                    <div className="mt-2 font-mono text-xs uppercase tracking-wider text-luxury-gold/80">
-                      {plot.acres}
-                    </div>
-
-                    <div className={`mt-4 overflow-hidden transition-all duration-500 ${
-                      activePlot === plot.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}>
-                      <p className="font-body text-sm leading-relaxed text-ivory-white/70">
-                        {plot.blurb}
-                      </p>
-
-                      <div className="mt-4 rounded-lg border border-luxury-gold/20 bg-luxury-gold/5 p-3">
-                        <div className="font-mono text-xs uppercase tracking-wider text-luxury-gold">
-                          Sends
-                        </div>
-                        <div className="mt-1 font-body text-xs leading-relaxed text-ivory-white/80">
-                          {plot.sends}
-                        </div>
+                  <div className="flex flex-1 flex-col justify-between p-6 text-left">
+                    <div>
+                      <h3 className="font-heading text-xl font-light text-ivory-white">
+                        {plot.name}
+                      </h3>
+                      
+                      <div className="mt-2 font-mono text-xs uppercase tracking-wider text-luxury-gold/80">
+                        {plot.acres}
                       </div>
 
-                      <Link
-                        to={plot.link.to}
-                        className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-luxury-gold hover:text-ivory-white"
-                      >
-                        {plot.link.label}
-                        <FiArrowUpRight className="h-3 w-3" />
-                      </Link>
+                      <div className={`mt-4 overflow-hidden transition-all duration-500 ${
+                        activePlot === plot.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}>
+                        <p className="font-body text-sm leading-relaxed text-ivory-white/70">
+                          {plot.blurb}
+                        </p>
+
+                        <div className="mt-4 rounded-lg border border-luxury-gold/20 bg-luxury-gold/5 p-3">
+                          <div className="font-mono text-xs uppercase tracking-wider text-luxury-gold">
+                            Sends
+                          </div>
+                          <div className="mt-1 font-body text-xs leading-relaxed text-ivory-white/80">
+                            {plot.sends}
+                          </div>
+                        </div>
+
+                        <Link
+                          to={plot.link.to}
+                          className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-luxury-gold hover:text-ivory-white"
+                        >
+                          {plot.link.label}
+                          <FiArrowUpRight className="h-3 w-3" />
+                        </Link>
+                      </div>
                     </div>
 
                     {activePlot !== plot.id && (

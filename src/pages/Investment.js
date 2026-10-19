@@ -136,7 +136,7 @@ export default function Investment() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {PLANS.map((plan, idx) => (
               <Reveal key={plan.title} delay={idx * 100}>
-                <div className="flex h-full flex-col border border-stone bg-white p-8 shadow-sm transition-shadow duration-700 hover:shadow-xl">
+                <div className="flex h-full flex-col border border-stone bg-ivory-white p-8 shadow-sm transition-shadow duration-700 hover:shadow-xl">
                   <h3 className="font-heading text-xl font-light text-forest-green">
                     {plan.title}
                   </h3>
@@ -357,7 +357,7 @@ export default function Investment() {
               <div className="mt-8 space-y-6">
                 <div>
                   <h3 className="font-heading text-xl font-light text-forest-green">
-                    BAMBARDDARA AGROTOURISM PVT. LTD.
+                    BAMBARDDARA AGRO TOURISM PVT. LTD.
                   </h3>
                   <p className="mt-3 font-body text-[0.9rem] font-light leading-[1.85] text-light-charcoal">
                      Address: Parale Nina Shahuwadi Kolhapur Maharashtra 416 003, India

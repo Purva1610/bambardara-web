@@ -96,7 +96,7 @@ export default function Hero() {
 
         <p className="mt-10 max-w-prose animate-fade-up font-body text-[0.95rem] font-light leading-[1.95] text-ivory-white/80 opacity-0 [animation-delay:900ms]">
          Located in the heart of Western Ghats,
-        BAMBARDDARA Agro Tourism offers luxury accommodation,
+        BAMBARDDARA Agro Tourism Pvt. Ltd. offers luxury accommodation,
         wildlife adventures,
         wellness experiences,
         organic farming,

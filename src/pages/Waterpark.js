@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaWater,
@@ -26,6 +26,7 @@ import { GiWaterSplash, GiWaterTower } from 'react-icons/gi';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
+import WaterparkHero from '../components/experiences/WaterparkHero';
 
 const KEY_HIGHLIGHTS = [
   {
@@ -169,98 +170,14 @@ const AMENITIES = [
 ];
 
 export default function Waterpark() {
+  useEffect(() => {
+    document.title = 'Bambarddara Waterpark — Thrill Slides, Wave Pool & Splash Arena';
+  }, []);
+
   return (
     <main className="bg-ivory-white text-dark-charcoal">
-      {/* HERO SECTION */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-deep-forest">
-        <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="waterpark-hero"
-            alt="Bambardara Water Park with giant slides, wave pool and splash castle"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
-        </div>
-        {/* Scrim Overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(6,32,24,0.3) 0%, rgba(6,32,24,0.7) 65%, rgba(6,32,24,0.95) 100%), linear-gradient(90deg, rgba(6,32,24,0.85) 0%, rgba(6,32,24,0.4) 60%, transparent 100%)',
-          }}
-        />
-
-        <div className="relative z-10 mx-auto w-full max-w-editorial px-6 pb-16 pt-32 md:px-10 md:pb-24">
-          <Reveal>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-luxury-gold/50 bg-ivory-white/15 px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wider text-muted-gold backdrop-blur-md">
-              <span className="font-semibold text-ivory-white">Bambardara Agrotourism Pvt. Ltd.</span>
-              <span className="text-luxury-gold">•</span>
-              <span>Nature • Agriculture • Hospitality</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="mt-5 flex items-center gap-3">
-              <span className="inline-block rounded-md bg-amber-500/90 px-3 py-1 font-body text-[0.75rem] font-bold uppercase tracking-wider text-deep-forest shadow-md">
-                Beat the Heat
-              </span>
-              <span className="font-heading text-lg font-light italic text-luxury-gold">
-                Enjoy the WATER FUN!
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <h1 className="mt-3 max-w-3xl font-heading text-5xl font-light leading-[1.05] tracking-tight text-ivory-white md:text-7xl">
-              Water Park
-            </h1>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <p className="mt-4 max-w-2xl font-heading text-2xl font-normal italic text-luxury-gold md:text-3xl">
-              Fun Unlimited... Memories Forever!
-            </p>
-          </Reveal>
-
-          <Reveal delay={280}>
-            {/* Feature Pills from Poster */}
-            <div className="mt-6 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-ivory-white/90">
-              <span className="rounded-full bg-ivory-white/10 px-3.5 py-1.5 backdrop-blur-sm border border-ivory-white/20">
-                🎢 Thrilling Rides
-              </span>
-              <span className="text-luxury-gold">•</span>
-              <span className="rounded-full bg-ivory-white/10 px-3.5 py-1.5 backdrop-blur-sm border border-ivory-white/20">
-                💦 Splashing Fun
-              </span>
-              <span className="text-luxury-gold">•</span>
-              <span className="rounded-full bg-ivory-white/10 px-3.5 py-1.5 backdrop-blur-sm border border-ivory-white/20">
-                👨‍👩‍👧‍👦 Family Entertainment
-              </span>
-              <span className="text-luxury-gold">•</span>
-              <span className="rounded-full bg-ivory-white/10 px-3.5 py-1.5 backdrop-blur-sm border border-ivory-white/20">
-                🌿 Refreshing Experience
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={340}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link to="/enquire" className="lux-btn-gold inline-flex items-center gap-2">
-                <span>Book Your Tickets Today</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-              <a
-                href="tel:+917588775757"
-                className="inline-flex items-center gap-2 rounded-full border border-ivory-white/30 bg-ivory-white/10 px-6 py-3 font-body text-xs font-semibold uppercase tracking-wider text-ivory-white backdrop-blur-md transition-colors hover:bg-ivory-white/20"
-              >
-                <FaPhoneAlt className="h-3.5 w-3.5 text-luxury-gold" />
-                <span>+91 75887 75757</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO SECTION (Water Park & Slides) */}
+      <WaterparkHero />
 
       {/* PROMO TICKER STRIP */}
       <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
@@ -299,7 +216,7 @@ export default function Waterpark() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {KEY_HIGHLIGHTS.map((h, i) => (
               <Reveal key={h.title} delay={i * 80}>
-                <div className="group relative flex h-full flex-col border border-stone bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
+                <div className="group relative flex h-full flex-col border border-stone bg-ivory-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-colors group-hover:bg-forest-green group-hover:text-luxury-gold">
                       <h.icon className="h-7 w-7" aria-hidden="true" />
@@ -368,7 +285,7 @@ export default function Waterpark() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {ATTRACTION_CARDS.map((card, idx) => (
               <Reveal key={card.title} delay={idx * 100}>
-                <div className="group flex h-full flex-col overflow-hidden border border-stone bg-white shadow-soft transition-all duration-500 hover:shadow-xl">
+                <div className="group flex h-full flex-col overflow-hidden border border-stone bg-ivory-white shadow-soft transition-all duration-500 hover:shadow-xl">
                   <div className="relative aspect-[16/11] w-full overflow-hidden bg-forest-green">
                     <EstateImage
                       slug={card.slug}
@@ -432,7 +349,7 @@ export default function Waterpark() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {PERFECT_FOR.map((item, i) => (
               <Reveal key={item.title} delay={i * 90}>
-                <div className="flex h-full flex-col items-center border border-stone bg-white p-8 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
+                <div className="flex h-full flex-col items-center border border-stone bg-ivory-white p-8 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full border border-luxury-gold/30 bg-warm-sand text-forest-green shadow-soft">
                     <item.icon className="h-6 w-6" />
                   </span>

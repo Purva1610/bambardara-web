@@ -31,6 +31,21 @@
     ],
     "fallbackWidth": 1280
   },
+  "adventure-sports": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "animal-caree": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "animal-farm": {
     "widths": [
       640,
@@ -47,11 +62,49 @@
     ],
     "fallbackWidth": 1280
   },
+  "animalcare-hero": {
+    "src": "/images/opt/animalcare-hero.jpg"
+  },
   "archery": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "archery-hero": {
+    "src": "/images/opt/archery-hero.jpg"
+  },
+  "areca-palm": {
+    "src": "/images/opt/areca-palm.png"
+  },
+  "autumn-season": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "aviary-birds": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "avocado": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "awaken": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -68,6 +121,12 @@
       401
     ],
     "fallbackWidth": 401
+  },
+  "ayurvedic-spa-therapy": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 1170
   },
   "bamboo-plant": {
     "src": "/images/opt/bamboo-plant.png"
@@ -96,11 +155,53 @@
     ],
     "fallbackWidth": 1280
   },
+  "batata-bhaji": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "bee": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "bells": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "bhajani-thalipeeth": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "bharli-vangi": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "biodiversity": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "bird-watch": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -111,6 +212,17 @@
       1920
     ],
     "fallbackWidth": 1280
+  },
+  "birthday-celebration": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "blueberry": {
+    "src": "/images/opt/blueberry.jpg"
   },
   "boat": {
     "widths": [
@@ -160,11 +272,25 @@
     ],
     "fallbackWidth": 1280
   },
+  "boosts-immunity": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "bridge": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "buffalo": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -193,8 +319,29 @@
     ],
     "fallbackWidth": 1280
   },
+  "canopy-trails": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "cart-ride": {
     "src": "/images/opt/cart-ride.jpg"
+  },
+  "cart-service": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "cascade-water": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "center": {
     "src": "/images/opt/center.jpg"
@@ -202,17 +349,54 @@
   "chairman": {
     "src": "/images/opt/chairman.jpeg"
   },
+  "cherry": {
+    "src": "/images/opt/cherry.jpg"
+  },
+  "children-play": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "climbing": {
     "widths": [
       640
     ],
     "fallbackWidth": 687
   },
+  "clubhouse": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "co-event": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "compost-yard": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "conference-hall": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "connect": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -227,8 +411,38 @@
   "coronation": {
     "src": "/images/opt/coronation.jpg"
   },
+  "corporate-events": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "cow": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "cruise": {
+    "src": "/images/opt/cruise.jpg"
+  },
+  "crystal-springs": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "cultivate-wisdom": {
     "src": "/images/opt/find.jpg"
+  },
+  "cultural": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "culture-day": {
     "src": "/images/opt/culture.jpg"
@@ -273,6 +487,20 @@
     ],
     "fallbackWidth": 1280
   },
+  "dairy-exprience": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "dairy-farming-hero": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "darshan": {
     "widths": [
       640,
@@ -303,11 +531,30 @@
     ],
     "fallbackWidth": 1280
   },
+  "director-patil": {
+    "src": "/images/opt/director-patil.jpeg"
+  },
+  "director-pawar": {
+    "src": "/images/opt/director-pawar.jpeg"
+  },
+  "director-suhas-patil": {
+    "src": "/images/opt/director-suhas-patil.jpeg"
+  },
   "diyas": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "dragon-fruit": {
+    "src": "/images/opt/dragon-fruit.jpg"
+  },
+  "duck": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -322,6 +569,13 @@
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "estate-way": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -352,6 +606,13 @@
     ],
     "fallbackWidth": 1280
   },
+  "family-boating": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "family-fun-and-adventure": {
     "widths": [
       640,
@@ -368,6 +629,26 @@
     ],
     "fallbackWidth": 1280
   },
+  "family-get-together": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "family-outing": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "family-vacation": {
+    "widths": [],
+    "fallbackWidth": null,
+    "src": "/images/opt/family-vacation.jpeg"
+  },
   "farm": {
     "widths": [
       640
@@ -382,10 +663,55 @@
     ],
     "fallbackWidth": 1280
   },
+  "farm-activity": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "farm-management": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "farm-passion": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "farmer": {
     "src": "/images/opt/farmer.jpg"
   },
   "farmhouse": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse-villa-1": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse-villa-2": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "farmhouse-villa-3": {
     "widths": [
       640,
       1280,
@@ -406,6 +732,21 @@
       640
     ],
     "fallbackWidth": 736
+  },
+  "festival-evening": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "film-shooting": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
   },
   "find-wisdom": {
     "src": "/images/opt/wisd.jpg"
@@ -448,11 +789,25 @@
     ],
     "fallbackWidth": 1280
   },
+  "fish-farmingg": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "fish-magur": {
     "widths": [
       640
     ],
     "fallbackWidth": 736
+  },
+  "fish-mrigal": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "fish-pangasius": {
     "widths": [
@@ -466,6 +821,20 @@
     ],
     "fallbackWidth": 736
   },
+  "fish-singhi": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "fish-tilapia": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "fisherman": {
     "widths": [
       640,
@@ -474,11 +843,42 @@
     ],
     "fallbackWidth": 1280
   },
+  "fishi": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "folk-performances": {
     "src": "/images/opt/folk-performances.jpg"
   },
+  "forest-gazebos": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "forest-trails": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "fort-protector-full": {
     "src": "/images/opt/protector.jpg"
+  },
+  "founder-dilip-patil": {
+    "src": "/images/opt/founder-dilip-patil.jpeg"
+  },
+  "fresh-water": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "fruits": {
     "src": "/images/opt/fruits.jpg"
@@ -499,11 +899,50 @@
     ],
     "fallbackWidth": 1280
   },
+  "garden-tarrace": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "gavran-chicken": {
+    "src": "/images/opt/gavran-chicken.jpg"
+  },
+  "get-together": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 735
+  },
+  "goat": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "golf-clubhouse-facade": {
     "src": "/images/opt/golf-clubhouse-facade.jpg"
   },
   "golf-clubhouse-lounge": {
     "src": "/images/opt/golf-clubhouse-lounge.jpg"
+  },
+  "golf-course-fairway": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "golf-course-green": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
   },
   "golf-philosophy-golfers": {
     "src": "/images/opt/golf-philosophy-golfers.jpg"
@@ -522,11 +961,25 @@
     ],
     "fallbackWidth": 736
   },
+  "harvest-cafe": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "harvest-nights": {
     "widths": [
       640
     ],
     "fallbackWidth": 735
+  },
+  "harvest-service": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "harvest-traditions": {
     "src": "/images/opt/tradition.jpg"
@@ -547,8 +1000,37 @@
     ],
     "fallbackWidth": 1280
   },
+  "hen": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "high-nursury": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "high-tech-nursery-facility": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
   "hindavi-swarajya-full": {
     "src": "/images/opt/swarajya.jpg"
+  },
+  "horse": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "hydrotherapy": {
     "widths": [
@@ -558,14 +1040,42 @@
     ],
     "fallbackWidth": 1280
   },
+  "indigenous-trees": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "indoor": {
     "src": "/images/opt/indoor.jpg"
+  },
+  "indoor-aerial-walkway": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "indoor-balcony-lounge": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "indoor-games": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "indoor-garden-patio": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -576,6 +1086,23 @@
       1920
     ],
     "fallbackWidth": 1280
+  },
+  "indoor-plantation-main": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "indoor-skylight-court": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "indoorgame-hero": {
+    "src": "/images/opt/indoorgame-hero.jpg"
   },
   "integrated": {
     "widths": [
@@ -604,6 +1131,20 @@
   "intro-dhol": {
     "src": "/images/opt/dhol.jpg"
   },
+  "janjira-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "jeep-drives": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "jungle": {
     "widths": [
       640,
@@ -623,6 +1164,13 @@
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "kanda-pohe": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -656,6 +1204,14 @@
     ],
     "fallbackWidth": 1280
   },
+  "kayaking-lake-view": {
+    "widths": [],
+    "fallbackWidth": null,
+    "src": "/images/opt/kayaking-lake-view.jpg"
+  },
+  "kiwi": {
+    "src": "/images/opt/kiwi.jpg"
+  },
   "kolaba-fort": {
     "src": "/images/opt/kolaba.jpg"
   },
@@ -666,6 +1222,29 @@
       1920
     ],
     "fallbackWidth": 1280
+  },
+  "kolhapuri-misal": {
+    "src": "/images/opt/kolhapuri-misal.jpg"
+  },
+  "kosambari": {
+    "src": "/images/opt/kosambari.jpg"
+  },
+  "lake-horizon": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "land-cultuvation": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "leader-sachin": {
+    "src": "/images/opt/leader-sachin.jpeg"
   },
   "logo": {
     "src": "/images/opt/logo.png"
@@ -712,6 +1291,9 @@
     ],
     "fallbackWidth": 1280
   },
+  "macadamia": {
+    "src": "/images/opt/macadamia.webp"
+  },
   "mahadev": {
     "widths": [
       640,
@@ -731,6 +1313,13 @@
   "maruti": {
     "src": "/images/opt/maruti.jpeg"
   },
+  "masala-dosa": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "massage": {
     "widths": [
       640,
@@ -747,6 +1336,20 @@
     ],
     "fallbackWidth": 1280
   },
+  "matki-usal": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "mediation-hero": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "medicinal": {
     "src": "/images/opt/medicinal.jpg"
   },
@@ -758,6 +1361,26 @@
     ],
     "fallbackWidth": 1280
   },
+  "meditation-center-hall": {
+    "src": "/images/opt/meditation-center-hall.jpg"
+  },
+  "meditation-spiritual": {
+    "src": "/images/opt/meditation-spiritual.jpg"
+  },
+  "membership-hero": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "memories": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "monsoon": {
     "widths": [
       640,
@@ -765,6 +1388,18 @@
       1920
     ],
     "fallbackWidth": 1280
+  },
+  "morning-swell": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "mountain-trekking": {
+    "widths": [],
+    "fallbackWidth": null,
+    "src": "/images/opt/mountain-trekking.jpg"
   },
   "movie": {
     "widths": [
@@ -774,16 +1409,67 @@
     ],
     "fallbackWidth": 1280
   },
+  "natural-feed": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "nature": {
     "widths": [],
     "fallbackWidth": null,
     "src": "/images/opt/nature.jpeg"
+  },
+  "nature-ride": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "nature-springs": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "nature-walk": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "night-harvest": {
     "widths": [
       640
     ],
     "fallbackWidth": 736
+  },
+  "nursery-about-plant": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "nursery-greenhouse-hero": {
+    "src": "/images/opt/nursery-greenhouse-hero.jpg"
+  },
+  "nursery-indoor-plants": {
+    "src": "/images/opt/nursery-indoor-plants.jpg"
+  },
+  "nursury-tech": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "olive": {
+    "src": "/images/opt/olive.jpg"
   },
   "organic-farming": {
     "widths": [
@@ -817,8 +1503,29 @@
     ],
     "fallbackWidth": 1280
   },
+  "organic-farming-landscape": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "organic-food": {
+    "src": "/images/opt/organic-food.jpg"
+  },
   "ornamental": {
     "src": "/images/opt/ornamental.jpg"
+  },
+  "pactice": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "paddle-boat": {
+    "src": "/images/opt/paddle-boat.jpg"
   },
   "paintball": {
     "widths": [
@@ -828,13 +1535,68 @@
     ],
     "fallbackWidth": 1280
   },
+  "paintball-hero": {
+    "src": "/images/opt/paintball-hero.jpg"
+  },
+  "panchgad-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "pandhra-rassa": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "panhala-fort": {
     "src": "/images/opt/pahalna.jpg"
+  },
+  "papad-loncha": {
+    "src": "/images/opt/papad-loncha.jpg"
+  },
+  "paved-walkway": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "perfect-dam": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "perfect-greens": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "pick": {
     "widths": [],
     "fallbackWidth": null,
     "src": "/images/opt/pick.jpeg"
+  },
+  "picnic-spot": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "pitla-bhakri": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "plant": {
     "src": "/images/opt/plant.jpg"
@@ -862,6 +1624,28 @@
   "pratapgad-victory-full": {
     "src": "/images/opt/victory.jpg"
   },
+  "pre-wedding-shoot": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "pristine": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "pro-shop": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "process": {
     "widths": [
       640,
@@ -870,11 +1654,78 @@
     ],
     "fallbackWidth": 1280
   },
+  "puran-poli": {
+    "src": "/images/opt/puran-poli.jpg"
+  },
+  "purandar-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "putting-green": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "rabbit": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "raigad-fort": {
     "src": "/images/opt/raigad-fort.jpg"
   },
+  "rainbow-cove": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "rajgad-fort": {
     "src": "/images/opt/rajgad-fort.jpg"
+  },
+  "rajmachi-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "rappelling-adventure": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "rava-upma": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "reduces-stress": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "relaxation-zone": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "resort-and-villas": {
     "widths": [
@@ -913,6 +1764,20 @@
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "restraunt": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "rice-tarrace": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -988,7 +1853,26 @@
     ],
     "fallbackWidth": 1280
   },
+  "ropeway-cable-car": {
+    "widths": [],
+    "fallbackWidth": null,
+    "src": "/images/opt/ropeway-cable-car.jpg"
+  },
+  "row": {
+    "src": "/images/opt/row.jpg"
+  },
   "royal": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "sabudana-khichadi": {
+    "src": "/images/opt/sabudana-khichadi.jpg"
+  },
+  "sacred-rituals": {
     "widths": [
       640,
       1280,
@@ -999,6 +1883,33 @@
   "sadhu": {
     "src": "/images/opt/sadhu.jpg"
   },
+  "sahyadri-mountain": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "salher-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "sandalwood": {
+    "src": "/images/opt/sandalwood.jpg"
+  },
+  "sapling-cultivation": {
+    "src": "/images/opt/sapling-cultivation.jpg"
+  },
+  "satvik-vegetarian-cuisine": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "sauna": {
     "widths": [
       640,
@@ -1007,8 +1918,32 @@
     ],
     "fallbackWidth": 1280
   },
+  "scenic-fairways": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "scenic-vista": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "seasonal-vegetable": {
+    "src": "/images/opt/seasonal-vegetable.jpg"
+  },
   "serenity": {
     "src": "/images/opt/serenity.jpg"
+  },
+  "sheep": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "shivaji-maharaj": {
     "widths": [
@@ -1016,11 +1951,17 @@
     ],
     "fallbackWidth": 1080
   },
+  "shivaji-maharaj-hero": {
+    "src": "/images/opt/shivaji-maharaj-hero.jpg"
+  },
   "shivaji-statue-card": {
     "src": "/images/opt/chattrapati-shivaji-maharaj.jpg"
   },
   "shivneri-fort": {
     "src": "/images/opt/shivneri-fort.jpg"
+  },
+  "shkaria": {
+    "src": "/images/opt/shkaria.jpg"
   },
   "shriram": {
     "widths": [
@@ -1033,6 +1974,9 @@
   },
   "sinhagad-fort": {
     "src": "/images/opt/sinhagad-fort.jpg"
+  },
+  "solkadhi": {
+    "src": "/images/opt/solkadhi.jpg"
   },
   "spa": {
     "widths": [
@@ -1050,14 +1994,45 @@
     ],
     "fallbackWidth": 1280
   },
+  "speedboat": {
+    "src": "/images/opt/speedboat.jpg"
+  },
   "strategic-leader-full": {
     "src": "/images/opt/leader.jpg"
+  },
+  "stream-crossing": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "summer": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "sunrise": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "sunset": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "sunset-vista": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -1071,6 +2046,12 @@
   },
   "suvarnadurg-fort": {
     "src": "/images/opt/suvarnadurg-fort.jpg"
+  },
+  "sweets-desserts": {
+    "src": "/images/opt/sweets-desserts.jpg"
+  },
+  "taak-mattha": {
+    "src": "/images/opt/taak-mattha.jpg"
   },
   "temple": {
     "widths": [
@@ -1099,11 +2080,40 @@
     ],
     "fallbackWidth": 1280
   },
+  "temple-sanctum": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "temple-trail": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "the-estate": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "the-orchad": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "top-12-forts-poster": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -1115,6 +2125,13 @@
   },
   "traditions-numbers": {
     "src": "/images/opt/maha.jpg"
+  },
+  "trails": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
   },
   "trekking": {
     "widths": [
@@ -1151,11 +2168,53 @@
     ],
     "fallbackWidth": 1280
   },
+  "twin-cascades": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "unique-farm": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "untouched-beauty": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "valley-villas": {
     "widths": [
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "vanilla": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "varan-bhaat": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "vasota-fort": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -1173,6 +2232,13 @@
   "village-walk": {
     "src": "/images/opt/village-walk.jpg"
   },
+  "visapur-fort": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "visionary-king-full": {
     "src": "/images/opt/visionary-king.jpg"
   },
@@ -1187,6 +2253,20 @@
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "water-activity": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "water-source": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -1262,6 +2342,28 @@
     ],
     "fallbackWidth": 1200
   },
+  "wedding-ceremony": {
+    "widths": [
+      640
+    ],
+    "fallbackWidth": 736
+  },
+  "wedding-decor": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "wedding-photoshoot": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
   "welcome-shared": {
     "src": "/images/opt/shared.jpg"
   },
@@ -1270,6 +2372,13 @@
       640,
       1280,
       1920
+    ],
+    "fallbackWidth": 1280
+  },
+  "wild-landscapes": {
+    "widths": [
+      640,
+      1280
     ],
     "fallbackWidth": 1280
   },
@@ -1284,6 +2393,37 @@
   "wisdom": {
     "src": "/images/opt/wisdom.jpg"
   },
+  "wonderful-serenity": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "yoga-pranayama": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "yoga-wellness": {
+    "src": "/images/opt/yoga-wellness.jpg"
+  },
+  "yoga-zones": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
+  "zen-sanctuary": {
+    "widths": [
+      640,
+      1280
+    ],
+    "fallbackWidth": 1280
+  },
   "zipline": {
     "widths": [
       640,
@@ -1292,237 +2432,39 @@
     ],
     "fallbackWidth": 1280
   },
-  "adventure-sports": {
+  "zunka": {
     "widths": [
       640,
-      1280,
-      1920
+      1280
     ],
     "fallbackWidth": 1280
   },
-  "autumn-season": {
+  "rabbit-friendly-corner": {
     "widths": [
       640,
-      1280,
-      1920
+      1280
     ],
     "fallbackWidth": 1280
   },
-  "birthday-celebration": {
+  "goat-feeding-time": {
     "widths": [
       640,
-      1280,
-      1920
+      1280
     ],
     "fallbackWidth": 1280
   },
-  "meditation-center-hall": {
-    "src": "/images/opt/meditation-center-hall.jpg"
-  },
-  "conference-hall": {
-    "widths": [
-      640
-    ],
-    "fallbackWidth": 736
-  },
-  "corporate-events": {
-    "widths": [
-      640
-    ],
-    "fallbackWidth": 736
-  },
-  "founder-dilip-patil": {
-    "src": "/images/opt/founder-dilip-patil.jpeg"
-  },
-  "family-vacation": {
-    "widths": [],
-    "fallbackWidth": null,
-    "src": "/images/opt/family-vacation.jpeg"
-  },
-  "family-get-together": {
+  "poultry-area": {
     "widths": [
       640,
-      1280,
-      1920
+      1280
     ],
     "fallbackWidth": 1280
   },
-  "get-together": {
-    "widths": [
-      640
-    ],
-    "fallbackWidth": 735
-  },
-  "farmhouse-villa-1": {
+  "memories-that-last": {
     "widths": [
       640,
-      1280,
-      1920
+      1280
     ],
     "fallbackWidth": 1280
-  },
-  "farmhouse-villa-2": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "farmhouse-villa-3": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "film-shooting": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "organic-food": {
-    "src": "/images/opt/organic-food.jpg"
-  },
-  "golf-course-fairway": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "golf-course-green": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "shivaji-maharaj-hero": {
-    "src": "/images/opt/shivaji-maharaj-hero.jpg"
-  },
-  "nursery-indoor-plants": {
-    "src": "/images/opt/nursery-indoor-plants.jpg"
-  },
-  "kayaking-lake-view": {
-    "widths": [],
-    "fallbackWidth": null,
-    "src": "/images/opt/kayaking-lake-view.jpg"
-  },
-  "meditation-spiritual": {
-    "src": "/images/opt/meditation-spiritual.jpg"
-  },
-  "nursery-greenhouse-hero": {
-    "src": "/images/opt/nursery-greenhouse-hero.jpg"
-  },
-  "organic-farming-landscape": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "director-patil": {
-    "src": "/images/opt/director-patil.jpeg"
-  },
-  "director-pawar": {
-    "src": "/images/opt/director-pawar.jpeg"
-  },
-  "pre-wedding-shoot": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "rappelling-adventure": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "ropeway-cable-car": {
-    "widths": [],
-    "fallbackWidth": null,
-    "src": "/images/opt/ropeway-cable-car.jpg"
-  },
-  "leader-sachin": {
-    "src": "/images/opt/leader-sachin.jpeg"
-  },
-  "sacred-rituals": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "sapling-cultivation": {
-    "src": "/images/opt/sapling-cultivation.jpg"
-  },
-  "ayurvedic-spa-therapy": {
-    "widths": [
-      640
-    ],
-    "fallbackWidth": 1170
-  },
-  "director-suhas-patil": {
-    "src": "/images/opt/director-suhas-patil.jpeg"
-  },
-  "high-tech-nursery-facility": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "temple-sanctum": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "mountain-trekking": {
-    "widths": [],
-    "fallbackWidth": null,
-    "src": "/images/opt/mountain-trekking.jpg"
-  },
-  "wedding-decor": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "wedding-ceremony": {
-    "widths": [
-      640
-    ],
-    "fallbackWidth": 736
-  },
-  "wedding-photoshoot": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "yoga-wellness": {
-    "src": "/images/opt/yoga-wellness.jpg"
   }
 }

@@ -40,11 +40,11 @@ const SLIDES = [
     cta: { label: 'Explore Experiences', href: '/experiences/adventures' },
   },
   {
-    slug: 'kayaking-lake-view',
+    slug: 'boating-2',
     kicker: 'Water',
-    label: 'The Reservoir · Kayaking & Boating',
+    label: 'The Reservoir · Lake Boating',
     title: ['Flat Water', 'at First Light'],
-    body: 'Kayak or boat across the reservoir at dawn, when the surface holds the ridge line perfectly still.',
+    body: 'Boat across the reservoir at dawn, when the surface holds the ridge line perfectly still.',
     cta: { label: 'View Water Adventures', href: '/experiences/adventures' },
   },
   {
@@ -72,7 +72,7 @@ const SLIDES = [
    the circle above or below them. */
 const HERO_SPOTS = [
   { slug: 'ropeway-cable-car', title: 'Ropeway Point', subtitle: 'Aerial Adventure', curve: 0 },
-  { slug: 'kayaking-lake-view', title: 'The Reservoir', subtitle: 'Kayaking & Boating', curve: 4 },
+  { slug: 'boating-2', title: 'The Reservoir', subtitle: 'Lake Boating', curve: 4 },
   { slug: 'mountain-trekking', title: 'The Ridge Trail', subtitle: 'Guided Trekking', curve: 1.5 },
   { slug: 'waterpark', title: 'The Water Park', subtitle: 'Family Fun', curve: 5 },
 ];
@@ -95,7 +95,7 @@ const LANES = [
 ];
 
 const DAY_TIMELINE = [
-  { time: '06:00', title: 'Kayaking at first light', body: 'Flat water on the reservoir before the wind picks up, when the surface holds the ridge line still.' },
+  { time: '06:00', title: 'Boating at first light', body: 'Flat water on the reservoir before the wind picks up, when the surface holds the ridge line still.' },
   { time: '09:00', title: 'Trekking to the ridge', body: 'A guided ascent timed to arrive above the cloud line, with breakfast carried up for those who want it.' },
   { time: '12:00', title: 'Farm & dairy hour', body: 'The milking, the cheese room, and the calves in between. Children rarely want to leave.' },
   { time: '15:00', title: 'Water park or golf', body: 'The choice is the guest’s, and both run until dusk with instructors and lifeguards on hand.' },

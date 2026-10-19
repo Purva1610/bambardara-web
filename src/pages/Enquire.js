@@ -486,7 +486,7 @@ export default function Enquire() {
                                 value={form.activityType}
                                 onChange={update('activityType')}
                                 className={FIELD}
-                                placeholder="Safari, kayaking, trekking..."
+                                placeholder="Safari, boating, trekking..."
                               />
                             </div>
                             <div>

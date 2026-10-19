@@ -55,61 +55,61 @@ const ACTIVITIES = [
     icon: FaHiking,
     title: 'Nature Walk',
     desc: 'Shaded scenic trails through dense high-oxygen tree canopies.',
-    slug: 'nature',
+    slug: 'nature-walk',
   },
   {
     icon: FaFeatherAlt,
     title: 'Bird Watching',
     desc: 'Spot vibrant native birds, kingfishers, and mountain species.',
-    slug: 'waterfalls-and-nature-trails-3',
+    slug: 'bird-watch',
   },
   {
     icon: GiMeditation,
     title: 'Yoga Zone',
     desc: 'Open-air lawns and cedar decks for morning pranayama & yoga.',
-    slug: 'plantation',
+    slug: 'yoga-zones',
   },
   {
     icon: FaChild,
     title: 'Children Play Area',
     desc: 'Safe swings, grassy meadows, and nature-themed outdoor fun.',
-    slug: 'bamboo-plant',
+    slug: 'children-play',
   },
   {
     icon: FaCampground,
     title: 'Picnic Spots',
     desc: 'Shaded wooden gazebos and private family sitting clearings.',
-    slug: 'well-planted-roads-and-street-lights',
+    slug: 'picnic-spot',
   },
   {
     icon: FaSpa,
     title: 'Relaxation Zone',
     desc: 'Hammocks nestled between trees for unhurried rest and reading.',
-    slug: 'waterfall',
+    slug: 'relaxation-zone',
   },
 ];
 
 // The 4 photo exploration cards from the poster right side
 const GALLERY_CARDS = [
   {
-    slug: 'nature',
-    title: 'NATURE WALK',
-    subtitle: 'Canopy Pathways & Pure Air',
+    slug: 'boosts-immunity',
+    title: 'BOOSTS IMMUNITY',
+    subtitle: 'Fresh Oxygen & Vitality',
   },
   {
-    slug: 'well-planted-roads-and-street-lights',
-    title: 'BEAUTIFUL LANDSCAPING',
-    subtitle: 'Floral Gazebos & Scenic Lawns',
+    slug: 'reduces-stress',
+    title: 'REDUCES STRESS',
+    subtitle: 'Natural Calming Greenery',
   },
   {
-    slug: 'plantation',
-    title: 'YOGA & MEDITATION',
-    subtitle: 'Mindful Forest Wellness',
+    slug: 'connect',
+    title: 'CONNECTS WITH NATURE',
+    subtitle: 'Deep Peace & Positive Energy',
   },
   {
-    slug: 'bamboo-plant',
-    title: 'RELAX & UNWIND',
-    subtitle: 'Tranquil Hammock Groves',
+    slug: 'areca-palm',
+    title: 'IMPROVES HEALTH',
+    subtitle: 'Pure Air & Oxygen-Rich Flora',
   },
 ];
 
@@ -134,15 +134,21 @@ export default function OxygenPark() {
     <main className="bg-ivory-white text-forest-green selection:bg-luxury-gold selection:text-dark-charcoal">
       {/* ── HERO SECTION (EXACT SICHUAN POSTER ARCHITECTURE) ── */}
       <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-deep-forest text-ivory-white">
-        {/* Cinematic Forest & Mountain Lake Background */}
+        {/* Cinematic Forest & Mountain Lake Background: D:\bam\bambardara-web\public\images\opt\oxygen-hero.jpg */}
         <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="nature"
-            alt="Bambardara Oxygen Park pristine mountain sanctuary and serene lake waters"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover scale-105 transition-transform duration-[12000ms] hover:scale-100"
-          />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/oxygen-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/oxygen-hero.jpg`}
+              alt="Bambardara Oxygen Park pristine mountain sanctuary and serene lake waters"
+              className="h-full w-full object-cover object-center scale-105 transition-transform duration-[12000ms] hover:scale-100 select-none"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
           {/* Subtle cinematic overlays for depth & poster contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/95 via-deep-forest/30 to-black/60" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,transparent_0%,rgba(6,32,24,0.55)_60%,rgba(4,18,13,0.92)_100%)]" />
@@ -177,7 +183,7 @@ export default function OxygenPark() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/enquire"
-                className="inline-flex items-center gap-3 bg-luxury-gold px-8 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.2em] text-deep-forest font-bold transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(201,169,97,0.6)] hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-3 bg-luxury-gold px-8 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.2em] text-deep-forest font-bold transition-all duration-300 hover:bg-ivory-white hover:shadow-[0_0_30px_rgba(201,169,97,0.6)] hover:scale-105 active:scale-95"
               >
                 <span>Visit Oxygen Park</span>
                 <FaChevronRight className="text-[0.65rem]" />
@@ -205,7 +211,7 @@ export default function OxygenPark() {
                 {/* — • — Divider Node */}
                 <div className="flex items-center gap-2 my-2.5 w-full">
                   <div className="h-[1px] w-6 bg-white/50" />
-                  <div className="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                  <div className="h-2 w-2 rounded-full bg-ivory-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                   <div className="h-[1px] flex-1 max-w-[90px] bg-white/50" />
                 </div>
                 <p className="font-body text-xs sm:text-sm text-white/80 font-light leading-relaxed">
@@ -221,7 +227,7 @@ export default function OxygenPark() {
                 {/* — • — Divider Node */}
                 <div className="flex items-center gap-2 my-2.5 w-full md:justify-center">
                   <div className="h-[1px] w-6 md:w-10 bg-white/50" />
-                  <div className="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                  <div className="h-2 w-2 rounded-full bg-ivory-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                   <div className="h-[1px] w-12 md:w-10 bg-white/50" />
                 </div>
                 <div className="font-body text-xs sm:text-sm text-white/80 font-light leading-relaxed space-y-0.5">
@@ -238,7 +244,7 @@ export default function OxygenPark() {
                 {/* — • — Divider Node */}
                 <div className="flex items-center gap-2 my-2.5 w-full md:justify-end">
                   <div className="h-[1px] flex-1 max-w-[90px] md:order-1 bg-white/50" />
-                  <div className="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] md:order-2" />
+                  <div className="h-2 w-2 rounded-full bg-ivory-white shadow-[0_0_8px_rgba(255,255,255,0.8)] md:order-2" />
                   <div className="h-[1px] w-6 md:order-3 bg-white/50" />
                 </div>
                 <p className="font-body text-xs sm:text-sm text-white/80 font-light leading-relaxed">
@@ -430,7 +436,7 @@ export default function OxygenPark() {
               <p className="font-heading text-2xl sm:text-3xl font-light text-forest-green">
                 Families, Friends &amp; Groups
               </p>
-              <span className="mt-3 font-serif italic text-sm text-forest-green/80">
+              <span className="mt-3 font-heading italic text-sm text-forest-green/80">
                 Refresh... Recharge... Reconnect...
               </span>
             </div>
@@ -440,7 +446,7 @@ export default function OxygenPark() {
               <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-luxury-gold font-bold block mb-2">
                 VISIT &amp; FEEL THE DIFFERENCE
               </span>
-              <span className="font-serif italic text-2xl sm:text-3xl text-luxury-gold font-normal">
+              <span className="font-heading italic text-2xl sm:text-3xl text-luxury-gold font-normal">
                 &ldquo;Where Every Breath Brings Life!&rdquo;
               </span>
               <p className="mt-2 text-xs font-light text-ivory-white/70">
@@ -463,7 +469,7 @@ export default function OxygenPark() {
                 </span>
               </div>
               <h3 className="font-heading text-3xl sm:text-4xl font-light text-ivory-white">
-                Bambardara Agrotourism Pvt. Ltd.
+                Bambarddara Agro Tourism Pvt. Ltd.
               </h3>
 
               <div className="mt-6 space-y-4 text-sm font-light text-ivory-white/85">

@@ -13,37 +13,37 @@ import Reveal from '../components/shared/Reveal';
 
 const COURSE_CARDS = [
   {
-    slug: 'golf-course-fairway',
+    slug: 'perfect-greens',
     title: 'Perfect Greens',
     tagline: 'Pristine Putting Surfaces',
     desc: 'Tour-quality greens offering true roll, subtle contours, and consistent speeds for golfers of every handicap.',
   },
   {
-    slug: 'golf-course-green',
+    slug: 'cart-service',
     title: 'Cart Service',
     tagline: 'Comfort On Every Hole',
     desc: 'Modern fleet of silent electric golf buggies equipped with GPS tracking and refreshment coolers.',
   },
   {
-    slug: 'golf-course-fairway',
+    slug: 'pro-shop',
     title: 'Pro Shop',
     tagline: 'Premium Gear & Apparel',
     desc: 'Fully stocked with international brand clubs, balls, glove fittings, apparel, and custom club repair.',
   },
   {
-    slug: 'golf-course-green',
+    slug: 'clubhouse',
     title: 'Clubhouse',
     tagline: 'Panoramic Lounge & Dining',
     desc: 'Relax after your round with gourmet dining, refreshing drinks, and scenic views over the 18th fairway.',
   },
   {
-    slug: 'golf-course-fairway',
+    slug: 'putting-green',
     title: 'Putting Green',
     tagline: 'Practice & Warm-Up',
     desc: 'Expansive dedicated practice green to tune your stroke, alignment, and distance control before teeing off.',
   },
   {
-    slug: 'golf-course-green',
+    slug: 'scenic-fairways',
     title: 'Scenic Fairways',
     tagline: 'Lush Mountain Vistas',
     desc: 'Sweeping emerald fairways framed by indigenous trees, lake reflections, and fresh mountain breezes.',
@@ -79,13 +79,21 @@ export default function GolfCourse() {
     <main className="bg-ivory-white text-dark-charcoal">
       {/* HERO */}
       <section className="relative flex min-h-[92vh] lg:min-h-[100vh] items-center justify-center overflow-hidden bg-deep-forest text-center">
-        {/* Background Image */}
+        {/* Background Image: D:\bam\bambardara-web\public\images\opt\golfcourse-hero.jpg */}
         <div className="absolute inset-0 isolate">
-          <img
-            src="/images/opt/golf_hero_main.jpg"
-            alt="Golfer with glove and clubs on championship golf fairway"
-            className="h-full w-full object-cover object-[center_30%]"
-          />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/golfcourse-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/golfcourse-hero.jpg`}
+              alt="Golfer taking a championship swing on the Bambardara golf fairway"
+              className="h-full w-full object-cover object-[center_30%]"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
 
         {/* Cinematic Atmosphere & Dark Contrast Overlay */}
@@ -132,7 +140,7 @@ export default function GolfCourse() {
               </Link>
               <a
                 href="#about-golf"
-                className="inline-flex items-center justify-center rounded-full border border-ivory-white/70 bg-black/30 px-8 py-3 sm:px-10 sm:py-3.5 font-body text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-ivory-white shadow-luxury backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-deep-forest hover:border-white hover:scale-105"
+                className="inline-flex items-center justify-center rounded-full border border-ivory-white/70 bg-black/30 px-8 py-3 sm:px-10 sm:py-3.5 font-body text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-ivory-white shadow-luxury backdrop-blur-md transition-all duration-300 hover:bg-ivory-white hover:text-deep-forest hover:border-white hover:scale-105"
               >
                 Explore Course
               </a>
@@ -530,7 +538,7 @@ export default function GolfCourse() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
             {COURSE_CARDS.map((item, idx) => (
               <Reveal key={`${item.title}-${idx}`} delay={idx * 80}>
-                <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-stone/80 bg-white shadow-xs transition-all duration-500 hover:-translate-y-1.5 hover:border-luxury-gold/60 hover:shadow-luxury-lg">
+                <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-stone/80 bg-ivory-white shadow-xs transition-all duration-500 hover:-translate-y-1.5 hover:border-luxury-gold/60 hover:shadow-luxury-lg">
                   <div className="relative aspect-[16/11] w-full overflow-hidden bg-forest-green">
                     <EstateImage
                       slug={item.slug}
@@ -613,7 +621,7 @@ export default function GolfCourse() {
               <div className="mt-6 space-y-6">
                 <div>
                   <h4 className="font-heading text-lg font-medium text-ivory-white">
-                    Bambardara Agrotourism Pvt. Ltd.
+                    Bambarddara Agro Tourism Pvt. Ltd.
                   </h4>
                   <p className="mt-2 flex items-start gap-3 font-body text-sm font-light leading-relaxed text-ivory-white/80">
                     <FaMapMarkerAlt className="mt-1 h-4 w-4 flex-shrink-0 text-luxury-gold" />

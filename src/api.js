@@ -48,6 +48,3 @@ export const getCurrentUser = async () => {
     method: 'GET',
   });
 };
-
-
-

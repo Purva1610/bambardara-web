@@ -10,6 +10,7 @@
   --dark-charcoal: #1A1916;
   --ivory-white: #FFFBF5;
   --natural-brown: #5C3D28;
+  --dark-brown: #23160F;
 }
 
 @layer base {
@@ -60,6 +61,13 @@
   h3 {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     line-height: 1.15;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   ::selection {
@@ -172,18 +180,20 @@
 
   /* Gold variant - premium accent */
   .lux-btn-gold {
-    @apply lux-btn text-dark-charcoal;
-    border-color: rgba(212, 175, 55, 0.5);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(229, 193, 88, 0.1) 100%);
+    @apply lux-btn text-forest-green font-semibold;
+    border-color: #D4AF37;
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
   }
   
   .lux-btn-gold::after {
-    background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%);
+    background: linear-gradient(135deg, #E5C158 0%, #F5D77F 100%);
   }
   
   .lux-btn-gold:hover {
-    border-color: #D4AF37;
-    box-shadow: 0 12px 48px rgba(212, 175, 55, 0.4);
+    @apply text-forest-green;
+    border-color: #E5C158;
+    box-shadow: 0 12px 48px rgba(212, 175, 55, 0.45);
   }
 
   /* LINK SYSTEM - Refined underline animations */

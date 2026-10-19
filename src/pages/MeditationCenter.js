@@ -44,9 +44,9 @@ const RETREAT_POINTS = [
 const HIGHLIGHTS = [
   { slug: 'international-meditation-center', label: 'Spacious Meditation Halls' },
   { slug: 'waterfalls-and-nature-trails-2', label: 'Peaceful Nature Trails' },
-  { slug: 'meditation', label: 'Yoga & Pranayama Sessions' },
+  { slug: 'yoga-pranayama', label: 'Yoga & Pranayama Sessions' },
   { slug: 'spa', label: 'Ayurvedic Therapies' },
-  { slug: 'fine-dining-restaurant', label: 'Satvik Vegetarian Cuisine' },
+  { slug: 'satvik-vegetarian-cuisine', label: 'Satvik Vegetarian Cuisine' },
   { slug: 'luxury-hotel-rooms-and-suites', label: 'Premium Accommodation' },
 ];
 
@@ -93,7 +93,7 @@ function StayInTouchForm() {
   };
 
   return (
-    <div className="relative border border-stone bg-white p-8 shadow-xl">
+    <div className="relative border border-stone bg-ivory-white p-8 shadow-xl">
       <span className={LABEL}>Get In Touch</span>
       <h3 className="mt-2 font-heading text-xl font-light text-forest-green">
         Let's Stay in Touch
@@ -169,6 +169,12 @@ const SITTINGS = [
 ];
 
 export default function MeditationCenter() {
+  const HERO_SLIDES = ['mediation-hero', 'serenity', 'awaken', 'pactice'];
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const prevSlide = () => setSlideIndex((i) => (i === 0 ? HERO_SLIDES.length - 1 : i - 1));
+  const nextSlide = () => setSlideIndex((i) => (i === HERO_SLIDES.length - 1 ? 0 : i + 1));
+
   return (
     <main className="bg-ivory-white">
       {/* HERO */}
@@ -186,15 +192,17 @@ export default function MeditationCenter() {
               <div className="mt-8 flex gap-3">
                 <button
                   type="button"
-                  aria-label="Previous"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-copper text-ivory-white transition-colors hover:bg-bronze"
+                  aria-label="Previous photo"
+                  onClick={prevSlide}
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-copper text-ivory-white transition-all duration-300 hover:bg-bronze hover:scale-105 active:scale-95"
                 >
                   <FaChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
                 <button
                   type="button"
-                  aria-label="Next"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-copper text-ivory-white transition-colors hover:bg-bronze"
+                  aria-label="Next photo"
+                  onClick={nextSlide}
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-copper text-ivory-white transition-all duration-300 hover:bg-bronze hover:scale-105 active:scale-95"
                 >
                   <FaChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
@@ -225,10 +233,11 @@ export default function MeditationCenter() {
                 opacity="0.6"
               />
             </svg>
-            <div className="lux-frame relative aspect-square w-full max-w-[560px] overflow-hidden rounded-full border-[6px] border-ivory-white shadow-xl">
+            <div className="lux-frame relative aspect-square w-full max-w-[560px] overflow-hidden rounded-full border-[6px] border-ivory-white shadow-xl transition-all duration-700">
               <EstateImage
-                slug="cultivate-wisdom"
-                alt="A guided group meditation ceremony at the estate"
+                key={HERO_SLIDES[slideIndex]}
+                slug={HERO_SLIDES[slideIndex]}
+                alt="Meditation Centre at Bambardara Estate"
                 sizes="(min-width: 1024px) 45vw, 90vw"
                 priority
               />
@@ -315,7 +324,7 @@ export default function MeditationCenter() {
             </Reveal>
 
             <Reveal delay={140} className="absolute -bottom-8 -left-6 w-64 max-w-[80%] sm:-left-10">
-              <div className="border border-stone bg-white p-5 shadow-xl">
+              <div className="border border-stone bg-ivory-white p-5 shadow-xl">
                 <p className="lux-label">Today's Sittings</p>
                 <div className="mt-3 space-y-2">
                   <div className="flex items-center gap-2 font-body text-[0.75rem] text-light-charcoal">
@@ -337,7 +346,7 @@ export default function MeditationCenter() {
 
           <div className="lg:col-span-2">
             <Reveal>
-              <div className="flex flex-col items-start gap-4 border border-stone bg-white p-6">
+              <div className="flex flex-col items-start gap-4 border border-stone bg-ivory-white p-6">
                 <FaOm className="h-8 w-8 text-copper" aria-hidden="true" />
                 <p className="font-body text-[0.7rem] uppercase tracking-wide text-light-charcoal/60">
                   Daily
@@ -346,10 +355,10 @@ export default function MeditationCenter() {
                 </p>
                 <div className="lux-frame aspect-[3/4] w-full">
                   <EstateImage
-                    slug="meditation"
-                    alt="A guest in silent meditation at the estate"
+                    slug="pactice"
+                    alt="Daily guided meditation practice at the estate"
                     sizes="128px"
-                    position="top"
+                    position="center"
                   />
                 </div>
               </div>
@@ -549,8 +558,8 @@ export default function MeditationCenter() {
           <div className="lg:col-span-3">
             <div className="lux-frame aspect-[3/4] w-full">
               <EstateImage
-                slug="meditation"
-                alt="A guest in silent meditation at the estate"
+                slug="awaken"
+                alt="Awaken Your Spirit — meditation at Bambardara Estate"
                 sizes="(min-width: 1024px) 20vw, 80vw"
               />
             </div>
@@ -762,7 +771,7 @@ export default function MeditationCenter() {
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
             {PROGRAMS.map((item, idx) => (
               <Reveal key={item.label} delay={idx * 60}>
-                <div className="flex h-full flex-col items-center gap-3 border border-stone bg-white px-5 py-8 text-center transition-shadow duration-500 hover:shadow-lg">
+                <div className="flex h-full flex-col items-center gap-3 border border-stone bg-ivory-white px-5 py-8 text-center transition-shadow duration-500 hover:shadow-lg">
                   <item.icon className="h-8 w-8 text-copper" aria-hidden="true" />
                   <span className="font-body text-[0.8rem] font-medium text-forest-green">
                     {item.label}
@@ -824,7 +833,7 @@ export default function MeditationCenter() {
               {IDEAL_FOR.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-luxury-gold/40 bg-white px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wide text-forest-green"
+                  className="rounded-full border border-luxury-gold/40 bg-ivory-white px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wide text-forest-green"
                 >
                   {item}
                 </span>

@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaCamera,
-  FaUserFriends,
   FaShieldAlt,
-  FaLeaf,
-  FaHeart,
   FaMapMarkerAlt,
   FaCalendarAlt,
   FaUsers,
@@ -16,45 +13,38 @@ import {
   FaChild,
   FaFirstAid,
   FaPhoneAlt,
-  FaWater,
   FaQrcode,
   FaRegClock,
+  FaAnchor,
+  FaLifeRing,
 } from 'react-icons/fa';
-import { GiSpeedBoat, GiSailboat, GiWaterSplash, GiLifeJacket } from 'react-icons/gi';
+import { GiSpeedBoat, GiSailboat, GiLifeJacket, GiShipWheel } from 'react-icons/gi';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
+import BoatingHero from '../components/experiences/BoatingHero';
+import BoatingAbout from '../components/experiences/BoatingAbout';
 
 const HIGHLIGHTS = [
   {
-    icon: FaCamera,
-    title: 'Scenic Beauty',
-    tagline: 'Pure Mountain & Water Vistas',
-    body: 'Enjoy breathtaking views of mist-covered mountains, dense green forests, and clear blue water from the center of the lake.',
+    icon: GiSpeedBoat,
+    title: 'Luxury Fleet',
+    body: 'Modern high-speed boats and spacious cruisers fitted with comfortable seating and scenic 360° water vantage.',
   },
   {
-    icon: FaUserFriends,
-    title: 'Family Fun',
-    tagline: 'Joy For Every Age',
-    body: 'A perfect activity for families, friends, couples, and kids to relax, laugh, and share an unforgettable time on the water.',
+    icon: FaAnchor,
+    title: 'Lake Celebrations',
+    body: 'Private lake gatherings, birthday rides, and romantic sunset cruises gliding peacefully along the Sahyadri shores.',
   },
   {
-    icon: FaShieldAlt,
-    title: 'Safe & Secure',
-    tagline: 'Safety First, Always',
-    body: 'Well-maintained boats with certified life jackets, life rings, and trained rescue staff on standby at all times.',
+    icon: GiShipWheel,
+    title: 'Boat Rentals',
+    body: 'Easy self-pedal boats and motorboat rentals with simple instructions, full gear provided, and optional guided captains.',
   },
   {
-    icon: FaLeaf,
-    title: 'Close to Nature',
-    tagline: 'Tranquil Natural Escape',
-    body: 'Relax, unwind, and connect with the peaceful surroundings, fresh mountain breeze, and serene ripples of the lake.',
-  },
-  {
-    icon: FaHeart,
-    title: 'Memorable Experience',
-    tagline: 'Unforgettable Moments',
-    body: 'Create beautiful photographs and cherish lasting memories with your loved ones against stunning natural backdrops.',
+    icon: FaLifeRing,
+    title: 'Private Charters',
+    body: 'Custom excursions letting your family charter private boats for dedicated durations to explore hidden lake corners.',
   },
 ];
 
@@ -93,42 +83,13 @@ const BOATING_INFO = [
 
 const BOAT_OPTIONS = [
   {
-    name: 'Paddle Boat',
-    seats: '2 – 4 Seater',
-    duration: '30 Minutes',
-    price: '₹300/-',
-    icon: FaShip,
-    slug: 'boating',
-    description: 'Pedal at your own leisurely pace with family or friends across the gentle calm waters.',
-    badge: 'Popular for Families',
-  },
-  {
-    name: 'Row Boat',
-    seats: '2 – 3 Seater',
-    duration: '30 Minutes',
-    price: '₹250/-',
-    icon: FaShip,
-    slug: 'boating-2',
-    description: 'Classic wooden rowing experience with lightweight oars for an authentic traditional cruise.',
-    badge: 'Classic Experience',
-  },
-  {
-    name: 'Kayak',
-    seats: '1 – 2 Seater',
-    duration: '30 Minutes',
-    price: '₹250/-',
-    icon: GiSailboat,
-    slug: 'kayaking-2',
-    description: 'Agile single and tandem kayaks for active adventurers who love paddling close to the water.',
-    badge: 'Adventure Choice',
-  },
-  {
     name: 'Speed Boat',
     seats: '6 – 8 Seater',
     duration: '15 Minutes',
     price: '₹800/-',
     icon: GiSpeedBoat,
-    slug: 'boating-3',
+    slug: 'speedboat',
+    kicker: 'Over 2,000 HP • High Speed Thrill',
     description: 'High-speed motorboat thrills with sharp turns, wind in your hair, and splashing excitement.',
     badge: 'Thrilling Ride',
   },
@@ -138,27 +99,51 @@ const BOAT_OPTIONS = [
     duration: '30 Minutes',
     price: '₹500/-',
     icon: GiSailboat,
-    slug: 'kayaking-3',
+    slug: 'shkaria',
+    kicker: 'Royal Kashmiri Canopy • Cushioned Comfort',
     description: 'Traditional Kashmiri-style canopied wooden boat with comfortable cushioned seating.',
     badge: 'Royal Serenity',
   },
   {
-    name: 'Coracle Ride',
+    name: 'Paddle Boat',
+    seats: '2 – 4 Seater',
+    duration: '30 Minutes',
+    price: '₹300/-',
+    icon: FaShip,
+    slug: 'paddle-boat',
+    kicker: 'Self-Pedal Leisure • Calm Scenic Waters',
+    description: 'Pedal at your own leisurely pace with family or friends across the gentle calm waters.',
+    badge: 'Popular for Families',
+  },
+  {
+    name: 'Row Boat',
     seats: '2 – 3 Seater',
-    duration: '20 Minutes',
-    price: '₹200/-',
-    icon: FaWater,
-    slug: 'boating',
-    description: 'Unique circular basket boat gently spun and guided by a local boatman across the lake.',
-    badge: 'Unique Tradition',
+    duration: '30 Minutes',
+    price: '₹250/-',
+    icon: FaShip,
+    slug: 'row',
+    kicker: 'Classic Wooden • Authentic Traditional Cruise',
+    description: 'Classic wooden rowing experience with lightweight oars for an authentic traditional cruise.',
+    badge: 'Classic Experience',
+  },
+  {
+    name: 'Family Safari Cruise',
+    seats: 'Up to 8 Persons',
+    duration: '30 Minutes',
+    price: '₹1,200/-',
+    icon: FaShip,
+    slug: 'cruise',
+    kicker: 'Group Charter • 360° Lake Tour',
+    description: 'Spacious luxury motorboat cruising the entire lake perimeter with life jackets for everyone.',
+    badge: 'Exclusive Charter',
   },
 ];
 
 const GALLERY = [
-  { slug: 'boating', caption: 'Serene Morning Swells' },
-  { slug: 'boating-2', caption: 'Family Boating Adventure' },
-  { slug: 'boating-3', caption: 'Panoramic Lake Horizon' },
-  { slug: 'kayaking-2', caption: 'Pristine Mountain Waters' },
+  { slug: 'morning-swell', caption: 'Serene Morning Swells' },
+  { slug: 'family-boating', caption: 'Family Boating Adventure' },
+  { slug: 'lake-horizon', caption: 'Panoramic Lake Horizon' },
+  { slug: 'pristine', caption: 'Pristine Mountain Waters' },
 ];
 
 const FACILITIES = [
@@ -200,106 +185,20 @@ const FACILITIES = [
 ];
 
 export default function Boating() {
+  const [showAllBoats, setShowAllBoats] = useState(false);
+  const visibleBoats = showAllBoats ? BOAT_OPTIONS : BOAT_OPTIONS.slice(0, 3);
+
   return (
     <main className="bg-ivory-white text-dark-charcoal">
-      {/* HERO */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-deep-forest">
-        <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="boating"
-            alt="Families enjoying boating on Bambardara Lake"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(6,32,24,0.35) 0%, rgba(6,32,24,0.7) 65%, rgba(6,32,24,0.95) 100%), linear-gradient(90deg, rgba(6,32,24,0.85) 0%, rgba(6,32,24,0.4) 60%, transparent 100%)',
-          }}
-        />
+      {/* LUXURY YACHT/BOAT HERO MATCHING REFERENCE */}
+      <BoatingHero />
 
-        <div className="relative z-10 mx-auto w-full max-w-editorial px-6 pb-16 pt-32 md:px-10 md:pb-24">
-          <Reveal>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-luxury-gold/50 bg-ivory-white/15 px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wider text-muted-gold backdrop-blur-md">
-              <span className="font-semibold text-ivory-white">Bambardara Agrotourism Pvt. Ltd.</span>
-              <span className="text-luxury-gold">•</span>
-              <span>Nature • Agriculture • Hospitality</span>
-            </div>
-          </Reveal>
+      {/* LUXURY YACHT/BOAT ABOUT MOSAIC SECTION MATCHING REFERENCE */}
+      <BoatingAbout />
 
-          {/* Wooden Board Slogan Badge */}
-          <Reveal delay={100}>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-lg border border-amber-600/40 bg-gradient-to-r from-amber-900/80 to-amber-950/80 px-4 py-2 text-amber-200 shadow-luxury-md backdrop-blur-sm">
-              <GiWaterSplash className="h-4 w-4 text-luxury-gold" />
-              <span className="font-heading text-xs font-semibold uppercase tracking-[0.18em] text-luxury-gold md:text-sm">
-                Ride The Waves, Feel The Breeze, Live The Moment!
-              </span>
-            </div>
-          </Reveal>
 
-          <Reveal delay={160}>
-            <h1 className="mt-4 max-w-3xl font-heading text-5xl font-light leading-[1.05] tracking-tight text-ivory-white md:text-7xl">
-              Bambardara <span className="italic text-luxury-gold">Boating</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <p className="mt-4 max-w-2xl font-heading text-2xl font-normal italic text-luxury-gold md:text-3xl">
-              Sail Into Serenity, Create Beautiful Memories!
-            </p>
-          </Reveal>
-
-          <Reveal delay={280}>
-            <p className="mt-3 font-body text-[0.85rem] font-medium uppercase tracking-[0.25em] text-ivory-white/80">
-              Experience Nature Like Never Before
-            </p>
-          </Reveal>
-
-          <Reveal delay={340}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link to="/enquire" className="lux-btn-gold inline-flex items-center gap-2">
-                <span>Book Your Ride Today</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-              <a
-                href="tel:+917588775757"
-                className="inline-flex items-center gap-2 rounded-full border border-ivory-white/30 bg-ivory-white/10 px-6 py-3 font-body text-xs font-semibold uppercase tracking-wider text-ivory-white backdrop-blur-md transition-colors hover:bg-ivory-white/20"
-              >
-                <FaPhoneAlt className="h-3.5 w-3.5 text-luxury-gold" />
-                <span>+91 75887 75757</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* PROMO TICKER BAR */}
-      <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
-        <div className="mx-auto flex max-w-editorial flex-wrap items-center justify-between gap-4 px-6 md:px-10">
-          <p className="font-heading text-sm italic tracking-wide text-luxury-gold md:text-base">
-            &ldquo;Come For The View, Stay For The Experience!&rdquo;
-          </p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ivory-white/80">
-            <span className="inline-flex items-center gap-1.5 text-amber-300">
-              <GiLifeJacket className="h-3.5 w-3.5 text-luxury-gold" /> Safe Boating
-            </span>
-            <span className="text-luxury-gold">•</span>
-            <span className="inline-flex items-center gap-1.5 text-cyan-300">
-              <FaWater className="h-3.5 w-3.5 text-luxury-gold" /> Clean Lake
-            </span>
-            <span className="text-luxury-gold">•</span>
-            <span className="inline-flex items-center gap-1.5 text-emerald-300">
-              <FaLeaf className="h-3.5 w-3.5 text-luxury-gold" /> Green Future
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* 5 BOATING HIGHLIGHTS */}
-      <section className="px-6 py-20 md:px-10 md:py-28">
+      {/* 4 BOATING HIGHLIGHTS (DARK FOREST GREEN SECTION) */}
+      <section className="bg-deep-forest px-6 py-20 text-ivory-white md:px-10 md:py-28">
         <div className="mx-auto max-w-editorial">
           <SectionHeading
             label="Boating Highlights"
@@ -310,128 +209,122 @@ export default function Boating() {
               </>
             }
             lede="Immerse in the calm waters of Bambardara Lake with premium safety gear, scenic mountain horizons, and enjoyable rides for all ages."
+            tone="light"
             align="center"
             className="mb-16 md:mb-20"
           />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {HIGHLIGHTS.map((h, i) => (
-              <Reveal key={h.title} delay={i * 80}>
-                <div className="group relative flex h-full flex-col border border-stone bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-colors group-hover:bg-forest-green group-hover:text-luxury-gold">
-                      <h.icon className="h-7 w-7" aria-hidden="true" />
-                    </span>
-                    <span className="rounded-full bg-warm-sand px-3 py-1 font-body text-[0.65rem] font-medium uppercase tracking-wider text-forest-green">
-                      {h.tagline}
-                    </span>
-                  </div>
+              <Reveal key={h.title} delay={i * 90}>
+                <div className="group relative flex h-full flex-col justify-between rounded-lg border border-white/20 bg-white/[0.03] p-8 sm:p-9 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-luxury-gold/60 hover:bg-white/[0.06] hover:shadow-2xl">
+                  <div>
+                    <div className="mb-8 flex items-center justify-start transition-transform duration-500 group-hover:scale-110">
+                      <h.icon className="h-11 w-11 sm:h-12 sm:w-12 text-white drop-shadow" />
+                    </div>
 
-                  <h3 className="mt-6 font-heading text-2xl font-light text-forest-green">
-                    {h.title}
-                  </h3>
-                  <span className="lux-rule mt-4" />
-                  <p className="mt-4 flex-1 font-body text-[0.88rem] font-light leading-[1.8] text-light-charcoal">
-                    {h.body}
-                  </p>
+                    <h3 className="font-heading text-xl sm:text-2xl font-light text-white tracking-wide">
+                      {h.title}
+                    </h3>
+                    <p className="mt-3.5 font-body text-xs sm:text-[0.82rem] font-light leading-relaxed text-white/75">
+                      {h.body}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
-
-            {/* BONUS CARD: TIMINGS & BOOKING BADGE */}
-            <Reveal delay={400}>
-              <div className="flex h-full flex-col justify-between border border-luxury-gold/40 bg-gradient-to-br from-deep-forest to-emerald-950 p-8 text-ivory-white shadow-luxury-md">
-                <div>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-luxury-gold/40 bg-ivory-white/10 px-3 py-1 font-body text-[0.65rem] uppercase tracking-wider text-luxury-gold">
-                    <FaRegClock className="h-3 w-3" />
-                    Daily Timings
-                  </span>
-                  <h3 className="mt-4 font-heading text-2xl font-light text-ivory-white">
-                    8:00 AM – 6:00 PM
-                  </h3>
-                  <p className="mt-2 font-body text-xs font-light leading-relaxed text-ivory-white/80">
-                    Open all 7 days of the week (weather permitting). Compulsory life jackets fitted for every passenger before departure.
-                  </p>
-                </div>
-                <div className="mt-8 pt-6 border-t border-ivory-white/15">
-                  <Link to="/enquire" className="lux-btn-gold w-full text-center">
-                    <span>Book Your Ride Today</span>
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* OUR BOATING OPTIONS (6 VISUAL CARDS) */}
-      <section className="bg-warm-sand px-6 py-24 md:px-10 md:py-32">
+      {/* OUR BOATING OPTIONS (EXACT 3-CARD SHOWCASE MATCHING REFERENCE) */}
+      <section id="boat-types" className="bg-[#FAF7F2] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-editorial">
-          <SectionHeading
-            label="Our Boating Fleet"
-            title={
-              <>
-                Explore Our
-                <span className="block italic text-luxury-gold">Boating Options</span>
-              </>
-            }
-            lede="Choose from peaceful pedal and row boats, agile kayaks, high-speed motorboats, royal Kashmiri shikaras, or traditional coracle rides."
-            align="center"
-            className="mb-16 md:mb-20"
-          />
+          {/* Top Header Row with Pill, Title & Action Button */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+            <div>
+              <Reveal>
+                <span className="inline-flex items-center rounded-full border border-dark-charcoal/30 bg-ivory-white px-4 py-1.5 font-body text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-dark-charcoal shadow-soft">
+                  Boat Types
+                </span>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 className="mt-4 font-heading text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wide text-dark-charcoal leading-[1.15]">
+                  WHICH BOAT TYPE IS
+                  <span className="block font-medium">PERFECT FOR YOU?</span>
+                </h2>
+              </Reveal>
+            </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {BOAT_OPTIONS.map((boat, idx) => (
-              <Reveal key={boat.name} delay={idx * 90}>
-                <div className="group flex h-full flex-col overflow-hidden border border-stone bg-white shadow-soft transition-all duration-500 hover:shadow-xl">
-                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-forest-green">
+            <Reveal delay={120}>
+              <button
+                type="button"
+                onClick={() => setShowAllBoats(!showAllBoats)}
+                className="group inline-flex items-center gap-3 rounded-full bg-deep-forest px-7 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ivory-white shadow-luxury transition-all duration-300 hover:bg-forest-green hover:shadow-luxury-lg hover:-translate-y-0.5 active:translate-y-0 shrink-0"
+              >
+                <span>{showAllBoats ? 'Show Less' : 'View All Fleet'}</span>
+                <span
+                  className="text-base transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
+                  &rarr;
+                </span>
+              </button>
+            </Reveal>
+          </div>
+
+          {/* 3-Card Grid Matching Reference */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 sm:gap-8">
+            {visibleBoats.map((boat, idx) => (
+              <Reveal key={boat.name} delay={idx * 80}>
+                <div className="group relative flex flex-col justify-end min-h-[520px] sm:min-h-[560px] md:min-h-[580px] w-full overflow-hidden rounded-2xl border border-stone/40 bg-deep-forest shadow-luxury transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl">
+                  {/* Full Bleed Background Image */}
+                  <div className="absolute inset-0 isolate">
                     <EstateImage
                       slug={boat.slug}
                       alt={boat.name}
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="isolate h-full w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute top-3 right-3">
-                      <span className="rounded-full bg-forest-green/90 px-3 py-1 font-body text-[0.65rem] font-semibold uppercase tracking-wider text-luxury-gold shadow backdrop-blur-sm">
-                        {boat.badge}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-4 right-4 flex items-baseline justify-between">
-                      <span className="font-heading text-xl font-light text-ivory-white drop-shadow">
-                        {boat.name}
-                      </span>
-                      <span className="font-heading text-lg font-semibold text-luxury-gold drop-shadow">
-                        {boat.price}
-                      </span>
-                    </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-forest-green">
-                      <span className="inline-flex items-center gap-1.5 bg-warm-sand px-3 py-1 rounded">
-                        <FaUsers className="h-3 w-3 text-luxury-gold" />
-                        {boat.seats}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 bg-warm-sand px-3 py-1 rounded">
-                        <FaRegClock className="h-3 w-3 text-luxury-gold" />
-                        {boat.duration}
-                      </span>
-                    </div>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 via-40% to-transparent pointer-events-none" />
 
-                    <p className="mt-4 flex-1 font-body text-[0.88rem] font-light leading-relaxed text-light-charcoal">
+                  {/* Floating Circular Arrow Action Button (Top-Right) */}
+                  <Link
+                    to="/enquire"
+                    aria-label={`Reserve ${boat.name}`}
+                    className="absolute top-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-ivory-white text-dark-charcoal shadow-luxury transition-all duration-300 hover:bg-luxury-gold hover:text-deep-forest hover:scale-110 active:scale-95"
+                  >
+                    <span className="text-lg font-bold" aria-hidden="true">&rarr;</span>
+                  </Link>
+
+                  {/* Content (Bottom of Card) - Fully Padded with Generous Clearance */}
+                  <div className="relative z-10 p-6 pb-7 sm:p-8 sm:pb-8 text-white">
+                    <span className="font-body text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-luxury-gold block mb-1.5">
+                      {boat.kicker || `${boat.seats} • ${boat.duration}`}
+                    </span>
+                    <h3 className="font-heading text-2xl sm:text-3xl font-light text-white leading-tight">
+                      {boat.name}
+                    </h3>
+                    <p className="mt-2.5 font-body text-xs font-light text-white/80 leading-relaxed line-clamp-2">
                       {boat.description}
                     </p>
 
-                    <div className="mt-6 border-t border-stone pt-4 flex items-center justify-between">
-                      <span className="font-body text-xs font-light text-light-charcoal/70">
-                        Life jacket included
-                      </span>
+                    <div className="mt-5 flex items-center justify-between border-t border-white/20 pt-4">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="font-heading text-xl sm:text-2xl font-semibold text-luxury-gold leading-none">
+                          {boat.price}
+                        </span>
+                        <span className="text-[0.68rem] text-white/60 font-body">/ ride</span>
+                      </div>
                       <Link
                         to="/enquire"
-                        className="font-body text-xs font-semibold uppercase tracking-wider text-forest-green transition-colors hover:text-luxury-gold"
+                        className="inline-flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:text-luxury-gold group-hover:translate-x-1"
                       >
-                        Reserve Slot &rarr;
+                        <span>Reserve Now</span>
+                        <span aria-hidden="true">&rarr;</span>
                       </Link>
                     </div>
                   </div>
@@ -511,9 +404,8 @@ export default function Boating() {
                       {BOAT_OPTIONS.map((b, i) => (
                         <tr
                           key={b.name}
-                          className={`transition-colors hover:bg-ivory-white/10 ${
-                            i % 2 === 1 ? 'bg-ivory-white/[0.02]' : ''
-                          }`}
+                          className={`transition-colors hover:bg-ivory-white/10 ${i % 2 === 1 ? 'bg-ivory-white/[0.02]' : ''
+                            }`}
                         >
                           <td className="px-5 py-3.5 font-body text-sm font-medium text-ivory-white">
                             {b.name}
@@ -571,7 +463,7 @@ export default function Boating() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FACILITIES.map((f, i) => (
               <Reveal key={f.title} delay={i * 80}>
-                <div className="flex h-full flex-col items-center rounded-lg border border-stone bg-white p-7 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
+                <div className="flex h-full flex-col items-center rounded-lg border border-stone bg-ivory-white p-7 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full border border-luxury-gold/30 bg-warm-sand text-forest-green shadow-soft">
                     <f.icon className="h-6 w-6" />
                   </span>
@@ -626,7 +518,7 @@ export default function Boating() {
       </section>
 
       {/* UNWIND ESCAPE & CONTACT SECTION */}
-      <section className="bg-emerald-950 px-6 py-24 text-ivory-white md:px-10 md:py-32">
+      <section className="bg-deep-forest px-6 py-24 text-ivory-white md:px-10 md:py-32">
         <div className="mx-auto grid max-w-editorial grid-cols-1 gap-14 lg:grid-cols-12">
           {/* Left Column: Escape Slogan */}
           <div className="lg:col-span-6 flex flex-col justify-center">
@@ -643,10 +535,16 @@ export default function Boating() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/enquire" className="lux-btn-gold">
+                <Link
+                  to="/enquire"
+                  className="inline-flex items-center justify-center rounded-sm bg-luxury-gold px-8 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-deep-forest transition-all duration-300 hover:bg-rich-gold hover:shadow-gold hover:-translate-y-0.5"
+                >
                   <span>Book Your Ride Today!</span>
                 </Link>
-                <a href="tel:+917588775757" className="lux-btn-light">
+                <a
+                  href="tel:+917588775757"
+                  className="inline-flex items-center justify-center rounded-sm border border-ivory-white/40 px-8 py-3.5 font-body text-xs font-medium uppercase tracking-[0.2em] text-ivory-white transition-all duration-300 hover:bg-ivory-white/10 hover:border-ivory-white hover:-translate-y-0.5"
+                >
                   <span>Call Us Directly</span>
                 </a>
               </div>
@@ -661,7 +559,7 @@ export default function Boating() {
               <div className="mt-6 space-y-6">
                 <div>
                   <h4 className="font-heading text-lg font-medium text-ivory-white">
-                    Bambardara Agrotourism Pvt. Ltd.
+                    Bambarddara Agro Tourism Pvt. Ltd.
                   </h4>
                   <p className="mt-2 flex items-start gap-3 font-body text-sm font-light leading-relaxed text-ivory-white/80">
                     <FaMapMarkerAlt className="mt-1 h-4 w-4 flex-shrink-0 text-luxury-gold" />

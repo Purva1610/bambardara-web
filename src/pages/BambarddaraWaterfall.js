@@ -25,15 +25,21 @@ export default function BambarddaraWaterfall() {
     <main className="bg-ivory-white text-forest-green selection:bg-luxury-gold selection:text-dark-charcoal">
       {/* ── HERO SECTION (EXACT ICELAND WATERFALLS POSTER DESIGN) ── */}
       <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-deep-forest text-ivory-white">
-        {/* Background visual with dramatic waterfall landscape */}
+        {/* Background visual: D:\bam\bambardara-web\public\images\opt\waterfall-hero.jpg */}
         <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="waterfalls-and-nature-trails-2"
-            alt="Bambardara Waterfall plunging from rocky green cliffs"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover scale-105 transition-transform duration-[12000ms] hover:scale-100"
-          />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/waterfall-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/waterfall-hero.jpg`}
+              alt="Bambardara Waterfall plunging from rocky green cliffs"
+              className="h-full w-full object-cover object-center scale-105 transition-transform duration-[12000ms] hover:scale-100 select-none"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
           {/* Subtle cinematic overlays for depth & poster contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/95 via-deep-forest/35 to-black/55" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,rgba(6,32,24,0.55)_65%,rgba(4,18,13,0.92)_100%)]" />
@@ -63,7 +69,7 @@ export default function BambarddaraWaterfall() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/enquire"
-                className="inline-flex items-center gap-3 bg-luxury-gold px-8 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.2em] text-deep-forest font-bold transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-3 bg-luxury-gold px-8 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.2em] text-deep-forest font-bold transition-all duration-300 hover:bg-ivory-white hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:scale-105 active:scale-95"
               >
                 <span>Visit Waterfall</span>
                 <FaChevronRight className="text-[0.65rem]" />
@@ -130,15 +136,15 @@ export default function BambarddaraWaterfall() {
       </section>
 
       {/* ── CORE WATERFALL FEATURES SECTION (FULL SCREEN PRESENTATION) ── */}
-      <section id="waterfall-highlights" className="py-12 md:py-16 bg-white border-y border-stone/30 w-full relative">
+      <section id="waterfall-highlights" className="py-12 md:py-16 bg-ivory-white border-y border-stone/30 w-full relative">
         <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
           {/* Header matching slide exactly (Full Width) */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between mb-8 pb-4 border-b border-gray-200">
+          <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between mb-8 pb-4 border-b border-stone">
             <div>
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wide text-[#1A1916]">
                 WATERFALL FEATURES &amp; HIGHLIGHTS
               </h2>
-              <p className="mt-1 font-body text-xs sm:text-sm md:text-base text-gray-500 font-light">
+              <p className="mt-1 font-body text-xs sm:text-sm md:text-base text-light-charcoal font-light">
                 Discover the distinctive natural wonders, pristine streams &amp; wellness features of Bambardara
               </p>
             </div>
@@ -153,17 +159,17 @@ export default function BambarddaraWaterfall() {
               {/* ── TOP ROW (Above Ruler) ── */}
               <div className="grid grid-cols-9 gap-3 xl:gap-4 items-end mb-0">
                 {/* Col 1: 01 (Text top, Image below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
                   <span className="font-body text-[0.65rem] font-bold text-luxury-gold tracking-wider uppercase">
                     01 • VISTA
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">SCENIC VISTA</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug my-1.5">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug my-1.5">
                     Panoramic clifftop decks overlooking misty Sahyadri valleys.
                   </p>
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm">
                     <EstateImage
-                      slug="nature"
+                      slug="scenic-vista"
                       alt="Scenic Vista feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -175,10 +181,10 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 3: 03 (Image top, Text below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm mb-1.5">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm mb-1.5">
                     <EstateImage
-                      slug="waterfall"
+                      slug="twin-cascades"
                       alt="Twin Cascades feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -188,7 +194,7 @@ export default function BambarddaraWaterfall() {
                     03 • CASCADES
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">TWIN CASCADES</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug mt-1">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug mt-1">
                     Majestic waters plunging over ancient natural basalt rock cliffs.
                   </p>
                 </div>
@@ -197,17 +203,17 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 5: 05 (Text top, Image below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
                   <span className="font-body text-[0.65rem] font-bold text-luxury-gold tracking-wider uppercase">
                     05 • STREAM
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">STREAM CROSSING</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug my-1.5">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug my-1.5">
                     Gentle mountain brooks with clear flowing freshwater currents.
                   </p>
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm">
                     <EstateImage
-                      slug="well-planted-roads-and-street-lights"
+                      slug="stream-crossing"
                       alt="Stream Crossing feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -219,10 +225,10 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 7: 07 (Image top, Text below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm mb-1.5">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm mb-1.5">
                     <EstateImage
-                      slug="bamboo-plant"
+                      slug="rainbow-cove"
                       alt="Rainbow Cove feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -232,7 +238,7 @@ export default function BambarddaraWaterfall() {
                     07 • RAINBOW
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">RAINBOW COVE</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug mt-1">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug mt-1">
                     Sunlit water spray creating vibrant natural rainbow arcs.
                   </p>
                 </div>
@@ -241,17 +247,17 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 9: 09 (Text top, Image below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pb-3 flex flex-col justify-end min-h-[190px]">
                   <span className="font-body text-[0.65rem] font-bold text-luxury-gold tracking-wider uppercase">
                     09 • SUNSET
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">SUNSET VISTAS</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug my-1.5">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug my-1.5">
                     Breathtaking dusk horizons across the Western Ghat ranges.
                   </p>
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm">
                     <EstateImage
-                      slug="about"
+                      slug="sunset-vista"
                       alt="Sunset Vistas feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -261,7 +267,7 @@ export default function BambarddaraWaterfall() {
               </div>
 
               {/* ── MIDDLE RULER LINE (Measurement Ticks) ── */}
-              <div className="relative w-full my-0 py-2 flex items-center border-t border-b border-gray-400 bg-gray-50/70">
+              <div className="relative w-full my-0 py-2 flex items-center border-t border-b border-luxury-gold/30 bg-soft-beige/70">
                 <div
                   className="w-full h-3.5"
                   style={{
@@ -277,10 +283,10 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 2: 02 (Image top, Text below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm mb-1.5">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm mb-1.5">
                     <EstateImage
-                      slug="waterfalls-and-nature-trails-2"
+                      slug="canopy-trails"
                       alt="Canopy Trails feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -290,7 +296,7 @@ export default function BambarddaraWaterfall() {
                     02 • CANOPY
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">CANOPY TRAILS</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug mt-1">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug mt-1">
                     Dense evergreen paths filled with pure high-oxygen mountain air.
                   </p>
                 </div>
@@ -299,17 +305,17 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 4: 04 (Text top, Image below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
                   <span className="font-body text-[0.65rem] font-bold text-luxury-gold tracking-wider uppercase">
                     04 • SPRINGS
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">CRYSTAL SPRINGS</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug my-1.5">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug my-1.5">
                     Pure mineral-rich natural spring pools for refreshing dips.
                   </p>
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm">
                     <EstateImage
-                      slug="waterfalls-and-nature-trails-3"
+                      slug="crystal-springs"
                       alt="Crystal Springs feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -321,10 +327,10 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 6: 06 (Image top, Text below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm mb-1.5">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm mb-1.5">
                     <EstateImage
-                      slug="plantation"
+                      slug="zen-sanctuary"
                       alt="Zen Sanctuary feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -334,7 +340,7 @@ export default function BambarddaraWaterfall() {
                     06 • ZEN
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">ZEN SANCTUARY</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug mt-1">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug mt-1">
                     Open-air yoga &amp; pranayama decks surrounded by birdsong.
                   </p>
                 </div>
@@ -343,17 +349,17 @@ export default function BambarddaraWaterfall() {
                 <div className="min-h-[190px]" />
 
                 {/* Col 8: 08 (Text top, Image below) */}
-                <div className="border-l border-gray-400/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
+                <div className="border-l border-luxury-gold/30/80 pl-3 pr-1 pt-3 flex flex-col justify-start min-h-[190px]">
                   <span className="font-body text-[0.65rem] font-bold text-luxury-gold tracking-wider uppercase">
                     08 • GAZEBOS
                   </span>
                   <h4 className="font-heading font-bold text-sm sm:text-base text-[#1A1916]">FOREST GAZEBOS</h4>
-                  <p className="font-body text-[0.68rem] sm:text-xs text-gray-500 leading-snug my-1.5">
+                  <p className="font-body text-[0.68rem] sm:text-xs text-light-charcoal leading-snug my-1.5">
                     Wooden rest pavilions serving herbal tea in shaded woods.
                   </p>
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-stone shadow-sm">
                     <EstateImage
-                      slug="5-star-hospitality"
+                      slug="forest-gazebos"
                       alt="Forest Gazebos feature view"
                       sizes="200px"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -368,12 +374,12 @@ export default function BambarddaraWaterfall() {
           </div>
 
           {/* Bottom reservation CTA (Full Width) */}
-          <div className="mt-8 pt-6 border-t border-gray-200 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-8 pt-6 border-t border-stone flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="font-body text-xs sm:text-sm font-bold text-forest-green tracking-wider uppercase">
                 EXPERIENCE ALL 9 WATERFALL FEATURES
               </span>
-              <p className="font-body text-xs sm:text-sm text-gray-500 font-light">
+              <p className="font-body text-xs sm:text-sm text-light-charcoal font-light">
                 Guided naturalist tours available daily from 7:00 AM to 6:30 PM.
               </p>
             </div>
@@ -404,10 +410,10 @@ export default function BambarddaraWaterfall() {
 
             {/* Box 2: Quote Box from poster */}
             <div className="rounded-xl border-2 border-luxury-gold/60 bg-gradient-to-br from-[#123120] to-[#091b11] p-8 text-center flex flex-col justify-center items-center text-ivory-white shadow-md">
-              <span className="font-serif italic text-lg sm:text-xl text-ivory-white/90">
+              <span className="font-heading italic text-lg sm:text-xl text-ivory-white/90">
                 &ldquo;Let the Waterfall
               </span>
-              <span className="font-serif italic text-2xl sm:text-3xl text-luxury-gold font-normal">
+              <span className="font-heading italic text-2xl sm:text-3xl text-luxury-gold font-normal">
                 Refresh Your Soul&rdquo;
               </span>
             </div>
@@ -444,7 +450,7 @@ export default function BambarddaraWaterfall() {
                 </span>
               </div>
               <h3 className="font-heading text-3xl sm:text-4xl font-light text-ivory-white">
-                Bambardara Agrotourism Pvt. Ltd.
+                Bambarddara Agro Tourism Pvt. Ltd.
               </h3>
               
               <div className="mt-6 space-y-4 text-sm font-light text-ivory-white/85">

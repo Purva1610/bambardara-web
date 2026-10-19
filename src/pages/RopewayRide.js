@@ -24,6 +24,7 @@ import { GiPineTree, GiSunset } from 'react-icons/gi';
 import EstateImage from '../components/shared/EstateImage';
 import Reveal from '../components/shared/Reveal';
 import SectionHeading from '../components/shared/SectionHeading';
+import RopewayHero from '../components/experiences/RopewayHero';
 
 const HIGHLIGHTS = [
   {
@@ -93,27 +94,27 @@ const ROPEWAY_INFO = [
 
 const GALLERY_CARDS = [
   {
-    slug: 'ropeway',
+    slug: 'sunset',
     title: 'Stunning Sunset Views',
     description: 'Watch the sun dip behind the Western Ghats with gold and crimson hues lighting up the water below.',
   },
   {
-    slug: 'ropeway-2',
+    slug: 'nature-ride',
     title: 'Ride Above The Nature',
     description: 'Glide silently above the virgin forest canopy with fresh mountain air and sweeping ridge lines.',
   },
   {
-    slug: 'ropeway-3',
+    slug: 'family-outing',
     title: 'Perfect Family Outing',
     description: 'Cherish joyful moments with up to 8 family members seated together in comfort.',
   },
   {
-    slug: 'ropeway',
+    slug: 'untouched-beauty',
     title: 'Untouched Beauty',
     description: 'Witness protected reserve valleys and tranquil lake shorelines impossible to view from the ground.',
   },
   {
-    slug: 'ropeway-2',
+    slug: 'memories',
     title: 'Memories That Last',
     description: 'Capture incredible photographs and videos from an exhilarating aerial viewpoint.',
   },
@@ -158,84 +159,20 @@ const FACILITIES = [
 ];
 
 export default function RopewayRide() {
+  const handleExploreClick = () => {
+    const el = document.getElementById('highlights');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <main className="bg-ivory-white text-dark-charcoal">
-      {/* HERO SECTION */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-deep-forest">
-        <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="ropeway"
-            alt="Bambardara Ropeway cabin gliding above the lake and lush forest"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(6,32,24,0.3) 0%, rgba(6,32,24,0.65) 65%, rgba(6,32,24,0.95) 100%), linear-gradient(90deg, rgba(6,32,24,0.85) 0%, rgba(6,32,24,0.4) 60%, transparent 100%)',
-          }}
-        />
-
-        <div className="relative z-10 mx-auto w-full max-w-editorial px-6 pb-16 pt-32 md:px-10 md:pb-24">
-          <Reveal>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-luxury-gold/50 bg-ivory-white/15 px-4 py-1.5 font-body text-[0.7rem] uppercase tracking-wider text-muted-gold backdrop-blur-md">
-              <span className="font-semibold text-ivory-white">Bambardara Agrotourism Pvt. Ltd.</span>
-              <span className="text-luxury-gold">•</span>
-              <span>Nature • Agriculture • Hospitality</span>
-            </div>
-          </Reveal>
-
-          {/* Top Wooden Ribbon Badge */}
-          <Reveal delay={100}>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-lg border border-amber-600/40 bg-gradient-to-r from-amber-900/80 to-amber-950/80 px-4 py-2 text-amber-200 shadow-luxury-md backdrop-blur-sm">
-              <FaMountain className="h-4 w-4 text-luxury-gold" />
-              <span className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-luxury-gold md:text-sm">
-                Ride Above, Discover Nature&rsquo;s Beauty
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <h1 className="mt-4 max-w-3xl font-heading text-5xl font-light leading-[1.05] tracking-tight text-ivory-white md:text-7xl">
-              Bambardara <span className="italic text-luxury-gold">Ropeway</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <p className="mt-4 max-w-2xl font-heading text-2xl font-normal italic text-luxury-gold md:text-3xl">
-              A Scenic Journey to Serenity!
-            </p>
-          </Reveal>
-
-          <Reveal delay={280}>
-            <p className="mt-3 font-body text-[0.85rem] font-semibold uppercase tracking-[0.25em] text-ivory-white/85">
-              Soar High, See Far, Feel Alive!
-            </p>
-          </Reveal>
-
-          <Reveal delay={340}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link to="/enquire" className="lux-btn-gold inline-flex items-center gap-2">
-                <span>Book Your Ride Today</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-              <a
-                href="tel:+917588775757"
-                className="inline-flex items-center gap-2 rounded-full border border-ivory-white/30 bg-ivory-white/10 px-6 py-3 font-body text-xs font-semibold uppercase tracking-wider text-ivory-white backdrop-blur-md transition-colors hover:bg-ivory-white/20"
-              >
-                <FaPhoneAlt className="h-3.5 w-3.5 text-luxury-gold" />
-                <span>+91 75887 75757</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO SECTION — EXACT REPRODUCTION OF SKI/ROPEWAY REFERENCE DESIGN */}
+      <RopewayHero onExploreClick={handleExploreClick} />
 
       {/* PROMO TICKER STRIP */}
-      <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
+      <section className="border-y border-stone/20 bg-deep-forest py-4 text-ivory-white">
         <div className="mx-auto flex max-w-editorial flex-wrap items-center justify-between gap-4 px-6 md:px-10">
           <p className="font-heading text-sm italic tracking-wide text-luxury-gold md:text-base">
             &ldquo;Closer to Nature, Closer to Yourself.&rdquo;
@@ -257,7 +194,7 @@ export default function RopewayRide() {
       </section>
 
       {/* 5 ROPEWAY HIGHLIGHTS */}
-      <section className="px-6 py-20 md:px-10 md:py-28">
+      <section id="highlights" className="px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-editorial">
           <SectionHeading
             label="Ropeway Highlights"
@@ -275,7 +212,7 @@ export default function RopewayRide() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {HIGHLIGHTS.map((h, i) => (
               <Reveal key={h.title} delay={i * 80}>
-                <div className="group relative flex h-full flex-col border border-stone bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
+                <div className="group relative flex h-full flex-col border border-stone bg-ivory-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-luxury-gold hover:shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-colors group-hover:bg-forest-green group-hover:text-luxury-gold">
                       <h.icon className="h-7 w-7" aria-hidden="true" />
@@ -298,7 +235,7 @@ export default function RopewayRide() {
 
             {/* BONUS CARD: OPERATING HOURS & SAFETY */}
             <Reveal delay={400}>
-              <div className="flex h-full flex-col justify-between border border-luxury-gold/40 bg-gradient-to-br from-deep-forest to-emerald-950 p-8 text-ivory-white shadow-luxury-md">
+              <div className="flex h-full flex-col justify-between rounded-lg border border-luxury-gold/40 bg-deep-forest p-8 text-ivory-white shadow-luxury-md">
                 <div>
                   <span className="inline-flex items-center gap-2 rounded-full border border-luxury-gold/40 bg-ivory-white/10 px-3 py-1 font-body text-[0.65rem] uppercase tracking-wider text-luxury-gold">
                     <FaRegClock className="h-3 w-3" />
@@ -312,7 +249,10 @@ export default function RopewayRide() {
                   </p>
                 </div>
                 <div className="mt-8 pt-6 border-t border-ivory-white/15">
-                  <Link to="/enquire" className="lux-btn-gold w-full text-center">
+                  <Link
+                    to="/enquire"
+                    className="inline-flex w-full items-center justify-center rounded-sm bg-luxury-gold px-6 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-deep-forest transition-all duration-300 hover:bg-rich-gold hover:shadow-gold hover:-translate-y-0.5"
+                  >
                     <span>Book Your Tickets</span>
                   </Link>
                 </div>
@@ -391,7 +331,7 @@ export default function RopewayRide() {
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-lg bg-emerald-900/50 p-4 border border-emerald-700/40">
+                <div className="mt-6 rounded-lg bg-forest-green/25 p-4 border border-luxury-gold/30">
                   <div className="flex items-center gap-3">
                     <FaTicketAlt className="h-4 w-4 flex-shrink-0 text-luxury-gold" />
                     <p className="font-body text-xs font-light text-ivory-white/90">
@@ -401,10 +341,16 @@ export default function RopewayRide() {
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Link to="/enquire" className="lux-btn-gold">
+                  <Link
+                    to="/enquire"
+                    className="inline-flex items-center justify-center rounded-sm bg-luxury-gold px-7 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-deep-forest transition-all duration-300 hover:bg-rich-gold hover:shadow-gold hover:-translate-y-0.5"
+                  >
                     <span>Reserve Ride Online</span>
                   </Link>
-                  <a href="tel:+917588775757" className="lux-btn-light">
+                  <a
+                    href="tel:+917588775757"
+                    className="inline-flex items-center justify-center rounded-sm border border-ivory-white/40 px-7 py-3.5 font-body text-xs font-medium uppercase tracking-[0.2em] text-ivory-white transition-all duration-300 hover:bg-ivory-white/10 hover:border-ivory-white hover:-translate-y-0.5"
+                  >
                     <span>Call To Book</span>
                   </a>
                 </div>
@@ -433,7 +379,7 @@ export default function RopewayRide() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {GALLERY_CARDS.map((card, idx) => (
               <Reveal key={`${card.title}-${idx}`} delay={idx * 80}>
-                <div className="group flex h-full flex-col overflow-hidden border border-stone bg-white shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+                <div className="group flex h-full flex-col overflow-hidden border border-stone bg-ivory-white shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
                   <div className="relative aspect-[3/4] w-full overflow-hidden bg-forest-green">
                     <EstateImage
                       slug={card.slug}
@@ -479,7 +425,7 @@ export default function RopewayRide() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FACILITIES.map((f, i) => (
               <Reveal key={f.title} delay={i * 80}>
-                <div className="flex h-full flex-col items-center rounded-lg border border-stone bg-white p-7 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
+                <div className="flex h-full flex-col items-center rounded-lg border border-stone bg-ivory-white p-7 text-center transition-all duration-500 hover:border-luxury-gold hover:shadow-lg">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full border border-luxury-gold/30 bg-warm-sand text-forest-green shadow-soft">
                     <f.icon className="h-6 w-6" />
                   </span>
@@ -497,7 +443,7 @@ export default function RopewayRide() {
       </section>
 
       {/* CONTACT & CTA SECTION */}
-      <section className="bg-emerald-950 px-6 py-24 text-ivory-white md:px-10 md:py-32">
+      <section className="bg-deep-forest px-6 py-24 text-ivory-white md:px-10 md:py-32">
         <div className="mx-auto grid max-w-editorial grid-cols-1 gap-14 lg:grid-cols-12">
           {/* Left: Thrill Callout Banner */}
           <div className="lg:col-span-6 flex flex-col justify-center">
@@ -512,10 +458,16 @@ export default function RopewayRide() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/enquire" className="lux-btn-gold">
+                <Link
+                  to="/enquire"
+                  className="inline-flex items-center justify-center rounded-sm bg-luxury-gold px-8 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-deep-forest transition-all duration-300 hover:bg-rich-gold hover:shadow-gold hover:-translate-y-0.5"
+                >
                   <span>Book Your Ride Today!</span>
                 </Link>
-                <a href="tel:+917588775757" className="lux-btn-light">
+                <a
+                  href="tel:+917588775757"
+                  className="inline-flex items-center justify-center rounded-sm border border-ivory-white/40 px-8 py-3.5 font-body text-xs font-medium uppercase tracking-[0.2em] text-ivory-white transition-all duration-300 hover:bg-ivory-white/10 hover:border-ivory-white hover:-translate-y-0.5"
+                >
                   <span>Call Us For Inquiries</span>
                 </a>
               </div>
@@ -530,7 +482,7 @@ export default function RopewayRide() {
               <div className="mt-6 space-y-6">
                 <div>
                   <h4 className="font-heading text-lg font-medium text-ivory-white">
-                    Bambardara Agrotourism Pvt. Ltd.
+                    Bambarddara Agro Tourism Pvt. Ltd.
                   </h4>
                   <p className="mt-2 flex items-start gap-3 font-body text-sm font-light leading-relaxed text-ivory-white/80">
                     <FaMapMarkerAlt className="mt-1 h-4 w-4 flex-shrink-0 text-luxury-gold" />

@@ -15,42 +15,42 @@ import Reveal from '../components/shared/Reveal';
 // 6 Horizontal Photo Cards from the poster with editorial descriptions
 const POSTER_PHOTO_CARDS = [
   {
-    slug: 'boating-3',
+    slug: 'wonderful-serenity',
     title: 'Mesmerizing Sunsets',
     subtitle: 'Golden Reflections on the Reservoir',
     kicker: 'Popularity • SERENITY',
     desc: 'A wonderful serenity has taken possession of the entire valley. Feel those peaceful mornings and evenings with golden sunlight reflecting across the expansive catchment water basin.',
   },
   {
-    slug: 'waterfalls-and-nature-trails-3',
+    slug: 'sahyadri-mountain',
     title: 'Scenic Mountain Views',
     subtitle: 'Panoramic Lakeside Mountain Walk',
     kicker: 'Experience • TRANQUILITY',
     desc: 'Towering Sahyadri mountain ridgelines cradle the serene reservoir waters, creating unbroken 360-degree natural vistas, crisp mountain air, and restorative open skies.',
   },
   {
-    slug: 'nature',
+    slug: 'biodiversity',
     title: 'Dense Forest Canopy',
     subtitle: 'Old-Growth Indigenous Reserve',
     kicker: 'Eco Reserve • BIODIVERSITY',
     desc: 'Dense green woods teeming with exotic butterflies, nesting hornbills, and rare botanical species flourishing in an undisturbed, protected sanctuary environment.',
   },
   {
-    slug: 'boating',
+    slug: 'water-activity',
     title: 'Boating & Relaxation',
-    subtitle: 'Tranquil Rowboats, Kayaks & Shikaras',
+    subtitle: 'Tranquil Rowboats, Paddleboats & Shikaras',
     kicker: 'Water Activity • LEISURE',
-    desc: 'Glide gently across pristine waters on family paddleboats, kayaks, and traditional shikara rides with certified lifejackets and professional boatmen.',
+    desc: 'Glide gently across pristine waters on family paddleboats, rowboats, and traditional shikara rides with certified lifejackets and professional boatmen.',
   },
   {
-    slug: 'waterfalls-and-nature-trails-2',
+    slug: 'fresh-water',
     title: 'Natural Water Flow',
     subtitle: 'Cascading Mountain Catchment Streams',
     kicker: 'Catchment • PURE SPRINGS',
     desc: 'Pure freshwater feeds continuously from perennial mountain cascades, sustaining rich valley ecosystems, lush plantations, and fertile organic orchards.',
   },
   {
-    slug: 'well-planted-roads-and-street-lights',
+    slug: 'paved-walkway',
     title: 'Picnic Spot & Promenade',
     subtitle: 'Lush Green Lawns & Gazebos',
     kicker: 'Hospitality • LEISURE',
@@ -71,19 +71,19 @@ function HeroTargetPin({ title, desc, className = '' }) {
     <div className={`flex flex-col items-center text-center group cursor-default ${className}`}>
       {/* Target icon [ • ] with crosshairs and stalk */}
       <div className="flex flex-col items-center mb-1.5 sm:mb-2">
-        <div className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-sm border border-cyan-300/80 bg-cyan-950/80 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)]">
-          <div className="h-1.5 w-1.5 rounded-full bg-cyan-200 group-hover:bg-white animate-pulse" />
-          <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-cyan-300/80" />
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-cyan-300/80" />
-          <span className="absolute top-1/2 -left-1 -translate-y-1/2 w-1 h-0.5 bg-cyan-300/80" />
-          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-1 h-0.5 bg-cyan-300/80" />
+        <div className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-sm border border-emerald-400/80 bg-black/75 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.45)] transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)]">
+          <div className="h-1.5 w-1.5 rounded-full bg-emerald-300 group-hover:bg-ivory-white animate-pulse" />
+          <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-emerald-400/80" />
+          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-emerald-400/80" />
+          <span className="absolute top-1/2 -left-1 -translate-y-1/2 w-1 h-0.5 bg-emerald-400/80" />
+          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-1 h-0.5 bg-emerald-400/80" />
         </div>
-        <div className="h-3 sm:h-4 w-px bg-gradient-to-b from-cyan-300/80 to-transparent" />
+        <div className="h-3 sm:h-4 w-px bg-gradient-to-b from-emerald-400/80 to-transparent" />
       </div>
-      <h4 className="font-sans text-xs sm:text-sm font-semibold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-cyan-200 transition-colors">
+      <h4 className="font-body text-xs sm:text-sm font-semibold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-emerald-300 transition-colors">
         {title}
       </h4>
-      <p className="mt-0.5 max-w-[180px] sm:max-w-[210px] font-sans text-[0.65rem] sm:text-xs text-cyan-100/80 leading-tight font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+      <p className="mt-0.5 max-w-[180px] sm:max-w-[210px] font-body text-[0.65rem] sm:text-xs text-white/80 leading-tight font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
         {desc}
       </p>
     </div>
@@ -102,49 +102,53 @@ export default function KadaviDam() {
     setActiveSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  const visibleCards = [
-    POSTER_PHOTO_CARDS[activeSlide % totalSlides],
-    POSTER_PHOTO_CARDS[(activeSlide + 1) % totalSlides],
-    POSTER_PHOTO_CARDS[(activeSlide + 2) % totalSlides],
-  ];
+  const currentCard = POSTER_PHOTO_CARDS[activeSlide % totalSlides];
+  const nextCard = POSTER_PHOTO_CARDS[(activeSlide + 1) % totalSlides];
 
   return (
     <main className="bg-ivory-white text-forest-green selection:bg-luxury-gold selection:text-dark-charcoal">
       {/* ── HERO SECTION (EXACT REFERENCE POSTER LAYOUT) ── */}
-      <section className="relative min-h-[108vh] flex flex-col justify-between overflow-hidden bg-[#03131a] text-white pt-28 sm:pt-32 pb-10 sm:pb-14">
-        {/* Background Visual: Panoramic Lake & Mountains */}
+      <section className="relative min-h-[108vh] flex flex-col justify-between overflow-hidden bg-[#050c08] text-white pt-28 sm:pt-32 pb-10 sm:pb-14">
+        {/* Background Visual: D:\bam\bambardara-web\public\images\opt\kadavidam-hero.jpg */}
         <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="boating-3"
-            alt="Kadavi Dam reservoir view with scenic mountain panorama"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover scale-105 transition-transform duration-[12000ms] hover:scale-100"
-          />
-          {/* Cyan/Teal Mountain Atmosphere Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#021117] via-[#041f27]/75 to-[#021017]/70" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.25)_0%,transparent_75%)]" />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/kadavidam-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/kadavidam-hero.jpg`}
+              alt="Kadavi Dam reservoir view with scenic mountain panorama"
+              className="h-full w-full object-cover object-center scale-105 transition-transform duration-[12000ms] hover:scale-100 select-none"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          {/* Black & Deep Forest Green Atmosphere Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#040e09]/95 via-[#06180f]/75 to-[#030906]/75" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.18)_0%,transparent_75%)]" />
+          <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Inset Framing Box (Increased Height & Coverage) */}
-        <div className="pointer-events-none absolute top-20 sm:top-24 md:top-24 bottom-3 sm:bottom-4 md:bottom-5 inset-x-4 sm:inset-x-8 md:inset-x-12 rounded-3xl sm:rounded-[2.5rem] border border-cyan-200/40 z-20 shadow-[inset_0_0_30px_rgba(6,182,212,0.08)]" />
+        {/* Inset Framing Box (Emerald Green & Subtle Gold) */}
+        <div className="pointer-events-none absolute top-20 sm:top-24 md:top-24 bottom-3 sm:bottom-4 md:bottom-5 inset-x-4 sm:inset-x-8 md:inset-x-12 rounded-3xl sm:rounded-[2.5rem] border border-emerald-400/35 z-20 shadow-[inset_0_0_30px_rgba(16,185,129,0.06)]" />
 
         {/* Top Left Vertical Glyphs inside Framing Box */}
         <div className="absolute top-32 sm:top-36 left-7 sm:left-12 md:left-16 z-30 flex flex-col items-center">
-          <span className="[writing-mode:vertical-rl] font-serif text-xs sm:text-sm md:text-base tracking-[0.45em] text-cyan-100/80 font-light select-none">
+          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-emerald-100/90 font-light select-none">
             क ड वी • ध र ण
           </span>
-          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-cyan-300/80 font-mono">
+          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-emerald-400 font-mono">
             16.98° N
           </span>
         </div>
 
         {/* Top Right Vertical Glyphs inside Framing Box */}
         <div className="absolute top-32 sm:top-36 right-7 sm:right-12 md:right-16 z-30 flex flex-col items-center">
-          <span className="[writing-mode:vertical-rl] font-serif text-xs sm:text-sm md:text-base tracking-[0.45em] text-cyan-100/80 font-light select-none">
+          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-emerald-100/90 font-light select-none">
             बा म ब र्द रा
           </span>
-          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-cyan-300/80 font-mono">
+          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-emerald-400 font-mono">
             SAHYADRI
           </span>
         </div>
@@ -152,13 +156,13 @@ export default function KadaviDam() {
         {/* Center Hero Block: Giant Sans Title & Subtitle */}
         <div className="relative z-10 mx-auto w-full max-w-5xl px-6 pt-6 sm:pt-10 text-center flex flex-col items-center">
           <Reveal>
-            <h1 className="font-sans font-black text-6xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[9.5rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100/95 to-cyan-300/40 drop-shadow-[0_15px_40px_rgba(6,182,212,0.4)] select-none">
+            <h1 className="font-heading font-medium text-6xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[9.5rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-white via-emerald-100/95 to-emerald-300/40 drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)] select-none">
               KADAVI
             </h1>
           </Reveal>
 
           <Reveal delay={120}>
-            <p className="mt-1 sm:mt-2 font-sans text-xs sm:text-base md:text-lg font-light text-cyan-100/90 tracking-wide max-w-2xl drop-shadow-md">
+            <p className="mt-1 sm:mt-2 font-body text-xs sm:text-base md:text-lg font-light text-white/90 tracking-wide max-w-2xl drop-shadow-md">
               A tour that you can't see, you can only feel it
             </p>
           </Reveal>
@@ -209,9 +213,9 @@ export default function KadaviDam() {
               </Link>
               <Link
                 to="/experience/boating"
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-950/50 px-6 py-3 font-body text-xs uppercase tracking-[0.18em] text-cyan-100 backdrop-blur-md transition-all duration-300 hover:border-cyan-200 hover:bg-cyan-900/60 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/60 px-6 py-3 font-body text-xs uppercase tracking-[0.18em] text-emerald-100 backdrop-blur-md transition-all duration-300 hover:border-emerald-300 hover:bg-emerald-950/70 hover:text-white"
               >
-                <FaShip className="text-xs text-cyan-300" />
+                <FaShip className="text-xs text-emerald-400" />
                 <span>Boating Experience</span>
               </Link>
             </div>
@@ -232,45 +236,43 @@ export default function KadaviDam() {
             </p>
           </div>
 
-          {/* 3 Tall Vertical Cards on Left, Editorial Stack on Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            {/* Left 3 Rounded Vertical Photo Cards */}
-            <div className="lg:col-span-8 grid grid-cols-3 gap-3 sm:gap-5">
-              {visibleCards.map((card, idx) => (
-                <div
-                  key={`${card.slug}-${idx}`}
-                  className="group relative h-[360px] sm:h-[430px] md:h-[470px] rounded-3xl overflow-hidden shadow-xl bg-deep-forest transition-all duration-500 hover:-translate-y-1.5"
-                >
-                  <EstateImage
-                    slug={card.slug}
-                    alt={card.title}
-                    sizes="(max-width: 768px) 33vw, 25vw"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300" />
-                  <div className="absolute bottom-5 inset-x-3 text-center">
-                    <span className="font-body text-[0.62rem] uppercase tracking-[0.2em] text-cyan-200/90 font-semibold block">
-                      {card.kicker?.split('•')[1] || 'KADAVI'}
-                    </span>
-                    <span className="mt-1 font-heading text-xs sm:text-sm text-ivory-white font-normal block leading-tight">
-                      {card.title}
-                    </span>
-                  </div>
+          {/* Single Featured Photo Card on Left, Editorial Stack on Right */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left 1 Large Rounded Photo Card */}
+            <div className="lg:col-span-7">
+              <div className="group relative h-[380px] sm:h-[450px] md:h-[490px] w-full rounded-3xl overflow-hidden shadow-2xl bg-deep-forest transition-all duration-500 hover:-translate-y-1">
+                <EstateImage
+                  slug={currentCard.slug}
+                  alt={currentCard.title}
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90 transition-opacity duration-300" />
+                <div className="absolute bottom-6 sm:bottom-8 inset-x-6 sm:inset-x-8">
+                  <span className="font-body text-[0.7rem] uppercase tracking-[0.25em] text-cyan-200/90 font-semibold block">
+                    {currentCard.kicker}
+                  </span>
+                  <h3 className="mt-1.5 font-heading text-xl sm:text-2xl md:text-3xl text-ivory-white font-normal block leading-tight">
+                    {currentCard.title}
+                  </h3>
+                  <p className="mt-1.5 font-body text-xs sm:text-sm text-ivory-white/85 font-light max-w-lg leading-relaxed">
+                    {currentCard.subtitle}
+                  </p>
                 </div>
-              ))}
+              </div>
             </div>
 
             {/* Right Side Editorial Copy & Controls */}
-            <div className="lg:col-span-4 flex flex-col justify-between space-y-6 sm:space-y-7 pl-0 lg:pl-4">
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-7 pl-0 lg:pl-2">
               {/* Block 1 */}
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-forest-green">
-                    {visibleCards[0]?.kicker || 'Popularity • SERENITY'}
+                    {currentCard.kicker || 'Popularity • SERENITY'}
                   </span>
                 </div>
                 <p className="mt-2.5 font-body text-xs sm:text-sm text-dark-charcoal/80 leading-relaxed font-light">
-                  {visibleCards[0]?.desc}
+                  {currentCard.desc}
                 </p>
               </div>
 
@@ -278,11 +280,11 @@ export default function KadaviDam() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-forest-green">
-                    {visibleCards[1]?.kicker || 'Experience • TRANQUILITY'}
+                    {nextCard.kicker || 'Experience • TRANQUILITY'}
                   </span>
                 </div>
                 <p className="mt-2.5 font-body text-xs sm:text-sm text-dark-charcoal/80 leading-relaxed font-light">
-                  {visibleCards[1]?.desc}
+                  {nextCard.desc}
                 </p>
               </div>
 
@@ -341,7 +343,7 @@ export default function KadaviDam() {
             {/* Left Column: Tall Rounded Nature Reservoir Image */}
             <div className="lg:col-span-6 relative min-h-[460px] sm:min-h-[540px] rounded-3xl overflow-hidden shadow-2xl bg-deep-forest group">
               <EstateImage
-                slug="waterfalls-and-nature-trails-2"
+                slug="perfect-dam"
                 alt="Winding water stream and lush nature at Kadavi"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -477,7 +479,7 @@ export default function KadaviDam() {
                 </span>
               </div>
               <h3 className="font-heading text-3xl sm:text-4xl font-light text-ivory-white">
-                Bambardara Agrotourism Pvt. Ltd.
+                Bambarddara Agro Tourism Pvt. Ltd.
               </h3>
 
               <div className="mt-6 space-y-4 text-sm font-light text-ivory-white/85">

@@ -39,6 +39,15 @@ const RopewayRide = lazy(() => import('./pages/RopewayRide'));
 const Boating = lazy(() => import('./pages/Boating'));
 const Waterpark = lazy(() => import('./pages/Waterpark'));
 const IndoorGameZones = lazy(() => import('./pages/IndoorGameZones'));
+const Archery = lazy(() => import('./pages/Archery'));
+const Paintball = lazy(() => import('./pages/Paintball'));
+const Cycling = lazy(() => import('./pages/Cycling'));
+const Trekking = lazy(() => import('./pages/Trekking'));
+const Zipline = lazy(() => import('./pages/Zipline'));
+const TreeClimbing = lazy(() => import('./pages/TreeClimbing'));
+const RockClimbing = lazy(() => import('./pages/RockClimbing'));
+const Rappelling = lazy(() => import('./pages/Rappelling'));
+const RopeCourse = lazy(() => import('./pages/RopeCourse'));
 const RoomTypePage = lazy(() => import('./pages/RoomTypePage'));
 const RoomDetail = lazy(() => import('./pages/RoomDetail'));
 const Enquire = lazy(() => import('./pages/Enquire'));
@@ -119,6 +128,7 @@ function AppContent() {
               <Route path="/experiences/:type" element={<ExperienceTypePage />} />
               <Route path="/experience/golf-course" element={<GolfCourse />} />
               <Route path="/experience/jungle-safari" element={<JungleSafari />} />
+              <Route path="/jungle-safari" element={<JungleSafari />} />
               <Route path="/experience/nature-trails" element={<NatureTrails />} />
               <Route path="/nature-trails" element={<NatureTrails />} />
               <Route path="/nature-trails/waterfall" element={<BambarddaraWaterfall />} />
@@ -126,11 +136,38 @@ function AppContent() {
               <Route path="/nature-trails/kadavi-dam" element={<KadaviDam />} />
               <Route path="/nature-trails/oxygen-park" element={<OxygenPark />} />
               <Route path="/experience/ropeway-ride" element={<RopewayRide />} />
+              <Route path="/ropeway" element={<RopewayRide />} />
               <Route path="/experience/boating" element={<Boating />} />
+              <Route path="/boating" element={<Boating />} />
               <Route path="/experience/waterpark" element={<Waterpark />} />
               <Route path="/waterpark" element={<Waterpark />} />
               <Route path="/experience/indoor-game-zones" element={<IndoorGameZones />} />
               <Route path="/indoor-game-zones" element={<IndoorGameZones />} />
+              <Route path="/experience/indoor-games" element={<IndoorGameZones />} />
+              <Route path="/indoor-games" element={<IndoorGameZones />} />
+              <Route path="/experience/indoor-game" element={<IndoorGameZones />} />
+              <Route path="/indoor-game" element={<IndoorGameZones />} />
+              <Route path="/experience/archery" element={<Archery />} />
+              <Route path="/archery" element={<Archery />} />
+              <Route path="/experience/paintball" element={<Paintball />} />
+              <Route path="/paintball" element={<Paintball />} />
+              <Route path="/experience/paintball-arena" element={<Paintball />} />
+              <Route path="/paintball-arena" element={<Paintball />} />
+              <Route path="/experience/cycling" element={<Cycling />} />
+              <Route path="/cycling" element={<Cycling />} />
+              <Route path="/experience/trekking" element={<Trekking />} />
+              <Route path="/trekking" element={<Trekking />} />
+              <Route path="/experience/mountain-trekking" element={<Trekking />} />
+              <Route path="/experience/zipline" element={<Zipline />} />
+              <Route path="/zipline" element={<Zipline />} />
+              <Route path="/experience/tree-climbing" element={<TreeClimbing />} />
+              <Route path="/tree-climbing" element={<TreeClimbing />} />
+              <Route path="/experience/rock-climbing" element={<RockClimbing />} />
+              <Route path="/rock-climbing" element={<RockClimbing />} />
+              <Route path="/experience/rappelling" element={<Rappelling />} />
+              <Route path="/rappelling" element={<Rappelling />} />
+              <Route path="/experience/rope-course" element={<RopeCourse />} />
+              <Route path="/rope-course" element={<RopeCourse />} />
               <Route path="/experience/:id" element={<ExperienceDetail />} />
               <Route path="/stays/:type" element={<RoomTypePage />} />
               <Route path="/room/:id" element={<RoomDetail />} />

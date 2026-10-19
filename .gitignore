@@ -47,3 +47,8 @@ __pycache__
 tmp/
 .kilo
 
+# Camera originals directly under public/images/ — only the optimised derivatives in opt/ are served
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.png
+public/images/*.webp

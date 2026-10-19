@@ -85,8 +85,8 @@ const HIGHLIGHTS = [
 ];
 
 const GALLERY = [
-  { slug: 'event-and-cultural-experience', caption: 'Festival Evenings' },
-  { slug: 'temple', caption: 'Temple Heritage Trails' },
+  { slug: 'festival-evening', caption: 'Festival Evenings' },
+  { slug: 'temple-trail', caption: 'Temple Heritage Trails' },
   { slug: 'kolhapuri-food', caption: 'Kolhapuri Cuisine' },
   { slug: 'cart-ride', caption: 'Bullock Cart Rides' },
 ];
@@ -229,10 +229,10 @@ export default function CulturalExperience() {
         <div className="relative">
           <div className="absolute inset-0">
             <EstateImage
-              slug="traditions-numbers"
-              alt="A cultural festival evening at the estate"
+              slug="cultural"
+              alt="Bambardara cultural heritage and traditional procession"
               sizes="100vw"
-              position="top"
+              position="center"
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 z-10 bg-black/65" />
@@ -242,7 +242,7 @@ export default function CulturalExperience() {
             <Reveal delay={80}>
               <h2 className="max-w-lg font-heading text-[clamp(2rem,4.5vw,3rem)] font-light leading-tight text-ivory-white">
                 Traditions,
-                <span className="block italic text-muted-gold">By the Numbers</span>
+                <span className="block italic text-luxury-gold">By the Numbers</span>
               </h2>
             </Reveal>
 

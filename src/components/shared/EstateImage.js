@@ -65,27 +65,29 @@ export default function EstateImage({
     );
   }
 
-  const { widths, fallbackWidth, src: customSrc } = info;
+  const effectiveWidths = info.widths || info.sizes || [];
+  const effectiveFallbackWidth = info.fallbackWidth ?? (effectiveWidths.length > 0 ? 1280 : null);
+  const customSrc = info.src;
 
   /* Only WebP has multiple widths in opt/. The JPEG fallback is a single file:
      {slug}-{fallbackWidth}.jpg when fallbackWidth is set, or {slug}.jpg when
      the image was placed in opt/ directly without going through the optimiser.
      customSrc handles non-.jpg extensions (e.g. farm.jpeg). */
-  const hasWebP = widths && widths.length > 0;
+  const hasWebP = effectiveWidths.length > 0;
   const webpSrcset = hasWebP
-    ? widths.map((w) => `${OPT}/${slug}-${w}.webp ${w}w`).join(', ')
+    ? effectiveWidths.map((w) => `${OPT}/${slug}-${w}.webp ${w}w`).join(', ')
     : '';
   const fallbackSrc = customSrc
     ? customSrc.startsWith('/')
       ? customSrc
       : `${process.env.PUBLIC_URL}/${customSrc}`
-    : fallbackWidth != null
-      ? `${OPT}/${slug}-${fallbackWidth}.jpg`
+    : effectiveFallbackWidth != null
+      ? `${OPT}/${slug}-${effectiveFallbackWidth}.jpg`
       : `${OPT}/${slug}.jpg`;
 
   /* Blur-up placeholder: use the smallest WebP as the blurred background.
      Only when we have WebP variants (not custom-src JPEG-only images). */
-  const lqipSrc = hasWebP ? `${OPT}/${slug}-${widths[0]}.webp` : null;
+  const lqipSrc = hasWebP ? `${OPT}/${slug}-${effectiveWidths[0]}.webp` : null;
 
   return (
     <span className={`img-placeholder ${className}`}>

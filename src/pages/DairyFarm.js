@@ -4,6 +4,9 @@ import {
   FiChevronLeft,
   FiChevronRight,
   FiUsers,
+  FiMapPin,
+  FiPhone,
+  FiGlobe,
 } from 'react-icons/fi';
 import { PiBowlFood, PiJarLabel } from 'react-icons/pi';
 import { GiButter, GiMilkCarton, GiCow } from 'react-icons/gi';
@@ -224,7 +227,7 @@ export default function DairyFarm() {
           <Reveal delay={280} className="mt-8 md:mt-10">
             <div className="aspect-[16/9] w-full overflow-hidden md:aspect-[2.2/1]">
               <EstateImage
-                slug="farmhouse-villa-2"
+                slug="dairy-farming-hero"
                 alt="Livestock grazing the estate pasture at the edge of the evening"
                 priority
                 position="center 78%"
@@ -342,7 +345,7 @@ export default function DairyFarm() {
             <div className="relative">
               <div className="aspect-[4/3] w-full overflow-hidden rounded-sm">
                 <EstateImage
-                  slug="farmhouse-villa-2"
+                  slug="natural-feed"
                   alt="Livestock grazing the estate pasture in the evening light"
                   position="center 70%"
                   sizes="(min-width: 768px) 60vw, 100vw"
@@ -384,7 +387,7 @@ export default function DairyFarm() {
           <Reveal className="h-full">
             <div className="aspect-[4/5] w-full md:aspect-auto md:h-full md:min-h-[26rem]">
               <EstateImage
-                slug="animal-farm-and-dairy-farm"
+                slug="dairy-exprience"
                 alt="A farmhand greeting a Holstein cow in the shed"
                 sizes="(min-width: 768px) 36vw, 100vw"
                 className="h-full w-full object-cover"
@@ -525,62 +528,65 @@ export default function DairyFarm() {
 
             {/* Three Cards */}
             <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
-              {/* Card 1 */}
+              {/* Card 1 - Address */}
               <Reveal delay={100}>
-                <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                    <EstateImage
-                      slug="animal-farm-and-dairy-farm"
-                      alt="Farmhand with dairy cow"
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                <div className="group flex h-full flex-col items-center rounded-2xl border border-forest-green/10 bg-[#f9f6f0] p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/50 hover:shadow-lg">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-all duration-300 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <FiMapPin className="h-7 w-7" />
                   </div>
-                  <p className="mt-4 text-center font-body text-sm font-semibold leading-relaxed text-forest-green">
-                    Bambardara Agrotourism Pvt. Ltd.
-                  </p>
-                  <p className="mt-2 text-center font-body text-xs leading-relaxed text-light-charcoal">
+                  <h3 className="font-heading text-lg font-normal text-forest-green md:text-xl">
+                    Bambarddara Agro Tourism Pvt. Ltd.
+                  </h3>
+                  <p className="mt-3 font-body text-xs font-light leading-relaxed text-light-charcoal md:text-sm">
                     Parale Ninai, Shahuwadi, Kolhapur - 415101, Maharashtra
                   </p>
                 </div>
               </Reveal>
 
-              {/* Card 2 */}
+              {/* Card 2 - Phone */}
               <Reveal delay={200}>
-                <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                    <EstateImage
-                      slug="farmhouse-villa-2"
-                      alt="Pasture landscape"
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                <div className="group flex h-full flex-col items-center rounded-2xl border border-forest-green/10 bg-[#f9f6f0] p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/50 hover:shadow-lg">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-all duration-300 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <FiPhone className="h-7 w-7" />
                   </div>
-                  <p className="mt-4 text-center font-body text-sm font-semibold leading-relaxed text-forest-green">
+                  <h3 className="font-heading text-lg font-normal text-forest-green md:text-xl">
                     Phone
-                  </p>
-                  <p className="mt-2 text-center font-body text-xs leading-relaxed text-light-charcoal">
-                    +91 75887 75757 / +91 93222 75757
-                  </p>
+                  </h3>
+                  <div className="mt-3 space-y-1">
+                    <a
+                      href="tel:+917588775757"
+                      className="block font-body text-xs font-light text-light-charcoal transition-colors hover:text-forest-green md:text-sm"
+                    >
+                      +91 75887 75757
+                    </a>
+                    <a
+                      href="tel:+919322275757"
+                      className="block font-body text-xs font-light text-light-charcoal transition-colors hover:text-forest-green md:text-sm"
+                    >
+                      +91 93222 75757
+                    </a>
+                  </div>
                 </div>
               </Reveal>
 
-              {/* Card 3 */}
+              {/* Card 3 - Website */}
               <Reveal delay={300}>
-                <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                    <EstateImage
-                      slug="dairy"
-                      alt="Morning milking routine"
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                <div className="group flex h-full flex-col items-center rounded-2xl border border-forest-green/10 bg-[#f9f6f0] p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-luxury-gold/50 hover:shadow-lg">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-forest-green/10 text-forest-green transition-all duration-300 group-hover:bg-forest-green group-hover:text-luxury-gold">
+                    <FiGlobe className="h-7 w-7" />
                   </div>
-                  <p className="mt-4 text-center font-body text-sm font-semibold leading-relaxed text-forest-green">
+                  <h3 className="font-heading text-lg font-normal text-forest-green md:text-xl">
                     Website
-                  </p>
-                  <p className="mt-2 text-center font-body text-xs leading-relaxed text-light-charcoal">
-                    www.bambardaraagrotourism.com
+                  </h3>
+                  <p className="mt-3">
+                    <a
+                      href="https://www.bambardaraagrotourism.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-body text-xs font-light text-light-charcoal transition-colors hover:text-forest-green hover:underline md:text-sm"
+                    >
+                      www.bambardaraagrotourism.com
+                    </a>
                   </p>
                 </div>
               </Reveal>

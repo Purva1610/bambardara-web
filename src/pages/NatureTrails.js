@@ -56,15 +56,21 @@ export default function NatureTrails() {
     <main className="bg-ivory-white text-forest-green selection:bg-luxury-gold selection:text-dark-charcoal">
       {/* ── HERO SECTION (EXACT REFERENCE DESIGN) ── */}
       <section className="relative min-h-[100vh] flex flex-col justify-between overflow-hidden bg-deep-forest text-ivory-white">
-        {/* Background visual with primeval forest & moody mist */}
+        {/* Background visual: D:\bam\bambardara-web\public\images\opt\nature-trails-hero.jpg */}
         <div className="absolute inset-0 isolate">
-          <EstateImage
-            slug="nature"
-            alt="Moody misty forest and stone trail in Sahyadri"
-            sizes="100vw"
-            priority
-            className="h-full w-full object-cover scale-105 transition-transform duration-[12000ms] ease-out hover:scale-100"
-          />
+          <picture className="w-full h-full">
+            <source
+              srcSet={`${process.env.PUBLIC_URL}/images/opt/nature-trails-hero.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/opt/nature-trails-hero.jpg`}
+              alt="Moody misty forest and stone trail in Sahyadri"
+              className="h-full w-full object-cover object-center scale-105 transition-transform duration-[12000ms] ease-out hover:scale-100 select-none"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
           {/* Vignette and dark atmospheric scrims matching the reference */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-black/85" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,15,10,0.85)_100%)]" />
@@ -302,7 +308,7 @@ export default function NatureTrails() {
                   <div className="p-2 border border-white/30 rounded-sm bg-black/30 shadow-2xl max-w-xl">
                     <div className="relative aspect-[16/10] overflow-hidden bg-black/60">
                       <EstateImage
-                        slug="waterfalls-and-nature-trails-2"
+                        slug="trails"
                         alt="Curated scenic trail pathways across Bambardara"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         className="h-full w-full object-cover"
@@ -355,7 +361,7 @@ export default function NatureTrails() {
             <div className="group flex flex-col">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-deep-forest/5">
                 <EstateImage
-                  slug="waterfalls-and-nature-trails-2"
+                  slug="nature-springs"
                   alt="Hidden cascade pools along estate trail"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -377,7 +383,7 @@ export default function NatureTrails() {
             <div className="group flex flex-col">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-deep-forest/5">
                 <EstateImage
-                  slug="nature"
+                  slug="indigenous-trees"
                   alt="Ancient old-growth forest canopy"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -399,7 +405,7 @@ export default function NatureTrails() {
             <div className="group flex flex-col sm:col-span-2 lg:col-span-1">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-deep-forest/5">
                 <EstateImage
-                  slug="waterfalls-and-nature-trails-3"
+                  slug="sunrise"
                   alt="Sahyadri mountain ridge point vistas"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

@@ -130,85 +130,85 @@ const FORT_HERITAGE = [
     num: '01', kind: 'hill', slug: 'raigad-fort', type: 'Hill Fortress (Giri Durg)',
     badge: 'Imperial Capital', tag: '~820m MSL', location: 'Mahad, Raigad',
     name: 'Raigad Fort', nameMr: 'रायगड',
-    desc: "The Maratha capital Shivaji Maharaj chose for himself — site of his 1674 coronation, with the ruins of the Rajsabha still standing at the summit.",
+    desc: 'Capital of Swarajya and the fort where Shivaji Maharaj was crowned.',
     stats: [['Trek Grade', 'Moderate / Ropeway Available'], ['Distance', '~130 km from Pune'], ['Best Season', 'Oct – Mar & Monsoon']],
   },
   {
-    num: '02', kind: 'hill', slug: 'shivneri-fort', type: 'Hill Fortress (Giri Durg)',
-    badge: 'Birthplace Sanctum', tag: '~1,065m MSL', location: 'Junnar, Pune',
-    name: 'Shivneri Fort', nameMr: 'शिवनेरी',
-    desc: 'The birthplace of Chhatrapati Shivaji Maharaj in 1630 — a well-fortified hill station with concentric gateways guarding the approach.',
-    stats: [['Trek Grade', 'Easy (Paved Steps)'], ['Distance', '~95 km from Pune'], ['Best Season', 'All Year Round']],
-  },
-  {
-    num: '03', kind: 'hill', slug: 'pratapgad-fort', type: 'Hill Fortress (Giri Durg)',
-    badge: 'Citadel of Valor', tag: '~1,080m MSL', location: 'Satara, Mahabaleshwar',
+    num: '02', kind: 'hill', slug: 'pratapgad-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Battle of Pratapgad', tag: '~1,080m MSL', location: 'Satara, Mahabaleshwar',
     name: 'Pratapgad Fort', nameMr: 'प्रतापगड',
-    desc: 'Built on Moropant Pingale\'s orders — the site of the 1659 encounter between Shivaji Maharaj and Afzal Khan.',
+    desc: 'Famous for the Battle of Pratapgad and strategic defense.',
     stats: [['Trek Grade', 'Easy to Moderate'], ['Distance', '~140 km from Pune'], ['Best Season', 'Monsoon to Winter']],
   },
   {
-    num: '04', kind: 'hill', slug: 'sinhagad-fort', type: 'Hill Fortress (Giri Durg)',
+    num: '03', kind: 'hill', slug: 'sinhagad-fort', type: 'Hill Fortress (Giri Durg)',
     badge: "Lion's Fort", tag: '~1,312m MSL', location: 'Haveli, Pune',
     name: 'Sinhagad Fort', nameMr: 'सिंहगड',
-    desc: '"Gad aala, pan Sinha gela" — immortalised by Tanaji Malusare\'s 1670 night assault to reclaim the fort.',
+    desc: 'Known for the brave battle of Tanhaji Malusare.',
     stats: [['Trek Grade', 'Moderate Trek / Motor Road'], ['Distance', '~30 km from Pune City'], ['Best Season', 'Monsoon to Winter']],
   },
   {
-    num: '05', kind: 'ocean', slug: 'sindhudurg-fort', type: 'Ocean Fortress (Jal Durg)',
-    badge: 'Supreme Ocean Fortress', tag: 'Sea Level', location: 'Malvan, Konkan',
-    name: 'Sindhudurg Fort', nameMr: 'सिंधुदुर्ग',
-    desc: 'Raised on a rocky islet off the Malvan coast, its foundations reputedly sealed with molten lead against the tides.',
-    stats: [['Access', 'Ferry Boat from Malvan Jetty'], ['Distance', '~500 km from Pune / Mumbai'], ['Best Season', 'Oct – May (Fair Sea)']],
+    num: '04', kind: 'hill', slug: 'purandar-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Strategic Citadel', tag: '~1,387m MSL', location: 'Saswad, Pune',
+    name: 'Purandar Fort', nameMr: 'पुरंदर',
+    desc: 'Historic fort with immense strategic importance.',
+    stats: [['Trek Grade', 'Easy to Moderate'], ['Distance', '~50 km from Pune'], ['Best Season', 'All Year Round']],
   },
   {
-    num: '06', kind: 'hill', slug: 'rajgad-fort', type: 'Hill Fortress (Giri Durg)',
-    badge: 'King of Forts', tag: '~1,376m MSL', location: 'Velhe, Pune',
-    name: 'Rajgad Fort', nameMr: 'राजगड',
-    desc: "The Maratha capital for 26 formative years before the seat moved to Raigad, with its Padmavati and Suvela ridgelines.",
-    stats: [['Trek Grade', 'Demanding / Strenuous'], ['Distance', '~60 km from Pune'], ['Best Season', 'Oct – Feb']],
+    num: '05', kind: 'hill', slug: 'rajmachi-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Twin Forts', tag: '~825m MSL', location: 'Khandala, Sahyadri',
+    name: 'Rajmachi Fort', nameMr: 'राजमाची',
+    desc: "Twin forts of Shrivardhan & Manaranjan, a trekker's paradise.",
+    stats: [['Trek Grade', 'Moderate Trek'], ['Distance', '~15 km from Lonavala'], ['Best Season', 'Monsoon & Winter']],
+  },
+  {
+    num: '06', kind: 'hill', slug: 'visapur-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Plateau Fortress', tag: '~1,084m MSL', location: 'Lonavala, Pune',
+    name: 'Visapur Fort', nameMr: 'विसापूर',
+    desc: 'A massive fort near Lonavala, rich in history and nature.',
+    stats: [['Trek Grade', 'Moderate (Waterfall trail)'], ['Distance', '~60 km from Pune'], ['Best Season', 'Monsoon & Post-Monsoon']],
   },
   {
     num: '07', kind: 'hill', slug: 'torna-fort', type: 'Hill Fortress (Giri Durg)',
     badge: 'The Genesis', tag: '~1,403m MSL', location: 'Velhe, Pune',
-    name: 'Torna Fort', nameMr: 'तोरणा',
-    desc: 'The first fort captured by Shivaji Maharaj, at just sixteen — the founding stone of Swarajya.',
+    name: 'Torna Fort (Prachandgad)', nameMr: 'तोरणा (प्रचंडगड)',
+    desc: 'The first fort captured by Shivaji Maharaj.',
     stats: [['Trek Grade', 'Difficult & Steep'], ['Distance', '~70 km from Pune'], ['Best Season', 'Post-Monsoon & Winter']],
   },
   {
-    num: '08', kind: 'hill', slug: 'panhala-fort', type: 'Hill Fortress (Giri Durg)',
-    badge: 'The Great Siege', tag: '~845m MSL', location: 'Kolhapur',
-    name: 'Panhala Fort', nameMr: 'पन्हाळा',
-    desc: 'Site of Baji Prabhu Deshpande\'s legendary stand at the Pavan Khind siege — and the closest of these forts to the estate.',
-    stats: [['Trek Grade', 'Easy / Well Connected'], ['Distance', '~20 km from Kolhapur'], ['Best Season', 'All-Weather Destination']],
+    num: '08', kind: 'hill', slug: 'vasota-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Jungle Fortress', tag: '~1,120m MSL', location: 'Koyna Sanctuary, Satara',
+    name: 'Vasota Fort', nameMr: 'वासोटा (व्याघ्रगड)',
+    desc: 'Situated in the heart of dense forest near the Koyna River.',
+    stats: [['Trek Grade', 'Moderate Jungle Trek via Boat'], ['Distance', '~140 km from Pune'], ['Best Season', 'Oct – May']],
   },
   {
-    num: '09', kind: 'ocean', slug: 'vijaydurg-fort', type: 'Ocean Fortress (Jal Durg)',
-    badge: 'Naval Gibraltar', tag: 'Sea Bastion', location: 'Sindhudurg District',
-    name: 'Vijaydurg Fort', nameMr: 'विजयदुर्ग',
-    desc: 'A formidable naval stronghold along the Konkan coast, expanded to anchor the Maratha fleet\'s western reach.',
-    stats: [['Access', 'Direct Road Access'], ['Distance', '~450 km from Pune'], ['Best Season', 'Nov – Mar']],
+    num: '09', kind: 'hill', slug: 'panchgad-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Sahyadri Guardian', tag: '~845m MSL', location: 'Sahyadri Range, Kolhapur',
+    name: 'Panchgad Fort', nameMr: 'पंचगड',
+    desc: 'Five forts in one region, guardians of the Sahyadri.',
+    stats: [['Trek Grade', 'Easy to Moderate'], ['Distance', '~20 km from Kolhapur'], ['Best Season', 'All Year Round']],
   },
   {
     num: '10', kind: 'hill', slug: 'lohagad-fort', type: 'Hill Fortress (Giri Durg)',
-    badge: 'The Iron Fort', tag: '~1,033m MSL', location: 'Lonavala, Pune',
+    badge: 'Iron Fortress', tag: '~1,033m MSL', location: 'Lonavala, Pune',
     name: 'Lohagad Fort', nameMr: 'लोहगड',
-    desc: 'Guarded the old Bor Ghat trade route, and is famous today for its narrow, monsoon-lush connecting ridge.',
-    stats: [['Trek Grade', 'Easy to Moderate'], ['Distance', '~65 km from Pune'], ['Best Season', 'Monsoon Spectacular']],
+    desc: 'An impregnable fort with strong iron-clad history.',
+    stats: [['Trek Grade', 'Easy to Moderate'], ['Distance', '~65 km from Pune'], ['Best Season', 'Monsoon & Winter']],
   },
   {
-    num: '11', kind: 'ocean', slug: 'suvarnadurg-fort', type: 'Ocean Fortress (Jal Durg)',
-    badge: 'Golden Marine Fort', tag: 'Offshore Island', location: 'Dapoli, Ratnagiri',
-    name: 'Suvarnadurg Fort', nameMr: 'सुवर्णदुर्ग',
-    desc: 'An island fort built on an isolated rock reef, once a key base for the Maratha navy along the Konkan.',
-    stats: [['Access', 'Fishing Trawler from Harne'], ['Distance', '~220 km from Pune'], ['Best Season', 'Nov – Apr']],
+    num: '11', kind: 'ocean', slug: 'janjira-fort', type: 'Ocean Fortress (Jal Durg)',
+    badge: 'Unconquered Sea Fort', tag: 'Sea Bastion', location: 'Murud, Raigad Coast',
+    name: 'Janjira Fort', nameMr: 'मुरुड जंजिरा',
+    desc: 'An unconquered sea fort, masterpiece of strength.',
+    stats: [['Access', 'Sailboat from Rajapuri'], ['Distance', '~150 km from Mumbai / Pune'], ['Best Season', 'Oct – May']],
   },
   {
-    num: '12', kind: 'ocean', slug: 'kolaba-fort', type: 'Ocean Fortress (Jal Durg)',
-    badge: 'Coastal Bastion', tag: 'Tidal Fortress', location: 'Alibaug, Raigad',
-    name: 'Kolaba Fort', nameMr: 'कुलाबा',
-    desc: 'A sea fort walkable from Alibaug beach at low tide — among the last coastal fortifications raised under Shivaji Maharaj.',
-    stats: [['Access', 'Walk / Horse Cart at Low Tide'], ['Distance', '~100 km from Mumbai'], ['Best Season', 'Oct – May']],
+    num: '12', kind: 'hill', slug: 'salher-fort', type: 'Hill Fortress (Giri Durg)',
+    badge: 'Highest Fort', tag: '~1,567m MSL', location: 'Baglan, Nashik',
+    name: 'Salher Fort', nameMr: 'साल्हेर',
+    desc: 'One of the highest forts in Maharashtra.',
+    stats: [['Trek Grade', 'Demanding / High Altitude'], ['Distance', '~110 km from Nashik'], ['Best Season', 'Winter & Post-Monsoon']],
   },
 ];
 
@@ -372,7 +372,7 @@ export default function ShivajiStatue() {
 
             <div className="space-y-6 lg:col-span-5">
               <Reveal>
-                <div className="rounded-lg border border-stone bg-white p-7">
+                <div className="rounded-lg border border-stone bg-ivory-white p-7">
                   <h3 className="font-heading text-lg font-semibold text-forest-green">Why Visit?</h3>
                   <ul className="mt-4 space-y-3">
                     {WHY_VISIT.map((item) => (
@@ -386,7 +386,7 @@ export default function ShivajiStatue() {
               </Reveal>
 
               <Reveal delay={80}>
-                <div className="rounded-lg border border-stone bg-white p-7">
+                <div className="rounded-lg border border-stone bg-ivory-white p-7">
                   <h3 className="font-heading text-lg font-semibold text-forest-green">Visitor Information</h3>
                   <ul className="mt-4 space-y-4">
                     {VISITOR_INFO.map((item) => (
@@ -486,7 +486,7 @@ export default function ShivajiStatue() {
           <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {VANTAGE_POINTS.map((item, idx) => (
               <Reveal key={item.title} delay={idx * 60}>
-                <div className="group overflow-hidden rounded-lg border border-stone bg-white">
+                <div className="group overflow-hidden rounded-lg border border-stone bg-ivory-white">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <EstateImage
                       slug={item.slug}
@@ -543,7 +543,7 @@ export default function ShivajiStatue() {
       <section className="bg-warm-sand px-6 pb-24 md:px-10 md:pb-32">
         <div className="mx-auto max-w-editorial">
           <Reveal>
-            <div className="grid grid-cols-1 gap-0 overflow-hidden rounded-lg border border-stone bg-white lg:grid-cols-12">
+            <div className="grid grid-cols-1 gap-0 overflow-hidden rounded-lg border border-stone bg-ivory-white lg:grid-cols-12">
               <div className="relative aspect-[4/3] lg:col-span-5 lg:aspect-auto">
                 <EstateImage
                   slug="tribute"
@@ -628,19 +628,18 @@ export default function ShivajiStatue() {
                   UNESCO World Heritage · Regional Context
                 </span>
                 <h2 className="mt-3 font-heading text-[clamp(1.4rem,3.2vw,2rem)] font-bold leading-tight text-forest-green">
-                  The Maratha Fort Heritage of the Sahyadris
+                  Top 12 Forts of Chhatrapati Shivaji Maharaj
                 </h2>
                 <p className="mt-2 font-heading text-base italic font-light text-luxury-gold">
-                  गिरिदुर्ग व जलदुर्ग — Hill Forts and Sea Forts of the Marathas
+                  गिरिदुर्ग व जलदुर्ग — More Than History, It's an Experience!
                 </p>
                 <p className="mt-4 font-body text-[0.8rem] font-light leading-[1.85] text-light-charcoal">
                   The ridgelines visible from the estate's hilltop belong to the
                   same network of forts raised under Chhatrapati Shivaji
                   Maharaj — hill bastions and coastal strongholds across the
-                  Sahyadris and the Konkan coast, part of the "Maratha
-                  Military Landscapes" recognised as a UNESCO World Heritage
-                  site. Several of these silhouettes can be picked out from
-                  where the tribute statue stands.
+                  Sahyadris and the Konkan coast, part of the &quot;Maratha
+                  Military Landscapes&quot; recognised as a UNESCO World Heritage
+                  site.
                 </p>
               </div>
               <div className="flex gap-3">
@@ -649,7 +648,7 @@ export default function ShivajiStatue() {
                     Hill Forts (Giri Durg)
                   </p>
                   <p className="mt-1 font-heading text-sm text-forest-green">
-                    Visible on the Horizon
+                    11 Sahyadri Bastions
                   </p>
                 </div>
                 <div className="rounded border border-stone bg-warm-sand px-5 py-3 text-center">
@@ -657,7 +656,7 @@ export default function ShivajiStatue() {
                     Sea Forts (Jal Durg)
                   </p>
                   <p className="mt-1 font-heading text-sm text-forest-green">
-                    Along the Konkan Coast
+                    1 Coastal Fortress
                   </p>
                 </div>
               </div>
@@ -672,24 +671,24 @@ export default function ShivajiStatue() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FORT_HERITAGE.map((fort, idx) => (
               <Reveal key={fort.name} delay={(idx % 4) * 60}>
-                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-stone bg-white">
+                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-stone bg-ivory-white shadow-sm transition-all hover:border-luxury-gold/60 hover:shadow-md">
                   <div className="relative flex aspect-[4/3] items-center justify-center bg-warm-sand">
                     {fort.slug ? (
                       <EstateImage
                         slug={fort.slug}
                         alt={`${fort.name} — ${fort.type}`}
-                        className="h-full w-full"
+                        className="h-full w-full object-cover"
                       />
                     ) : fort.kind === 'ocean' ? (
                       <FaWater className="h-10 w-10 text-forest-green/20" aria-hidden="true" />
                     ) : (
                       <FaMountain className="h-10 w-10 text-forest-green/20" aria-hidden="true" />
                     )}
-                    <span className="absolute left-2 top-2 rounded bg-copper px-2 py-1 font-body text-[0.55rem] font-semibold uppercase tracking-wide text-deep-forest">
-                      {fort.badge}
+                    <span className="absolute left-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-[#D35400] font-heading text-xs font-bold text-white shadow-md">
+                      {parseInt(fort.num, 10)}
                     </span>
                     <span className="absolute right-2 top-2 rounded bg-forest-green/90 px-2 py-1 font-body text-[0.55rem] uppercase tracking-wide text-ivory-white/90">
-                      {fort.tag}
+                      {fort.badge}
                     </span>
                   </div>
 
@@ -725,6 +724,32 @@ export default function ShivajiStatue() {
               </Reveal>
             ))}
           </div>
+
+          {/* TOP 12 FORTS REFERENCE POSTER SHOWCASE */}
+          <Reveal delay={120}>
+            <div className="mt-14 overflow-hidden rounded-xl border border-stone bg-ivory-white p-6 shadow-sm">
+              <div className="flex flex-col gap-2 border-b border-stone pb-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <span className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-copper">
+                    Historical Infographic
+                  </span>
+                  <h3 className="font-heading text-lg font-bold text-forest-green">
+                    Top 12 Forts of Shivaji Maharaj — Reference Chart
+                  </h3>
+                </div>
+                <span className="font-heading text-sm italic text-luxury-gold">
+                  More Than History — It&apos;s an Experience!
+                </span>
+              </div>
+              <div className="mt-6 flex justify-center overflow-hidden rounded-lg bg-warm-sand/50 p-2">
+                <EstateImage
+                  slug="top-12-forts-poster"
+                  alt="Top 12 Forts of Shivaji Maharaj Poster"
+                  className="w-full max-w-4xl rounded-md object-contain shadow-md"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -762,7 +787,7 @@ export default function ShivajiStatue() {
 
               <div className="lg:col-span-5">
                 <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="rounded border border-stone bg-white p-5">
+                  <div className="rounded border border-stone bg-ivory-white p-5">
                     <p className="flex items-center gap-2 font-body text-[0.6rem] uppercase tracking-wide text-copper">
                       <FaMountain className="h-3 w-3" aria-hidden="true" />
                       Sahyadri Hill Forts
@@ -773,7 +798,7 @@ export default function ShivajiStatue() {
                       ))}
                     </ul>
                   </div>
-                  <div className="rounded border border-stone bg-white p-5">
+                  <div className="rounded border border-stone bg-ivory-white p-5">
                     <p className="flex items-center gap-2 font-body text-[0.6rem] uppercase tracking-wide text-copper">
                       <FaWater className="h-3 w-3" aria-hidden="true" />
                       Konkan Sea Forts
@@ -899,7 +924,7 @@ export default function ShivajiStatue() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             {VISIT_NOTES.map((item, idx) => (
               <Reveal key={item.title} delay={idx * 80}>
-                <div className="flex h-full flex-col border border-stone bg-white p-8 transition-shadow duration-700 hover:shadow-xl">
+                <div className="flex h-full flex-col border border-stone bg-ivory-white p-8 transition-shadow duration-700 hover:shadow-xl">
                   <item.icon className="h-9 w-9 text-luxury-gold" aria-hidden="true" />
                   <h3 className="mt-4 font-heading text-lg font-light text-forest-green">
                     {item.title}

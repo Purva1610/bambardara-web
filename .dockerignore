@@ -16,8 +16,9 @@ public/images/*.jpeg
 public/images/*.png
 public/images/*.webp
 
-# 4K video original — the site serves the 1080p dairy-web.mp4 instead
+# Large raw video originals — only the compressed web versions are served
 public/videos/dairy.mp4
+public/videos/RAPELLING.mp4
 
 # Testing
 coverage/
@@ -44,7 +45,9 @@ Thumbs.db
 # Agent & Dev tooling
 .agents/
 .claude/
+.gemini/
 .kilo/
+scratch/
 screenshots/
 *.md
 !README.md
@@ -53,3 +56,6 @@ screenshots/
 .eslintcache
 tmp/
 temp/
+scripts/temp_dishes/
+*.txt
+

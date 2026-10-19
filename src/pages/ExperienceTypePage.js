@@ -78,7 +78,7 @@ const MOSAIC_BY_TYPE = {
     { slug: 'waterpark', alt: 'The estate water park' },
     { slug: 'fun', alt: 'A family enjoying a fun afternoon on the estate' },
     { slug: 'cycling-2', alt: 'A family cycling through the estate grounds' },
-    { slug: 'archery', alt: 'A guest taking aim on the archery range' },
+    { slug: 'archery-hero', alt: 'A guest taking aim on the archery range' },
   ],
 };
 
