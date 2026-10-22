@@ -16,6 +16,9 @@
   "water-source": {
     "src": "/images/opt/watersource.jpg"
   },
+  "organic-farming-and-farm-stay": {
+    "src": "/images/opt/walled-beeds.jpg"
+  },
   "meditation-hero": {
     "widths": [],
     "fallbackWidth": null
