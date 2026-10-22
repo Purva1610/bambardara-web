@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPlay, FaTimes, FaArrowRight } from 'react-icons/fa';
+import { FaTimes, FaArrowRight } from 'react-icons/fa';
 
 export default function RappellingHero({
   onExploreClick,

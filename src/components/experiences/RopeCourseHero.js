@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaChevronRight, FaPlay, FaTimes, FaArrowRight } from 'react-icons/fa';
+import { FaChevronRight, FaTimes, FaArrowRight } from 'react-icons/fa';
 
 export default function RopeCourseHero({
   onExploreClick,
