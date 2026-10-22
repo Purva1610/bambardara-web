@@ -149,7 +149,7 @@ const VALUES = [
 export default function Membership() {
   return (
     <div className="bg-ivory-white">
-      <section className="relative h-[90vh] min-h-[40rem] overflow-hidden">
+      <section className="relative h-[55vh] min-h-[22rem] overflow-hidden">
         <EstateImage
           slug="membership-hero"
           alt="Bambarddara Agro Tourism Club Membership — Family and Community"
@@ -157,26 +157,19 @@ export default function Membership() {
           priority
           className="isolate h-full w-full object-cover"
         />
-        <div className="lux-scrim absolute inset-0" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="mx-auto w-full max-w-editorial px-6 pt-24 pb-16 md:px-10 md:pb-20">
-            <span className="lux-label text-luxury-gold">Membership</span>
-            <h1 className="mt-6 max-w-3xl font-heading text-[clamp(2.25rem,5vw,4rem)] font-light leading-[1.06] text-ivory-white">
-              BAMBARDDARA AGRO TOURISM PVT. LTD.
-              <span className="block italic text-luxury-gold">
-                AGRO TOURISM CLUB MEMBERSHIP
-              </span>
-            </h1>
-            <p className="mt-8 max-w-2xl font-body text-[0.95rem] font-light leading-[1.85] text-ivory-white/70 md:text-[1.05rem]">
-              Experience Nature. Create Memories.
-            </p>
-            <p className="mt-4 max-w-2xl font-body text-[0.95rem] font-light leading-[1.85] text-ivory-white/70 md:text-[1.05rem]">
-              Become a member of the BAMBARDDARA Agro Tourism Club and experience the perfect blend of nature, adventure, comfort and rural culture with exclusive benefits every year.
-            </p>
-            <span className="mt-8 inline-block border border-luxury-gold/50 px-5 py-2 font-body text-[0.625rem] uppercase tracking-label text-luxury-gold">
-              Escape the City, Embrace Nature
-            </span>
-          </div>
+        {/* Dark overlay — matches reference */}
+        <div className="absolute inset-0" style={{ background: 'rgba(30,25,20,0.52)' }} />
+        {/* Centered text block */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <h1
+            className="font-heading text-[clamp(1.6rem,4.5vw,3rem)] font-semibold uppercase tracking-[0.18em] text-ivory-white"
+            style={{ letterSpacing: '0.18em' }}
+          >
+            BAMBARDDARA MEMBERSHIPS
+          </h1>
+          <p className="mt-3 font-body text-[0.78rem] font-light tracking-[0.12em] text-ivory-white/80 uppercase">
+            Experience Nature. Get Connected. Get Social.
+          </p>
         </div>
       </section>
 

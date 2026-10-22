@@ -13,13 +13,13 @@ import Reveal from '../components/shared/Reveal';
 
 const COURSE_CARDS = [
   {
-    slug: 'perfect-greens',
+    slug: 'perfect-green',
     title: 'Perfect Greens',
     tagline: 'Pristine Putting Surfaces',
     desc: 'Tour-quality greens offering true roll, subtle contours, and consistent speeds for golfers of every handicap.',
   },
   {
-    slug: 'cart-service',
+    slug: 'cart-services',
     title: 'Cart Service',
     tagline: 'Comfort On Every Hole',
     desc: 'Modern fleet of silent electric golf buggies equipped with GPS tracking and refreshment coolers.',
@@ -31,7 +31,7 @@ const COURSE_CARDS = [
     desc: 'Fully stocked with international brand clubs, balls, glove fittings, apparel, and custom club repair.',
   },
   {
-    slug: 'clubhouse',
+    slug: 'golf-clubhouse-lounge',
     title: 'Clubhouse',
     tagline: 'Panoramic Lounge & Dining',
     desc: 'Relax after your round with gourmet dining, refreshing drinks, and scenic views over the 18th fairway.',
@@ -43,12 +43,13 @@ const COURSE_CARDS = [
     desc: 'Expansive dedicated practice green to tune your stroke, alignment, and distance control before teeing off.',
   },
   {
-    slug: 'scenic-fairways',
+    slug: 'golf-course-fairway',
     title: 'Scenic Fairways',
     tagline: 'Lush Mountain Vistas',
     desc: 'Sweeping emerald fairways framed by indigenous trees, lake reflections, and fresh mountain breezes.',
   },
 ];
+
 
 
 const BOOKING_TYPES = [

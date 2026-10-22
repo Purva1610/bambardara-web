@@ -22,14 +22,14 @@ const POSTER_PHOTO_CARDS = [
     desc: 'A wonderful serenity has taken possession of the entire valley. Feel those peaceful mornings and evenings with golden sunlight reflecting across the expansive catchment water basin.',
   },
   {
-    slug: 'sahyadri-mountain',
+    slug: 'scenic-mountain',
     title: 'Scenic Mountain Views',
     subtitle: 'Panoramic Lakeside Mountain Walk',
     kicker: 'Experience • TRANQUILITY',
     desc: 'Towering Sahyadri mountain ridgelines cradle the serene reservoir waters, creating unbroken 360-degree natural vistas, crisp mountain air, and restorative open skies.',
   },
   {
-    slug: 'biodiversity',
+    slug: 'dense-forest',
     title: 'Dense Forest Canopy',
     subtitle: 'Old-Growth Indigenous Reserve',
     kicker: 'Eco Reserve • BIODIVERSITY',
@@ -50,7 +50,7 @@ const POSTER_PHOTO_CARDS = [
     desc: 'Pure freshwater feeds continuously from perennial mountain cascades, sustaining rich valley ecosystems, lush plantations, and fertile organic orchards.',
   },
   {
-    slug: 'paved-walkway',
+    slug: 'canopy',
     title: 'Picnic Spot & Promenade',
     subtitle: 'Lush Green Lawns & Gazebos',
     kicker: 'Hospitality • LEISURE',
@@ -343,7 +343,7 @@ export default function KadaviDam() {
             {/* Left Column: Tall Rounded Nature Reservoir Image */}
             <div className="lg:col-span-6 relative min-h-[460px] sm:min-h-[540px] rounded-3xl overflow-hidden shadow-2xl bg-deep-forest group">
               <EstateImage
-                slug="perfect-dam"
+                slug="nature-love"
                 alt="Winding water stream and lush nature at Kadavi"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

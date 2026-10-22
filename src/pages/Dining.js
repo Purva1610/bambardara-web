@@ -44,7 +44,7 @@ const DINING_VENUES = [
     subtitle: 'Alfresco Dining',
     description: 'Dine surrounded by lush gardens and mountain breezes. Perfect for romantic dinners, family celebrations, and special occasions with customizable private dining experiences.',
     hours: 'Dinner Only | 6:30 PM - 10:30 PM',
-    image: 'garden-tarrace',
+    image: 'terrace-garden',
     features: ['Private Dining', 'Romantic Setting', 'Chef\'s Tasting Menu'],
   },
   {
@@ -76,7 +76,6 @@ const THALI_DISHES = [
     name: 'Bharli Vangi',
     marathi: 'भारली वांगी',
     slug: 'bharli-vangi',
-    tag: 'Estate Specialty',
     desc: 'Baby eggplants stuffed with roasted peanuts, sesame, goda masala and grated fresh coconut.',
   },
   {
@@ -553,9 +552,11 @@ export default function Dining() {
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <span className="absolute top-3 left-3 px-3 py-1 bg-forest-green/85 backdrop-blur-sm text-ivory-white text-[11px] tracking-wider uppercase font-medium rounded-full shadow">
-                        {dish.tag}
-                      </span>
+                      {dish.tag && (
+                        <span className="absolute top-3 left-3 px-3 py-1 bg-forest-green/85 backdrop-blur-sm text-ivory-white text-[11px] tracking-wider uppercase font-medium rounded-full shadow">
+                          {dish.tag}
+                        </span>
+                      )}
                     </div>
                     <div className="p-5 flex flex-col flex-grow justify-between">
                       <div>

@@ -140,10 +140,10 @@ const BOAT_OPTIONS = [
 ];
 
 const GALLERY = [
-  { slug: 'morning-swell', caption: 'Serene Morning Swells' },
+  { slug: 'sunrise', caption: 'Serene Morning Swells' },
   { slug: 'family-boating', caption: 'Family Boating Adventure' },
-  { slug: 'lake-horizon', caption: 'Panoramic Lake Horizon' },
-  { slug: 'pristine', caption: 'Pristine Mountain Waters' },
+  { slug: 'panoramic', caption: 'Panoramic Lake Horizon' },
+  { slug: 'pristine-mountain', caption: 'Pristine Mountain Waters' },
 ];
 
 const FACILITIES = [

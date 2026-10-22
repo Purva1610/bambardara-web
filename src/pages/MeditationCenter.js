@@ -44,9 +44,9 @@ const RETREAT_POINTS = [
 const HIGHLIGHTS = [
   { slug: 'international-meditation-center', label: 'Spacious Meditation Halls' },
   { slug: 'waterfalls-and-nature-trails-2', label: 'Peaceful Nature Trails' },
-  { slug: 'yoga-pranayama', label: 'Yoga & Pranayama Sessions' },
+  { slug: 'yoga-wellness', label: 'Yoga & Pranayama Sessions' },
   { slug: 'spa', label: 'Ayurvedic Therapies' },
-  { slug: 'satvik-vegetarian-cuisine', label: 'Satvik Vegetarian Cuisine' },
+  { slug: 'organic-food', label: 'Satvik Vegetarian Cuisine' },
   { slug: 'luxury-hotel-rooms-and-suites', label: 'Premium Accommodation' },
 ];
 
@@ -169,80 +169,80 @@ const SITTINGS = [
 ];
 
 export default function MeditationCenter() {
-  const HERO_SLIDES = ['mediation-hero', 'serenity', 'awaken', 'pactice'];
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const prevSlide = () => setSlideIndex((i) => (i === 0 ? HERO_SLIDES.length - 1 : i - 1));
-  const nextSlide = () => setSlideIndex((i) => (i === HERO_SLIDES.length - 1 ? 0 : i + 1));
 
   return (
     <main className="bg-ivory-white">
       {/* HERO */}
-      <section className="relative overflow-hidden bg-ivory-white px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto grid max-w-editorial grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <p className="max-w-xs font-body text-[0.9rem] font-light leading-[1.8] text-light-charcoal">
-                Welcome to the International Meditation Centre at Bambardara
-                Estate — a quiet retreat for guided sittings, stillness, and a
-                hall that's open whenever you need it.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <div className="mt-8 flex gap-3">
-                <button
-                  type="button"
-                  aria-label="Previous photo"
-                  onClick={prevSlide}
-                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-copper text-ivory-white transition-all duration-300 hover:bg-bronze hover:scale-105 active:scale-95"
-                >
-                  <FaChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next photo"
-                  onClick={nextSlide}
-                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-copper text-ivory-white transition-all duration-300 hover:bg-bronze hover:scale-105 active:scale-95"
-                >
-                  <FaChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </button>
+      <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#0e1612] text-white pt-20">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <EstateImage
+            slug="meditation-hero"
+            alt="Meditation Centre at Bambardara Estate"
+            sizes="100vw"
+            priority
+            className="h-full w-full object-cover object-center opacity-70"
+          />
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-10 flex flex-col justify-center flex-1 px-6 md:px-14 lg:px-20 pt-8 pb-4 max-w-3xl">
+
+          {/* Headline */}
+          <Reveal delay={80}>
+            <h1 className="font-heading font-medium leading-[1.05] text-white"
+              style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
+              Find Your<br />
+              Inner <em className="italic font-light">Peace</em>
+            </h1>
+          </Reveal>
+
+          {/* Subtitle */}
+          <Reveal delay={160}>
+            <p className="mt-5 max-w-md font-body text-[0.95rem] font-light leading-[1.75] text-white/80">
+              A mindful life starts with a single breath – discover practices
+              to reconnect, recenter, and renew your life.
+            </p>
+          </Reveal>
+
+          {/* CTA */}
+          <Reveal delay={240}>
+            <div className="mt-8">
+              <Link
+                to="/enquire"
+                className="inline-flex items-center gap-3 rounded-full bg-[#d4a843] px-7 py-3.5 font-body text-sm font-semibold text-[#1a1a1a] transition-all duration-300 hover:bg-[#e6bc5a] hover:scale-105 shadow-lg"
+              >
+                <span>Book Your Retreat</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1a1a1a]/20 text-xs">↗</span>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Features row pinned to bottom */}
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-px border-t border-white/10">
+          {[
+            { icon: FaOm, title: 'Yoga & Meditation', desc: 'Guided sessions, pranayama, and silent hall access throughout the day.' },
+            { icon: FaMountain, title: 'Serene Environment', desc: 'Surrounded by Sahyadri mountains, forests, and pure open air.' },
+            { icon: FaLeaf, title: 'Holistic Healing', desc: 'Ayurvedic therapies, satvik cuisine, and spiritual workshops.' },
+          ].map((f, i) => (
+            <Reveal key={f.title} delay={300 + i * 80}>
+              <div className="flex items-start gap-4 px-6 py-6 backdrop-blur-md bg-white/5 hover:bg-white/10 transition-colors duration-300">
+                <f.icon className="h-5 w-5 shrink-0 text-[#d4a843] mt-0.5" />
+                <div>
+                  <p className="font-body text-[0.85rem] font-semibold leading-snug text-white">
+                    {f.title}
+                  </p>
+                  <p className="mt-1.5 font-body text-[0.72rem] font-light leading-[1.6] text-white/70">
+                    {f.desc}
+                  </p>
+                </div>
               </div>
             </Reveal>
-            <Reveal delay={200}>
-              <span className="mt-10 block h-px w-32 bg-copper" />
-            </Reveal>
-          </div>
-
-          <div className="relative flex items-center justify-center lg:col-span-8">
-            <svg
-              viewBox="0 0 100 100"
-              className="pointer-events-none absolute h-[115%] w-[115%] text-forest-green/30"
-              aria-hidden="true"
-            >
-              <circle
-                cx="50" cy="50" r="46"
-                fill="none" stroke="currentColor" strokeWidth="0.6"
-                strokeDasharray="135 145"
-                strokeDashoffset="-10"
-              />
-              <circle
-                cx="50" cy="50" r="40"
-                fill="none" stroke="#B87333" strokeWidth="0.6"
-                strokeDasharray="110 170"
-                strokeDashoffset="30"
-                opacity="0.6"
-              />
-            </svg>
-            <div className="lux-frame relative aspect-square w-full max-w-[560px] overflow-hidden rounded-full border-[6px] border-ivory-white shadow-xl transition-all duration-700">
-              <EstateImage
-                key={HERO_SLIDES[slideIndex]}
-                slug={HERO_SLIDES[slideIndex]}
-                alt="Meditation Centre at Bambardara Estate"
-                sizes="(min-width: 1024px) 45vw, 90vw"
-                priority
-              />
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -355,7 +355,7 @@ export default function MeditationCenter() {
                 </p>
                 <div className="lux-frame aspect-[3/4] w-full">
                   <EstateImage
-                    slug="pactice"
+                    slug="meditation-spiritual"
                     alt="Daily guided meditation practice at the estate"
                     sizes="128px"
                     position="center"
@@ -558,7 +558,7 @@ export default function MeditationCenter() {
           <div className="lg:col-span-3">
             <div className="lux-frame aspect-[3/4] w-full">
               <EstateImage
-                slug="awaken"
+                slug="dhyan"
                 alt="Awaken Your Spirit — meditation at Bambardara Estate"
                 sizes="(min-width: 1024px) 20vw, 80vw"
               />

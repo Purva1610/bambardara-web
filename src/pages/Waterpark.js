@@ -77,7 +77,7 @@ const ATTRACTION_CARDS = [
     tagline: 'High-Speed Thrills & Multi-Flume Slides',
     description:
       'Take the plunge on giant spiral tubes, racer slides, and open chutes designed for non-stop laughs and screams of joy.',
-    slug: 'waterpark-rides',
+    slug: 'exciting-rides',
     features: ['Multi-lane racing slides', 'High-speed spiral flumes', 'Continuous water flow control'],
   },
   {
@@ -85,7 +85,7 @@ const ATTRACTION_CARDS = [
     tagline: 'Ocean Swells in the Mountains',
     description:
       'Ride rhythmic gentle swells and big wave sets in our expansive crystal-clear wave pool with safety tubes and life jackets.',
-    slug: 'waterpark-wavepool',
+    slug: 'wave-pool',
     features: ['Multi-pattern wave cycles', 'Shallow entry zone', 'Dedicated lifeguard watchtower'],
   },
   {
@@ -93,7 +93,7 @@ const ATTRACTION_CARDS = [
     tagline: 'Safe, Colorful & Interactive Splash Park',
     description:
       'A toddler-friendly aquatic park featuring giant tipping buckets, water cannons, sprinkler arches, and mini slides.',
-    slug: 'waterpark-kids',
+    slug: 'kids-zone',
     features: ['Zero-depth & shallow pool', 'Giant splash tipping bucket', 'Soft landing safety mats'],
   },
   {
@@ -101,7 +101,7 @@ const ATTRACTION_CARDS = [
     tagline: 'Slow Drift Through Tropical Greenery',
     description:
       'Grab a single or double inflatable tube and drift peacefully along our winding lazy river surrounded by swaying palm trees.',
-    slug: 'waterpark-lazyriver',
+    slug: 'lazy-river',
     features: ['Gentle continuous stream', 'Single & double tubes provided', 'Scenic tropical landscaping'],
   },
   {
@@ -109,7 +109,7 @@ const ATTRACTION_CARDS = [
     tagline: 'Refuel with Tasty Treats & Cold Drinks',
     description:
       'Enjoy hot Maharashtrian specialties, crisp fast food, chilled fresh juices, and ice-creams at our hygienic food court.',
-    slug: 'waterpark-food',
+    slug: 'food',
     features: ['Multi-cuisine menu', 'Family dining seating', 'Hygiene-certified kitchen'],
   },
 ];

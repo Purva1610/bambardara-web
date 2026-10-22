@@ -32,9 +32,9 @@ const HIGHLIGHTS = [
 
 const GALLERY = [
   { slug: 'forest-trails', caption: 'Forest Trails' },
-  { slug: 'jeep-drives', caption: 'Open Jeep Drives' },
+  { slug: 'open-drives', caption: 'Open Jeep Drives' },
   { slug: 'wild-landscapes', caption: 'Wild Landscapes' },
-  { slug: 'cascade-water', caption: 'Cascading Waterfalls' },
+  { slug: 'cascading-waterfalls', caption: 'Cascading Waterfalls' },
 ];
 
 const PERFECT_FOR = [

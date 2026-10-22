@@ -404,7 +404,7 @@ export default function NurseryCatalogue() {
             {/* Left Large Vertical Image */}
             <div className="group relative overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:col-span-6 lg:h-[540px]">
               <EstateImage
-                slug="indoor-plantation-main"
+                slug="plantation"
                 alt="Main Indoor Living Garden Area"
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -416,7 +416,7 @@ export default function NurseryCatalogue() {
               {/* Top-Left: Garden patio */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
                 <EstateImage
-                  slug="indoor-garden-patio"
+                  slug="plantation-indoor"
                   alt="Outdoor Garden Seating"
                   sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -436,7 +436,7 @@ export default function NurseryCatalogue() {
               {/* Bottom-Left: Balcony nook */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
                 <EstateImage
-                  slug="indoor-balcony-lounge"
+                  slug="indoor-plant"
                   alt="Cozy Balcony Lounge"
                   sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -446,7 +446,7 @@ export default function NurseryCatalogue() {
               {/* Bottom-Right: Skylight water feature */}
               <div className="group relative aspect-square w-full overflow-hidden rounded-xl border border-stone/60 bg-warm-sand/30 shadow-sm transition-all duration-500 hover:border-luxury-gold/60 hover:shadow-luxury-lg lg:aspect-auto lg:h-[258px]">
                 <EstateImage
-                  slug="indoor-skylight-court"
+                  slug="plant-indoor"
                   alt="Skylight Architectural Court"
                   sizes="(min-width: 1024px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

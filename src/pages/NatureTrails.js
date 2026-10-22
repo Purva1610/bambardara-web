@@ -308,7 +308,7 @@ export default function NatureTrails() {
                   <div className="p-2 border border-white/30 rounded-sm bg-black/30 shadow-2xl max-w-xl">
                     <div className="relative aspect-[16/10] overflow-hidden bg-black/60">
                       <EstateImage
-                        slug="trails"
+                        slug="trail-pathways"
                         alt="Curated scenic trail pathways across Bambardara"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         className="h-full w-full object-cover"
@@ -383,7 +383,7 @@ export default function NatureTrails() {
             <div className="group flex flex-col">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-deep-forest/5">
                 <EstateImage
-                  slug="indigenous-trees"
+                  slug="old-canopy"
                   alt="Ancient old-growth forest canopy"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -405,7 +405,7 @@ export default function NatureTrails() {
             <div className="group flex flex-col sm:col-span-2 lg:col-span-1">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-deep-forest/5">
                 <EstateImage
-                  slug="sunrise"
+                  slug="sunset"
                   alt="Sahyadri mountain ridge point vistas"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

@@ -204,7 +204,7 @@ const FORT_HERITAGE = [
     stats: [['Access', 'Sailboat from Rajapuri'], ['Distance', '~150 km from Mumbai / Pune'], ['Best Season', 'Oct – May']],
   },
   {
-    num: '12', kind: 'hill', slug: 'salher-fort', type: 'Hill Fortress (Giri Durg)',
+    num: '12', kind: 'hill', slug: 'salher', type: 'Hill Fortress (Giri Durg)',
     badge: 'Highest Fort', tag: '~1,567m MSL', location: 'Baglan, Nashik',
     name: 'Salher Fort', nameMr: 'साल्हेर',
     desc: 'One of the highest forts in Maharashtra.',
@@ -846,22 +846,20 @@ export default function ShivajiStatue() {
             {FORT_CIRCUITS.map((circuit, idx) => (
               <Reveal key={circuit.num} delay={260 + idx * 80}>
                 <div
-                  className={`flex h-full flex-col rounded-lg border p-6 ${
-                    circuit.featured
+                  className={`flex h-full flex-col rounded-lg border p-6 ${circuit.featured
                       ? 'border-copper/50 bg-copper/[0.06]'
                       : 'border-stone bg-warm-sand'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-body text-[0.6rem] uppercase tracking-wide text-light-charcoal/50">
                       Circuit {circuit.num}
                     </span>
                     <span
-                      className={`rounded px-2 py-1 font-body text-[0.55rem] uppercase tracking-wide ${
-                        circuit.featured
+                      className={`rounded px-2 py-1 font-body text-[0.55rem] uppercase tracking-wide ${circuit.featured
                           ? 'bg-copper text-deep-forest'
                           : 'text-light-charcoal/50'
-                      }`}
+                        }`}
                     >
                       {circuit.label}
                     </span>
@@ -891,11 +889,10 @@ export default function ShivajiStatue() {
 
                   <Link
                     to="/enquire"
-                    className={`mt-6 block rounded py-2.5 text-center font-body text-[0.6rem] uppercase tracking-wider ${
-                      circuit.featured
+                    className={`mt-6 block rounded py-2.5 text-center font-body text-[0.6rem] uppercase tracking-wider ${circuit.featured
                         ? 'bg-luxury-gold text-deep-forest font-semibold'
                         : 'border border-stone text-light-charcoal transition-colors hover:border-luxury-gold/50 hover:text-forest-green'
-                    }`}
+                      }`}
                   >
                     Enquire About This Circuit
                   </Link>

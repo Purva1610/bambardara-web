@@ -75,17 +75,6 @@ export default function RopeCourseHero({
         }}
       />
 
-      {/* ── TOP RIGHT DISCOVER ACTION PILL (Matching mockup top right outline button) ── */}
-      <div className="absolute top-24 sm:top-28 right-6 sm:right-12 z-20">
-        <button
-          type="button"
-          onClick={() => setIsVideoOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 hover:border-luxury-gold bg-black/30 hover:bg-black/50 backdrop-blur-md text-[11px] sm:text-xs font-body font-semibold tracking-wider uppercase text-white hover:text-luxury-gold transition-all duration-300 cursor-pointer shadow-lg group"
-        >
-          <FaPlay className="text-[10px] text-luxury-gold group-hover:scale-110 transition-transform" />
-          <span>Watch Canopy Video</span>
-        </button>
-      </div>
 
       {/* ── MAIN CONTENT LAYER ── */}
       <div className="relative z-20 w-full h-full flex-1 flex flex-col justify-end px-6 sm:px-10 lg:px-16 pb-20 sm:pb-24 lg:pb-28">

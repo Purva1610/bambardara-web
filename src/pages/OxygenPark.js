@@ -61,13 +61,13 @@ const ACTIVITIES = [
     icon: FaFeatherAlt,
     title: 'Bird Watching',
     desc: 'Spot vibrant native birds, kingfishers, and mountain species.',
-    slug: 'bird-watch',
+    slug: 'bird-watching',
   },
   {
     icon: GiMeditation,
     title: 'Yoga Zone',
     desc: 'Open-air lawns and cedar decks for morning pranayama & yoga.',
-    slug: 'yoga-zones',
+    slug: 'yoga-zone',
   },
   {
     icon: FaChild,
@@ -92,22 +92,22 @@ const ACTIVITIES = [
 // The 4 photo exploration cards from the poster right side
 const GALLERY_CARDS = [
   {
-    slug: 'boosts-immunity',
+    slug: 'echinacea',
     title: 'BOOSTS IMMUNITY',
     subtitle: 'Fresh Oxygen & Vitality',
   },
   {
-    slug: 'reduces-stress',
+    slug: 'reduce-stress',
     title: 'REDUCES STRESS',
     subtitle: 'Natural Calming Greenery',
   },
   {
-    slug: 'connect',
+    slug: 'connect-with-nature',
     title: 'CONNECTS WITH NATURE',
     subtitle: 'Deep Peace & Positive Energy',
   },
   {
-    slug: 'areca-palm',
+    slug: 'connect-nature',
     title: 'IMPROVES HEALTH',
     subtitle: 'Pure Air & Oxygen-Rich Flora',
   },
