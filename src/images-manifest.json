@@ -36,11 +36,7 @@
     "src": "/images/opt/sheep.jpg"
   },
   "horse": {
-    "widths": [
-      640,
-      1280
-    ],
-    "fallbackWidth": 1280
+    "src": "/images/opt/horse.jpg"
   },
   "rabbit": {
     "widths": [
