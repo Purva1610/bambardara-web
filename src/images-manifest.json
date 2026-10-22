@@ -1098,14 +1098,6 @@
     ],
     "fallbackWidth": 1280
   },
-  "high-nursury": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
   "high-tech-nursery-facility": {
     "widths": [
       640,
@@ -1566,14 +1558,6 @@
     ],
     "fallbackWidth": 1280
   },
-  "organic-farming-and-farm-stay": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
   "organic-farming-and-farm-stay-2": {
     "widths": [
       640,
@@ -1868,14 +1852,6 @@
     "widths": [
       640,
       1280
-    ],
-    "fallbackWidth": 1280
-  },
-  "rice-tarrace": {
-    "widths": [
-      640,
-      1280,
-      1920
     ],
     "fallbackWidth": 1280
   },
@@ -2195,14 +2171,6 @@
     ],
     "fallbackWidth": 1280
   },
-  "the-orchad": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
   "top-12-forts-poster": {
     "widths": [
       640,
@@ -2361,14 +2329,6 @@
     "fallbackWidth": 1280
   },
   "water-activity": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
-  },
-  "water-source": {
     "widths": [
       640,
       1280,
