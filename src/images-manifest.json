@@ -45,12 +45,7 @@
     "src": "/images/opt/duck.jpg"
   },
   "fishi": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
+    "src": "/images/opt/fish.jpg"
   },
   "bee": {
     "widths": [
