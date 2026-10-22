@@ -7,6 +7,9 @@
     ],
     "fallbackWidth": 1280
   },
+  "krushnanath": {
+    "src": "/images/opt/krushnanath.jpeg"
+  },
   "meditation-hero": {
     "widths": [],
     "fallbackWidth": null

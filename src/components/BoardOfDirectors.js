@@ -27,9 +27,7 @@ const directors = [
     name: 'Mr Krushnath Sutar',
     title: 'Director',
     bio: 'Krushnath ensures financial excellence and strategic investments with his extensive background in corporate finance. He brings fiscal discipline and growth-oriented strategies to the board.',
-    // Headshot file was lost and never committed to git — placeholder icon
-    // shown until a real photo is supplied (see render logic below).
-    photoMissing: true,
+    slug: 'krushnanath',
   },
   {
     name: 'Mr Suhas Kadam',
