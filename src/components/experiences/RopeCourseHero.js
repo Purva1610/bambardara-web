@@ -201,7 +201,7 @@ export default function RopeCourseHero({
             </div>
 
             {/* Video Player Frame */}
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-[#063B00]">
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"

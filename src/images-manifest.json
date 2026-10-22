@@ -2924,5 +2924,8 @@
   },
   "salher": {
     "src": "images/opt/Salher.jpg"
+  },
+  "footer-bg": {
+    "src": "images/opt/footer-bg.jpg"
   }
 }

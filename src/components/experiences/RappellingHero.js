@@ -4,9 +4,9 @@ import { FaPlay, FaTimes, FaArrowRight } from 'react-icons/fa';
 export default function RappellingHero({
   onExploreClick,
   tagline = 'READ MORE',
-  titleLine1 = 'Featured Adventure',
+  titleLine1 = 'Featured Rappelling',
   titleLine2 = 'Cliff Rappelling',
-  skyText = 'Adventure',
+  skyText = 'Rappelling',
   descText = 'Descend sheer basalt rock faces in the Western Ghats with certified IMF mountaineering guides and dual-line safety belays.',
   cardTitle = '100ft Basalt Descent',
   cardDesc = 'Controlled dual-line UIAA safety belays and certified rigging for all skill levels.',
@@ -61,10 +61,13 @@ export default function RappellingHero({
         </video>
       </div>
 
+      {/* ── BLACK OVERLAY ── */}
+      <div className="absolute inset-0 bg-black/50 pointer-events-none z-[1]" />
+
       {/* ── ATMOSPHERIC GRADIENT OVERLAYS (Preserves exact reference mood) ── */}
       {/* Top subtle nav scrim */}
       <div
-        className="absolute inset-x-0 top-0 h-40 pointer-events-none"
+        className="absolute inset-x-0 top-0 h-40 pointer-events-none z-[2]"
         style={{
           background:
             'linear-gradient(to bottom, rgba(6, 32, 24, 0.75) 0%, rgba(6, 32, 24, 0.25) 55%, transparent 100%)',
@@ -72,7 +75,7 @@ export default function RappellingHero({
       />
       {/* Bottom vignette for card contrast */}
       <div
-        className="absolute inset-x-0 bottom-0 h-56 pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-56 pointer-events-none z-[2]"
         style={{
           background:
             'linear-gradient(to top, rgba(6, 32, 24, 0.88) 0%, rgba(6, 32, 24, 0.35) 60%, transparent 100%)',
@@ -90,48 +93,6 @@ export default function RappellingHero({
         >
           {skyText}
         </span>
-      </div>
-
-      {/* ── RIGHT VERTICAL HEADLINE & SUB-KICKER (Matching Reference Exactly) ── */}
-      <div className="absolute top-28 sm:top-36 md:top-40 right-6 sm:right-10 lg:right-14 xl:right-16 z-20 flex flex-col items-end select-none">
-        <div
-          className="[writing-mode:vertical-rl] flex flex-col items-start gap-4 text-white"
-          style={{ textOrientation: 'mixed' }}
-        >
-          {/* Top Sub-Kicker: READ MORE */}
-          <span className="font-body text-[11px] sm:text-xs uppercase tracking-[0.35em] text-luxury-gold font-bold mb-2">
-            {tagline}
-          </span>
-
-          {/* Main Giant Vertical Headline: Featured Article / Title Here */}
-          <h1 className="font-heading font-extrabold uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[76px] leading-[0.92] tracking-tight text-white drop-shadow-2xl">
-            <span>{titleLine1}</span>
-            <br />
-            <span className="text-luxury-gold">{titleLine2}</span>
-          </h1>
-        </div>
-      </div>
-
-      {/* ── LEFT-SIDE INTERACTIVE VIDEO PLAY BUTTON ("WATCH VIDEO") ── */}
-      <div className="absolute left-6 sm:left-12 lg:left-20 top-[38%] sm:top-[40%] md:top-[42%] z-20 flex flex-col items-center select-none">
-        {/* Vertical Text: WATCH VIDEO */}
-        <span
-          className="[writing-mode:vertical-rl] rotate-180 font-body text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-white/90 mb-3"
-          style={{ textOrientation: 'mixed' }}
-        >
-          Watch Video
-        </span>
-
-        {/* Circular Frosted Glass Play Button with Ripple */}
-        <button
-          type="button"
-          onClick={() => setIsVideoOpen(true)}
-          aria-label="Watch Rappelling Adventure Video"
-          className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/50 bg-black/40 hover:bg-forest-green backdrop-blur-md flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:border-luxury-gold shadow-xl cursor-pointer group"
-        >
-          <span className="absolute inset-0 rounded-full border border-luxury-gold/30 animate-ping opacity-40 pointer-events-none" />
-          <FaPlay className="text-white text-xs sm:text-sm ml-0.5 group-hover:scale-110 transition-transform duration-200" />
-        </button>
       </div>
 
       {/* ── LEFT-SIDE EDITORIAL DESCRIPTION PARAGRAPH ── */}
@@ -209,7 +170,7 @@ export default function RappellingHero({
             </div>
 
             {/* Video Player / Presentation Frame */}
-            <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-video w-full bg-[#063B00] flex items-center justify-center overflow-hidden">
               <video
                 controls
                 autoPlay

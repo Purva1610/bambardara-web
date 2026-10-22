@@ -9,11 +9,11 @@ module.exports = {
         'rich-gold': '#E5C158',
         'rose-gold': '#E8C4A0',
         'champagne': '#F7E7CE',
-        'dark-charcoal': '#1A1916',
+        'dark-charcoal': '#063B00',
         'ivory-white': '#FFFBF5',
         'cream': '#FFF9F0',
         'natural-brown': '#5C3D28',
-        'dark-brown': '#23160F',
+        'dark-brown': '#443627',
         'light-charcoal': '#665F54',
         
         /* Deep, Sophisticated Tones */

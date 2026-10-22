@@ -66,7 +66,19 @@ const NAV_COLUMNS = [
 
 const Footer = () => {
   return (
-    <footer id="contact" className="border-t border-luxury-gold/20 bg-dark-brown px-6 pt-20 text-ivory-white md:px-10 md:pt-24">
+    <footer id="contact" className="relative border-t border-luxury-gold/20 px-6 pt-20 text-ivory-white md:px-10 md:pt-24">
+      {/* Background image */}
+      <img
+        src={`${process.env.PUBLIC_URL}/images/opt/footer-bg.jpg`}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectFit: 'cover' }}
+      />
+      {/* Dark overlay over the background image */}
+      <div className="absolute inset-0 bg-[#443627]/90" />
+      {/* Content sits above the overlay */}
+      <div className="relative z-10">
       <div className="mx-auto max-w-editorial">
         {/* Brand Header Strip */}
         <div className="flex flex-col items-center border-b border-ivory-white/10 pb-14 text-center">
@@ -203,6 +215,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+       </div>
       </div>
     </footer>
   );
