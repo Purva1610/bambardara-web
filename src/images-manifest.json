@@ -22,6 +22,9 @@
   "the-orchad": {
     "src": "/images/opt/the-orchad.jpg"
   },
+  "high-nursury": {
+    "src": "/images/opt/tech.jpg"
+  },
   "meditation-hero": {
     "widths": [],
     "fallbackWidth": null
