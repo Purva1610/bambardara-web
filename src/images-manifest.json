@@ -13,6 +13,9 @@
   "rice-tarrace": {
     "src": "/images/opt/rice-tarrace.jpg"
   },
+  "water-source": {
+    "src": "/images/opt/watersource.jpg"
+  },
   "meditation-hero": {
     "widths": [],
     "fallbackWidth": null
