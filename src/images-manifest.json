@@ -495,12 +495,7 @@
     "fallbackWidth": 1280
   },
   "compost-yard": {
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallbackWidth": 1280
+    "src": "/images/opt/thecompost-yard.jpg"
   },
   "conference-hall": {
     "widths": [
