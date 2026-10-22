@@ -186,7 +186,7 @@ export default function Paintball() {
                       </span>
                     </div>
 
-                    <h3 className="mt-4 font-body text-xl font-bold text-forest-green group-hover:text-deep-forest transition-colors">
+                    <h3 className="mt-4 font-heading text-xl font-bold text-forest-green group-hover:text-deep-forest transition-colors">
                       {mode.title}
                     </h3>
                     <p className="mt-3 font-body text-sm text-light-charcoal font-light leading-relaxed">
@@ -259,7 +259,7 @@ export default function Paintball() {
             <div className="lg:col-span-6">
               <Reveal delay={150}>
                 <div className="rounded-xl overflow-hidden border border-stone bg-ivory-white p-8 shadow-luxury">
-                  <h3 className="font-body text-xl text-forest-green font-bold uppercase tracking-wider">
+                  <h3 className="font-heading text-xl text-forest-green font-bold uppercase tracking-wider">
                     Next Open Tournament
                   </h3>
                   <div className="mt-4 flex items-center justify-between border-b border-stone/60 pb-4">

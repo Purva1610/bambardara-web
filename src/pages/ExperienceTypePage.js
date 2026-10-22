@@ -424,7 +424,7 @@ export default function ExperienceTypePage() {
                 className="absolute hidden max-w-[13rem] rounded-md bg-dark-charcoal/70 p-4 backdrop-blur-sm lg:block"
                 style={{ left: '4%', top: `${f.top}%`, transform: 'translateY(-50%)' }}
               >
-                <h3 className="font-body text-xs font-semibold uppercase tracking-wider text-luxury-gold">
+                <h3 className="font-heading text-xs font-semibold uppercase tracking-wider text-luxury-gold">
                   {f.title}
                 </h3>
                 <p className="mt-2 font-body text-xs font-light leading-relaxed text-ivory-white/80">
@@ -438,7 +438,7 @@ export default function ExperienceTypePage() {
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:hidden">
             {EXPLORE_BY_TYPE[type].features.map((f, i) => (
               <Reveal key={f.title} delay={i * 100}>
-                <h3 className="font-body text-xs font-semibold uppercase tracking-wider text-luxury-gold">
+                <h3 className="font-heading text-xs font-semibold uppercase tracking-wider text-luxury-gold">
                   {f.title}
                 </h3>
                 <p className="mt-2 font-body text-xs font-light leading-relaxed text-light-charcoal">

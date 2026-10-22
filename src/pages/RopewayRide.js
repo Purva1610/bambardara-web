@@ -182,7 +182,7 @@ export default function RopewayRide() {
               <FaMountain className="h-3.5 w-3.5 text-luxury-gold" /> 1.2 KM Cable Ride
             </span>
             <span className="text-luxury-gold">•</span>
-            <span className="inline-flex items-center gap-1.5 text-emerald-300">
+            <span className="inline-flex items-center gap-1.5 text-luxury-gold">
               <GiPineTree className="h-3.5 w-3.5 text-luxury-gold" /> Eco Friendly
             </span>
             <span className="text-luxury-gold">•</span>

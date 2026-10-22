@@ -133,7 +133,7 @@ export default function PaintballHero() {
                 <FiX size={20} />
               </button>
             </div>
-            <div className="relative aspect-video bg-[#063B00] flex items-center justify-center">
+            <div className="relative aspect-video bg-[#062018] flex items-center justify-center">
               <iframe
                 title="Paintball Trailer Video"
                 src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"

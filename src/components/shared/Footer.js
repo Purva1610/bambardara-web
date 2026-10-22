@@ -121,7 +121,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-16 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8">
           {NAV_COLUMNS.map((col) => (
             <div key={col.heading} className="flex flex-col">
-              <h3 className="font-body text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-luxury-gold">
+              <h3 className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-luxury-gold">
                 {col.heading}
               </h3>
               <span className="mt-3 block h-px w-6 bg-luxury-gold/50" />

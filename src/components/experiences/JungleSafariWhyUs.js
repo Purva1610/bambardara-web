@@ -335,7 +335,7 @@ export default function JungleSafariWhyUs() {
                 >
                   <pillar.icon className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-body text-xs font-semibold text-white">{pillar.title}</h4>
+                    <h4 className="font-heading text-xs font-semibold text-white">{pillar.title}</h4>
                     <p className="font-body text-[11px] text-white/60 line-clamp-2 mt-0.5">{pillar.summary}</p>
                   </div>
                 </div>

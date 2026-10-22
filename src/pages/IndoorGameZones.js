@@ -208,7 +208,7 @@ export default function IndoorGameZones() {
       <IndoorGameHero />
 
       {/* PROMO TICKER STRIP */}
-      <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
+      <section className="border-y border-stone bg-deep-forest py-4 text-ivory-white">
         <div className="mx-auto flex max-w-editorial flex-wrap items-center justify-between gap-4 px-6 md:px-10">
           <p className="font-heading text-sm italic tracking-wide text-luxury-gold md:text-base">
             &ldquo;Play • Enjoy • Connect &mdash; Memories for Life&rdquo;
@@ -353,7 +353,7 @@ export default function IndoorGameZones() {
       </section>
 
       {/* CONTACT & BOOKING CTA */}
-      <section className="bg-emerald-950 px-6 py-24 text-ivory-white md:px-10 md:py-32">
+      <section className="bg-deep-forest px-6 py-24 text-ivory-white md:px-10 md:py-32">
         <div className="mx-auto grid max-w-editorial grid-cols-1 gap-14 lg:grid-cols-12">
           {/* Left: Quote & Experience Info */}
           <div className="lg:col-span-6 flex flex-col justify-center">

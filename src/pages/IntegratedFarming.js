@@ -81,7 +81,7 @@ const PLOTS = [
     alt: 'Organic vegetable beds beside the farmhouse',
     link: { to: '/#dining', label: 'See the kitchen' },
     icon: PiLeaf,
-    color: 'from-lime-800 to-green-700',
+    color: 'from-deep-forest to-deep-forest',
     aspect: 'aspect-[16/9]',
   },
   {
@@ -640,7 +640,7 @@ export default function AgroFarming() {
               {/* Goals Section */}
               <Reveal delay={280}>
                 <div className="space-y-3">
-                  <h4 className="font-body text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
+                  <h4 className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
                     Goals
                   </h4>
                   <p className="font-body text-sm leading-relaxed text-white/80">
@@ -652,7 +652,7 @@ export default function AgroFarming() {
               {/* Our Approach Section */}
               <Reveal delay={310}>
                 <div className="space-y-3">
-                  <h4 className="font-body text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
+                  <h4 className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
                     Our approach
                   </h4>
                   <p className="font-body text-sm leading-relaxed text-white/80">

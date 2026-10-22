@@ -253,7 +253,7 @@ export default function Occasions() {
                 {ABOUT_COLUMNS.map((col) => (
                   <div key={col.title} className="md:px-8 md:first:pl-0 md:last:pr-0">
                     <div className="flex items-center gap-3">
-                      <h3 className="whitespace-nowrap font-body text-[0.8rem] font-semibold uppercase tracking-wider text-bronze">
+                      <h3 className="whitespace-nowrap font-heading text-[0.8rem] font-semibold uppercase tracking-wider text-bronze">
                         {col.title}
                       </h3>
                       <span className="h-px flex-1 bg-bronze/40" />

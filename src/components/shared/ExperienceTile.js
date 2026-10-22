@@ -36,7 +36,7 @@ export default function ExperienceTile({ experience, index, variant = 'editorial
         <div className="absolute inset-x-0 bottom-0 p-4">
           <div className="flex items-center gap-1.5 text-muted-gold">
             <FaMapMarkerAlt className="h-3 w-3" />
-            <h3 className="font-body text-sm font-semibold text-ivory-white">
+            <h3 className="font-heading text-sm font-semibold text-ivory-white">
               {experience.title}
             </h3>
           </div>

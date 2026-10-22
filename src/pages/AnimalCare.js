@@ -275,7 +275,7 @@ export default function AnimalCare() {
                     >
                       {family.numeral}
                     </span>
-                    <h3 className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-forest-green">
+                    <h3 className="font-heading text-[0.7rem] uppercase tracking-[0.22em] text-forest-green">
                       {family.name}
                     </h3>
                   </div>

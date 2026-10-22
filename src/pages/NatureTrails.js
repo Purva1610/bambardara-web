@@ -229,7 +229,7 @@ export default function NatureTrails() {
       </section>
 
       {/* ── TRAIL PATHWAYS (IN EXACT THREATS TO FORESTS LAYOUT) ── */}
-      <section id="trail-routes" className="py-24 md:py-32 bg-[#13221b] text-[#e8f1ed] relative overflow-hidden border-t border-b border-stone/20">
+      <section id="trail-routes" className="py-24 md:py-32 bg-deep-forest text-[#e8f1ed] relative overflow-hidden border-t border-b border-stone/20">
         {/* Subtle atmospheric vignette */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,169,97,0.04)_0%,transparent_60%)]" />
 
@@ -428,10 +428,10 @@ export default function NatureTrails() {
       </section>
 
       {/* ── AMENITIES & VISITOR INFORMATION ── */}
-      <section className="relative py-24 bg-[#0a1c14] text-ivory-white overflow-hidden border-t border-luxury-gold/20">
+      <section className="relative py-24 bg-deep-forest text-ivory-white overflow-hidden border-t border-luxury-gold/20">
         {/* Subtle ambient lighting */}
         <div className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-luxury-gold/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-luxury-gold/5 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-6 md:px-12">
           {/* Header */}

@@ -273,7 +273,7 @@ export default function OxygenPark() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {/* Left Benefits Box (Matching Poster Style) */}
-            <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-deep-forest to-[#081810] p-8 text-ivory-white border border-luxury-gold/40 shadow-xl">
+            <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl bg-deep-forest p-8 text-ivory-white border border-luxury-gold/40 shadow-xl">
               <div>
                 <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/15">
                   <FaLungs className="text-2xl text-luxury-gold" />
@@ -442,7 +442,7 @@ export default function OxygenPark() {
             </div>
 
             {/* Box 2: Quote Box from poster */}
-            <div className="rounded-2xl border-2 border-luxury-gold/60 bg-gradient-to-br from-[#123120] to-[#091b11] p-8 text-center flex flex-col justify-center items-center text-ivory-white shadow-md">
+            <div className="rounded-2xl border-2 border-luxury-gold/60 bg-deep-forest p-8 text-center flex flex-col justify-center items-center text-ivory-white shadow-md">
               <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-luxury-gold font-bold block mb-2">
                 VISIT &amp; FEEL THE DIFFERENCE
               </span>
@@ -516,7 +516,7 @@ export default function OxygenPark() {
       </section>
 
       {/* ── BOTTOM SLOGAN RIBBON TICKER (FROM POSTER FOOTER) ── */}
-      <div className="bg-[#05110a] py-4 border-t border-luxury-gold/30 text-center overflow-x-auto">
+      <div className="bg-deep-forest py-4 border-t border-luxury-gold/30 text-center overflow-x-auto">
         <div className="flex items-center justify-center gap-6 md:gap-10 px-6 whitespace-nowrap">
           {RIBBON_ITEMS.map((item, idx) => (
             <div key={item} className="flex items-center gap-6 md:gap-10">

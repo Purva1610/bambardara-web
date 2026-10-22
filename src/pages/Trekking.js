@@ -231,7 +231,7 @@ export default function Trekking() {
       </section>
 
       {/* ── LEAD GUIDES TEAM ── */}
-      <section className="py-20 md:py-28 px-6 bg-[#0d1e16] text-ivory-white">
+      <section className="py-20 md:py-28 px-6 bg-deep-forest text-ivory-white">
         <div className="max-w-editorial mx-auto">
           <div className="text-center mb-14">
             <span className="lux-label text-luxury-gold">Experienced Mountain Guides</span>
@@ -387,7 +387,7 @@ export default function Trekking() {
 
               <button
                 type="submit"
-                className="w-full bg-forest-green hover:bg-[#08482d] text-ivory-white font-body font-semibold text-xs uppercase tracking-widest py-3.5 rounded-lg shadow-md transition-all duration-200 transform hover:scale-[1.01]"
+                className="w-full bg-forest-green hover:bg-deep-forest text-ivory-white font-body font-semibold text-xs uppercase tracking-widest py-3.5 rounded-lg shadow-md transition-all duration-200 transform hover:scale-[1.01]"
               >
                 Confirm Mountain Trek Booking
               </button>

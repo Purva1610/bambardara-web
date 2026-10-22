@@ -463,12 +463,12 @@ export default function NurseryCatalogue() {
           <div className="relative flex min-h-[140px] md:min-h-[170px] w-full items-center justify-between overflow-hidden rounded-2xl border border-stone/50 bg-gradient-to-r from-[#D7E3DC] via-[#E6EDE8] to-[#D5E1DA] px-6 py-6 shadow-sm sm:px-10 sm:py-7 md:px-12 md:py-8">
             {/* Left Content */}
             <div className="relative z-10 flex flex-col items-start justify-center gap-3 sm:gap-4 md:gap-5">
-              <h3 className="font-heading text-lg font-bold uppercase tracking-wider text-[#2B3D32] sm:text-2xl md:text-3xl lg:text-[1.9rem]">
+              <h3 className="font-heading text-lg font-bold uppercase tracking-wider text-deep-forest sm:text-2xl md:text-3xl lg:text-[1.9rem]">
                 BOTANICAL CARE &amp; KNOWLEDGE
               </h3>
               <a
                 href="#catalogue"
-                className="inline-flex items-center justify-center rounded-full bg-ivory-white px-6 py-2 sm:px-7 sm:py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-[#33473B] shadow-sm transition-all duration-300 hover:bg-[#2B3D32] hover:text-white hover:shadow-md"
+                className="inline-flex items-center justify-center rounded-full bg-ivory-white px-6 py-2 sm:px-7 sm:py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-deep-forest shadow-sm transition-all duration-300 hover:bg-deep-forest hover:text-white hover:shadow-md"
               >
                 EXPLORE NOW
               </a>
@@ -511,7 +511,7 @@ export default function NurseryCatalogue() {
 
             {/* Right Text Content */}
             <div className="flex flex-col items-start md:col-span-7">
-              <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-[#2B3D32] sm:text-3xl lg:text-[2.1rem]">
+              <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-deep-forest sm:text-3xl lg:text-[2.1rem]">
                 ABOUT US
               </h2>
 
@@ -522,7 +522,7 @@ export default function NurseryCatalogue() {
               <div className="mt-8">
                 <a
                   href="#catalogue"
-                  className="inline-flex items-center justify-center rounded-full bg-[#528F6D] px-8 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-white shadow-sm transition-all duration-300 hover:bg-[#2B3D32] hover:shadow-md"
+                  className="inline-flex items-center justify-center rounded-full bg-deep-forest px-8 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.15em] text-white shadow-sm transition-all duration-300 hover:bg-deep-forest/90 hover:shadow-md"
                 >
                   EXPLORE NOW
                 </a>

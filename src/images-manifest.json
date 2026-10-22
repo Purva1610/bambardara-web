@@ -1,4 +1,12 @@
 {
+  "fun-hero": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "fallbackWidth": 1280
+  },
   "meditation-hero": {
     "widths": [],
     "fallbackWidth": null

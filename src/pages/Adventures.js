@@ -32,20 +32,20 @@ const STATS = [
 const SLIDE_DURATION = 7000;
 const SLIDES = [
   {
+    slug: 'fun-hero',
+    kicker: 'Water',
+    label: 'The Reservoir · Lake Boating',
+    title: ['Flat Water', 'at First Light'],
+    body: 'Boat across the reservoir at dawn, when the surface holds the ridge line perfectly still.',
+    cta: { label: 'View Water Adventures', href: '/experiences/adventures' },
+  },
+  {
     slug: 'ropeway-cable-car',
     kicker: 'New',
     label: 'Ropeway Point · Aerial Adventure',
     title: ['Soar Above', 'the Valley'],
     body: 'A cable crossing above the ridge line, dropping you at the far trailhead with views the ground never gives you.',
     cta: { label: 'Explore Experiences', href: '/experiences/adventures' },
-  },
-  {
-    slug: 'boating-2',
-    kicker: 'Water',
-    label: 'The Reservoir · Lake Boating',
-    title: ['Flat Water', 'at First Light'],
-    body: 'Boat across the reservoir at dawn, when the surface holds the ridge line perfectly still.',
-    cta: { label: 'View Water Adventures', href: '/experiences/adventures' },
   },
   {
     slug: 'mountain-trekking',
@@ -71,8 +71,8 @@ const SLIDES = [
    vertical gap (not negative margin) keeps captions from colliding with
    the circle above or below them. */
 const HERO_SPOTS = [
-  { slug: 'ropeway-cable-car', title: 'Ropeway Point', subtitle: 'Aerial Adventure', curve: 0 },
-  { slug: 'boating-2', title: 'The Reservoir', subtitle: 'Lake Boating', curve: 4 },
+  { slug: 'fun-hero', title: 'The Reservoir', subtitle: 'Lake Boating', curve: 0 },
+  { slug: 'ropeway-cable-car', title: 'Ropeway Point', subtitle: 'Aerial Adventure', curve: 4 },
   { slug: 'mountain-trekking', title: 'The Ridge Trail', subtitle: 'Guided Trekking', curve: 1.5 },
   { slug: 'waterpark', title: 'The Water Park', subtitle: 'Family Fun', curve: 5 },
 ];

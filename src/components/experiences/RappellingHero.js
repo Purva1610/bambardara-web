@@ -170,7 +170,7 @@ export default function RappellingHero({
             </div>
 
             {/* Video Player / Presentation Frame */}
-            <div className="relative aspect-video w-full bg-[#063B00] flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-video w-full bg-[#062018] flex items-center justify-center overflow-hidden">
               <video
                 controls
                 autoPlay

@@ -314,7 +314,7 @@ export default function OrganicFarming() {
       {/* ══════════════════════════════════════════════════════════
           OUR PRACTICES - 3 Service Cards with Alternating Layout
           ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#4A5C4E] px-6 py-20 md:px-10 md:py-28">
+      <section className="bg-deep-forest px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           
           {/* Section Header */}
@@ -521,7 +521,7 @@ export default function OrganicFarming() {
               <div className="group relative flex flex-col items-center text-center">
                 {/* Icon Box */}
                 <div className="relative">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1B4D3E] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#2D7A4F]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-deep-forest transition-all duration-500 group-hover:scale-110 group-hover:border group-hover:border-luxury-gold/40">
                     <TbClipboardData className="h-10 w-10 text-luxury-gold" />
                   </div>
                   {/* Step Number Badge */}
@@ -545,7 +545,7 @@ export default function OrganicFarming() {
               <div className="group relative flex flex-col items-center text-center">
                 {/* Icon Box */}
                 <div className="relative">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1B4D3E] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#2D7A4F]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-deep-forest transition-all duration-500 group-hover:scale-110 group-hover:border group-hover:border-luxury-gold/40">
                     <BsBarChartLine className="h-10 w-10 text-luxury-gold" />
                   </div>
                   {/* Step Number Badge */}
@@ -569,7 +569,7 @@ export default function OrganicFarming() {
               <div className="group relative flex flex-col items-center text-center">
                 {/* Icon Box */}
                 <div className="relative">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1B4D3E] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#2D7A4F]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-deep-forest transition-all duration-500 group-hover:scale-110 group-hover:border group-hover:border-luxury-gold/40">
                     <GiFlowerPot className="h-10 w-10 text-luxury-gold" />
                   </div>
                   {/* Step Number Badge */}
@@ -593,7 +593,7 @@ export default function OrganicFarming() {
               <div className="group relative flex flex-col items-center text-center">
                 {/* Icon Box */}
                 <div className="relative">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1B4D3E] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#2D7A4F]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-deep-forest transition-all duration-500 group-hover:scale-110 group-hover:border group-hover:border-luxury-gold/40">
                     <FiTruck className="h-10 w-10 text-luxury-gold" />
                   </div>
                   {/* Step Number Badge */}
@@ -762,7 +762,7 @@ export default function OrganicFarming() {
       {/* ══════════════════════════════════════════════════════════
           THREE SEASONS - Before Planting, After Prosperity
           ══════════════════════════════════════════════════════════ */}
-      <section id="calendar" className="scroll-mt-24 bg-[#4A5C4E] px-6 py-20 md:px-10 md:py-28">
+      <section id="calendar" className="scroll-mt-24 bg-deep-forest px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           
           {/* Top Label */}
@@ -830,7 +830,7 @@ export default function OrganicFarming() {
               {/* Active Season Title */}
               <Reveal delay={280}>
                 <div className="space-y-3">
-                  <h4 className="font-body text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
+                  <h4 className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
                     {season.name} ({season.range})
                   </h4>
                   <p className="font-body text-sm leading-relaxed text-white/80">
@@ -842,7 +842,7 @@ export default function OrganicFarming() {
               {/* Tended Section */}
               <Reveal delay={310}>
                 <div className="space-y-3">
-                  <h4 className="font-body text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
+                  <h4 className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
                     Tended
                   </h4>
                   <p className="font-body text-sm leading-relaxed text-white/80">
@@ -854,7 +854,7 @@ export default function OrganicFarming() {
               {/* Composted Section */}
               <Reveal delay={340}>
                 <div className="space-y-3">
-                  <h4 className="font-body text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
+                  <h4 className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-luxury-gold">
                     Composted
                   </h4>
                   <p className="font-body text-sm leading-relaxed text-white/80">

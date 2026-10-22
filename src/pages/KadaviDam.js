@@ -71,16 +71,16 @@ function HeroTargetPin({ title, desc, className = '' }) {
     <div className={`flex flex-col items-center text-center group cursor-default ${className}`}>
       {/* Target icon [ • ] with crosshairs and stalk */}
       <div className="flex flex-col items-center mb-1.5 sm:mb-2">
-        <div className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-sm border border-emerald-400/80 bg-black/75 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.45)] transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)]">
-          <div className="h-1.5 w-1.5 rounded-full bg-emerald-300 group-hover:bg-ivory-white animate-pulse" />
-          <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-emerald-400/80" />
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-emerald-400/80" />
-          <span className="absolute top-1/2 -left-1 -translate-y-1/2 w-1 h-0.5 bg-emerald-400/80" />
-          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-1 h-0.5 bg-emerald-400/80" />
+        <div className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-sm border border-luxury-gold/80 bg-black/75 backdrop-blur-md shadow-[0_0_15px_rgba(212,175,55,0.45)] transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)]">
+          <div className="h-1.5 w-1.5 rounded-full bg-luxury-gold group-hover:bg-ivory-white animate-pulse" />
+          <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-luxury-gold/80" />
+          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0.5 h-1 bg-luxury-gold/80" />
+          <span className="absolute top-1/2 -left-1 -translate-y-1/2 w-1 h-0.5 bg-luxury-gold/80" />
+          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-1 h-0.5 bg-luxury-gold/80" />
         </div>
-        <div className="h-3 sm:h-4 w-px bg-gradient-to-b from-emerald-400/80 to-transparent" />
+        <div className="h-3 sm:h-4 w-px bg-gradient-to-b from-luxury-gold/80 to-transparent" />
       </div>
-      <h4 className="font-body text-xs sm:text-sm font-semibold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-emerald-300 transition-colors">
+      <h4 className="font-heading text-xs sm:text-sm font-semibold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-luxury-gold transition-colors">
         {title}
       </h4>
       <p className="mt-0.5 max-w-[180px] sm:max-w-[210px] font-body text-[0.65rem] sm:text-xs text-white/80 leading-tight font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
@@ -130,25 +130,25 @@ export default function KadaviDam() {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Inset Framing Box (Emerald Green & Subtle Gold) */}
-        <div className="pointer-events-none absolute top-20 sm:top-24 md:top-24 bottom-3 sm:bottom-4 md:bottom-5 inset-x-4 sm:inset-x-8 md:inset-x-12 rounded-3xl sm:rounded-[2.5rem] border border-emerald-400/35 z-20 shadow-[inset_0_0_30px_rgba(16,185,129,0.06)]" />
+        {/* Inset Framing Box */}
+        <div className="pointer-events-none absolute top-20 sm:top-24 md:top-24 bottom-3 sm:bottom-4 md:bottom-5 inset-x-4 sm:inset-x-8 md:inset-x-12 rounded-3xl sm:rounded-[2.5rem] border border-luxury-gold/35 z-20 shadow-[inset_0_0_30px_rgba(0,0,0,0.2)]" />
 
         {/* Top Left Vertical Glyphs inside Framing Box */}
         <div className="absolute top-32 sm:top-36 left-7 sm:left-12 md:left-16 z-30 flex flex-col items-center">
-          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-emerald-100/90 font-light select-none">
+          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-ivory-white/90 font-light select-none">
             क ड वी • ध र ण
           </span>
-          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-emerald-400 font-mono">
+          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-luxury-gold font-mono">
             16.98° N
           </span>
         </div>
 
         {/* Top Right Vertical Glyphs inside Framing Box */}
         <div className="absolute top-32 sm:top-36 right-7 sm:right-12 md:right-16 z-30 flex flex-col items-center">
-          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-emerald-100/90 font-light select-none">
+          <span className="[writing-mode:vertical-rl] font-heading text-xs sm:text-sm md:text-base tracking-[0.45em] text-ivory-white/90 font-light select-none">
             बा म ब र्द रा
           </span>
-          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-emerald-400 font-mono">
+          <span className="mt-2 text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] text-luxury-gold font-mono">
             SAHYADRI
           </span>
         </div>
@@ -156,7 +156,7 @@ export default function KadaviDam() {
         {/* Center Hero Block: Giant Sans Title & Subtitle */}
         <div className="relative z-10 mx-auto w-full max-w-5xl px-6 pt-6 sm:pt-10 text-center flex flex-col items-center">
           <Reveal>
-            <h1 className="font-heading font-medium text-6xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[9.5rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-white via-emerald-100/95 to-emerald-300/40 drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)] select-none">
+            <h1 className="font-heading font-medium text-6xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[9.5rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-white via-ivory-white to-luxury-gold/60 drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)] select-none">
               KADAVI
             </h1>
           </Reveal>
@@ -213,9 +213,9 @@ export default function KadaviDam() {
               </Link>
               <Link
                 to="/experience/boating"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/60 px-6 py-3 font-body text-xs uppercase tracking-[0.18em] text-emerald-100 backdrop-blur-md transition-all duration-300 hover:border-emerald-300 hover:bg-emerald-950/70 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-luxury-gold/40 bg-deep-forest/80 px-6 py-3 font-body text-xs uppercase tracking-[0.18em] text-ivory-white backdrop-blur-md transition-all duration-300 hover:border-luxury-gold hover:bg-deep-forest hover:text-white"
               >
-                <FaShip className="text-xs text-emerald-400" />
+                <FaShip className="text-xs text-luxury-gold" />
                 <span>Boating Experience</span>
               </Link>
             </div>

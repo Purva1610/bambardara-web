@@ -384,7 +384,7 @@ export default function HighTechNursery() {
 
         {/* ── CENTER: headline + subtitle ── */}
         <div className="absolute inset-x-0 top-[18%] z-10 flex flex-col items-center px-6 text-center">
-          <h1 className="max-w-3xl font-body text-[clamp(2rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg">
+          <h1 className="max-w-3xl font-heading text-[clamp(2rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg">
             Boost Your Crop Yields with<br className="hidden sm:block" />
             Cutting-Edge Nursery Solutions
           </h1>
@@ -411,7 +411,7 @@ export default function HighTechNursery() {
             </div>
             {/* text */}
             <div className="flex-1">
-              <h3 className="font-body text-[0.92rem] font-bold leading-tight text-white">
+              <h3 className="font-heading text-[0.92rem] font-bold leading-tight text-white">
                 Sustainable Farming<br />with Smart Nursery
               </h3>
               <p className="mt-1.5 font-body text-[0.72rem] font-light leading-[1.6] text-white/75">
@@ -654,7 +654,7 @@ export default function HighTechNursery() {
                   
                   {/* Label */}
                   <div className="absolute inset-x-0 bottom-0 p-4">
-                    <h3 className="font-body text-[0.7rem] font-bold uppercase tracking-[0.15em] leading-tight text-white">
+                    <h3 className="font-heading text-[0.7rem] font-bold uppercase tracking-[0.15em] leading-tight text-white">
                       {category.label}
                     </h3>
                   </div>

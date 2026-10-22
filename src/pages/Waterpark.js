@@ -180,7 +180,7 @@ export default function Waterpark() {
       <WaterparkHero />
 
       {/* PROMO TICKER STRIP */}
-      <section className="border-y border-stone bg-emerald-950 py-4 text-ivory-white">
+      <section className="border-y border-stone bg-deep-forest py-4 text-ivory-white">
         <div className="mx-auto flex max-w-editorial flex-wrap items-center justify-between gap-4 px-6 md:px-10">
           <p className="font-heading text-sm italic tracking-wide text-luxury-gold md:text-base">
             &ldquo;Come... Splash... Enjoy... Create Memories!&rdquo;
@@ -242,7 +242,7 @@ export default function Waterpark() {
 
             {/* BONUS CARD: WATER PARK TIMINGS & TICKET CALLOUT */}
             <Reveal delay={400}>
-              <div className="flex h-full flex-col justify-between border border-luxury-gold/40 bg-gradient-to-br from-deep-forest to-emerald-950 p-8 text-ivory-white shadow-luxury-md">
+              <div className="flex h-full flex-col justify-between border border-luxury-gold/40 bg-deep-forest p-8 text-ivory-white shadow-luxury-md">
                 <div>
                   <span className="inline-flex items-center gap-2 rounded-full border border-luxury-gold/40 bg-ivory-white/10 px-3 py-1 font-body text-[0.65rem] uppercase tracking-wider text-luxury-gold">
                     <FaSun className="h-3 w-3" />
@@ -368,7 +368,7 @@ export default function Waterpark() {
       </section>
 
       {/* OUR AMENITIES */}
-      <section className="bg-emerald-950 px-6 py-24 text-ivory-white md:px-10 md:py-32">
+      <section className="bg-deep-forest px-6 py-24 text-ivory-white md:px-10 md:py-32">
         <div className="mx-auto max-w-editorial">
           <SectionHeading
             label="Our Amenities"
